@@ -11,7 +11,7 @@ jobs:
           args: paper/paper.md --to=latex --output=paper.tex
         env:
           GIT_SHA: $GITHUB_SHA
-          JOURNAL: joss
+          JOURNAL: jose
       - name: PDF
         uses: docker://openjournals/paperdraft:latest
         with:

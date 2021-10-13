@@ -1,0 +1,12 @@
+name: galactic-spin 
+dependencies:
+  - python>=3.6
+  - numpy
+  - scipy
+  - matplotlib
+  - mpld3
+  - h5py
+  - lmfit
+  - sympy
+  - ipywidgets
+  - ffmpeg

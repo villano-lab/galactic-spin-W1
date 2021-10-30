@@ -490,7 +490,7 @@ def d_v(r,pref=0.5,h=h_c,d_rho00=drho00_c,save=False,load=True,comp='disk',**kwa
 def d_thief(r,pref=1):
     sys.path.append('./')
     import dataPython as dp
-    data = dp.getXYdata('../data/final/nord-120kpc-disk.txt')
+    data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
     b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    
@@ -499,7 +499,7 @@ def d_thief(r,pref=1):
 def g_thief(r,pref=1):
     sys.path.append('./')
     import dataPython as dp
-    data = dp.getXYdata('../data/final/nord-120kpc-gas.txt')
+    data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
     b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    

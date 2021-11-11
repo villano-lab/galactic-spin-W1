@@ -74,7 +74,7 @@ def gas(r,gpref):
 
 # NGC 5005 (Source: )
 rc = 2.5                  # cutoff radius (in kpc) NEED REFERENCE
-rho0 = 1.5981e+08         # central density (in solar mass/pc^3) NEED REFERENCE
+rho00 = 1.5981e+08         # central density (in solar mass/pc^3) NEED REFERENCE
 
 # Constants
 G = 4.30091e-6            # gravitational constant (kpc/solar mass*(km/s)^2)

@@ -1,25 +1,31 @@
 ---
-title: '`nrCascadeSim` - A simulation tool for nuclear recoil cascades resulting from neutron capture'
+title: The Data Behind Dark Matter: Exploring Galactic Rotation 
 bibliography: references.bib
 tags:
-  - C++
-  - Simulation
-  - Nuclear Physics
+  - Python
+  - Jupyter 
+  - Binder
+  - Workshop 
 authors:
   - name: A.N. Villano
     affiliation: 1
     orcid: 0000-0002-3893-7259
-  - name: Kitty Harris
+  - name: Raphael Hatami
     affiliation: 1
-    orcid: 0000-0001-5406-8367
-  - name: Staci Brown
+  - name: Kitty C. Harris
     affiliation: 2
+    orcid: 0000-0001-5406-8367
+  - name: Judit Bergfalk 
+    affiliation: 3
+    orcid: 0000-0003-1662-0768 
 affiliations:
  - name: Department of Physics, University of Colorado Denver, Denver CO 80217, USA
    index: 1
- - name: Department of Applied Mathematics & Statistics, University of New Mexico, Albuquerque NM 87131, USA
+ - name: Integrated Sciences, University of Colorado Denver, Denver CO 80217, USA
    index: 2
-date: 12 December 2020
+ - name: Astrophysical & Planetary Sciences, University of Colorado Boulder, Boulder, CO 80309, USA 
+   index: 2
+date: 19 November 2021
 nocite: '@*'
 ---
 

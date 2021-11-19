@@ -6,7 +6,9 @@ dependencies:
   - matplotlib
   - mpld3
   - h5py
-  - lmfit
   - sympy
   - ipywidgets
   - ffmpeg
+  - pip
+  - pip:
+    - lmfit

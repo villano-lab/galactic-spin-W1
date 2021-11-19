@@ -24,4 +24,4 @@ install:
 
 before_script: cd binder
 script:
-- travis wait 60 py.test
+- travis_wait 60 py.test

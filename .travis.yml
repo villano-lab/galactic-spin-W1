@@ -19,7 +19,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f grav_env.yml
+  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
   - source activate test-environment
 
 before_script:

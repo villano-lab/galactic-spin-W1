@@ -8,6 +8,8 @@ import lmfit as lm
 import dataPython as dp
 import scipy.integrate as si
 from scipy.interpolate import InterpolatedUnivariateSpline
+import NGC5533_functions as nf             # Components
+
 
 ##############################
 ### Import data/text files ###
@@ -46,10 +48,15 @@ def interpd(x,y):
 # Errors
 weighdata = 1/v_err1
 
-# Prefactors
+G = 4.30091e-6            # gravitational constant (kpc/solar mass*(km/s)^2)
+
+# Prefactors and best-fit values
 bpref = 0.28228633
 dpref = 0.71035496
 gpref = 0.956
+rho00 = 1.5981e+08         # central density (in solar mass/pc^3) NEED REFERENCE
+# NGC 5005 (Source: https://academic.oup.com/mnras/article/449/4/3981/1195237#920592944)
+rc = 2.5                  # cutoff radius (in kpc) (source: in paragraph right above fig. 9)
 
 ################################
 ######### Components ###########
@@ -67,17 +74,15 @@ def gas(r,gpref):
     polynomial = interpd(r_dat,gpref*gas_raw)   
     return polynomial(r)
 
-
+def halo(r,rc,rho00):
+    return nf.h_v(r,rc,rho0,load=False)
 #########################
 ### Galaxy parameters ###
 #########################
 
-# NGC 5005 (Source: )
-rc = 2.5                  # cutoff radius (in kpc) NEED REFERENCE
-rho00 = 1.5981e+08         # central density (in solar mass/pc^3) NEED REFERENCE
+
 
 # Constants
-G = 4.30091e-6            # gravitational constant (kpc/solar mass*(km/s)^2)
 
 #################################
 ### Calculating enclosed mass ### 

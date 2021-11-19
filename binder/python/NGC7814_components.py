@@ -83,31 +83,30 @@ G = 4.30091e-6            # gravitational constant (kpc/solar mass*(km/s)^2)
 ### Calculating enclosed mass ### 
 #################################
 
-# NFW (dark halo) density profile
-rho_NFW = lambda r: rho0 / ((r/rcut)*(1+r/rcut)**2)
-
-# Inner function
-mass_inner = lambda r: rho_NFW(r) * 4 * np.pi * r**2
-
-# Mass integral: total mass at radius R (kpc)
-#mass_r = lambda r: si.quad(mass_inner, 0, r)   
-# Integral keeps giving me errors, so I used Mathematica to do the integral for me, this is the result:
-def mass_r(r):
-    return 4 * rcut**3 * np.pi * rho0 * (-1 + rcut/(rcut+r) - np.log(rcut) + np.log(rcut+r))
+# Mass as a function of radius, calculated from the Isothermal density profile (see Mathematica code):
+def mass_r(r,rcut):
+    return 4 * np.pi * rcut**2  * (r - rcut * (np.arctan(r/rcut)))    
 
 ########################################################
 ### Calculating halo velocity using only black holes ###
 ########################################################
 
-def halo_BH(r,mBH): 
-    return mBH * np.sqrt(G * mass_r(r)/r)           # multiplied by a prefactor
+def halo_BH(r,scale,arraysize,mBH,rcut):
+    x = np.sort(r)
+    y = np.sqrt((G * (scale * arraysize * mBH) * mass_r(r,rcut)) / r)   
+                    # scale is needed to be separate and constant because the widget would freeze the computer otherwise
+                    # arraysize is the number of black holes for slider
+                    # mBH is the mass of black holes for slider
+    halo = interpd(x,y)
+    return halo(r)
 
 ##################################
 ### Calculating total velocity ###
 ##################################
 
-def totalvelocity(r,mBH,bpref,dpref,gpref):
-    return np.sqrt((disk(r,dpref))**2
-               +(bulge(r,bpref))**2
-               +(gas(r,gpref))**2
-               +(halo_BH(r,mBH))**2)
+def totalvelocity(r,scale,arraysize,mBH,rcut,bpref,dpref,gpref):    
+    total = np.sqrt(bulge(r,bpref)**2 
+                    + disk(r,dpref)**2
+                    + halo_BH(r,scale,arraysize,mBH,rcut)**2
+                    + gas(r,gpref)**2)
+    return total

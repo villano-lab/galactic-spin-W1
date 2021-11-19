@@ -91,8 +91,8 @@ def halo_BH(r,scale,arraysize,mBH,rcut):
                     # scale is needed to be separate and constant because the widget would freeze the computer otherwise
                     # arraysize is the number of black holes for slider
                     # mBH is the mass of black holes for slider
-    polynomial = interpd(x,y)
-    return polynomial(r)
+    halo = interpd(x,y)
+    return halo(r)
 
 ##################################
 ### Calculating total velocity ###

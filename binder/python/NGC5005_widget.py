@@ -1,13 +1,12 @@
-
-#Imports
+###############
+### Imports ###
+###############
 import numpy as np
 import matplotlib.pyplot as plt
 import lmfit as lm
 import dataPython as dp
 import scipy.interpolate as inter
-import NGC5005_components as fitting
-import NGC5533_functions as nf             # Components
-
+import NGC5005_components as f
 
 from datetime import datetime
 import time
@@ -24,34 +23,12 @@ warnings.filterwarnings("ignore")  #ignore warnings
 def blockPrint():
     sys.stdout = open(os.devnull, 'w')
 
-# Define components
-def bulge(r, bpref):
-    return bpref*fitting.bulge
+def totalcurve(r, bpref,dpref,gpref,rc,rho0):
+    return np.sqrt((f.gas(r,gpref)**2)
+                   + (f.bulge(r,bpref)**2) 
+                   + (f.disk(r,dpref)**2)
+                   + (f.halo(r,rc,rho0)**2))
 
-def disk(r, dpref):
-    return dpref*fitting.disk
-
-def halo(r_dat,rc,rho00):
-    return nf.h_v(r_dat,rc,rho0,load=False)
-
-def gas(r, gpref):
-    return gpref*fitting.gas
-
-def totalcurve(r,bpref,dpref,gpref,rc,rho0):
-    return np.sqrt((gas(gpref)**2)
-                   + (bulge(bpref)**2) 
-                   + (disk(dpref)**2)
-                   + (halo(r,rc,rho0)**2))
-
-################################
-###### Fitting Parameters ######
-################################
-
-best_bpref = fitting.bpref
-best_dpref = fitting.dpref
-best_gpref = fitting.gpref
-best_rc = fitting.rc
-best_rho00 = fitting.rho00
 
 # Define plotting function
 def f(bpref,dpref,gpref,rc,rho00):
@@ -104,32 +81,37 @@ layout = {'width':'600px'}
 
 # Define slides
 gpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_gpref,
+                    value=f.gpref,
                     description='Gas Prefactor', 
                     readout_format='.2f', 
                     orientation='horizontal', 
                     style=style, layout=layout)
 
 bpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_bpref, 
+                    value=f.bpref, 
                     description='Bulge Prefactor', 
                     readout_format='.2f', 
                     orientation='horizontal', 
                     style=style, layout=layout)
 
 dpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_dpref, 
+                    value=f.dpref, 
                     description='Disk Prefactor', 
                     readout_format='.2f', 
                     orientation='horizontal', 
                     style=style, layout=layout)
 
-rc = FloatSlider(min=0, max=5, step=0.1, value=best_rc, description='Halo Core Radius [kpc]', readout_format='.2f', orientation='horizontal', style=style, layout=layout)
+rc = FloatSlider(min=0, max=5, step=0.1, 
+                 value=f.rc, 
+                 description='Halo Core Radius [kpc]', 
+                 readout_format='.2f', 
+                 orientation='horizontal', 
+                 style=style, layout=layout)
 #rc = fixed(fitting.rc)
 #rho00 = fixed(best_rho00)
 
 rho00 = FloatSlider(min=0, max=1e9, step=1e7, 
-                    value=best_rho00, 
+                    value=f.rho00, 
                     description=r'Halo Surface Density [$M_{\odot} / pc^3$]', 
                     readout_format='.2e', 
                     orientation='horizontal', 
@@ -154,10 +136,10 @@ button = Button(
 out = Output()
 
 def on_button_clicked(_):
-    bpref.value = best_bpref
-    dpref.value = best_dpref
-    gpref.value = best_GX
-    rc.value=best_rc
-    rho00.value = best_rho00
+    bpref.value = f.bpref
+    dpref.value = f.dpref
+    gpref.value = f.gpref
+    rc.value=f.rc
+    rho00.value = f.rho00
 
 button.on_click(on_button_clicked)

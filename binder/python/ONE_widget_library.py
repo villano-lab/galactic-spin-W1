@@ -6,24 +6,17 @@ import matplotlib.pyplot as plt
 import lmfit as lm
 import dataPython as dp
 import scipy.interpolate as inter
-import NGC5005_components as f
-
-from datetime import datetime
-import time
 from ipywidgets import interactive, fixed, FloatSlider, HBox, Layout, Button, Label, Output, VBox
 
 from IPython.display import display, clear_output
 from IPython.display import Javascript
 import scipy.integrate as si
 from scipy.interpolate import InterpolatedUnivariateSpline
-import NGC5533_functions as nf             # Components
-
+import NGC5533_functions as nf             # need for halo
 
 import scipy.stats as stats
 import warnings
 warnings.filterwarnings("ignore")  #ignore warnings
-
-
 
 # this cell is a placeholder for the .py file
 
@@ -62,7 +55,7 @@ elif galaxy=='NGC7814':
     rcs = 2.1                # cutoff radius (in kpc) from Table 5.
     rho0s = 152.3e-3           # central density (in solar mass/pc^3) from Table 5.
     
-    DataSource= 'Fraternali1, Sancisi, Kamphuis. "A tale of two galaxies: light and mass in NGC 891 and NGC 7814". A&A Journal. Jun 2011'
+    DataSource= 'Fraternali, Sancisi, Kamphuis. "A tale of two galaxies: light and mass in NGC 891 and NGC 7814". A&A Journal. Jun 2011'
 elif galaxy=='NGC891':
     dataFile = '891_data.txt'
     diskFile='891_disk_gipsy.txt'
@@ -78,23 +71,7 @@ elif galaxy=='NGC891':
     rcs=1.9 
     #rho0 = 1e9**33.1e-3        # central density (converted to solar mass/kpc^3) from Table 5.
   
-    DataSource= 'Fraternali1, Sancisi, Kamphuis. "A tale of two galaxies: light and mass in NGC 891 and NGC 7814". A&A Journal. Jun 2011'
-elif galaxy=='NGC5533':
-    dataFile = '100kpc_data.txt' #this or the .txt called 'noord-120kpc-total.txt'???
-    diskFile='noord-120kpc-disk.txt'
-    bulgeFile = 'noord-120kpc-bulge.txt'
-    gasFile='noord-120kpc-gas.txt'
-    
-    #from fitting:
-    gprefs=1
-    dprefs=.99
-    bprefs=1.03
-    rho0s =2.94e9
-    #from noord paper:
-    #rho0 = .31e9           # central density (converted to solar mass/kpc^3) from Table 5.
-    rcs=1.4  
-    
-    DataSource='E. Noordermeer. The rotation curves of flattened Sérsic bulges. MNRAS,385(3):1359–1364, Apr 2008'
+    DataSource= 'Fraternali, Sancisi, Kamphuis. "A tale of two galaxies: light and mass in NGC 891 and NGC 7814". A&A Journal. Jun 2011'
 #*******************************
 #Assigning txt file info
 #*******************************
@@ -117,12 +94,6 @@ bulge_raw = np.asarray(bulge_data['yy'])
 # Gas:
 gas_data = dp.getXYdata(gasPath)
 gas_raw = np.asarray(gas_data['yy'])  
-
-
-print(len(r_dat))
-print(len(gas_raw))
-print(len(bulge_raw))
-print(len(disk_raw))
 weighdata = 1/v_err1
 G = 4.30091e-6            # gravitational constant (kpc/solar mass*(km/s)^2)
 
@@ -162,7 +133,6 @@ def totalcurve(r,gpref,bpref,dpref,rc,rho0):
                    + (disk(r,dpref)**2)
                    + (halo(r,rc,rho0)**2))
 
-
 z=r_dat[0]
 rr=[0,z]
 
@@ -170,13 +140,12 @@ rr=[0,z]
 def f(gpref,bpref,dpref,rc,rho0):
     
     # Define r
-    xmax=20 #kpc
-    rval = np.linspace(0,11.2,19)
-    
+    xmax=max(r_dat)+1 #kpc
+    ymax=max(v_dat)+80    
     # Plot
     plt.figure(figsize=(11,6))
     plt.xlim(0,xmax)
-    plt.ylim(0,360)
+    plt.ylim(0,ymax)
     
     plt.errorbar(r_dat,v_dat,yerr=v_err1,fmt='bo',label='Data')
     

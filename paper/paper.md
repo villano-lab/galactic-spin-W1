@@ -43,7 +43,7 @@ workshop will have the opportunity to explore dark matter through galactic rotat
 using interactive programs and by editing python code. This will give participants an
 understanding of how physicists arrived at the idea of dark matter showing them the difference
 between curve fits with and without dark matter. Understanding dark matter's epistemological
-origins will help participants to formulate their own opinions on the dark matter debate.
+origins will help participants to formulate their own opinions on the dark matter debate. [@ROOT]
 
 
 # Models Used

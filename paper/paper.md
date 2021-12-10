@@ -31,29 +31,17 @@ nocite: '@*'
 
 # Summary
 
-Neutron capture-induced nuclear recoils have emerged as an important
-tool for detector calibrations in direct dark matter detection and coherent elastic neutrino-nucleus scattering (CE$\mathrm{\nu}$NS).
+By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
+found that there seems to be something missing in our understanding of these galaxies. One theory
+is that there is some matter present in this galaxies which we cannot see because it doesn't
+interact with light - that is, that these galaxies contain dark matter. Participants in this
+workshop will have the opportunity to explore dark matter through galactic rotation curves both by
+using interactive programs and by editing python code. This will give participants an
+understanding of how physicists arrived at the idea of dark matter showing them the difference
+between curve fits with and without dark matter. Understanding dark matter's epistemological
+origins will help participants to formulate their own opinions on the dark matter debate.
 
-`nrCascadeSim` is a command-line tool for generating simulation data for energy deposits
-resulting from neutron capture on pure materials. Presently, silicon, germanium, neon, and argon are
-supported. While the software was developed for solid state detector calibration, it can be used
-for any application which requires simulated neutron capture-induced nuclear recoil data.
-
-A "cascade" occurs when a neutron becomes part of a nucleus.  The neutron can be captured to one
-of many discrete energy levels, or states; if the energy level is nonzero (not the ground state),
-then the state will eventually change so that it is zero.  This can happen either all at once or in
-multiple steps &mdash; that is, the captured neutron may go from its state to the ground state, or
-it may go to another state with lower energy that is not the ground state (provided that one
-exists).  The cascade refers to the particular "path" of energy levels that a captured neutron
-takes to get to the ground state from the neutron separation energy. Currently the code assumes
-that the neutrons that enter the nuclear system have negligible (zero) kinetic energy; this is a
-good approximation for thermal neutrons because 0.0254\ eV (the average kinetic energy of a
-thermal neutron) is small compared to most nuclear recoil energy scales.
-
-`nrCascadeSim` models many of these cascades at once and saves the energies along with other
-useful data to a single file, the structure of which is outlined in Figure \ref{rootfile_fig}.
-
-![An outline of the structure of a ROOT [@ROOT] output file named \texttt{file.root}. Everything is contained within a top-level key called \texttt{cascade}. Beneath \texttt{cascade} are several other keys, each pointing to an array. Each array element corresponds to one cascade; the same index will point to the same cascade across arrays. \texttt{n} notes the number of energy levels in the cascade. \texttt{cid} is short for "cascade ID" and refers to the row number of the levelfile which was used to generate the cascade, starting from zero. Each element of \texttt{Elev} is an array noting the energy levels used, given in eV. Similarly, \texttt{taus} notes the lifetimes of these states used, given in attoseconds. Both \texttt{Elev} and \texttt{taus} will have entries with a length of the corresponding value of n, so if \texttt{n[3]} is four then the lengths of \texttt{Elev[3]} and \texttt{taus[3]} will both be four. \texttt{delE} lists the energies deposited during the cascade in eV, and will always a length of one less than n. \texttt{I} calculates the ionization in terms of a number of charges, and \texttt{Ei} combines \texttt{I} with \texttt{delE} to list the ionization energy in eV. \texttt{time} describes the simulation-generated time that the neutron spent at each energy level, in attoseconds, and has a length corresponding to n. \texttt{Eg} provides gamma energies associated with each decay, in MeV, and has a length corresponding to one less than n. The gamma energies are not included in any of the other energy arrays. \label{rootfile_fig}](joss_fig.pdf)
+%![An outline of the structure of a ROOT [@ROOT] output file named \texttt{file.root}. Everything is contained within a top-level key called \texttt{cascade}. Beneath \texttt{cascade} are several other keys, each pointing to an array. Each array element corresponds to one cascade; the same index will point to the same cascade across arrays. \texttt{n} notes the number of energy levels in the cascade. \texttt{cid} is short for "cascade ID" and refers to the row number of the levelfile which was used to generate the cascade, starting from zero. Each element of \texttt{Elev} is an array noting the energy levels used, given in eV. Similarly, \texttt{taus} notes the lifetimes of these states used, given in attoseconds. Both \texttt{Elev} and \texttt{taus} will have entries with a length of the corresponding value of n, so if \texttt{n[3]} is four then the lengths of \texttt{Elev[3]} and \texttt{taus[3]} will both be four. \texttt{delE} lists the energies deposited during the cascade in eV, and will always a length of one less than n. \texttt{I} calculates the ionization in terms of a number of charges, and \texttt{Ei} combines \texttt{I} with \texttt{delE} to list the ionization energy in eV. \texttt{time} describes the simulation-generated time that the neutron spent at each energy level, in attoseconds, and has a length corresponding to n. \texttt{Eg} provides gamma energies associated with each decay, in MeV, and has a length corresponding to one less than n. The gamma energies are not included in any of the other energy arrays. \label{rootfile_fig}](joss_fig.pdf)
 
 # Models Used
 

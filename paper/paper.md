@@ -38,7 +38,9 @@ nocite: '@*'
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
 is that there is some matter present in this galaxies which we cannot see because it doesn't
-interact with light - that is, that these galaxies contain dark matter. Participants in this
+interact with light - that is, that these galaxies contain dark matter [REF]. 
+
+Participants in this
 workshop will have the opportunity to explore dark matter through galactic rotation curves both by
 using interactive programs and by editing python code. This will give participants an
 understanding of how physicists arrived at the idea of dark matter showing them the difference

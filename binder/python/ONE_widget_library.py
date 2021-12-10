@@ -53,7 +53,7 @@ elif galaxy=='NGC7814':
     
     # NGC 7814 (Source: https://www.aanda.org/articles/aa/abs/2011/07/aa16634-11/aa16634-11.html)
     rcs = 2.1                # cutoff radius (in kpc) from Table 5.
-    rho0s = 152.3e-3           # central density (in solar mass/pc^3) from Table 5.
+    rho0s = 47435774.7           # central density (in solar mass/pc^3) from Table 5.
     
     DataSource= 'Fraternali, Sancisi, Kamphuis. "A tale of two galaxies: light and mass in NGC 891 and NGC 7814". A&A Journal. Jun 2011'
 elif galaxy=='NGC891':
@@ -245,6 +245,38 @@ def on_button_clicked(_):
     rho0.value = rho0s
     rc.value = rcs
     gpref.value = gprefs
+    
+    #################################
+### Calculating enclosed mass ### 
+#################################
+
+# Mass as a function of radius, calculated from the Isothermal density profile (see Mathematica code):
+def mass_r(r,rcut):
+    return 4 * np.pi * rcut**2  * (r - rcut * (np.arctan(r/rcut)))    
+
+########################################################
+### Calculating halo velocity using only black holes ###
+########################################################
+
+def halo_BH(r,scale,arraysize,mBH,rcut):
+    x = np.sort(r)
+    y = np.sqrt((G * (scale * arraysize * mBH) * mass_r(r,rcut)) / r)   
+                    # scale is needed to be separate and constant because the widget would freeze the computer otherwise
+                    # arraysize is the number of black holes for slider
+                    # mBH is the mass of black holes for slider
+    halo = interpd(x,y)
+    return halo(r)
+
+##################################
+### Calculating total velocity ###
+##################################
+
+def totalvelocityBH(r,scale,arraysize,mBH,rcut,bpref,dpref,gpref):    
+    total = np.sqrt(bulge(r,bpref)**2 
+                    + disk(r,dpref)**2
+                    + halo_BH(r,scale,arraysize,mBH,rcut)**2
+                    + gas(r,gpref)**2)
+    return total
 
 button.on_click(on_button_clicked)
 

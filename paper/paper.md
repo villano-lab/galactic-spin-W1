@@ -1,5 +1,5 @@
 ---
-title: The Data Behind Dark Matter: Exploring Galactic Rotation 
+title: 'The Data Behind Dark Matter: Exploring Galactic Rotation' 
 bibliography: references.bib
 tags:
   - Python

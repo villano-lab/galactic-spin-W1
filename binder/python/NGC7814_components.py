@@ -15,21 +15,21 @@ from scipy.interpolate import InterpolatedUnivariateSpline
 # (the r array of the raw data)
 
 # Datapoints:
-data = dp.getXYdata_wXYerr('data/NGC7814/ngc7814data')
+data = dp.getXYdata_wXYerr('data/NGC7814/7814_measured.dat')
 r_dat = np.asarray(data['xx'])
 v_dat = np.asarray(data['yy'])
 v_err1 = np.asarray(data['ey'])
 
 # Disk:
-disk_data = dp.getXYZdata('data/NGC7814/7814reallydisk.dat')
+disk_data = dp.getXYZdata('data/NGC7814/7814_gDisk.dat')
 disk_raw = np.asarray(disk_data['zz'])
 
 # Bulge:
-bulge_data = dp.getXYZdata('data/NGC7814/7814reallybulge.dat')
+bulge_data = dp.getXYZdata('data/NGC7814/7814_gBulge.dat')
 bulge_raw = np.asarray(bulge_data['zz'])
 
 # Gas:
-gas_data = dp.getXYZdata('data/NGC7814/7814reallygas.dat')
+gas_data = dp.getXYZdata('data/NGC7814/7814_gGas.dat')
 gas_raw = np.asarray(gas_data['zz'])
 
 #####################

@@ -43,69 +43,72 @@ workshop will have the opportunity to explore dark matter through galactic rotat
 using interactive programs and by editing python code. This will give participants an
 understanding of how physicists arrived at the idea of dark matter showing them the difference
 between curve fits with and without dark matter. Understanding dark matter's epistemological
-origins will help participants to formulate their own opinions on the dark matter debate. [@ROOT]
+origins will help participants to formulate their own opinions on the dark matter debate.
+
+## Description of the software or learning module
+
+In this experimental module, we include several programs:
+	1. Adjustable widgets of four example rotation curves, allowing visual representation of how each galactic component fits into the total representative velocity curve. 
+	2. A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
+	3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
+	4. (Judit's curve and template codes from the workshop)
+	5. A WIP conversion of GIPSY's rotmod task to Python 3. 
+What else?????
 
 
-# Models Used
+# Statement of Need 
 
-When modeling deposits from neutron capture events, we want to look at the recoil of the nucleus
-as a result of these cascades.  To determine how much energy is deposited, we must track how
-much the nucleus slows down between steps of the cascade as well as *how* each state change
-affects the nucleus' travel.  `nrCascadeSim` assumes a constant deceleration that results from the
-nucleus colliding with other nearby nuclei.  This means that it must simulate, along with the
-steps of the cascade, the time between each state &mdash; to calculate how much the nucleus slows
-down &mdash; and the angle between the nucleus' momentum before a decay and the momentum boost
-(gamma ray) resulting from the decay &mdash; to calculate the resulting momentum.  The time
-between steps is simulated as an exponentially-decaying random variable based on the state's
-half-life\footnote{It is most correct to use the half-life for the state given the state it will decay to. 
-However, these are not generally well-known unless the branching ratios are well-known. 
-If the ratios are well-known, then a correction can be made and incorporated into the input file.}, 
-and the angle is simulated as having a uniform distribution on the surface of a sphere.
-Cascade selection is weighted by isotope abundance and cross-section as well as the probability of
-the energy level.  In+ existing levelfiles, energy levels are derived from 
+Rotation curves present one of the key empirical artifacts through which dark matter can be
+observed and analyzed (source). However, common understanding of rotation curves is lacking within
+the field of astrophysics (source), especially in students and young academics in this field
+(source). Furthermore, the software and tools used in actually developing rotation curves fall
+into an even deeper level esotericism, exacerbated by various factors including poor accessibility
+and outdated code (source: GIPSY) and lack of open-source resources available. We therefore have
+created a Github repository consisting of Jupyter notebooks, data files, and notes comprising a
+module of rotation curve learning. (OUR PROGRAM/MODULE NAME) is designed to present an
+easily-accessible open-source platform for developing basic rotation curves in an annotated,
+tutorial form for both academics and curious individuals with little or no experience with
+rotation curves. With MODULE NAME, users can follow step-by-step instructions and explanations in
+developing their own rotation curves. The primary goal of this project is to present
+rotation-curve development and research in a versatile and approachable format for any individual
+to explore, learn, and build upon.
 
-The above process models the recoil energies, and the output gives both the total recoil energy
-for a cascade as well as the energy per step.  For some applications, this may be the desired
-output, or the user may already have a particular process they will use for converting this
-energy to what they wish to measure.  However, we also include, for convenience, the ionization yield
-and ionization energy of these recoils.  This ionization yield assumes the Lindhard
-model:
+# Learning Objectives 
 
-$$
-\begin{array}{rcl}
-  Y & = & \frac{kg_{(\epsilon)}}{1+kg_{(\epsilon)}} \\
-  g_{(\epsilon)} & = & a\epsilon^\gamma + b\epsilon^w + \epsilon \\
-  \epsilon_{(E_r)} & = & 11.5E_r[keV]Z^{-7/3}
-\end{array}
-$$
+	• For learning modules, describe the learning objectives, content, instructional design, and experience of use in teaching and learning situations.
+The learning objectives for this educational module are:
+	1. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
+	2. Provide users with an accessible work and activities relating to the basic principles of rotation curve composition.
+		a. This includes facilitating the introduction of rotation curve concepts via open-source, interactive programs to provide users with practical and tangible entrees of what rotation curve work really involves.
+	3. Provide code-based concepts and examples of how users can become more involved in rotation curve work as they wish.
 
-Using the accepted value for Silicon ($k=0.143$) or Germanium ($k=0.159$), whichever is
-appropriate; $a=3$; and $b=0.7$.
+experience of use in teaching and learning situations.
 
-# Statement of Need
+(Raphael). Most of the content provided in this module has been presented and taught in previous workshops/research symposiums (Data Science Symposium, RaCAS Research Symposium 2020 and 2021), with feedback collected from participants. We have chosen for this module the activities which proved most successful in terms of education and sparking interest in participants. 
 
-`nrCascadeSim` is a C/C++ package for generating a specified number of energy deposits resulting
-from nuetron capture-induced nuclear recoils.  The energy levels and their lifetimes are
-customizable, and multiple isotopes of the same element can be present within the simulation.
-Pre-defined energy level files exist for silicon and germanium, which are constructed from the
-data in .  Outputs include energy deposits at each step, total
-kinetic energy deposits, and ionization energy deposits, making them useful for a variety of
-applications, including nuclear recoil calibrations for dark matter direct detection or coherent
-neutrino detection (CE$\mathrm{\nu}$NS).
+# Story 
 
-# Example Use Case
+(Raphael) The story of this project emerged out of several years of literary analysis, trial and error, and reproducibility studies our team conducted on rotation curve research. One principal feeling our team drew from this journey was a perceived lack of clarity and accessibility in the world of rotation curve research, including that pertaining to programs and data requisite for actually composing rotation curves. Examining the difficulties encountered in our team's research, we developed a simple resource (an educational module) that is clear, concise, with curve-composition activities that can be easily reproducible by the user. From our experience analyzing a number of rotation curve publications, in addition to correspondences with active researchers in the field, and our experience with currently-used curve-composing programs, we have begun to develop our own versions of such programs, making improvements which we believe will greatly improve accessibility and understanding. We also include content which we produced for previous workshops and research symposiums that further facilitate rotation curve learning. 
 
-Included in the repository is an example `test-example/Yields_and_Resolutions.ipynb` which users
-can follow to ensure the code is running correctly.  This example both applies a yield model to
-the individual energy deposits and applies variation intended to simulate the resolution of the
-detector.  The yield and resolution models are described in more detail in the example notebook.
-Figure \ref{LindvSor_fig} shows overlaid histograms of different combinations of analysis on the same
-data file.
+#Materials
 
-![An overlaid histogram showing an example use case in which points are generated and then multiple yield models and resolutions are applied.  In this example, the x-axis represents the ionization energy "yielded" by the cascade; this is effectively a way of noting what the detector reads out as opposed to what the pure kinetic energy of the cascade is.  The Lindhard yield  is output by \texttt{nrCascadeSim} as \texttt{Ei}; the Sorenson yield  is applied to the values from \texttt{delE}.Resolutions are applied by adding random values generated from a Gaussian distribution of fixed width to the energy yield.  The "Small Res (1/5)" histograms have Gaussians with 1/5 of the width of their counterparts.  The y-axis represents the normalized frequency of energy yields.\label{LindvSor_fig}](SorVsLin_fig.pdf)
+	• SPARC data import
+	• Interactive Measured Data Plotting: 
+		○ Plotting radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
+	• Interactive Rotation Curve Plotting:
+		○ Choose a galaxy to plot
+		○ Build your own rotation curve using the galaxy's components. 
+		○ Calculate black hole component
+		○ Calculate dark matter component
+		○ See how dark matter component affects the total curve 
+	• Interactive Fitting:
+		○ Choose a galaxy to plot
+		○ Find scaling factors by fitting them to the measured data points
+	• Widget for Dark Matter parameters affecting the rotation curve in NGC 5533
+Can make the same widget for the other galaxies too, if we want....
 
 # Acknowledgements
 
-This material is based upon work supported by the U.S. Department of Energy, Office of Science, Office of High Energy Physics (HEP) under Award Number DE-SC0021364.
+The authors would like to thank...
 
 # References

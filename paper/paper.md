@@ -92,19 +92,20 @@ experience of use in teaching and learning situations.
 
 #Materials
 
-	• SPARC data import
-	• Interactive Measured Data Plotting: 
-		○ Plotting radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
-	• Interactive Rotation Curve Plotting:
-		○ Choose a galaxy to plot
-		○ Build your own rotation curve using the galaxy's components. 
-		○ Calculate black hole component
-		○ Calculate dark matter component
-		○ See how dark matter component affects the total curve 
-	• Interactive Fitting:
-		○ Choose a galaxy to plot
-		○ Find scaling factors by fitting them to the measured data points
-	• Widget for Dark Matter parameters affecting the rotation curve in NGC 5533
+* SPARC data import
+* Interactive Measured Data Plotting: 
+    * Plotting radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
+* Interactive Rotation Curve Plotting:
+    * Choose a galaxy to plot
+    * Build your own rotation curve using the galaxy's components. 
+    * Calculate black hole component
+    * Calculate dark matter component
+    * See how dark matter component affects the total curve 
+* Interactive Fitting:
+    * Choose a galaxy to plot
+    * Find scaling factors by fitting them to the measured data points
+* Widget for Dark Matter parameters affecting the rotation curve in NGC 5533
+
 Can make the same widget for the other galaxies too, if we want....
 
 # Acknowledgements

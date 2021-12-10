@@ -41,7 +41,6 @@ understanding of how physicists arrived at the idea of dark matter showing them 
 between curve fits with and without dark matter. Understanding dark matter's epistemological
 origins will help participants to formulate their own opinions on the dark matter debate.
 
-%![An outline of the structure of a ROOT [@ROOT] output file named \texttt{file.root}. Everything is contained within a top-level key called \texttt{cascade}. Beneath \texttt{cascade} are several other keys, each pointing to an array. Each array element corresponds to one cascade; the same index will point to the same cascade across arrays. \texttt{n} notes the number of energy levels in the cascade. \texttt{cid} is short for "cascade ID" and refers to the row number of the levelfile which was used to generate the cascade, starting from zero. Each element of \texttt{Elev} is an array noting the energy levels used, given in eV. Similarly, \texttt{taus} notes the lifetimes of these states used, given in attoseconds. Both \texttt{Elev} and \texttt{taus} will have entries with a length of the corresponding value of n, so if \texttt{n[3]} is four then the lengths of \texttt{Elev[3]} and \texttt{taus[3]} will both be four. \texttt{delE} lists the energies deposited during the cascade in eV, and will always a length of one less than n. \texttt{I} calculates the ionization in terms of a number of charges, and \texttt{Ei} combines \texttt{I} with \texttt{delE} to list the ionization energy in eV. \texttt{time} describes the simulation-generated time that the neutron spent at each energy level, in attoseconds, and has a length corresponding to n. \texttt{Eg} provides gamma energies associated with each decay, in MeV, and has a length corresponding to one less than n. The gamma energies are not included in any of the other energy arrays. \label{rootfile_fig}](joss_fig.pdf)
 
 # Models Used
 
@@ -59,15 +58,14 @@ However, these are not generally well-known unless the branching ratios are well
 If the ratios are well-known, then a correction can be made and incorporated into the input file.}, 
 and the angle is simulated as having a uniform distribution on the surface of a sphere.
 Cascade selection is weighted by isotope abundance and cross-section as well as the probability of
-the energy level.  In+ existing levelfiles, energy levels are derived from [@Ge] for germanium
-and from [@Si] for Silicon.
+the energy level.  In+ existing levelfiles, energy levels are derived from 
 
 The above process models the recoil energies, and the output gives both the total recoil energy
 for a cascade as well as the energy per step.  For some applications, this may be the desired
 output, or the user may already have a particular process they will use for converting this
 energy to what they wish to measure.  However, we also include, for convenience, the ionization yield
 and ionization energy of these recoils.  This ionization yield assumes the Lindhard
-model[@lindhard]:
+model:
 
 $$
 \begin{array}{rcl}
@@ -86,7 +84,7 @@ appropriate; $a=3$; and $b=0.7$.
 from nuetron capture-induced nuclear recoils.  The energy levels and their lifetimes are
 customizable, and multiple isotopes of the same element can be present within the simulation.
 Pre-defined energy level files exist for silicon and germanium, which are constructed from the
-data in [@abundances] and [@nudat2].  Outputs include energy deposits at each step, total
+data in .  Outputs include energy deposits at each step, total
 kinetic energy deposits, and ionization energy deposits, making them useful for a variety of
 applications, including nuclear recoil calibrations for dark matter direct detection or coherent
 neutrino detection (CE$\mathrm{\nu}$NS).
@@ -100,7 +98,7 @@ detector.  The yield and resolution models are described in more detail in the e
 Figure \ref{LindvSor_fig} shows overlaid histograms of different combinations of analysis on the same
 data file.
 
-![An overlaid histogram showing an example use case in which points are generated and then multiple yield models and resolutions are applied.  In this example, the x-axis represents the ionization energy "yielded" by the cascade; this is effectively a way of noting what the detector reads out as opposed to what the pure kinetic energy of the cascade is.  The Lindhard yield [@lindhard] is output by \texttt{nrCascadeSim} as \texttt{Ei}; the Sorenson yield [@sorensen] is applied to the values from \texttt{delE}.Resolutions are applied by adding random values generated from a Gaussian distribution of fixed width to the energy yield.  The "Small Res (1/5)" histograms have Gaussians with 1/5 of the width of their counterparts.  The y-axis represents the normalized frequency of energy yields.\label{LindvSor_fig}](SorVsLin_fig.pdf)
+![An overlaid histogram showing an example use case in which points are generated and then multiple yield models and resolutions are applied.  In this example, the x-axis represents the ionization energy "yielded" by the cascade; this is effectively a way of noting what the detector reads out as opposed to what the pure kinetic energy of the cascade is.  The Lindhard yield  is output by \texttt{nrCascadeSim} as \texttt{Ei}; the Sorenson yield  is applied to the values from \texttt{delE}.Resolutions are applied by adding random values generated from a Gaussian distribution of fixed width to the energy yield.  The "Small Res (1/5)" histograms have Gaussians with 1/5 of the width of their counterparts.  The y-axis represents the normalized frequency of energy yields.\label{LindvSor_fig}](SorVsLin_fig.pdf)
 
 # Acknowledgements
 

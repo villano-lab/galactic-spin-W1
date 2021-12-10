@@ -18,13 +18,17 @@ authors:
   - name: Judit Bergfalk 
     affiliation: 3
     orcid: 0000-0003-1662-0768 
+  - name: F. Vititoe 
+    affiliation: 4
 affiliations:
  - name: Department of Physics, University of Colorado Denver, Denver CO 80217, USA
    index: 1
  - name: Integrated Sciences, University of Colorado Denver, Denver CO 80217, USA
    index: 2
  - name: Astrophysical & Planetary Sciences, University of Colorado Boulder, Boulder, CO 80309, USA 
-   index: 2
+   index: 3
+ - name:  Department of Physics, University of Colorado Boulder, Boulder, CO 80309, USA 
+   index: 4
 date: 19 November 2021
 nocite: '@*'
 ---

@@ -1,4 +1,4 @@
-0 0
+.411 78.8321 #this datapoint was missing so it's forged by eye from the original paper
 0.975  100.8157
 1.4655  127.2027
 1.9139  149.3147

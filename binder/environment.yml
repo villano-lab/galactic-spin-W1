@@ -13,5 +13,7 @@ dependencies:
   - ipympl
   - ipywidgets==7.6.5
   - ffmpeg
+  - pip
+  - pip:
+    - lmfit
   - jupyterlab
-  - lmfit

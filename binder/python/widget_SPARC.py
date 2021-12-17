@@ -13,7 +13,7 @@ from ipywidgets import interactive, fixed, FloatSlider, HBox, Layout, Button, La
 from IPython.display import display
 
 import warnings
-warnings.filterwarnings("ignore")         #ignore warnings
+warnings.filterwarnings("ignore")         # ignore warnings
 
 ################################
 ############ Data ##############
@@ -38,6 +38,28 @@ data = np.loadtxt(SPARC_file_path)
 # Split columns into arrays
 Rad,Vobs,errV,Vgas,Vdisk,Vbul,SBdisk,SBbul = data.T
 
+# Check if it has all components
+if np.sum(Vbul) == 0:     # Bulge
+    nobulge = True
+    warning_bulge = "There is no bulge component."
+else: 
+    nobulge = False
+    warning_bulge = ""
+
+if np.sum(Vdisk) == 0:    # Disk
+    nodisk = True
+    warning_disk = "There is no disk component."
+else: 
+    nodisk = False
+    warning_disk = ""
+
+if np.sum(Vgas) == 0:     # Gas
+    nogas = True
+    warning_gas = "There is no gas component."
+else: 
+    nogas = False
+    warning_gas = ""
+
 # Define distance to galaxy in Mpc
 firstline = open(SPARC_file_path).readline()
 firstline = firstline.split()
@@ -48,7 +70,7 @@ distance = float(firstline[3])
 ##############################
 
 def interpd(x,y):
-    return InterpolatedUnivariateSpline(x,y,k=5)
+    return InterpolatedUnivariateSpline(x,y,k=3)
 
 ################################
 ######### Components ###########
@@ -101,9 +123,9 @@ weighdata = 1/errV
 fit_params.add('rc',    value=rc,    min=0.1)         # Core Radius (kpc)
 fit_params.add('rho0',  value=rho0,  min=0)           # Halo Density 
 # Bulge
-fit_params.add('bpref', value=1,     min=0, max=100)  # Bulge Prefactor
+fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge Prefactor
 # Disk
-fit_params.add('dpref', value=1,     min=0, max=100)  # Disk Prefactor
+fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk Prefactor
 
 # Do fit
 fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=weighdata)
@@ -127,36 +149,48 @@ best_rho0 = fit_dict['rho0']
 # Define plotting function
 def widgetfunction(bpref,dpref,rc,rho0):
     
-    # Define r
-    r = np.linspace(0.1,100,1000)
+    # Define radius
+    r = np.linspace(np.min(Rad),np.max(Rad),1000)
     
     # Plot
-    plt.figure(figsize=(9,7))
-    plt.xlim(0,np.max(Rad)+1)
-    plt.ylim(0,np.max(Vobs)+50)
+    plt.figure(figsize=(11,7))
+    plt.xlim(0,np.max(Rad)+0.2)
+    plt.ylim(0,np.max(Vobs)+100)
     
     plt.errorbar(Rad,Vobs,yerr=errV,fmt='bo',label='Data')
     plt.plot(r,bulge(r,bpref),label=("Bulge"),color='orange')
     plt.plot(r,disk(r,dpref),label=("Disk"),color='purple')
-    plt.plot(r,halo(r,rc,rho0),label=("Halo"),color='green')
+    plt.plot(r,halo(r,rc,rho0),label=("Dark Matter Halo"),color='green')
     plt.plot(r,gas(r),label=("Gas"),color='blue')
     plt.plot(r,totalcurve(r,bpref,dpref,rc,rho0),label=("Total Curve"),color='red')
-    plt.title("Interactive Rotation Curve - Galaxy: {}".format(galaxy))
-    plt.xlabel("Radius (kpc)")
-    plt.ylabel("Velocity (km/s)")
+    plt.suptitle("Interactive Rotation Curve - Galaxy: {}".format(galaxy),fontsize='16')
+    plt.title("Distance: {} Mpc".format(distance),fontsize='13')
+    plt.xlabel("Radius (kpc)",fontsize='14')
+    plt.ylabel("Velocity (km/s)",fontsize='14')
     
     # Chi squared and reduced chi squared
     # Residuals
-    r = np.linspace(0.1,100,100)
     residuals = Vobs - totalcurve(Rad,bpref,dpref,rc,rho0)
     # Chi squared
     chisquared = np.sum(residuals**2/errV**2)
-    #chisquared = stats.chisquare(v_dat,totalcurve(r,M,bpref,dpref,rc,rho00,gpref))
-    reducedchisquared = chisquared * (1/(len(Rad)-6))
+    dof = len(Rad) - 4                 # number of degrees of freedom = number of observed data - number of fitting parameters
+    reducedchisquared = chisquared / dof
     
-    props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-    plt.text(10,170,r"$\chi^2$: {:.5f}".format(chisquared)+'\n'+r"Reduced: {:.5f}".format(reducedchisquared),bbox=props)
+    if len(Rad) <= 4:
+        warning_chi = "Number of measured points are too low to calculate the reduced chi-squared value."
+    else:
+        warning_chi = ""
   
+    plt.annotate(r"$\chi^2$: {:.5f}".format(chisquared)+'\n'
+                 +r"Reduced $\chi^2$: {:.5f}".format(reducedchisquared)+'\n'
+                 +r"Note: {}".format(warning_chi) 
+                 + "{}".format(warning_bulge) 
+                 + "{}".format(warning_disk) 
+                 + "{}".format(warning_gas),
+            xy=(0, 0), xytext=(0,0),
+            xycoords=('axes fraction', 'figure fraction'),
+            textcoords='offset points',
+            size=13, ha='left', va='bottom')
     plt.legend(loc='upper right')    
     plt.show()
 
@@ -186,7 +220,7 @@ dpref = FloatSlider(min=0, max=5, step=0.1,
                     orientation='horizontal', 
                     style=style, layout=layout)
 
-rc = FloatSlider(min=0, max=5, step=0.1, 
+rc = FloatSlider(min=0, max=20, step=0.1, 
                  value=best_rc, 
                  description='Halo Core Radius [kpc]', 
                  readout_format='.2f', 
@@ -194,7 +228,7 @@ rc = FloatSlider(min=0, max=5, step=0.1,
                  style=style, layout=layout)
 #rc = fixed(best_rc)
 
-rho0 = FloatSlider(min=0, max=1e9, step=1e7, 
+rho0 = FloatSlider(min=0, max=1e10, step=1e6, 
                     value=best_rho0, 
                     description='Halo Surface Density [$M_{\odot} / pc^3$]', 
                     readout_format='.2e', 

@@ -265,3 +265,28 @@ def on_button_clicked(_):
     rho0.value = best_rho0
 
 button.on_click(on_button_clicked)
+
+
+################################
+######## Galaxy Image ##########
+################################
+
+from astroquery.skyview import SkyView
+from astropy.wcs import WCS
+
+def GalaxyImage(galaxy,survey='DSS'):
+    
+    # DSS images of the target
+    hdu = SkyView.get_images(galaxy, survey=survey)[0][0]
+    gfilter = hdu.data
+
+    # WCS 
+    plt.figure(figsize=(5,5))
+    wcs = WCS(hdu.header)
+    ax = plt.gca(projection=wcs)
+
+    # Plot galaxy image
+    ax.imshow(hdu.data, vmin=np.percentile(gfilter,0), vmax=np.percentile(gfilter,100), cmap='inferno')
+    ax.set(xlabel="RA", ylabel="Dec")
+    plt.title("{}".format(galaxy),fontsize='14')
+    plt.show()

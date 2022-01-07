@@ -205,20 +205,38 @@ layout = {'width':'600px'}
 ######## Define Sliders ########
 ################################
 
+if nobulge == False:  
+    bpref = FloatSlider(min=0, max=5, step=0.1, 
+                        value=best_bpref, 
+                        description='Bulge Prefactor', 
+                        readout_format='.2f', 
+                        orientation='horizontal', 
+                        style=style, layout=layout)
+if nobulge == True:
+    bpref = FloatSlider(min=0, max=5, step=0.1, 
+                        value=best_bpref, 
+                        description='Bulge Prefactor', 
+                        readout_format='.2f', 
+                        orientation='horizontal', 
+                        style=style, layout=layout, 
+                        disabled=True)
 
-bpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_bpref, 
-                    description='Bulge Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style=style, layout=layout)
+if nodisk == False:
+    dpref = FloatSlider(min=0, max=5, step=0.1, 
+                        value=best_dpref, 
+                        description='Disk Prefactor', 
+                        readout_format='.2f', 
+                        orientation='horizontal', 
+                        style=style, layout=layout)
 
-dpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_dpref, 
-                    description='Disk Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style=style, layout=layout)
+if nodisk == True:
+    dpref = FloatSlider(min=0, max=5, step=0.1, 
+                        value=best_dpref, 
+                        description='Disk Prefactor', 
+                        readout_format='.2f', 
+                        orientation='horizontal', 
+                        style=style, layout=layout, 
+                        disabled=True)    
 
 rc = FloatSlider(min=0, max=20, step=0.1, 
                  value=best_rc, 

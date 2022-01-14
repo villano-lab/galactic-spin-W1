@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# SPARC data download
+binder/data/sparc/Rotmod_LTG.zip

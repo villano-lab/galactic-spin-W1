@@ -15,7 +15,7 @@ def test():
     print('Testing Jupyter notebooks...')
     _exec_notebook('1_DM_Rotation_Curve_Intro.ipynb')
     _exec_notebook('2_Measured_Data_Plotting.ipynb')
-    _exec_notebook('2galaxies_tinyBH_widget.ipynb')
+    _exec_notebook('two_galaxies_tinyBH_widget.ipynb')
     _exec_notebook('3_Plotting_Rotation_Curves.ipynb')
     _exec_notebook('4_Interactive_Fitting.ipynb')
     _exec_notebook('5_Plotting_SPARC_data.ipynb')

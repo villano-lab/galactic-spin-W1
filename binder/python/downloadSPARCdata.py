@@ -70,7 +70,7 @@ displaybuttons = VBox([buttons,out])
 #####################################
 
 from pprint import pprint
-from ipywidgets import Dropdown, Widget
+from ipywidgets import Dropdown, Widget, Box, Layout, Label
 import ipywidgets as w
 
 # Make a list of galaxies from sparc data filenames
@@ -83,9 +83,23 @@ for f in filelist:
 options = np.array(options)
 
 # Create a dropdown menu of all galaxies
-galaxyoptions = Dropdown(                                    
-    options=options,
-    value='NGC5005',
-    description='Galaxy:',
-    disabled=False,
+form_item_layout = Layout(
+    display='flex',
+    flex_flow='row',
+    justify_content='space-between'
 )
+
+dropdownmenu = Dropdown(options=options, value='NGC5005')
+
+form_items = [
+    Box([Label(value='Galaxy: '),dropdownmenu
+         ], layout=form_item_layout)
+]
+
+galaxyoptions = Box(form_items, layout=Layout(
+    display='flex',
+    flex_flow='column',
+    border='solid 2px',
+    align_items='stretch',
+    width='50%'
+))

@@ -187,7 +187,7 @@ def widgetfunction(bpref,dpref,rc,rho0):
                  + "{}".format(warning_bulge) 
                  + "{}".format(warning_disk) 
                  + "{}".format(warning_gas),
-            xy=(0, 0), xytext=(0,0),
+            xy=(0, 0), xytext=(0,-2),
             xycoords=('axes fraction', 'figure fraction'),
             textcoords='offset points',
             size=13, ha='left', va='bottom')
@@ -304,7 +304,7 @@ def GalaxyImage(galaxy,survey='DSS'):
     ax = plt.gca(projection=wcs)
 
     # Plot galaxy image
-    ax.imshow(hdu.data, vmin=np.percentile(gfilter,0), vmax=np.percentile(gfilter,100), cmap='inferno')
+    ax.imshow(hdu.data, vmin=np.percentile(gfilter,2), vmax=np.percentile(gfilter,99), cmap='plasma')#cmap='inferno')
     ax.set(xlabel="RA", ylabel="Dec")
     plt.title("{}".format(galaxy),fontsize='14')
     plt.show()

@@ -41,10 +41,11 @@ is that there is some matter present in this galaxies which we cannot see becaus
 interact with light - that is, that these galaxies contain dark matter [REF]. 
 
 Participants in this
-workshop will have the opportunity to explore dark matter through galactic rotation curves both by
+workshop will have the opportunity to explore dark matter through scientific literature-based
+[REFS] galactic rotation curves both by
 using interactive programs and by editing python code. This will give participants an
 understanding of how physicists arrived at the idea of dark matter showing them the difference
-between curve fits with and without dark matter. Understanding dark matter's epistemological
+between curve fits with and without galactic dark matter components. Understanding dark matter's epistemological
 origins will help participants to formulate their own opinions on the dark matter debate.
 
 ## Description of the software or learning module

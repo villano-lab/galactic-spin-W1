@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from ipywidgets import interactive, fixed, FloatSlider, HBox, Layout, Button, Label, Output, VBox
 from IPython.display import display
 import NGC5533_components as comp5533
-import NGC7814_components as comp7814
+import ONE_widget_library as comp7814
 import dataPython as dp
 
 ####################
@@ -20,8 +20,7 @@ import dataPython as dp
 
 # Import galaxy image
 img = plt.imread("images/A_spiral_snowflake.jpg") # import special snowflake ngc 6814, 
-                                                             # which has visual diameter about 27.6 kpc
-    
+                                                             # which has visual diameter about 27.6 kpc    
 # Find the center by eye from the image
 c_x = 1960
 c_y = 1800
@@ -209,10 +208,10 @@ def f7814(arraysize,mBH,rcut):
     # Second plot - rotation curve   
     ax2.plot(radius_plot,comp7814.halo_BH(radius_plot,scale_7814,arraysize,mBH,rcut),label=("Dark Matter Halo - Tiny Black Holes"),color='green')
     ax2.errorbar(comp7814.r_dat,comp7814.v_dat,yerr=comp7814.v_err1,fmt='bo',label='Data')
-    ax2.plot(radius_plot,comp7814.bulge(radius_plot,comp7814.best_bpref),label=("Bulge"),color='orange')
-    ax2.plot(radius_plot,comp7814.disk(radius_plot,comp7814.best_dpref),label=("Disk"),color='purple')
-    ax2.plot(radius_plot,comp7814.gas(radius_plot,comp7814.best_gpref),label=("Gas"),color='blue')
-    ax2.plot(radius_plot,comp7814.totalvelocity(radius_plot,scale_7814,arraysize,mBH,rcut,comp7814.best_bpref,comp7814.best_dpref,comp7814.best_gpref),
+    ax2.plot(radius_plot,comp7814.bulge(radius_plot,comp7814.bprefs),label=("Bulge"),color='orange')
+    ax2.plot(radius_plot,comp7814.disk(radius_plot,comp7814.dprefs),label=("Disk"),color='purple')
+    ax2.plot(radius_plot,comp7814.gas(radius_plot,comp7814.gprefs),label=("Gas"),color='blue')
+    ax2.plot(radius_plot,comp7814.totalvelocityBH(radius_plot,scale_7814,arraysize,mBH,rcut,comp7814.bprefs,comp7814.dprefs,comp7814.gprefs),
                                                  label=("Total Curve"),color='red')
     ax2.set_title('NGC 7814',fontsize = 40)
     ax2.set_ylabel('Velocity [km/s]',fontsize = 25)
@@ -224,9 +223,8 @@ def f7814(arraysize,mBH,rcut):
     ax2.legend(loc='upper center',prop={'size': 16},ncol=3)
 
     # Residuals
-    residuals = comp7814.v_dat - comp7814.totalvelocity(comp7814.r_dat,scale_7814,arraysize,mBH,rcut,comp7814.best_bpref,
-                                                        comp7814.best_dpref,comp7814.best_gpref)
-
+    residuals = comp7814.v_dat - comp7814.totalvelocityBH(comp7814.r_dat,scale_7814,arraysize,mBH,rcut,comp7814.bprefs,
+                                                        comp7814.dprefs,comp7814.gprefs)
     # Determining errors
     errors = comp7814.v_err1**2 #second term is inclination uncertainty
     # Chi squared
@@ -337,7 +335,7 @@ button_7814 = Button(
 out_7814 = Output()
 
 def on_button_clicked_7814(_):
-    arraysize_7814.value = defaultnumber
-    mBH_7814.value = defaultmass
-    rcut_7814.value = defaultrcut
+    arraysize_7814.value = defaultnumber_7814
+    mBH_7814.value = defaultmass_7814
+    rcut_7814.value = defaultrcut_7814
 button_7814.on_click(on_button_clicked_7814)

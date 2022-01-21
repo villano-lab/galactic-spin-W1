@@ -116,12 +116,12 @@ NGC5533['gas']['spline'] = inter.BSpline(NGC5533['gas']['t'], NGC5533['gas']['c'
 
 NGC0891 = {
     
-    'raw_bulge'        : dp.getXYdata('data/NGC0891/891_dtBulge.dat'     ),
-    'raw_disk'         : dp.getXYdata('data/NGC0891/891_dtDisk.dat'      ),
-    'raw_gas'          : dp.getXYdata('data/NGC0891/891_dtGas.dat'       ),
+    'raw_bulge'        : dp.getXYdata('data/NGC0891/0891_gBulge.dat'     ),
+    'raw_disk'         : dp.getXYdata('data/NGC0891/0891_gDisk.dat'      ),
+    'raw_gas'          : dp.getXYdata('data/NGC0891/0891_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wXYerr('data/NGC0891/891_data')
+    'measured_data'    : dp.getXYdata_wXYerr('data/NGC0891/0891_measured.dat')
 }
 
 # Parameters ########################
@@ -168,12 +168,12 @@ NGC891 = NGC0891    # Considering when someone forgets to type 0
 
 NGC7814 = {
     
-    'raw_bulge'        : dp.getXYdata('data/NGC7814/7814reallybulge.dat'     ),
-    'raw_disk'         : dp.getXYdata('data/NGC7814/7814reallydisk.dat'      ),
-    'raw_gas'          : dp.getXYdata('data/NGC7814/7814reallygas.dat'       ),
+    'raw_bulge'        : dp.getXYdata('data/NGC7814/7814_gBulge.dat'     ),
+    'raw_disk'         : dp.getXYdata('data/NGC7814/7814_gDisk.dat'      ),
+    'raw_gas'          : dp.getXYdata('data/NGC7814/7814_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wXYerr('data/NGC7814/ngc7814data')
+    'measured_data'    : dp.getXYdata_wXYerr('data/NGC7814/7814_measured.dat')
 }
 
 # Parameters ########################

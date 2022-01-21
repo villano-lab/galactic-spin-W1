@@ -16,4 +16,5 @@ dependencies:
   - pip
   - pip:
     - lmfit
+    - astroquery
   - jupyterlab

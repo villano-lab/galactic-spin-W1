@@ -93,8 +93,8 @@ def gas(r):
 
 # Halo 
 ## Set parameters
-rho0 = 3.10e8       # central mass density (in solar mass/kpc^3)
-rc = 1.4            # cutoff radius (in kpc)
+rho0 = 3.10e8       # Central mass density (in solar mass/kpc^3)
+rc = 1.4            # Core radius (in kpc)
 G = 4.300e-6        # Gravitational constant (kpc/solar mass*(km/s)^2)
 
 ## Equation for dark matter halo velocity
@@ -120,8 +120,8 @@ fit_params = fit_mod.make_params()
 weighdata = 1/errV
 
 # Halo
-fit_params.add('rc',    value=rc,    min=0.1)         # Core Radius (kpc)
-fit_params.add('rho0',  value=rho0,  min=0)           # Halo Density 
+fit_params.add('rc',    value=rc,    min=0.1)           # Core Radius (kpc)
+fit_params.add('rho0',  value=rho0,  min=0)             # Halo Density (Solar mass/kpc^3)
 # Bulge
 fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge Prefactor
 # Disk
@@ -191,7 +191,7 @@ def widgetfunction(bpref,dpref,rc,rho0):
             xycoords=('axes fraction', 'figure fraction'),
             textcoords='offset points',
             size=13, ha='left', va='bottom')
-    plt.legend(loc='upper right')    
+    plt.legend(bbox_to_anchor=(1,1), loc="upper left") 
     plt.show()
 
 ###############################
@@ -240,7 +240,7 @@ if nodisk == True:
 
 rc = FloatSlider(min=0, max=20, step=0.1, 
                  value=best_rc, 
-                 description='Halo Core Radius [kpc]', 
+                 description='Halo Core Radius [$kpc$]', 
                  readout_format='.2f', 
                  orientation='horizontal', 
                  style=style, layout=layout)
@@ -248,7 +248,7 @@ rc = FloatSlider(min=0, max=20, step=0.1,
 
 rho0 = FloatSlider(min=0, max=1e11, step=1e6, 
                     value=best_rho0, 
-                    description='Halo Surface Density [$M_{\odot} / pc^3$]', 
+                    description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
                     readout_format='.2e', 
                     orientation='horizontal', 
                     style=style, layout=layout)
@@ -304,7 +304,7 @@ def GalaxyImage(galaxy,survey='DSS'):
     ax = plt.gca(projection=wcs)
 
     # Plot galaxy image
-    ax.imshow(hdu.data, vmin=np.percentile(gfilter,2), vmax=np.percentile(gfilter,99), cmap='plasma')#cmap='inferno')
+    ax.imshow(hdu.data, vmin=np.percentile(gfilter,0), vmax=np.percentile(gfilter,100), cmap='plasma')
     ax.set(xlabel="RA", ylabel="Dec")
     plt.title("{}".format(galaxy),fontsize='14')
     plt.show()

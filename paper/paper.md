@@ -42,7 +42,7 @@ interact with light - that is, that these galaxies contain dark matter [REF].
 
 Participants in this
 workshop will have the opportunity to explore dark matter through scientific literature-based
-[REFS] galactic rotation curves both by
+[@Karukes_2015,@Richards_2015,@Fraternali_2011,@de_Naray_2008] galactic rotation curves both by
 using interactive programs and by editing python code. This will give participants an
 understanding of how physicists arrived at the idea of dark matter showing them the difference
 between curve fits with and without galactic dark matter components. Understanding dark matter's epistemological

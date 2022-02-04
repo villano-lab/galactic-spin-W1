@@ -44,10 +44,6 @@ buttonYES = Button(                   # YES button
     description="Yes",
     button_style='success', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
-buttonNO = Button(                    # NO button
-    description="No",
-    button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
-    icon='close')
 out = Output()
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below
@@ -55,13 +51,9 @@ def on_button_clicked_YES(_):         # When clicked on the 'YES' button, downlo
     unzipfiles()
     display(Javascript('IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))   
 
-def on_button_clicked_NO(_):          # When clicked on the 'NO' button, run all cells below
-    display(Javascript('IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))         
-
 buttonYES.on_click(on_button_clicked_YES)
-buttonNO.on_click(on_button_clicked_NO)
 
-buttons = HBox([buttonYES,buttonNO])
+buttons = HBox([buttonYES])
 displaybuttons = VBox([buttons,out])
 
 

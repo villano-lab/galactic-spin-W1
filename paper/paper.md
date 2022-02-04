@@ -38,7 +38,7 @@ nocite: '@*'
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
 is that there is some matter present in this galaxies which we cannot see because it doesn't
-interact with light - that is, that these galaxies contain dark matter [REF]. 
+interact with light - that is, that these galaxies contain dark matter [@1978ApJ...225L.107R]. 
 
 Participants in this
 workshop will have the opportunity to explore dark matter through scientific literature-based

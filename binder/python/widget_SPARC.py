@@ -292,7 +292,7 @@ button.on_click(on_button_clicked)
 from astroquery.skyview import SkyView
 from astropy.wcs import WCS
 
-def GalaxyImage(galaxy,survey='DSS'):
+def GalaxyImage(position=galaxy,survey=['DSS']):
     
     # DSS images of the target
     hdu = SkyView.get_images(galaxy, survey=survey)[0][0]

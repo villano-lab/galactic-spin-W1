@@ -40,29 +40,30 @@ found that there seems to be something missing in our understanding of these gal
 is that there is some matter present in this galaxies which we cannot see because it doesn't
 interact with light - that is, that these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
-Participants in this
-workshop will have the opportunity to explore dark matter through scientific literature-based
-[@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation curves both by
-using interactive programs and by editing python code. This will give participants an
-understanding of how physicists arrived at the idea of dark matter showing them the difference
-between curve fits with and without galactic dark matter components. Understanding dark matter's epistemological
-origins will help participants to formulate their own opinions on the dark matter debate.
+Participants in this workshop will have the opportunity to explore dark matter through scientific
+literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
+curves both by using interactive programs and by editing python code. This will give participants
+an understanding of how physicists arrived at the idea of dark matter showing them the difference
+between curve fits with and without galactic dark matter components. Understanding dark matter's
+epistemological origins will help participants to formulate their own opinions on the dark matter
+debate.
 
 ## Description of the software or learning module
 
 In this experimental module, we include several programs:
-	1. Adjustable widgets of four example rotation curves, allowing visual representation of how each galactic component fits into the total representative velocity curve. 
-	2. A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
-	3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
-	4. (Judit's curve and template codes from the workshop)
-	5. A WIP conversion of GIPSY's rotmod task to Python 3. 
+
+ 1. Adjustable widgets of four example rotation curves, allowing visual representation of how each galactic component fits into the total representative velocity curve. 
+ 2. A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
+ 3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
+ 4. (Judit's curve and template codes from the workshop)
+ 5. A WIP conversion of GIPSY's rotmod task to Python 3. 
 What else?????
 
 
 # Statement of Need 
 
 Rotation curves present one of the key empirical artifacts through which dark matter can be
-observed and analyzed (source). However, common understanding of rotation curves is lacking within
+observed and analyzed [@ApJ-225L-107R]. However, common understanding of rotation curves is lacking within
 the field of astrophysics (source), especially in students and young academics in this field
 (source). Furthermore, the software and tools used in actually developing rotation curves fall
 into an even deeper level esotericism, exacerbated by various factors including poor accessibility

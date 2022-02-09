@@ -34,28 +34,22 @@ def interpd(x,y):
 ################################
 
 def blackhole(r,M):
-    x = np.sort(r)
-    y = funcNGC5533.bh_v(r,M,load=False)
+    x = np.sort(r_dat)
+    y = funcNGC5533.bh_v(r_dat,M,load=False)
     polynomial = interpd(x,y)
     return polynomial(r)
 
 def bulge(r,bpref):
-    x = np.sort(r)
-    y = bpref*funcNGC5533.b_v(r,load=True)
+    x = np.sort(r_dat)
+    y = bpref*funcNGC5533.b_v(r_dat,load=True)
     polynomial = interpd(x,y)
     return polynomial(r)
 
 def disk(r,dpref):
-    x = np.sort(r)
-    y = dpref*funcNGC5533.d_thief(r)
-    polynomial = interpd(x,y)
-    return polynomial(r)
+    return funcNGC5533.d_thief(r,dpref)
 
 def gas(r,gpref):
-    x = np.sort(r)
-    y = gpref*funcNGC5533.g_thief(r)
-    polynomial = interpd(x,y)
-    return polynomial(r)
+    return funcNGC5533.g_thief(r,gpref)
 
 ################################
 ###### Fitting Parameters ######
@@ -84,7 +78,7 @@ def mass_r(r,rcut):
 ### Calculating halo velocity using only black holes ###
 ########################################################
 
-# What if I just calculate the velocity for each black hole as a point mass?
+# Calculating the velocity for each black hole as a point mass
 def halo_BH(r,scale,arraysize,massMiniBH,rcut):
     x = np.sort(r)
     y = np.sqrt((G * (scale * arraysize * massMiniBH) * mass_r(r,rcut)) / r)   

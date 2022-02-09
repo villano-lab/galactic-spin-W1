@@ -490,23 +490,23 @@ def d_v(r,pref=0.5,h=h_c,d_rho00=drho00_c,save=False,load=True,comp='disk',**kwa
         a[np.isnan(a)] = 0
         return a
 
-def d_thief(r,pref=1):
+def d_thief(r,dpref=1):
     sys.path.append('./')
     import dataPython as dp
     data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
-    b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    
-    return b(r)
+    d = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial
+    return dpref*d(r)
 
-def g_thief(r,pref=1):
+def g_thief(r,gpref=1):
     sys.path.append('./')
     import dataPython as dp
     data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
-    b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    
-    return b(r)
+    g = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial    
+    return gpref*g(r)
     
     
 ################################

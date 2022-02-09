@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from ipywidgets import interactive, fixed, FloatSlider, HBox, Layout, Button, Label, Output, VBox
 from IPython.display import display
 import NGC5533_components as comp5533
-import ONE_widget_library as comp7814
+import NGC7814_components as comp7814
 import dataPython as dp
 
 ####################
@@ -19,8 +19,8 @@ import dataPython as dp
 ####################
 
 # Import galaxy image
-img = plt.imread("images/A_spiral_snowflake.jpg")            # import special snowflake ngc 6814, 
-                                                             # which has visual diameter about 27.6 kpc    
+img = plt.imread("images/A_spiral_snowflake.jpg")            # Import image of NGC 6814
+
 # Find the center by eye from the image
 c_x = 1960
 c_y = 1800
@@ -34,7 +34,7 @@ maxkpc = 100
 ##################
 
 # units: scale = [#number of actual black holes / plotted dot]
-kpctopixels = 20       # visual scaling, varies depending on size of galaxy image (and actual size of galaxy)
+kpctopixels = 20                # visual scaling, varies depending on size of galaxy image (and actual size of galaxy)
 r1 = minkpc*kpctopixels
 r2 = maxkpc*kpctopixels
 
@@ -51,8 +51,8 @@ scale_5533 = 1e6                      # scale is neccessary to be a constant, ot
                                       # scale is how many black holes represent each dot on image
 minnumberBH_5533 = 50                 # min number of black holes (this is multiplied by the scale)
 maxnumberBH_5533 = 5e2                # max number of black holes (this is multiplied by the scale)
-defaultnumber_5533 = 2.2e2            # default number of bh's for slider (this is multiplied by the scale)
-stepN_5533 = 10                       # step of # of bh's for slider (this is multiplied by the scale)
+defaultnumber_5533 = 245              # default number of bh's for slider (this is multiplied by the scale)
+stepN_5533 = 5                        # step of # of bh's for slider (this is multiplied by the scale)
 
 # For cutoff radius
 minrcutBH_5533 = 0.1                  # min cutoff radius for black holes
@@ -71,13 +71,13 @@ scale_7814 = 2.5e7                    # scale is neccessary to be a constant, ot
                                       # scale is how many black holes represent each dot on image
 minnumberBH_7814 = 1                  # min number of black holes (this is multiplied by the scale)
 maxnumberBH_7814 = 100                # max number of black holes (this is multiplied by the scale)
-defaultnumber_7814 = 50               # default number of bh's for slider (this is multiplied by the scale)
-stepN_7814 = 10                       # step of # of bh's for slider (this is multiplied by the scale)
+defaultnumber_7814 = 25               # default number of bh's for slider (this is multiplied by the scale)
+stepN_7814 = 5                        # step of # of bh's for slider (this is multiplied by the scale)
 
 # For cutoff radius
 minrcutBH_7814 = 0.1                  # min cutoff radius for black holes
 maxrcutBH_7814 = 4.0                  # max cutoff radius for black holes
-defaultrcut_7814 = 2.1                # default cutoff radius for black holes
+defaultrcut_7814 = 1.6                # default cutoff radius for black holes
 stepRCUT_7814 = minrcutBH_7814        # step of cutoff radius for black holes
 
 # Generate random positions for black holes inside the donut
@@ -93,6 +93,9 @@ layout = {'width':'800px'}
 
 ### NGC 5533 ###
 def f5533(arraysize,massMiniBH,rcut):
+    
+    # Define radius
+    r = np.linspace(np.min(comp5533.r_dat),np.max(comp5533.r_dat),500)
     
     # Change input to an integer
     arraysize = int(arraysize)     # units: dot
@@ -113,7 +116,8 @@ def f5533(arraysize,massMiniBH,rcut):
       
     # Set up two plots next to each other
     f, (ax1, ax2) = plt.subplots(1, 2, sharey=False)
-    f.set_figheight(10)
+    plt.subplots_adjust(wspace=0, hspace=0)
+    f.set_figheight(12)
     f.set_figwidth(32)
     
     # Changing the size of each dot as the mass of the black hole changes
@@ -126,32 +130,30 @@ def f5533(arraysize,massMiniBH,rcut):
     # First plot - image with black holes
     ax1.plot(x,y, linestyle='none', markerfacecolor='orangered', marker="o", markeredgecolor="maroon", markersize=BHsize)
     ax1.imshow(img)
-    ax1.set_title("Each dot representing 1 million tiny black holes.", fontsize=20)
+    ax1.set_title("Each dot representing 1 million tiny black holes.", fontsize=25)
     ax1.set_xlim(0,3970)
     ax1.set_ylim(0,3970)
     ax1.axis('off')
     
     # Second plot - rotation curve   
-    ax2.plot(radius_plot,comp5533.halo_BH(radius_plot,scale_5533,arraysize,massMiniBH,rcut),
+    ax2.plot(r,comp5533.halo_BH(r,scale_5533,arraysize,massMiniBH,rcut),
              label=("Dark Matter Halo - Tiny Black Holes"),color='green')
     ax2.errorbar(comp5533.r_dat,comp5533.v_dat,yerr=comp5533.v_err1,fmt='bo',label='Data')
-    ax2.plot(radius_plot,comp5533.blackhole(radius_plot,comp5533.best_Mbh),label=("Central Black Hole"),color='black')
-    ax2.plot(radius_plot,comp5533.bulge(radius_plot,comp5533.best_bpref),label=("Bulge"),color='orange')
-    ax2.plot(radius_plot,comp5533.disk(radius_plot,comp5533.best_dpref),label=("Disk"),color='purple')
-    ax2.plot(radius_plot,comp5533.gas(radius_plot,comp5533.best_gpref),label=("Gas"),color='blue')
-    ax2.plot(radius_plot,comp5533.totalvelocity(radius_plot,scale_5533,arraysize,massMiniBH,rcut,
-                                                comp5533.best_Mbh,comp5533.best_bpref,comp5533.best_dpref,comp5533.best_gpref),
+    ax2.plot(r,comp5533.blackhole(r,comp5533.best_Mbh),label=("Central Black Hole"),color='black')
+    ax2.plot(r,comp5533.bulge(r,comp5533.best_bpref),label=("Bulge"),color='orange')
+    ax2.plot(r,comp5533.disk(r,comp5533.best_dpref),label=("Disk"),color='purple')
+    ax2.plot(r,comp5533.gas(r,comp5533.best_gpref),label=("Gas"),color='blue')
+    ax2.plot(r,comp5533.totalvelocity(r,scale_5533,arraysize,massMiniBH,rcut,comp5533.best_Mbh,
+                                                comp5533.best_bpref,comp5533.best_dpref,comp5533.best_gpref),
                                                  label=("Total Curve"),color='red')
-    ax2.set_title('NGC 5533',fontsize = 40)
-    ax2.set_ylabel('Velocity [km/s]',fontsize = 25)
-    ax2.set_xlabel('radius [kpc]',fontsize = 25)
+    ax2.set_title('NGC 5533',fontsize=40)
+    ax2.set_ylabel('Velocity [km/s]',fontsize=25)
+    ax2.set_xlabel('Radius [kpc]',fontsize=25)
     ax2.tick_params(axis='x', labelsize=16)
     ax2.tick_params(axis='y', labelsize=16)
     ax2.set_xlim(0,100)
     ax2.set_ylim(0,400)
-    
-    ax2.legend(bbox_to_anchor=(1,1), loc="upper left") 
-    #ax2.legend(loc='upper center',prop={'size': 16},ncol=3)
+    ax2.legend(bbox_to_anchor=(1,1), loc="upper left", fontsize=20) 
 
     # Residuals
     residuals = comp5533.v_dat - comp5533.totalvelocity(comp5533.r_dat,scale_5533,arraysize,massMiniBH,rcut,
@@ -163,11 +165,13 @@ def f5533(arraysize,massMiniBH,rcut):
     reducedchisquared = chisquared / dof
     
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-    ax2.text(73,330,r"Reduced $\chi^2$:"+'\n'+"{:.2f}".format(reducedchisquared),ha='left',va='top',bbox=props,size=20)
-       
+    ax2.text(98,390,r"Reduced $\chi^2$: {:.2f}".format(reducedchisquared),ha='right',va='top',bbox=props,size=22)
         
 ### NGC 7814 ###
 def f7814(arraysize,massMiniBH,rcut):
+    
+    # Define radius
+    r = np.linspace(np.min(comp7814.r_dat),np.max(comp7814.r_dat),500)
     
     # Change input to an integer
     arraysize = int(arraysize)     # units: dot
@@ -188,7 +192,8 @@ def f7814(arraysize,massMiniBH,rcut):
       
     # Set up two plots next to each other
     f, (ax3, ax4) = plt.subplots(1, 2, sharey=False)
-    f.set_figheight(10)
+    plt.subplots_adjust(wspace=0, hspace=0)
+    f.set_figheight(12)
     f.set_figwidth(32)
     
     # Changing the size of each dot as the mass of the black hole changes
@@ -202,40 +207,40 @@ def f7814(arraysize,massMiniBH,rcut):
     ax3.plot(x,y, linestyle='none', markerfacecolor='orangered', marker="o", 
              markeredgecolor="maroon", markersize=BHsize)
     ax3.imshow(img)
-    ax3.set_title("Each dot representing 1 million tiny black holes.", fontsize=20)
+    ax3.set_title("Each dot representing 1 million tiny black holes.", fontsize=25)
     ax3.set_xlim(0,3970)
     ax3.set_ylim(0,3970)
     ax3.axis('off')
     
     # Second plot - rotation curve   
-    ax4.plot(radius_plot,comp7814.halo_BH(radius_plot,scale_7814,arraysize,massMiniBH,rcut),
+    ax4.plot(r,comp7814.halo_BH(r,scale_7814,arraysize,massMiniBH,rcut),
              label=("Dark Matter Halo - Tiny Black Holes"),color='green')
     ax4.errorbar(comp7814.r_dat,comp7814.v_dat,yerr=comp7814.v_err1,fmt='bo',label='Data')
-    ax4.plot(radius_plot,comp7814.bulge(radius_plot,comp7814.bprefs),label=("Bulge"),color='orange')
-    ax4.plot(radius_plot,comp7814.disk(radius_plot,comp7814.dprefs),label=("Disk"),color='purple')
-    ax4.plot(radius_plot,comp7814.gas(radius_plot,comp7814.gprefs),label=("Gas"),color='blue')
-    ax4.plot(radius_plot,comp7814.totalvelocityBH(radius_plot,scale_7814,arraysize,massMiniBH,
-                                                  rcut,comp7814.bprefs,comp7814.dprefs,
-                                                  comp7814.gprefs),label=("Total Curve"),color='red')
-    ax4.set_title('NGC 7814',fontsize = 40)
-    ax4.set_ylabel('Velocity [km/s]',fontsize = 25)
-    ax4.set_xlabel('radius [kpc]',fontsize = 25)
+    ax4.plot(r,comp7814.bulge(r,comp7814.best_bpref),label=("Bulge"),color='orange')
+    ax4.plot(r,comp7814.disk(r,comp7814.best_dpref),label=("Disk"),color='purple')
+    ax4.plot(r,comp7814.gas(r,comp7814.best_gpref),label=("Gas"),color='blue')
+    ax4.plot(r,comp7814.totalvelocity(r,scale_7814,arraysize,massMiniBH,
+                                                  rcut,comp7814.best_bpref,comp7814.best_dpref,
+                                                  comp7814.best_gpref),label=("Total Curve"),color='red')
+    ax4.set_title('NGC 7814',fontsize=40)
+    ax4.set_ylabel('Velocity [km/s]',fontsize=25)
+    ax4.set_xlabel('Radius [kpc]',fontsize=25)
     ax4.tick_params(axis='x', labelsize=16)
     ax4.tick_params(axis='y', labelsize=16)
     ax4.set_xlim(0,np.max(comp7814.r_dat))
     ax4.set_ylim(0,400)
-    ax4.legend(bbox_to_anchor=(1,1), loc="upper left") 
+    ax4.legend(bbox_to_anchor=(1,1), loc="upper left", fontsize=20) 
 
     # Residuals
-    residuals = comp7814.v_dat - comp7814.totalvelocityBH(comp7814.r_dat,scale_7814,arraysize,massMiniBH,rcut,
-                                                          comp7814.bprefs,comp7814.dprefs,comp7814.gprefs)
+    residuals = comp7814.v_dat - comp7814.totalvelocity(comp7814.r_dat,scale_7814,arraysize,massMiniBH,rcut,
+                                                          comp7814.best_bpref,comp7814.best_dpref,comp7814.best_gpref)
     # Chi squared
     chisquared = np.sum(residuals**2/comp7814.v_err1**2)
-    dof = len(comp5533.r_dat) - 4       # number of degrees of freedom = number of observed data - number of fitting parameters
+    dof = len(comp5533.r_dat) - 5       # number of degrees of freedom = number of observed data - number of fitting parameters
     reducedchisquared = chisquared / dof  
     
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-    ax4.text(14.5,350,r"Reduced $\chi^2$:"+'\n'+"{:.2f}".format(reducedchisquared),ha='left',va='top',bbox=props,size=20)
+    ax4.text(15,390,r"Reduced $\chi^2$: {:.2f}".format(reducedchisquared),ha='left',va='top',bbox=props,size=22)
 
 ################################
 ######## Define Sliders ########
@@ -281,7 +286,7 @@ arraysize_7814 = FloatSlider(min=minnumberBH_7814, max=maxnumberBH_7814, step=st
 
 # Mass of each black hole
 massMiniBH_7814 = FloatSlider(min=minmassBH, max=maxmassBH, step=stepM, 
-                value=defaultmass,
+                value=0.5,
                 description='Mass of each tiny black hole (in solar masses, increasing by {:.1f})'.format(stepM), 
                 readout=True,
                 readout_format='.1f',
@@ -323,9 +328,9 @@ button_5533 = Button(
 out_5533 = Output()
 
 def on_button_clicked_5533(_):
-    arraysize_5533.value = defaultnumber
+    arraysize_5533.value = defaultnumber_5533
     massMiniBH_5533.value = defaultmass
-    rcut_5533.value = defaultrcut
+    rcut_5533.value = defaultrcut_5533
 button_5533.on_click(on_button_clicked_5533)
 
 ### NGC 7814 ###
@@ -338,6 +343,6 @@ out_7814 = Output()
 
 def on_button_clicked_7814(_):
     arraysize_7814.value = defaultnumber_7814
-    massMiniBH_7814.value = defaultmass_7814
+    massMiniBH_7814.value = 0.5
     rcut_7814.value = defaultrcut_7814
 button_7814.on_click(on_button_clicked_7814)

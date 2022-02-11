@@ -62,7 +62,7 @@ In this interactive module, we include several programs:
 # Statement of Need 
 
 Rotation curves present one of the key empirical artifacts through which dark matter can be
-observed and analyzed [@ApJ-225L-107R]. However, common understanding of rotation curves is lacking within
+observed and analyzed [@1978ApJ-225L-107R]. However, common understanding of rotation curves is lacking within
 the field of astrophysics (source), especially in students and young academics in this field
 (source). Furthermore, the software and tools used in actually developing rotation curves fall
 into an even deeper level esotericism, exacerbated by various factors including poor accessibility

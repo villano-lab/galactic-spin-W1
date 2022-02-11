@@ -25,3 +25,7 @@ a database of galactic data. We use the models by `Casertano <https://doi.org/10
 The documentation does not contain a review of the physics implemented in the library.
 
 If you want to contribute to `galactic-spin-W1`, please check out the `contribution guidelines <https://github.com/villano-lab/galactic-spin-W1/blob/master/CONTRIBUTING.md`_.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:

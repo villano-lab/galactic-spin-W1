@@ -50,14 +50,13 @@ debate.
 
 ## Description of the software or learning module
 
-In this experimental module, we include several programs:
+In this interactive module, we include several programs:
 
- 1. Adjustable widgets of four example rotation curves, allowing visual representation of how each galactic component fits into the total representative velocity curve. 
- 2. A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
- 3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
- 4. (Judit's curve and template codes from the workshop)
- 5. A WIP conversion of GIPSY's rotmod task to Python 3. 
-What else?????
+1. Adjustable widgets of four example rotation curves, allowing visual representation of how each galactic component fits into the total representative velocity curve. 
+2. A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
+3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
+4. (Judit's curve and template codes from the workshop)
+5. A WIP conversion of GIPSY's rotmod task to Python 3.  What else?????
 
 
 # Statement of Need 

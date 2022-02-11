@@ -1,6 +1,9 @@
 .. .. image:: https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master
 ..   :target: https://app.travis-ci.com/github/villano-lab/galactic-spin-W1
 ..   :alt: Build Status
+.. .. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=latest
+..   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=latest
+..   :alt: Documentation Status
 .. .. image:: https://i.creativecommons.org/l/by/4.0/88x31.png
 ..   :target: http://creativecommons.org/licenses/by/4.0/
 ..   :alt: License: CC BY

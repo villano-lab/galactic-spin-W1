@@ -13,21 +13,21 @@ how they are measured, and how we model them by breaking them into components.
 You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
 including a page guiding you through the workshop itself (also coming SoonTM).
 
-# CITATION
+## CITATION
 
 If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version (soonTM),
 
-# VERSION HISTORY
+## VERSION HISTORY
 
 12.11.2021: Release of [version 0.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v0.0.1)
 
-# AUTHORS & CONTACT
+## AUTHORS & CONTACT
 
 The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, F. Vititoe, and Eric Lorimor.
 
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 
-# LICENSE
+## LICENSE
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
 

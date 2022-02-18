@@ -1,6 +1,7 @@
 ################################
 ########### Imports ############
 ################################
+
 import sys
 import traceback
 import numpy as np
@@ -8,12 +9,14 @@ import scipy.special as ss
 import scipy.optimize as so
 import scipy.integrate as si
 import scipy.interpolate as inter
+
 try:
     import h5py as h5
     h5py = 1
 except ModuleNotFoundError:
     h5py = 0
     print("Could not find h5py. Datasets will not be able to be saved or loaded using NGC5533_functions.")
+
 #-----------For path detection-----------
 import subprocess
 #def getGitRoot():
@@ -26,36 +29,36 @@ defaultpath = '../'
 ################################
 
 #---------Definitely Constant---------
-G = 4.30091e-6    #gravitational constant (kpc/solar mass*(km/s)^2)
-rhocrit = 9.3e-18 #critical density of the Universe (kg/km^3)
+G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2)
+#rhocrit = 9.3e-18                        # Critical density of the Universe (kg/km^3). 
 
 #---------Measured Directly-----------
-L = 3.27e10                              #luminosity (Solar Luminosities)
-absmag = -22.02                          #absolute magnitude
-magsun = 4.42                            #absolute magnitude of the sun
-L0 = np.power(10, (0.4*(magsun-absmag))) #Absolute Magnitude to luminosity
+L = 3.27e10                              # Luminosity (Solar Luminosities)
+absmag = -22.02                          # Absolute magnitude
+magsun = 4.42                            # Absolute magnitude of the sun
+L0 = np.power(10, (0.4*(magsun-absmag))) # Absolute magnitude to luminosity
 
 #---------Measured Indirectly---------
-ups = 2.8                         #bulge mass-to-light ratio (Solar Mass/Solar Luminosity)???
-q = 0.33                          #intrinsic axis ratio
-e2 = 1-(q**2)                     #eccentricity
-i = 52*(np.pi/180)                #inclination angle
-h_rc = 1.4                        #core radius (kpc)
-c = 1e-12                         #(what does this constant do?)
-Mvir = 1e11*((c/(11.7))**(-40/3)) #virial mass (in solar mass) solved from eq(5)
-Mbh_def = 2.7e9                   #Black Hole mass (in solar mass)
+ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008
+q = 0.33                          # Intrinsic axis ratio. Source: Noordermeer, 2008
+e2 = 1-(q**2)                     # Eccentricity. Source: Noordermeer, 2008
+i = 52*(np.pi/180)                # Inclination angle. Source: Noordermeer & Van Der Hulst, 2007
+h_rc = 1.4                        # Core radius (kpc). Source: Noordermeer, 2008
+#c = 1e-12                         #(what does this constant do?)
+#Mvir = 1e11*((c/(11.7))**(-40/3)) # Virial mass (in solar mass) solved from eq(5)
+Mbh_def = 2.7e9                   # Black Hole mass (in solar mass). Source: Noordermeer, 2008
 
 #---------Definitely Variable---------
-n_c = 2.7                         #concentration parameter
-h_c = 8.9                         #radial scale-length (kpc)
-hrho00_c = 0.31e9                 #halo central surface density (solar mass/kpc^2)
-drho00_c = 0.31e9                 #disk central surface density (solar mass/kpc^2)
+n_c = 2.7                         # Concentration parameter. Source: Noordermeer & Van Der Hulst, 2007
+h_c = 8.9                         # Radial scale-length (kpc). Source: Noordermeer & Van Der Hulst, 2007
+hrho00_c = 0.31e9                 # Halo central surface density (solar mass/kpc^2)
+drho00_c = 0.31e9                 # Disk central surface density (solar mass/kpc^2)
 
 #---------Uncategorized-------------------
-re_c = 2.6                                               #effective radius (kpc)
-epsdisk = 5.0                                            #from Noordermeer's paper
-rs = (1/c)*(((3*Mvir)/((4*np.pi*100*rhocrit)))**(1/3))   #scale radius (kpc)
-rho_s = (100/3)*((c**3)/(np.log(1+c)-(c/(1+c))))*rhocrit #characteristic density
+re_c = 2.6                        # Effective radius (kpc). Source: Noordermeer & Van Der Hulst, 2007
+upsdisk = 5.0                     # Disk mass-to-light ratio. Source: Noordermeer, 2008
+#rs = (1/c)*(((3*Mvir)/((4*np.pi*100*rhocrit)))**(1/3))   # Scale radius (kpc)
+#rho_s = (100/3)*((c**3)/(np.log(1+c)-(c/(1+c))))*rhocrit # Characteristic density
 h_gamma = 0
 
 ################################
@@ -487,30 +490,29 @@ def d_v(r,pref=0.5,h=h_c,d_rho00=drho00_c,save=False,load=True,comp='disk',**kwa
         a[np.isnan(a)] = 0
         return a
 
-def d_thief(r,pref=1):
+def d_thief(r,dpref=1):
     sys.path.append('./')
     import dataPython as dp
     data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
-    b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    
-    return b(r)
+    d = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial
+    return dpref*d(r)
 
-def g_thief(r,pref=1):
+def g_thief(r,gpref=1):
     sys.path.append('./')
     import dataPython as dp
     data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
     x = np.asarray(data['xx'])
     y = np.asarray(data['yy'])
-    b = inter.InterpolatedUnivariateSpline(x,y,k=1) #k is the order of the polynomial    
-    return b(r)
-    
-   
+    g = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial    
+    return gpref*g(r)
     
     
 ################################
 ############ Total #############
 ################################
+
 def v(r,M=Mbh_def,re=re_c,h=h_c,d_rho00=drho00_c,pref=1,rc=h_rc,h_rho00=hrho00_c,save=False,load=True,comp='total',**kwargs): 
     if isinstance(r,float) or isinstance(r,int):
         r = np.asarray([r])
@@ -536,10 +538,12 @@ def v(r,M=Mbh_def,re=re_c,h=h_c,d_rho00=drho00_c,pref=1,rc=h_rc,h_rho00=hrho00_c
             print('#--------------------')
             print()
             save = True #Calculate since there aren't enough points
-    a = np.sqrt(np.sqrt(h_v(r,rc,h_rho00,load,save)**2+d_v(r,h,d_rho00,pref,load,save)**2+bh_v(r,M,load,save)**2+b_v(r,re,load,save)**2))
+    a = np.sqrt(np.sqrt(h_v(r,rc,h_rho00,load,save)**2+d_v(r,h,d_rho00,pref,load,save)**2
+                        +bh_v(r,M,load,save)**2+b_v(r,re,load,save)**2))
     a[np.isnan(a)] = 0
     if save: #not elif since that would mean don't check if load was true, which I don't want in this case
-        savedata(r,a,comp,'Mbh'+str(M)+'re'+str(re)+'h'+str(h)+'d_rho00'+str(d_rho00)+'pref'+str(pref) +'rc'+str(rc)+'h_rho00'+str(h_rho00),file=comp+'.hdf5',**kwargs)
+        savedata(r,a,comp,'Mbh'+str(M)+'re'+str(re)+'h'+str(h)+'d_rho00'+str(d_rho00)
+                 +'pref'+str(pref) +'rc'+str(rc)+'h_rho00'+str(h_rho00),file=comp+'.hdf5',**kwargs)
         return a
     elif not load: #If load was false,
         return a

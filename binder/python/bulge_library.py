@@ -1,76 +1,115 @@
+### Imports ###
+import numpy as np
+
 # Read the file where the chosen galaxy name is located
-f = open('python/galaxy.txt', 'r')
-f = f.read()
+f = open('python/galaxy_bulgeactivity.txt', 'r')
+galaxy = f.read()
 
 ################
 ### NGC 5533 ###
 ################
 
-Msun_B = 5.44         #constant, absolute magnitude of the sun in the B-band [source 4, Abstract]
-Mabs_B = -21.22       #B-band magnitude of 5533 
-Msun_Bsource= ' [unitless] (source 4, Abstract)'
-Mabs_Bsource=' [unitless] (Source 2, Table 1)'
+if galaxy == 'NGC5533':
+    check = True
+    
+    Mabs = -21.66     # B-band absolute magnitude of NGC 5533 (Norrdermeer, Van Der Hulst, 2007)
+    n = 2.7           # Concentration parameter [unitless] (Noordermeer, Van Der Hulst, 2007)
+    q = 0.33          # Intrinsic axis ratio [unitless] (Noordermeer, 2008)
+    i = 52            # Inclination angle [unitless] (Noordermeer, Van Der Hulst, 2007)
+    re_arcsec = 9.9   # Effective radius [arcsec] (Noordermeer, Van Der Hulst, 2007)
+    Lb = 3.6e10       # Bulge luminosity [solar luminosity] (Calculated from absolute magnitude of the bulge)
+    ML = 2.8          # Mass-to-light ratio of bulge [unitless] (Noordermeer, 2008)
+    D_Mpc = 54.3      # Distance [Mpc] (Noordermeer, Van Der Hulst, 2007)
 
-if f == 'NGC5533':
+    Mabs_source =  ' [unitless] (Source #2, Table A4)'
+    n_source =  ' [unitless] (Source #2, Table A4)'
+    q_source =  ' [unitless] (Source #1, Table 1)'
+    i_source =  ' [degrees] (Source #2, Table A2)'
+    re_source = ' [kpc] (Source #2, Table A4)'
+    Lb_source = ' [Lsun] (Source #2, calculated from absolute magnitude)'
+    ML_source = ' [unitless] (Source #1, Table 1)'
+    D_source =  ' [Mpc] (Source #2, Table 1)'
     
-    n = 2.7           # concentration parameter [unitless] (Source 2, Table A4)
-    re = 9.9          # effective radius, [arcsec] (Source 2, table A4)
-    D = 54.3          # distance, [Mpc] (Source 2, Table 1)
-    L = 5e9 
-    q = 0.33          # intrinsic axis ratio [unitless] (Source 1, Table 1)
-    #ML = 2.8         # mass-to-light ratio of bulge [unitless] (Source: 1, Table 1 for q = 0.33)
-    i = 52            # inclination angle (need Source)
-
-    nsource =  ' [unitless] (Source 2, Table A4)'
-    resource = ' [arcsec] (Source 2, Table A4)'
-    Dsource =  ' [Mpc] (Source 2, Table 1)'
-    Lsource =  ' [Lsun] (Source 1, sec. 3, par. 1)'
-    Msource =  ' [unitless] (Source 2, Table 1)'
-    qsource =  ' [unitless] (Source 1, Table 1)'
-    isource =  ' [degrees] (Source 2, Table A2)'
-    
-################
-### NGC 7814 ###
-################    
-
-elif f == 'NGC7814':
-    
-    # Source: https://www.aanda.org/articles/aa/pdf/2011/07/aa16634-11.pdf 
-    n = 10            # concentration parameter [unitless] (Source 3, section 3.3 par.1)
-    re = 2.16         # effective radius, [kpc] (Source 3, Table 4)
-    D = 0             # distance, [Mpc] (need this)
-    L = 7e10          # bulge luminosity, [Lsun] (Source 3, Table 4)
-    q = 0.61          # intrinsic axis ratio [unitless] (Source 3, Table 4)
-    #ML = .71         # mass-to-light ratio of bulge given DM halo (Table 5)
-    i = 90            # inclination angle [degrees] (Source 3, Table 1)
-    
-    nsource =  ' [unitless] (Source 3, section 3.3 par.1)'
-    resource = ' [arcsec] (Source 3, Table 4)'
-    Lsource =  ' [Lsun] (Source 3, Table 4)'
-    Msource =  ' [unitless] (Source 2, Table 1)'
-    qsource =  ' [unitless] (Source 3, Table 4)'
-    isource =  ' [degrees] (Source 3, Table 1)'
+    # Unit conversion
+    re_rad = re_arcsec * (np.pi / (3600 * 180))  # arcsec to radians
+    D_kpc = D_Mpc * 1000                         # Mpc to kpc
+    re_kpc = re_rad * D_kpc                      # Effective radius in kpc
     
 ###############
 ### NGC 891 ###
 ###############   
 
-elif f == 'NGC891':
+elif galaxy == 'NGC891':
+    check = True
     
     # Source: https://www.aanda.org/articles/aa/pdf/2011/07/aa16634-11.pdf 
-    n = 10            # concentration parameter (section 3.3 par.1)
-    re = 1.8          # effective radius, [kpc] (table 4)
-    L = 2.2e10        # bulge luminosity, [Lsun] (table 4)
-    D = 9.5           # distance, [Mpc] (Source)  
-    q = 0.68          # intrinsic axis ratio (table 4)
-    #ML = 1.63        # mass-to-light ratio of bulge given DM halo (table 5)
-    i = 89            # inclination angle [degrees] (table 1)
+    Mabs = -21.12     # Absolute magnitude [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    n = 2.99          # Concentration parameter [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    q = 0.68          # Intrinsic axis ratio [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    i = 89            # Inclination angle [degrees] (Fraternali, Sancisi, and Kamphuis, 2011)
+    re_kpc = 1.8      # Effective radius [kpc] (Fraternali, Sancisi, and Kamphuis, 2011)
+    Lb = 2.2e10       # Bulge luminosity [solar luminosity] (Fraternali, Sancisi, and Kamphuis, 2011)
+    ML = 1.63         # Mass-to-light ratio of bulge (Fraternali, Sancisi, and Kamphuis, 2011)
+    D_Mpc = 9.5       # Distance [Mpc] (need this)
+    
+    Mabs_source =  ' [unitless] (Source #3, calculated from Luminosity)'
+    n_source =  ' [unitless] (Source #3, Table 4)'
+    q_source =  ' [unitless] (Source #3, Table 4)'
+    i_source =  ' [degrees] (Source #3, Table 1)'
+    re_source = ' [kpc] (Source #3, Table 4)'
+    Lb_source = ' [Lsun] (Source #3, Table 4)'
+    ML_source = ' [unitless] (Source #3, Table 5, with dark matter halo)'
+    D_source =  ' [Mpc] (Source #3, Table 1)'
+    
+################
+### NGC 7814 ###
+################    
 
-    nsource =  ' [unitless] (Source 3, section 3.3 par.1)'
-    resource = ' [arcsec] (Source 3, Table 4)'
-    Lsource =  ' [Lsun] (Source 3, Table 4)'
-    Msource =  ' [unitless] (Source 2, Table 1)'
-    qsource =  ' [unitless] (Source 3, Table 4)'
-    isource =  ' [degrees] (Source 3, Table 1)'
+elif galaxy == 'NGC7814':
+    check = True
+    
+    # Source: https://www.aanda.org/articles/aa/pdf/2011/07/aa16634-11.pdf 
+    Mabs = -22.38     # Absolute magnitude [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    n = 4.0           # Concentration parameter [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    q = 0.61          # Intrinsic axis ratio [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    i = 90            # Inclination angle [degrees] (Fraternali, Sancisi, and Kamphuis, 2011)
+    re_kpc = 2.16     # Effective radius [kpc] (Fraternali, Sancisi, and Kamphuis, 2011)
+    Lb = 7e10         # Bulge luminosity [solar luminosity] (Fraternali, Sancisi, and Kamphuis, 2011)
+    ML = 0.71         # Mass-to-light ratio of bulge (Fraternali, Sancisi, and Kamphuis, 2011)
+    D_Mpc = 14.6      # Distance [Mpc] (need this)
+    
+    Mabs_source =  ' [unitless] (Source #3, calculated from Luminosity)'
+    n_source =  ' [unitless] (Source #3, Table 4)'
+    q_source =  ' [unitless] (Source #3, Table 4)'
+    i_source =  ' [degrees] (Source #3, Table 1)'
+    re_source = ' [kpc] (Source #3, Table 4)'
+    Lb_source = ' [Lsun] (Source #3, Table 4)'
+    ML_source = ' [unitless] (Source #3, Table 5, with dark matter halo)'
+    D_source =  ' [Mpc] (Source #3, Table 1)'
+    
 else:
-    print("Oops! Make sure you typed your galaxy in correctly in cell 2!")
+    check = False
+    #print("Oops! Make sure you typed your galaxy in correctly in cell 2!")
+    print("You have chosen the galaxy {}.".format(galaxy))
+    
+    
+######################
+### Check research ###
+######################
+
+from IPython.display import display, clear_output
+import ipywidgets as widgets
+
+button = widgets.Button(description="Reveal!")
+def on_button_clicked(x):
+    print(str('Galaxy '+ galaxy +':'))
+    if check == True:
+        print(str('Concentration parameter, n = ' + "{:.1f}".format(n) + n_source))
+        print(str('Intrinsic axis ratio, q = ' + "{:.2f}".format(q) + q_source))
+        print(str('Inclination angle, i = ' + "{:.1f}".format(i) + i_source))
+        print(str('Effective radius, re = ' + "{:.1f} ".format(re_kpc) + re_source))
+        print(str('Luminosity of the bulge, L = ' + "{:.1e}".format(Lb) + Lb_source))
+        print(str('Distance, D = ' + "{:.1f}".format(D_Mpc) + D_source))
+    if check == False:
+        print("Sorry, the parameters for your chosen galaxy is not in our library.")
+button.on_click(on_button_clicked)

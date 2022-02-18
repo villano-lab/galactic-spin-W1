@@ -31,3 +31,4 @@ If you want to contribute to `galactic-spin-W1`, please check out the `contribut
    :caption: Contents:
 
    01_Getting_Started
+   References

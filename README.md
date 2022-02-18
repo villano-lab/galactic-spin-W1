@@ -10,7 +10,7 @@ how they are measured, and how we model them by breaking them into components.
 
 *Pretty picture/diagram coming SoonTM*
 
-You can find more detailed documentation about the code involved in this workshop [here](galactic-spin-W1.readthedocs.io/en/latest), 
+You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
 including a page guiding you through the workshop itself (also coming SoonTM).
 
 # CITATION

@@ -32,7 +32,7 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 breathe_projects = {}
 
 if read_the_docs_build:
-    input_dir = '../../inc'
+    input_dir = '../../binder'
     output_dir = 'dox_build'
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
@@ -41,7 +41,7 @@ if read_the_docs_build:
 
 # -- Project information -----------------------------------------------------
 
-project = 'nrCascadeSim'
+project = 'galactic-spin-W1'
 copyright = '2021, A.N. Villano, K. Harris, S. Brown'
 author = 'A.N. Villano, K. Harris, S. Brown'
 
@@ -57,7 +57,7 @@ release = '1.3.0'
 extensions = ['sphinx_rtd_theme','myst_parser','breathe']
 
 # Breathe Configuration
-breathe_default_project = "nrCascadeSim"
+breathe_default_project = "galactic-spin-W1"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

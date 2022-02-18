@@ -29,3 +29,5 @@ If you want to contribute to `galactic-spin-W1`, please check out the `contribut
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+   01_Getting_Started

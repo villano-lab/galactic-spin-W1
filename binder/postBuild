@@ -1,0 +1,4 @@
+jupyter labextension install jupyter-matplotlib
+jupyter labextension install javascript-extension
+jupyter labextension update --all
+jupyter lab build

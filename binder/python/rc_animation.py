@@ -86,6 +86,7 @@ def PlotRotationCurve(radius,velocity,title,
                       xlabel='Radius (km)',ylabel='Velocity (km/s)',
                       xlim=1,
                       ylim=0.1):
+    """Plot rotation curve, given the radius and velocity."""
     
     # Convert title to string
     title = str(title)
@@ -119,6 +120,7 @@ def PlotRotationCurve(radius,velocity,title,
 def MakeAnimation(radius,velocity,time,dt,filename,title,
                  xlim=1,ylim=1,
                  size=False,masses=None):
+    """Make a rotation animation."""
     
     # Extract x and y positions, and time
     xpositions = MultiplePositions(radius,velocity,time,dt)[0]

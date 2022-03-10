@@ -52,11 +52,16 @@ debate.
 
 In this interactive module, we include several programs in the form of Jupyter notebooks [@soton403913]:
 
-1. An interactive introduction to dark matter. 
-2.   A dark matter widget program visually demonstrating specifically how a dark matter halo effects a total rotation curve, the most important physical parameters that define the theoretical halo, and the calculated theoretical mass implied by the halo at its given displayed curve.
-3. A program linking the rotation curve data of 180 galaxies from the SPARC database to be processed easily through the GIPSY program via SSH
-4. (Judit's curve and template codes from the workshop)
-5. A WIP conversion of GIPSY's rotmod task to Python 3.  What else?????
+1. Animations and rotation curve plots demonstrating three types of rotational motion. 
+2. An interactive introduction to dark matter. 
+3. Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy.
+4. Plotting the rotation curves of galaxy components. 
+5. Interactive widget to visualize the components of the galaxy NGC 5533. 
+6. Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies.
+7. Constructing a rotation curve for the bulge component using empirically-derived parameters. 
+8. Interactive curve fitting. 
+9. Interactive widget to visualize the components of multiple galaxies using the SPARC database of 175 galaxies. 
+10. Considering tiny black holes as dark matter candidates.
 
 
 # Statement of Need 

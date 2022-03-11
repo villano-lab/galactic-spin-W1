@@ -8,10 +8,24 @@
 The first workshop of our Rotation Curves series, which covers the basics of what rotation curves are,
 how they are measured, and how we model them by breaking them into components.
 
-![A poster, reading: CHOOSE: EMPIRICAL OR THEORETICAL? Astrophysicisists have developed models of the 'galactic bulge', the bright central component of spiral galaxies. Some of these models depend on empirical data sets as input, while more theoretical models only require empirically-derived parameters as input. Empirically-based models can be more accurate, however, purely-mathematical models can help us extrapolate, understand, and extend our knowledge beyond what can only be directly observed. When making your own bulge component, you'll get to choose your path: empirical or theoretical rotation curve models. CHOOSE: WHICH GALAXY? (End text) At the bottom of the poster, there are three labeled galaxy images. The first: NGC 5533, Constellation: BOOTES, DISTANCE: 177 MLY, SIZE: 50,000 LY. The second: NGC 891, CONSTELLATION: CAMELOPARDALIS, DISTANCE: 27.3 MLY, SIZE: 120,000 LY. The last: NGC 7814, CONSTELLATION: PEGASUS, DISTANCE: 40 MLY, SIZE: 80,000 LY.](binder/images/bulge.png)
+![A poster, reading: "Build Your Own Rotation Curve". Beneath this line are four labeled galaxy images. The first - NGC 5005, DISTANCE: 45 MLY, SIZE: 55,000 LY. The second - NGC 5533, DISTANCE: 177 MLY, SIZE: 50,000 LY. The third: NGC 7814, DISTANCE: 40 MLY, SIZE: 80,000 LY. The last: NGC 891, DISTANCE: 27.3 MLY, SIZE: 120,000 LY.](binder/images/choosegalaxyII.png)
 
 You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
 including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/feature-open-source-documents/01_Getting_Started.html).
+
+## ABSTRACT
+
+*The following is a version of our abstract for RaCAS 2022.*
+
+Dark matter is estimated to make up ~60% of all normal/baryonic matter, but cannot be directly imaged. 
+Despite the fact that dark matter cannot be directly observed yet, its influence on the motion of stars and gas in spiral galaxies have been detected. 
+One way to show motion in galaxies are rotation curves that are plots of velocity measurements of how fast stars and gas move in a galaxy around the center of mass. 
+According to Newton's Law of Gravitation, the rotational velocity is an indication of the amount of visible and non-visible mass in the galaxy. 
+Given that the visible matter is measurable using photometry, dark matter mass can therefore be estimated, offering an insight into the size distribution in galaxies. 
+In order to gain a greater appreciation of the research scientists' findings about dark matter, their method should be easily reproduced by any curious individual. 
+Our interactive workshop is an excellent educational tool to investigate how dark matter impacts the rotation of visible matter by providing a guide to produce galactic rotation curves. 
+The Python-based notebooks are set up to walk you through the whole process of producing rotation curves using an online database (SPARC) and to allow you to learn about each component of the galaxy. 
+The three steps of the rotation curve building process is plotting the measured velocity data, constructing the rotation curves for each component, and fitting the total velocity to the measured values. 
 
 ## OUTLINE
 

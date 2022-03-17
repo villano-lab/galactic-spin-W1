@@ -29,7 +29,7 @@ affiliations:
    index: 3
  - name:  Department of Physics, University of Colorado Boulder, Boulder, CO 80309, USA 
    index: 4
-date: 19 November 2021
+date: 17 March 2022
 nocite: '@*'
 ---
 
@@ -37,16 +37,18 @@ nocite: '@*'
 
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
-is that there is some matter present in this galaxies which we cannot see because it doesn't
-interact with light - that is, that these galaxies contain dark matter [@1978ApJ-225L-107R]. 
+is that there is some invisible matter present in this galaxies that does not
+interact with light - that is to say, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
 Participants in this workshop will have the opportunity to explore dark matter through scientific
 literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
-curves both by using interactive programs and by editing python code. This will give participants
-an understanding of how physicists arrived at the idea of dark matter showing them the difference
+curves both by using interactive programs and by editing Python code. This will give participants
+an understanding of how physicists arrived at the idea of dark matter, showing them the difference
 between curve fits with and without galactic dark matter components. Understanding dark matter's
 epistemological origins will help participants to formulate their own opinions on the dark matter
 debate.
+
+All authors have contributed equally to this workshop.
 
 ## Description of the software or learning module
 
@@ -94,32 +96,36 @@ The learning objectives for this educational module are:
 
 experience of use in teaching and learning situations.
 
-(Raphael). Most of the content provided in this module has been presented and taught in previous workshops/research symposiums (Data Science Symposium, RaCAS Research Symposium 2020 and 2021), with feedback collected from participants. We have chosen for this module the activities which proved most successful in terms of education and sparking interest in participants. 
+Most of the content provided in this module has been presented and taught in previous workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021, Research and Creative Activities Symposium 2020 and 2021), with feedback collected from participants. We have chosen the activities for this module which proved most successful in terms of education and sparking interest in participants. 
 
 # Story 
 
-(Raphael) The story of this project emerged out of several years of literary analysis, trial and error, and reproducibility studies our team conducted on rotation curve research. One principal feeling our team drew from this journey was a perceived lack of clarity and accessibility in the world of rotation curve research, including that pertaining to programs and data requisite for actually composing rotation curves. Examining the difficulties encountered in our team's research, we developed a simple resource (an educational module) that is clear, concise, with curve-composition activities that can be easily reproducible by the user. From our experience analyzing a number of rotation curve publications, in addition to correspondences with active researchers in the field, and our experience with currently-used curve-composing programs, we have begun to develop our own versions of such programs, making improvements which we believe will greatly improve accessibility and understanding. We also include content which we produced for previous workshops and research symposiums that further facilitate rotation curve learning. 
+The story of this project emerged out of several years of literary analysis, trial and error, and reproducibility studies our team conducted on rotation curve research. A principal impression our team drew from this journey was the lack of clarity and accessibility in the world of rotation curve research, including programs and data requisite for composing rotation curves. Examining the difficulties encountered in our team's research, we developed an educational module that is clear, concise, with curve-composition activities that can be easily reproducible by the user. From our experience analyzing a number of rotation curve publications, in addition to correspondences with active researchers in the field, and with currently-used curve-composing programs, we have begun to develop our own versions of such programs, making improvements which we believe will greatly improve accessibility and understanding. We also include content which we produced for previous workshops and research symposiums that further facilitate the understanding of producing rotation curves. 
 
 #Materials
 
-* SPARC data import
 * Interactive Measured Data Plotting: 
-    * Plotting radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
+    * Plot radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
 * Interactive Rotation Curve Plotting:
     * Choose a galaxy to plot
-    * Build your own rotation curve using the galaxy's components. 
+    * Build your own rotation curve using the galaxy's components 
     * Calculate black hole component
     * Calculate dark matter component
     * See how dark matter component affects the total curve 
+* SPARC data import:
+    * Plot rotation curves using the SPARC database of rotational velocities
 * Interactive Fitting:
     * Choose a galaxy to plot
     * Find scaling factors by fitting them to the measured data points
-* Widget for Dark Matter parameters affecting the rotation curve in NGC 5533
-
-Can make the same widget for the other galaxies too, if we want....
+* Widgets:
+    * Dark Matter parameters affecting the rotation curve in the galaxy NGC 5533
+    * All components affecting the rotation curve in the galaxy NGC 5533
+* Bonus materials:
+    * Calculate the rotation curve for the bulge component using empirically derived parameters
+    * Widget: Tiny black holes as dark matter candidates
 
 # Acknowledgements
 
-The authors would like to thank...
+The authors would like to thank Dr. Martin Vogelaar at Kapteyn Astronomical Institute, Dr. Edo Noordermeer, Dr. Emily E. Richards 
 
 # References

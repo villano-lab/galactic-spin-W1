@@ -268,9 +268,9 @@ NGC5005['gas']['spline'] = inter.BSpline(NGC5005['gas']['t'], NGC5005['gas']['c'
 
 # Parameters ########################
 NGC5005['galaxyname'] = 'NGC 5005'   # NGC catalog number of the galaxy
-NGC5005['rho0'] = 1e8       # central mass density (in solar mass/kpc^3), guess!    
-NGC5005['rc'] = 2.5         # core radius (in kpc), Source: Richards et al. (2015)
-NGC5005['massbh'] = 0       # central black hole is included in the bulge curve
+NGC5005['rho0'] = 4.9373e+08         # central mass density (in solar mass/kpc^3), obtained by fitting   
+NGC5005['rc'] = 2.5                  # core radius (in kpc), Source: Richards et al. (2015)
+NGC5005['massbh'] = 0                # central black hole is included in the bulge curve
 
 
 ###############################
@@ -283,13 +283,6 @@ NGC3198['m_radii']      = np.asarray(NGC3198['measured_data']['xx'])
 NGC3198['m_velocities'] = np.asarray(NGC3198['measured_data']['yy'])
 NGC3198['m_v_errors']   = np.asarray(NGC3198['measured_data']['ey'])
 NGC3198['galaxyname'] = 'NGC 3198' 
-
-# UGC 89
-#UGC89 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC89.txt')}
-#UGC89['m_radii']      = np.asarray(UGC89['measured_data']['xx'])
-#UGC89['m_velocities'] = np.asarray(UGC89['measured_data']['yy'])
-#UGC89['m_v_errors']   = np.asarray(UGC89['measured_data']['ey'])
-#UGC89['galaxyname'] = 'UGC 89' 
 
 # UGC 477
 UGC477 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC477.txt')}

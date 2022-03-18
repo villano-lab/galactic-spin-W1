@@ -87,14 +87,16 @@ to explore, learn, and build upon.
 
 # Learning Objectives 
 
-	• For learning modules, describe the learning objectives, content, instructional design, and experience of use in teaching and learning situations.
-The learning objectives for this educational module are:
-	1. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
-	2. Provide users with an accessible work and activities relating to the basic principles of rotation curve composition.
-		a. This includes facilitating the introduction of rotation curve concepts via open-source, interactive programs to provide users with practical and tangible entrees of what rotation curve work really involves.
-	3. Provide code-based concepts and examples of how users can become more involved in rotation curve work as they wish.
+* For learning modules, describe the learning objectives, content, instructional design, and experience of use in teaching and learning situations.
 
-experience of use in teaching and learning situations.
+The learning objectives for this educational module are:
+    1. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
+    2. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
+        a. facilitating the introduction of rotation curve concepts via open-source
+        b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
+    3. Learn to use the SPARC database to plot rotation curves of many galaxies.
+
+* Experience of use in teaching and learning situations.
 
 Most of the content provided in this module has been presented and taught in previous workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021, Research and Creative Activities Symposium 2020 and 2021), with feedback collected from participants. We have chosen the activities for this module which proved most successful in terms of education and sparking interest in participants. 
 
@@ -102,7 +104,7 @@ Most of the content provided in this module has been presented and taught in pre
 
 The story of this project emerged out of several years of literary analysis, trial and error, and reproducibility studies our team conducted on rotation curve research. A principal impression our team drew from this journey was the lack of clarity and accessibility in the world of rotation curve research, including programs and data requisite for composing rotation curves. Examining the difficulties encountered in our team's research, we developed an educational module that is clear, concise, with curve-composition activities that can be easily reproducible by the user. From our experience analyzing a number of rotation curve publications, in addition to correspondences with active researchers in the field, and with currently-used curve-composing programs, we have begun to develop our own versions of such programs, making improvements which we believe will greatly improve accessibility and understanding. We also include content which we produced for previous workshops and research symposiums that further facilitate the understanding of producing rotation curves. 
 
-#Materials
+### Materials
 
 * Interactive Measured Data Plotting: 
     * Plot radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves

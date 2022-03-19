@@ -67,7 +67,7 @@ rand_angle_5533 = np.random.uniform(0,2*np.pi,int(maxnumberBH_5533))  # angle 0 
 
 ### NGC 7814 ###
 # For number of black holes slider
-scale_7814 = 2.5e7                    # scale is neccessary to be a constant, otherwise the widget will freeze up the computer! 
+scale_7814 = 2.4e7                    # scale is neccessary to be a constant, otherwise the widget will freeze up the computer! 
                                       # scale is how many black holes represent each dot on image
 minnumberBH_7814 = 1                  # min number of black holes (this is multiplied by the scale)
 maxnumberBH_7814 = 100                # max number of black holes (this is multiplied by the scale)

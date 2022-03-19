@@ -18,7 +18,7 @@ import matplotlib.pyplot  as plt
 
 NGC5533 = {
 
-    # Load data from files for Noordermeer's band and fitted curves
+    # Load data from files for Noordermeer 2008 band and fitted curves
     # 'raw' in the sense that I haven't split everything up. Idk there's probably a better way to name these
     'raw_total'        : dp.getXYdata('data/NGC5533/noord-120kpc-total.txt'     ),
     'raw_blackhole'    : dp.getXYdata('data/NGC5533/noord-120kpc-blackhole.txt' ),
@@ -115,31 +115,30 @@ NGC5533['gas']['spline'] = inter.BSpline(NGC5533['gas']['t'], NGC5533['gas']['c'
 ###############################
 
 NGC0891 = {
-    
-    'raw_bulge'        : dp.getXYdata('data/NGC0891/0891_gBulge.dat'     ),
+    # SPARC data files
+    'raw_bulge'        : dp.getXYdata('data/NGC0891/0891_gBulge.dat'     ),   
     'raw_disk'         : dp.getXYdata('data/NGC0891/0891_gDisk.dat'      ),
     'raw_gas'          : dp.getXYdata('data/NGC0891/0891_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wXYerr('data/NGC0891/0891_measured.dat')
+    'measured_data'    : dp.getXYdata_wYerr('data/NGC0891/0891_measured.dat')
 }
 
 # Parameters ########################
 NGC0891['galaxyname'] = 'NGC 891'    # NGC catalog number of the galaxy
-NGC0891['rho0'] = 3.31e7       # central mass density (in solar mass/kpc^3), Source: Richards et al. (2015)    
-NGC0891['rc'] = 1.9            # core radius (in kpc), Source: Richards et al. (2015)
+NGC0891['rho0'] = 1.4461e+08   # central mass density (in solar mass/kpc^3), calculated by fitting  
+NGC0891['rc'] = 2.34           # core radius (in kpc), calculated by fitting 
 NGC0891['massbh'] = 0          # central black hole is included in the bulge curve
 
 #Organize measured data
 NGC0891['m_radii']      = np.asarray(NGC0891['measured_data']['xx'])
 NGC0891['m_velocities'] = np.asarray(NGC0891['measured_data']['yy'])
-NGC0891['m_r_errors']   = np.asarray(NGC0891['measured_data']['ex'])
 NGC0891['m_v_errors']   = np.asarray(NGC0891['measured_data']['ey'])
 
 # Bulge #############################
 NGC0891['bulge'] = {
     'r' : np.asarray(NGC0891['raw_bulge']['xx']),
-    'v' : np.asarray(NGC0891['raw_bulge']['yy'])
+    'v' : np.asarray(NGC0891['raw_bulge']['yy'])    
 }
 NGC0891['bulge']['t'], NGC0891['bulge']['c'], NGC0891['bulge']['k'] = inter.splrep(NGC0891['bulge']['r'], NGC0891['bulge']['v'])
 NGC0891['bulge']['spline'] = inter.BSpline(NGC0891['bulge']['t'], NGC0891['bulge']['c'], NGC0891['bulge']['k'])
@@ -147,7 +146,7 @@ NGC0891['bulge']['spline'] = inter.BSpline(NGC0891['bulge']['t'], NGC0891['bulge
 # Disk ##############################
 NGC0891['disk'] = {
     'r' : np.asarray(NGC0891['raw_disk']['xx']),
-    'v' : np.asarray(NGC0891['raw_disk']['yy'])
+    'v' : np.asarray(NGC0891['raw_disk']['yy'])     
 }
 NGC0891['disk']['t'], NGC0891['disk']['c'], NGC0891['disk']['k'] = inter.splrep(NGC0891['disk']['r'], NGC0891['disk']['v'])
 NGC0891['disk']['spline'] = inter.BSpline(NGC0891['disk']['t'], NGC0891['disk']['c'], NGC0891['disk']['k'])
@@ -167,25 +166,24 @@ NGC891 = NGC0891    # Considering when someone forgets to type 0
 ###############################
 
 NGC7814 = {
-    
+    # SPARC data files
     'raw_bulge'        : dp.getXYdata('data/NGC7814/7814_gBulge.dat'     ),
     'raw_disk'         : dp.getXYdata('data/NGC7814/7814_gDisk.dat'      ),
     'raw_gas'          : dp.getXYdata('data/NGC7814/7814_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wXYerr('data/NGC7814/7814_measured.dat')
+    'measured_data'    : dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat')
 }
 
 # Parameters ########################
 NGC7814['galaxyname'] = 'NGC 7814'   # NGC catalog number of the galaxy
-NGC7814['rho0'] = 1.52e8       # central mass density (in solar mass/kpc^3), Source: Richards et al. (2015)
-NGC7814['rc'] = 2.1            # core radius (in kpc), Source: Richards et al. (2015)
+NGC7814['rho0'] = 1.52e8       # central mass density (in solar mass/kpc^3), Source: Fraternali et al. (2011) 
+NGC7814['rc'] = 2.1            # core radius (in kpc), Source: Fraternali et al. (2011) 
 NGC7814['massbh'] = 0          # central black hole is included in the bulge curve
 
 #Organize measured data
 NGC7814['m_radii']      = np.asarray(NGC7814['measured_data']['xx'])
 NGC7814['m_velocities'] = np.asarray(NGC7814['measured_data']['yy'])
-NGC7814['m_r_errors']   = np.asarray(NGC7814['measured_data']['ex'])
 NGC7814['m_v_errors']   = np.asarray(NGC7814['measured_data']['ey'])
 
 # Bulge #############################
@@ -268,8 +266,8 @@ NGC5005['gas']['spline'] = inter.BSpline(NGC5005['gas']['t'], NGC5005['gas']['c'
 
 # Parameters ########################
 NGC5005['galaxyname'] = 'NGC 5005'   # NGC catalog number of the galaxy
-NGC5005['rho0'] = 4.9373e+08         # central mass density (in solar mass/kpc^3), obtained by fitting   
-NGC5005['rc'] = 2.5                  # core radius (in kpc), Source: Richards et al. (2015)
+NGC5005['rho0'] = 1.693e+07          # central mass density (in solar mass/kpc^3), obtained by fitting   
+NGC5005['rc'] = 9.917                # core radius (in kpc), obtained by fitting 
 NGC5005['massbh'] = 0                # central black hole is included in the bulge curve
 
 

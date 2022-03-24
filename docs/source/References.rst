@@ -3,7 +3,7 @@ References
 ==========
 
 .. .. [ref] author, *title*, `journal <>`_
-.. [BOB] Carroll, Bradley W. and Ostlie, Dale A., *An Introduction to Modern Astrophysic*, `Cambridge University Press (2006)`_
+.. [BOB] Carroll, Bradley W. and Ostlie, Dale A., *An Introduction to Modern Astrophysics*, `Cambridge University Press (2006)`_
 .. [Casertano] Stefano Casertano, *Rotation curve of the edge-on spiral galaxy NGC 5907: disc and halo masses*, `Monthly Notices of the Royal Astronomical Society 203 (1983) <https://doi.org/10.1093/mnras/203.3.735>`_.
 .. [Datathief] B. Tummers, *Software*, `(2006) <https://datathief.org>`_.
 .. [deNaray2006] Rachel Kuzio de Naray and Stacy S. McGaugh and W. J. G. de Blok and A. Bosma, *High-Resolution Optical Velocity Fields of 11 Low Surface Brightness Galaxies*, `The Astrophysical Journal Supplement Series 165 (2006) <https://doi.org/10.1086/505345>`_.

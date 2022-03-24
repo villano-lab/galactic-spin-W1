@@ -3,7 +3,7 @@ References
 ==========
 
 .. .. [ref] author, *title*, `journal <>`_
-.. [BOB] Carroll, Bradley W. and Ostlie, Dale A., *An Introduction to Modern Astrophysics*, `Cambridge University Press (2006)`_
+.. [BOB] Carroll, Bradley W. and Ostlie, Dale A., *An Introduction to Modern Astrophysics*, Cambridge University Press (2006).
 .. [Casertano] Stefano Casertano, *Rotation curve of the edge-on spiral galaxy NGC 5907: disc and halo masses*, `Monthly Notices of the Royal Astronomical Society 203 (1983) <https://doi.org/10.1093/mnras/203.3.735>`_.
 .. [Datathief] B. Tummers, *Software*, `(2006) <https://datathief.org>`_.
 .. [deNaray2006] Rachel Kuzio de Naray and Stacy S. McGaugh and W. J. G. de Blok and A. Bosma, *High-Resolution Optical Velocity Fields of 11 Low Surface Brightness Galaxies*, `The Astrophysical Journal Supplement Series 165 (2006) <https://doi.org/10.1086/505345>`_.
@@ -23,5 +23,5 @@ References
 .. [SkyView] McGlynn, T. and Scollick, K. and White, N., *SKYVIEW: The Multi-Wavelength Sky on the Internet*, `SAO/NASA Astrophysics Data System (1998) <https://ui.adsabs.harvard.edu/abs/1998IAUS..179..465M>`_.
 .. [SmallestBH] Springer Nature, *The smallest known Black Hole*, `Scientific American (2008) <http://www.scientificamerican.com/gallery/the-smallest-known-black-hole>`_.
 .. [SPARC] Federico Lelli, Stacy S. McGaugh, and James M. Schombert, *SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves*, `The Astronomical Journal 152 (2016) <https://doi.org/10.3847/0004-6256-152/6/157>`_.
-.. [Taylor] Taylor, John R., *An Introduction to Error Analysis: The Study of Uncertainties in Physical Measurements*, `University Science Books (1996)`_.
+.. [Taylor] Taylor, John R., *An Introduction to Error Analysis: The Study of Uncertainties in Physical Measurements*, University Science Books (1996).
 .. [Zeropoint]  Mamajek, E. E., Torres, G., Prsa, A., Harmanec, P., Asplund, M., Bennett, P. D., Capitaine, N., Christensen-Dalsgaard, J., Depagne, E., Folkner, W. M., Haberreiter, M., Hekker, S., Hilton, J. L., Kostov, V., Kurtz, D. W., Laskar, J., Mason, B. D., Milone, E. F., Montgomery, M. M., Richards, M. T., *IAU 2015 Resolution B2 on Recommended Zero Points for the Absolute and Apparent Bolometric Magnitude Scales*, `SAO/NASA Astrophysics Data System (2015) <https://ui.adsabs.harvard.edu/abs/2015arXiv151006262M>`_.

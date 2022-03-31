@@ -36,14 +36,14 @@ if read_the_docs_build:
     output_dir = 'dox_build'
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
-    breathe_projects['nrCascadeSim'] = output_dir + '/xml'
+    breathe_projects['galactic-spin-W1'] = output_dir + '/xml'
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'galactic-spin-W1'
-copyright = '2021, A.N. Villano, K. Harris, S. Brown'
-author = 'A.N. Villano, K. Harris, S. Brown'
+copyright = '2021, A.N. Villano, K. Harris, J. Bergfalk, F. Vititoe, R. Hatami, J. Johnston'
+author = 'A.N. Villano, K. Harris, J. Bergfalk, F. Vititoe, R. Hatami, J. Johnston'
 
 # The full version, including alpha/beta/rc tags
 release = '1.3.0'

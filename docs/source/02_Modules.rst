@@ -8,18 +8,32 @@ Overview
 
 Description of the learning modules
 
-| File Name | Short Description |
-| --- | --- |
-| 01_DM_Rotation_Curve_Intro.ipynb | Animations and rotation curve plots demonstrating three types of rotational motion. |
-| 02_Widget_NGC5533_DMonly.ipynb | An interactive introduction to dark matter. | 
-| 03_Measured_Data_Plotting.ipynb | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
-| 04_Plotting_Rotation_Curves.ipynb | Plotting the rotation curves of galaxy components. | 
-| 05_Widget_NGC5533_All_Components.ipynb | Interactive widget to visualize the components of the galaxy NGC 5533. | 
-| 06_Plotting_SPARC_Data.ipynb | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
-| 07_Bonus_Bulge_Rotation_Curve.ipynb| Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
-| 08_Interactive_Fitting.ipynb | Interactive curve fitting. | 
-| 09_Widget_SPARC_Galaxies.ipynb | Interactive widget to visualize the components of multiple galaxies using the SPARC database of 175 galaxies. | 
-| 10_Bonus_Black_Holes_as_DM.ipynb | Considering tiny black holes as dark matter candidates. | 
+.. list-table:: Input Row 
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - File Name
+     - Short Description
+   * - 01_DM_Rotation_Curve_Intro.ipynb
+     - Animations and rotation curve plots demonstrating three types of rotational motion.
+   * - 02_Widget_NGC5533_DMonly.ipynb
+     - An interactive introduction to dark matter.
+   * - 03_Measured_Data_Plotting.ipynb
+     - Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy.
+   * - 04_Plotting_Rotation_Curves.ipynb 
+     - Plotting the rotation curves of galaxy components.
+   * - 05_Widget_NGC5533_All_Components.ipynb
+     - Interactive widget to visualize the components of the galaxy NGC 5533.
+   * - 06_Plotting_SPARC_Data.ipynb
+     - Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies.
+   * - 07_Bonus_Bulge_Rotation_Curve.ipynb
+     - Constructing a rotation curve for the bulge component using empirically-derived parameters.
+   * - 08_Interactive_Fitting.ipynb
+     - Interactive curve fitting.
+   * - 09_Widget_SPARC_Galaxies.ipynb
+     - Interactive widget to visualize the components of multiple galaxies using the SPARC database of 175 galaxies.
+   * - 10_Bonus_Black_Holes_as_DM.ipynb
+     - Considering tiny black holes as dark matter candidates. 
 
 --------------------------
 01_DM_Rotation_Curve_Intro

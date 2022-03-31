@@ -8,7 +8,7 @@ How to cite
 
 If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version,
 
-    Villano, A.N., Harris, K., Bergfalk, J., Hatami, R., Vititoe, F., and Johnston, J., 2022, Galactic Spin Workshop 1 - The Basics of Rotation Curves [Code, v1.0.0] [DOI:]
+    Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2022, Galactic Spin Workshop 1 - The Basics of Rotation Curves [Code, v1.0.0] [DOI:]
 
 .. raw:: html
 
@@ -18,7 +18,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 .. code-block::
 
     @software{galacticspinW1,
-    author = {Villano, A.N., Harris, K., Bergfalk, J., Hatami, R., Vititoe, F., and Johnston, J.},
+    author = {Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J.},
     title = {{Galactic Spin Workshop 1 - The Basics of Rotation Curves [Code, v1.0.0]}},
     year         = {2022},
     publisher    = {},

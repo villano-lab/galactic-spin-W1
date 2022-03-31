@@ -42,11 +42,11 @@ if read_the_docs_build:
 # -- Project information -----------------------------------------------------
 
 project = 'galactic-spin-W1'
-copyright = '2021, A.N. Villano, K. Harris, J. Bergfalk, F. Vititoe, R. Hatami, J. Johnston'
-author = 'A.N. Villano, K. Harris, J. Bergfalk, F. Vititoe, R. Hatami, J. Johnston'
+copyright = '2022, A.N. Villano, J. Bergfalk, K. Harris, F. Vititoe, R. Hatami, J. Johnston'
+author = 'A.N. Villano, J. Bergfalk, K. Harris, F. Vititoe, R. Hatami, J. Johnston'
 
 # The full version, including alpha/beta/rc tags
-release = '1.3.0'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------

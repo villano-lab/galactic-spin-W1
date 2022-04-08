@@ -16,22 +16,22 @@ import lmfit as lm                                              # Fitting
 # (the r array of the raw data)
 
 # Datapoints:
-data = dp.getXYdata_wXYerr('data/NGC7814/7814_measured.dat')
+data = dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat')
 r_dat = np.asarray(data['xx'])
 v_dat = np.asarray(data['yy'])
 v_err1 = np.asarray(data['ey'])
 
 # Disk:
-disk_data = dp.getXYZdata('data/NGC7814/7814_gDisk.dat')
-disk_raw = np.asarray(disk_data['zz'])
+disk_data = dp.getXYdata('data/NGC7814/7814_gDisk.dat')
+disk_raw = np.asarray(disk_data['yy'])
 
 # Bulge:
-bulge_data = dp.getXYZdata('data/NGC7814/7814_gBulge.dat')
-bulge_raw = np.asarray(bulge_data['zz'])
+bulge_data = dp.getXYdata('data/NGC7814/7814_gBulge.dat')
+bulge_raw = np.asarray(bulge_data['yy'])
 
 # Gas:
-gas_data = dp.getXYZdata('data/NGC7814/7814_gGas.dat')
-gas_raw = np.asarray(gas_data['zz'])
+gas_data = dp.getXYdata('data/NGC7814/7814_gGas.dat')
+gas_raw = np.asarray(gas_data['yy'])
 
 #####################
 ### Interpolation ###
@@ -112,7 +112,7 @@ fit_params = fit_mod.make_params()
 weighdata = 1/v_err1
 
 # Tiny Black Holes 
-fit_params.add('scale',      value=2.5e7,  vary=False)        # Scale
+fit_params.add('scale',      value=rho0,   vary=False)        # Scale
 fit_params.add('arraysize',  value=50,     min=1, max=100)    # Number of black holes
 fit_params.add('massMiniBH', value=1.5,    min=0.1, max=3.8)  # Mass of each tiny black holes (Solar mass)
 fit_params.add('rcut',       value=rcut,   min=0.1)           # Core Radius (kpc)

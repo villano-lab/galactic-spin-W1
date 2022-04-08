@@ -38,12 +38,18 @@ nocite: '@*'
 
 # Summary
 
-By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have found that there seems to be something missing in our understanding of these galaxies. One theory is that there is some invisible matter present in this galaxies that does not interact with light - that is to say, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
+By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
+found that there seems to be something missing in our understanding of these galaxies. One theory
+is that there is some invisible matter present in this galaxies that does not interact with light
+- that is to say, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
-Participants in this workshop will have the opportunity to explore dark matter through scientific literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation curves both by using interactive programs and by editing Python code. This will give participants an understanding of how physicists arrived at the idea of dark matter, showing them the difference between curve fits with and without galactic dark matter components. Understanding dark matter's
-epistemological origins will help participants to formulate their own opinions on the dark matter debate.
-
-All authors have contributed equally to this workshop.
+Participants in this workshop will have the opportunity to explore dark matter through scientific
+literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
+curves both by using interactive programs and by editing Python code. This will give participants
+an understanding of how physicists arrived at the idea of dark matter, showing them the difference
+between curve fits with and without galactic dark matter components. Understanding dark matter's
+epistemological origins will help participants to formulate their own opinions on the dark matter
+debate.
 
 ## Description of the software or learning module
 
@@ -65,9 +71,19 @@ In this interactive module, we include several programs in the form of Jupyter n
 
 # Statement of Need 
 
-Rotation curves present one of the key empirical artifacts through which dark matter can be observed and analyzed [@1978ApJ-225L-107R]. However, a thorough description of the rotation curve building process is insufficient in scientific publications. Furthermore, the software and tools used in developing rotation curves are outdated and are lacking a straightforward 
-implementation (source: GIPSY). A rigorous and easily applicable learning module is needed to provide an accessible tool to any individual who is interested in investigating the effect of dark matter in spiral galaxies through rotation curves. The modules in our workshop are designed to present a convenient open-source platform for developing basic rotation curves. 
-The annotated tutorials are aimed for both academics and curious individuals with little or no experience with rotation curves. Users can follow step-by-step instructions and explanations in building their own rotation curves, as well as engaging in activities. The primary goal of this project is to present rotation-curve development and research in a versatile and approachable format for any individual to explore, learn, and build upon.
+Rotation curves present one of the key empirical artifacts through which dark matter can be
+observed and analyzed [@1978ApJ-225L-107R]. However, a thorough description of the rotation curve
+building process is typically not given in scientific publications. Furthermore, the software and tools
+used in developing rotation curves are outdated and are lacking a straightforward implementation
+(source: GIPSY). A rigorous and easily applicable learning module is needed to provide an
+accessible tool to any individual who is interested in investigating the effect of dark matter in
+spiral galaxies through rotation curves. The modules in our workshop are designed to present a
+convenient open-source platform for developing basic rotation curves.  The annotated tutorials are
+aimed for both academics and curious individuals with little or no experience with rotation
+curves. Users can follow step-by-step instructions and explanations in building their own rotation
+curves, as well as engaging in activities. The primary goal of this project is to present
+rotation-curve development and research in a versatile and approachable format for any individual
+to explore, learn, and build upon.
 
 # Learning Objectives 
 
@@ -76,17 +92,32 @@ The annotated tutorials are aimed for both academics and curious individuals wit
 The learning objectives for this educational module are:
     1. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
     2. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
-        a. facilitating the introduction of rotation curve concepts via open-source
+        a. facilitating the introduction of rotation curve concepts via open-source code
         b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
     3. Learn to use the SPARC database to plot rotation curves of many galaxies.
 
 * Experience of use in teaching and learning situations.
 
-Most of the content provided in this module has been presented and taught in previous workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021, Research and Creative Activities Symposium 2020 and 2021), with feedback collected from participants. We have chosen the activities for this module which proved most successful in terms of education and sparking interest in participants. 
+Most of the content provided in this module has been presented and taught in previous
+workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021,
+Research and Creative Activities Symposium 2020 and 2021), with feedback collected from
+participants. We have chosen the activities for this module which proved most successful in terms
+of education and sparking interest in participants. 
 
 # Story 
 
-The story of this project emerged out of several years of literary analysis, trial and error, and reproducibility studies our team conducted on rotation curve research. A principal impression our team drew from this journey was the lack of clarity and accessibility in the world of rotation curve research, including programs and data requisite for composing rotation curves. Examining the difficulties encountered in our team's research, we developed an educational module that is aimed to be clear, concise, with curve-composition activities that can be easily reproducible by the user. From our experience analyzing a number of rotation curve publications, in addition to correspondences with active researchers in the field, and with currently-used curve-composing programs, we have begun to develop our own versions of such programs, making improvements which we believe will greatly improve accessibility and understanding. We also include content which we produced for previous workshops and research symposiums that further facilitate the understanding of producing rotation curves. 
+The story of this project emerged out of several years of literary analysis, trial and error, and
+reproducibility studies our team conducted on rotation curve research. A principal impression our
+team drew from this journey was the lack of clarity and accessibility in the world of rotation
+curve research, including programs and data requisite for composing rotation curves. Examining the
+difficulties encountered in our team's research, we developed an educational module that is aimed
+to be clear, concise, with curve-composition activities that can be easily reproducible by the
+user. From our experience analyzing a number of rotation curve publications, in addition to
+correspondences with active researchers in the field, and with currently-used curve-composing
+programs, we have begun to develop our own versions of such programs, making improvements which we
+believe will greatly improve accessibility and understanding. We also include content which we
+produced for previous workshops and research symposiums that further facilitate the understanding
+of producing rotation curves. 
 
 ### Materials
 

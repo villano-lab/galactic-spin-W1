@@ -246,7 +246,7 @@ rc = FloatSlider(min=0, max=20, step=0.1,
                  style=style, layout=layout)
 #rc = fixed(best_rc)
 
-rho0 = FloatSlider(min=0, max=1e11, step=1e6, 
+rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
                     value=best_rho0, 
                     description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
                     readout_format='.2e', 

@@ -67,11 +67,11 @@ rand_angle_5533 = np.random.uniform(0,2*np.pi,int(maxnumberBH_5533))  # angle 0 
 
 ### NGC 7814 ###
 # For number of black holes slider
-scale_7814 = 2.4e7                    # scale is neccessary to be a constant, otherwise the widget will freeze up the computer! 
+scale_7814 = 1e6                      # scale is neccessary to be a constant, otherwise the widget will freeze up the computer! 
                                       # scale is how many black holes represent each dot on image
 minnumberBH_7814 = 1                  # min number of black holes (this is multiplied by the scale)
-maxnumberBH_7814 = 100                # max number of black holes (this is multiplied by the scale)
-defaultnumber_7814 = 25               # default number of bh's for slider (this is multiplied by the scale)
+maxnumberBH_7814 = 1000               # max number of black holes (this is multiplied by the scale)
+defaultnumber_7814 = 600              # default number of bh's for slider (this is multiplied by the scale)
 stepN_7814 = 5                        # step of # of bh's for slider (this is multiplied by the scale)
 
 # For cutoff radius
@@ -240,8 +240,8 @@ def f7814(arraysize,massMiniBH,rcut):
     reducedchisquared = chisquared / dof  
     
     props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-    ax4.text(15,390,r"Reduced $\chi^2$: {:.2f}".format(reducedchisquared),ha='left',va='top',bbox=props,size=22)
-
+    ax4.text(19,390,r"Reduced $\chi^2$: {:.2f}".format(reducedchisquared),ha='right',va='top',bbox=props,size=22)
+    
 ################################
 ######## Define Sliders ########
 ################################

@@ -73,17 +73,17 @@ In this interactive module, we include several programs in the form of Jupyter n
 
 Rotation curves present one of the key empirical artifacts through which dark matter can be
 observed and analyzed [@1978ApJ-225L-107R]. However, a thorough description of the rotation curve
-building process is typically not given in scientific publications. Furthermore, the software and tools
-used in developing rotation curves are outdated and are lacking a straightforward implementation
-(source: GIPSY). A rigorous and easily applicable learning module is needed to provide an
-accessible tool to any individual who is interested in investigating the effect of dark matter in
-spiral galaxies through rotation curves. The modules in our workshop are designed to present a
-convenient open-source platform for developing basic rotation curves.  The annotated tutorials are
-aimed for both academics and curious individuals with little or no experience with rotation
-curves. Users can follow step-by-step instructions and explanations in building their own rotation
-curves, as well as engaging in activities. The primary goal of this project is to present
-rotation-curve development and research in a versatile and approachable format for any individual
-to explore, learn, and build upon.
+building process is typically not given in scientific publications. Furthermore, the software and
+tools used in developing rotation curves are outdated and are lacking a straightforward
+implementation (source: GIPSY [@Gipsy_1992]). A rigorous and easily applicable learning module is
+needed to provide an accessible tool to any individual who is interested in investigating the
+effect of dark matter in spiral galaxies through rotation curves. The modules in our workshop are
+designed to present a convenient open-source platform for developing basic rotation curves.  The
+annotated tutorials are aimed for both academics and curious individuals with little or no
+experience with rotation curves. Users can follow step-by-step instructions and explanations in
+building their own rotation curves, as well as engaging in activities. The primary goal of this
+project is to present rotation-curve development and research in a versatile and approachable
+format for any individual to explore, learn, and build upon.
 
 # Learning Objectives 
 

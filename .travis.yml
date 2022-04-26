@@ -21,7 +21,12 @@ install:
 
   - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
   - source activate test-environment
+  - pip3 install codecov pytest-cov
 
 before_script: cd binder
 script:
 - travis_wait 60 py.test
+after_script:
+- cd ../
+- pytest --cov=./ --cov-report=xml
+- codecov

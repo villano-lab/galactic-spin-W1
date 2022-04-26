@@ -23,6 +23,7 @@ install:
   - source activate test-environment
   #Packages for testing only -- don't need in user environment.
   - pip3 install codecov pytest-cov pytest_notebook
+  - ipython kernel install --user --name=galactic-spin 
 
 before_script: cd binder
 script:

@@ -25,8 +25,6 @@ install:
 
 before_script: cd binder
 script:
-- travis_wait 60 py.test
-after_script:
-- cd ../
 - pytest --cov=./ --cov-report=xml
+after_script:
 - codecov

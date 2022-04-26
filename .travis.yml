@@ -21,7 +21,8 @@ install:
 
   - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
   - source activate test-environment
-  - pip3 install codecov pytest-cov
+  #Packages for testing only -- don't need in user environment.
+  - pip3 install codecov pytest-cov pytest_notebook
 
 before_script: cd binder
 script:

@@ -100,7 +100,7 @@ The rotation curves of each component in the galaxy NGC 5533 can be scaled up an
 **Plotting the components of galactic rotation curves (SPARC - 175 galaxies)**
 
 .. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/v1.0.0?labpath=binder%2F06_Plotting_SPARC_Data.ipynb 
+   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/v1.0.0?labpath=binder%2F06_Plotting_SPARC_data.ipynb 
 `See module on GitHub <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/06_Plotting_SPARC_data.ipynb>`_
 
 The Spitzer Photometry & Accurate Rotation Curves (SPARC) database provides pre-calculated velocities of the bulge, disk and gas in 175 galaxies, as well as the measured velocity data points. Analogous to the 4_Plotting_Rotation_Curves.ipynb activity, this notebook also gives a guide to calculating the missing dark matter component and compares the rotation curve of luminous matter to the total velocity with the dark matter component. 

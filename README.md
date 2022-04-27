@@ -8,7 +8,7 @@
 The first workshop of our Rotation Curves series, which covers the basics of what rotation curves are,
 how they are measured, and how we model them by breaking them into components.
 
-![A poster, reading: CHOOSE: EMPIRICAL OR THEORETICAL? Astrophysicisists have developed models of the 'galactic bulge', the bright central component of spiral galaxies. Some of these models depend on empirical data sets as input, while more theoretical models only require empirically-derived parameters as input. Empirically-based models can be more accurate, however, purely-mathematical models can help us extrapolate, understand, and extend our knowledge beyond what can only be directly observed. When making your own bulge component, you'll get to choose your path: empirical or theoretical rotation curve models. CHOOSE: WHICH GALAXY? (End text) At the bottom of the poster, there are three labeled galaxy images. The first: NGC 5533, Constellation: BOOTES, DISTANCE: 177 MLY, SIZE: 50,000 LY. The second: NGC 891, CONSTELLATION: CAMELOPARDALIS, DISTANCE: 27.3 MLY, SIZE: 120,000 LY. The last: NGC 7814, CONSTELLATION: PEGASUS, DISTANCE: 40 MLY, SIZE: 80,000 LY.](binder/images/bulge.png)
+![A poster, reading: CHOOSE: EMPIRICAL OR THEORETICAL? Astrophysicists have developed models of the 'galactic bulge', the bright central component of spiral galaxies. Some of these models depend on empirical data sets as input, while more theoretical models only require empirically-derived parameters as input. Empirically-based models can be more accurate, however, purely-mathematical models can help us extrapolate, understand, and extend our knowledge beyond what can only be directly observed. When making your own bulge component, you'll get to choose your path: empirical or theoretical rotation curve models. CHOOSE: WHICH GALAXY? (End text) At the bottom of the poster, there are three labeled galaxy images. The first: NGC 5533, Constellation: BOOTES, DISTANCE: 177 MLY, SIZE: 50,000 LY. The second: NGC 891, CONSTELLATION: CAMELOPARDALIS, DISTANCE: 27.3 MLY, SIZE: 120,000 LY. The last: NGC 7814, CONSTELLATION: PEGASUS, DISTANCE: 40 MLY, SIZE: 80,000 LY.](binder/images/bulge.png)
 
 You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
 including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/feature-open-source-documents/01_Getting_Started.html).
@@ -23,7 +23,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## AUTHORS & CONTACT
 
-The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, F. Vititoe, and Eric Lorimor.
+The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, F. Vititoe, and Julia Johnston.
 
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 

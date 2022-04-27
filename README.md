@@ -46,7 +46,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
-12.11.2021: Release of [version 0.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v0.0.1)
+27.04.2022: Release of [version 1.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.0)
 
 ## AUTHORS & CONTACT
 

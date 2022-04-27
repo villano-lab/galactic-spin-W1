@@ -89,7 +89,7 @@ Theoretical rotation curves are computed using the velocities of each component 
 
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/v1.0.0?labpath=binder%2F05_Widget_NGC5533_All_Components.ipynb 
-`See module on GitHub <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/05_Widget_NGC5533_All_Components.ipynb >`_
+`See module on GitHub <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/05_Widget_NGC5533_All_Components.ipynb>`_
 
 The rotation curves of each component in the galaxy NGC 5533 can be scaled up and down using the interactive widget in this notebook. The best combination of the scaling parameters results in a good fit to the measured data points. To characterize the goodness of the fit, the reduced chi-squared value is calculated. A value close to 1 is an indication of a good fit.
 

@@ -15,11 +15,10 @@
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves
 ==========================================================
 
-The purpose of this workshop code is to guide the user through the fundamental aspects of rotation curves. 
-This includes discussing what a rotation curve is, how they are measured, and how we model them. 
-In order to allow users to fit models to real data, we pull rotation curves data on various galaxies from `SPARC <http://astroweb.cwru.edu/SPARC/>`_,
-a database of galactic data. We use the models by `Casertano <https://doi.org/10.1093/mnras/203.3.735>`_ and 
-`Noordermeer <https://doi.org/10.1111/j.1365-2966.2008.12837.x>`_ when modeling components of the rotation curve.
+The purpose of this workshop is to guide the user through the fundamental aspects of spiral galaxies' rotation curves. 
+This includes discussing what a rotation curve is, plotting the measured rotational velocities, constructing a rotation curve model for each component of the galaxy, calculating total rotation, and fitting the total curve to the measured data. 
+The workshop includes rotation curve calculations of the dark matter halo, bulge, and a central supermassive black hole component. We use the models by `Casertano <https://doi.org/10.1093/mnras/203.3.735>`_, 
+`Noordermeer <https://doi.org/10.1111/j.1365-2966.2008.12837.x>`_, and `Jimenez <https://doi.org/10.1046/j.1365-8711.2003.06165.x>`_ when modeling components of the rotation curve. All other components are imported from the `SPARC (Spitzer Photometry and Accurate Rotation Curves) database <http://astroweb.cwru.edu/SPARC/>`_. 
 
 
 The documentation does not contain a review of the physics implemented in the library.
@@ -31,4 +30,10 @@ If you want to contribute to `galactic-spin-W1`, please check out the `contribut
    :caption: Contents:
 
    01_Getting_Started
+   02_Modules
+   03_Glossary
+   04_Citations
+   05_Release_History
+   06_License
+   07_Contact
    References

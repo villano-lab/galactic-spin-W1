@@ -187,10 +187,11 @@ def widgetfunction(bpref,dpref,rc,rho0):
                  + "{}".format(warning_bulge) 
                  + "{}".format(warning_disk) 
                  + "{}".format(warning_gas),
-            xy=(0, 0), xytext=(0,-2),
+            xy=(0, 0), xytext=(0,0),
             xycoords=('axes fraction', 'figure fraction'),
             textcoords='offset points',
-            size=13, ha='left', va='bottom')
+            size=12, ha='left', va='bottom')
+    plt.tight_layout()
     plt.legend(bbox_to_anchor=(1,1), loc="upper left") 
     plt.show()
 

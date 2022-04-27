@@ -39,8 +39,9 @@ Description of the learning modules
 
 **Understanding rotation curves** 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/master?labpath=binder/01_DM_Rotation_Curve_Intro.ipynb)
-[On GitHub](https://github.com/villano-lab/galactic-spin-W1/tree/develop/binder/01_DM_Rotation_Curve_Intro.ipynb)
+.. image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/master?labpath=binder/01_DM_Rotation_Curve_Intro.ipynb
+`[On GitHub] <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/01_DM_Rotation_Curve_Intro.ipynb>`_
 
 Rotation curves are a measure of how fast an object is moving at a certain distance from the center. Three kinds of rotation curves are discussed in this notebook: rigid-body rotation, planetary rotation, and galactic flat rotation. With the help of animations and rotation curve plots, the three cases are compared to gain a better understanding of galactic rotation curves.
 

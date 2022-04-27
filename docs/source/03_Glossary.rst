@@ -26,7 +26,7 @@ Glossary
       The mass distribution of matter in the galaxy.
       
     Disk
-      ...
+      The stellar disk of the galaxy is a relatively flat component of the galaxy where
     
     Inclination angle
       The angle of the galaxy from the horizontal.

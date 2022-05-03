@@ -27,6 +27,6 @@ install:
 
 before_script: cd binder
 script:
-- pytest --cov=./ --cov-report=xml --nbval-lax
+- pytest --cov=./ --cov-report=xml --nbval
 after_script:
 - codecov

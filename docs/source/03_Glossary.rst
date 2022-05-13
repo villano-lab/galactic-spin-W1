@@ -27,33 +27,34 @@ Glossary
       
     Disk
       The stellar disk of the galaxy is a relatively flat component of the galaxy.
-    
-    Inclination angle
-      The angle of the galaxy from the horizontal.
-    
+
     Fitting
       ...
     
     Gravitational constant (G)
-      ...
-      
+       The constant of proportionality used to calculate effects of gravity.
+       In SI units, G = 6.67e-11 m^3 kg^-1 s^-2
+    
+    Inclination angle
+      The angle of the galaxy from the horizontal.  
+    
     Interstellar gas
       Gas between stars and galaxies. 
     
     Isothermal
-      ...
+      Having a constant temperature.
       
     Luminous matter
-      All matter that we are able to `see` in galaxies. Related words: light matter, visible matter, baryonic matter.
+      All matter that emits visible light in galaxies. Related words: light matter, visible matter, baryonic matter.
       
     kpc
       Unit of distance. kiloparsec: 1 kpc = 3262 light years = 3.086e+19 meters = 1.917e+16 miles.
     
     MACHO
-       Massive Compact Halo Object.
+       Massive Compact Halo Object. A type of object that emits no light, such as brown dwarfs or rogue planets.  
     
-    Mass-to-light ratio
-      The ratio of how much mass there is compared to how much it is visible. How much mass it is expected from the light source. The variation in the mass-to-light ratio means there is a wider range of masses that are plausible for the stellar component. Related words: M/L
+    Mass-to-light ratio (M/L ratio)
+      The ratio of how much mass there is compared to how much it is visible. How much mass it is expected from the light source. The variation in the mass-to-light ratio means there is a wider range of masses that are plausible for the stellar component.
     
     Measured datapoints
       Measured velocities of stars and gas in a galaxy. Related words: measured velocities.
@@ -65,10 +66,11 @@ Glossary
       New General Catalogue of galaxies.
     
     Photometry
-      ...
+      The measurement of light emitted from astronomical objects.
     
     Prefactor
-      ... Related words: scaling parameter, M/L ratio
+      ... 
+      Related words: scaling parameter, M/L ratio
       
     Radial velocity
       The speed stars and gas are moving at different distances from the center of the galaxy.
@@ -83,7 +85,7 @@ Glossary
       Mass of the Sun. Approximately equal to 1.989e30 kilograms 
     
     Theoretical rotation curve
-      ...
+      A rotation curve that has been modeled from known parameters that is then used to match observed data. 
     
     UGC
       Uppsala General Catalogue of galaxies.

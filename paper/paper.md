@@ -90,17 +90,19 @@ format for any individual to explore, learn, and build upon.
 * For learning modules, describe the learning objectives, content, instructional design, and experience of use in teaching and learning situations.
 
 The learning objectives for this educational module are:
-    1. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
-    2. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
+    1. Provide a working space where people can connect with current literature and identify as
+scientists.  
+    2. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
+    3. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
         a. facilitating the introduction of rotation curve concepts via open-source code
         b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
-    3. Learn to use the SPARC database to plot rotation curves of many galaxies.
+    4. Learn to use the SPARC database to plot rotation curves of many galaxies.
 
 * Experience of use in teaching and learning situations.
 
 Most of the content provided in this module has been presented and taught in previous
 workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021,
-Research and Creative Activities Symposium 2020 and 2021), with feedback collected from
+Research and Creative Activities Symposium 2020, 2021, and 2022 [REFS]), with feedback collected from
 participants. We have chosen the activities for this module which proved most successful in terms
 of education and sparking interest in participants. 
 

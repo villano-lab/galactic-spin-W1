@@ -145,6 +145,7 @@ of producing rotation curves.
 
 # Acknowledgements
 
-The authors would like to thank Dr. Martin Vogelaar at Kapteyn Astronomical Institute, Dr. Edo Noordermeer, Dr. Emily E. Richards, ...
+The authors would like to thank Dr. Martin Vogelaar at Kapteyn Astronomical Institute, Dr. Edo
+Noordermeer, and Dr. Emily E. Richards for useful feedback on the current literature. 
 
 # References

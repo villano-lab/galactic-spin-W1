@@ -28,5 +28,8 @@ install:
 before_script: cd binder
 script:
 - pytest --cov=./ --cov-report=xml --nbval
+- papermill --prepare-only -p galaxy NGC5533 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC5533.ipynb
+- papermill --prepare-only -p galaxy NGC7814 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC7814.ipynb
+- pytest --cov=./ --cov-report=xml --nbval-lax 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
 after_script:
 - codecov

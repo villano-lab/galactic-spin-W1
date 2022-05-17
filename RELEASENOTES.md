@@ -10,3 +10,11 @@
 ## Release (v0.0.1) Date 22.01.08 
 
 * Initial release! Repository created.
+
+## Release (v1.0.0) Date 04.27.22 
+
+* DM Workshop 1 released for RaCAS 2022.
+
+## Release (v1.0.1) Date 04.27.22 
+
+* Merged branches.

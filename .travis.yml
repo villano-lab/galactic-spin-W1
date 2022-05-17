@@ -22,7 +22,7 @@ install:
   - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
   - source activate test-environment
   #Packages for testing only -- don't need in user environment.
-  - pip3 install codecov pytest-cov pytest_notebook nbval
+  - pip3 install codecov pytest-cov pytest_notebook nbval papermill
   - ipython kernel install --user --name=galactic-spin 
 
 before_script: cd binder

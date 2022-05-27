@@ -23,8 +23,8 @@ If you decide to use this code, or if you want to add a reference to it, please 
     year         = {2022},
     publisher    = {},
     version      = {v1.0.0},
-    doi          = {DOI:},
-    url          = {},
+    doi          = {DOI:10.5281/zenodo.6588350},
+    url          = {https://zenodo.org/record/6588351},
     howpublished={The code can be found under \url{https://github.com/villano-lab/galactic-spin-W1/}.}
     }
 

@@ -14,16 +14,16 @@ Glossary
       The density of dark matter at the center of the galaxy. Changing this value changes the magnitude of the dark matter curve.
       
     Concentration parameter
-      Also known as the bulge Sersic parameter. "Describes the curvature of the profile in a radius-magnitude plot" (Noordermeer 2008). 
+      Also known as the bulge Sersic parameter. "Describes the curvature of the profile in a radius-magnitude plot" [Noordermeer2008]_. 
     
     Core radius
-      Indicates the distance from galactic center where the density falls off by a factor of *e* (~2.7). Adjusting this factor changes where the "bump" of the curve is located. Synonyms: cutoff radius, scale radius.
+      Indicates the distance from the galactic center where the density falls off by a factor of *e* (~2.7). Adjusting this factor changes where the "bump" of the curve is located. Synonyms: cutoff radius, scale radius.
     
     Dark matter
-      A placeholder to account for the matter in spiral galaxies that is `missing` based on our observations of galactic motion.  Related words: Dark Matter halo. 
+      A placeholder to account for the matter in spiral galaxies that is `missing` based on our observations of galactic motion.  Related words: Dark Matter halo, Halo. 
     
     Dark matter halo
-      A disk-shaped distribution of dark matter that is most dense at some distance from the galactic center.
+      A disk-shaped distribution of Dark Matter that is most dense at some distance from the galactic center.
 
     Density profile
       The mass distribution of matter in the galaxy.
@@ -54,7 +54,7 @@ Glossary
       Unit of distance; kiloparsec. 1 kpc = 3262 light years = 3.086e+19 meters = 1.917e+16 miles.
     
     MACHO
-       MAssive Compact Halo Object. A type of object that emits little to no light, such as brown dwarfs or rogue planets.  
+       MAssive Compact Halo Object. A type of object that emits little to no light, such as brown dwarfs, rogue planets, or black holes.  
     
     Mass-to-light ratio (M/L ratio)
       The ratio of how much mass there is compared to how much light the body emits; how much mass it is expected from the light source. Variation in the mass-to-light ratio means there is a wider range of masses that are plausible for the stellar component.
@@ -72,7 +72,7 @@ Glossary
       The measurement of light emitted from astronomical objects.
     
     Prefactor
-      A parameter that multiplies/directly scales the other information in an equation. Synonyms\: scaling parameter. Related words\: M/L ratio
+      A parameter that multiplies/directly scales the other information in an equation. Synonyms: scaling parameter. Related words: M/L ratio
       
     Radial velocity
       The speed stars and gas are moving at different distances from the center of the galaxy.
@@ -85,6 +85,12 @@ Glossary
     
     Solar mass
       Mass of the Sun, equal to 1.989e30 kilograms.
+      
+    Spiral galaxy
+      Galaxies that have spiral structures. Components are bulge, disk, gas, and Dark Matter halo. Spiral galaxies are less luminous than elliptical galaxies on average and have active star formation. 
+    
+    Surface brightness
+      The amount of flux from the galaxy per square arcsecond on the sky.
     
     Theoretical rotation curve
       A rotation curve that has been modeled from known parameters that is then used to match observed data. 
@@ -93,4 +99,4 @@ Glossary
       Uppsala General Catalogue of galaxies.
       
     Zero-point luminosity
-      ...
+      A reference luminosity for a star that has a zero absolute bolometric magnitude [Mamajek2015]_. 

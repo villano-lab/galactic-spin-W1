@@ -36,6 +36,9 @@ Glossary
 
     Enclosed mass
       The total mass of the area between the center of the galaxy or other body and the specified radius.
+      
+    Edge-on spiral galaxy
+      A galaxy which lies in the same plane as our viewing direction which results in us only seeing the outer edge of the galaxy and part of the central bulge. Alternatively, a face-on galaxy is perpendicular to our line of sight revealing its spiral structure. 
 
     Fitting
       The process of adjusting unknown parameters in order to match a theoretical equation to measured data.

@@ -21,7 +21,15 @@ install:
 
   - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
   - source activate test-environment
+  #Packages for testing only -- don't need in user environment.
+  - pip3 install codecov pytest-cov pytest_notebook nbval papermill
+  - ipython kernel install --user --name=galactic-spin 
 
 before_script: cd binder
 script:
-- travis_wait 60 py.test
+- pytest --cov=./ --cov-report=xml --nbval --current-env --cov-config=../.coveragerc
+- papermill --prepare-only -p galaxy NGC5533 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC5533.ipynb
+- papermill --prepare-only -p galaxy NGC7814 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC7814.ipynb
+- pytest --cov=./ --cov-report=xml --nbval-lax 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb --cov-append --current-env --cov-config=../.coveragerc
+after_script:
+- codecov

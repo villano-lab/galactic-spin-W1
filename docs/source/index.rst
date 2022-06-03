@@ -10,6 +10,9 @@
 .. .. image:: https://mybinder.org/badge_logo.svg
 ..   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder
 ..   :alt: Binder
+.. .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6588351.svg
+..   :target: https://doi.org/10.5281/zenodo.6588351
+..   :alt: Zenodo DOI
 
 ==========================================================
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves

@@ -81,41 +81,44 @@ effect of dark matter in spiral galaxies through rotation curves. The modules in
 designed to present a convenient open-source platform for developing basic rotation curves.  The
 annotated tutorials are aimed for both academics and curious individuals with little or no
 experience with rotation curves. Users can follow step-by-step instructions and explanations in
-building their own rotation curves, as well as engaging in activities. The primary goal of this
-project is to present rotation-curve development and research in a versatile and approachable
+building their own rotation curves and engagie in hands-on rotation curve activities. The primary goal of this
+project is to present rotation curve development and research in a versatile and approachable
 format for any individual to explore, learn, and build upon.
 
 # Learning Objectives 
 
-* For learning modules, describe the learning objectives, content, instructional design, and experience of use in teaching and learning situations.
+* For learning modules, describe the learning objectives, content, **instructional design**, and experience of use in teaching and learning situations.
 
 The learning objectives for this educational module are:
     1. Provide a working space where people can connect with current literature and identify as
 scientists.  
-    2. Educate curious students or other curious individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
+    2. Educate curious students or other individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
     3. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
-        a. facilitating the introduction of rotation curve concepts via open-source code
+        a. facilitating the introduction of rotation curve concepts via open-source code.
         b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
     4. Learn to use the SPARC database to plot rotation curves of many galaxies.
 
-* Experience of use in teaching and learning situations.
-
 Most of the content provided in this module has been presented and taught in previous
 workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021,
-Research and Creative Activities Symposium 2020, 2021, and 2022 [REFS]), with feedback collected from
-participants. We have chosen the activities for this module which proved most successful in terms
+Research and Creative Activities Symposium 2020, 2021, and 2022 [REFS]) with feedback collected from
+participants. We have chosen the activities for this module that proved most successful in terms
 of education and sparking interest in participants. 
+
+# Delivery
+
+The modules are designed to be presented to students in numeric order as part of a workshop, skipping those marked as "Bonus" as needed to fit the alloted time. 
+Students are encouraged to work together to complete the modules and compare their results to one another. While working through a module, the organizer(s) *(not the word I want to use but couldn't think of anything else at the time)* of the workshop should be available to answer questions and check in on participants' progress, but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, the organizer(s) should suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
 
 # Story 
 
-The story of this project emerged out of several years of literary analysis, trial and error, and
+This project emerged from several years of literary analysis, trial and error, and
 reproducibility studies our team conducted on rotation curve research. A principal impression our
 team drew from this journey was the lack of clarity and accessibility in the world of rotation
 curve research, including programs and data requisite for composing rotation curves. Examining the
 difficulties encountered in our team's research, we developed an educational module that is aimed
-to be clear, concise, with curve-composition activities that can be easily reproducible by the
-user. From our experience analyzing a number of rotation curve publications, in addition to
-correspondences with active researchers in the field, and with currently-used curve-composing
+to be clear and concise, with curve-composition activities that can be easily reproduced by the
+user. From our experience analyzing a number of rotation curve publications in addition to
+correspondences with active researchers in the field and with currently-used curve-composing
 programs, we have begun to develop our own versions of such programs, making improvements which we
 believe will greatly improve accessibility and understanding. We also include content which we
 produced for previous workshops and research symposiums that further facilitate the understanding
@@ -124,12 +127,10 @@ of producing rotation curves.
 ### Materials
 
 * Interactive Measured Data Plotting: 
-    * Plot radial velocity measurements of multiple galaxies in a single plot to compare shapes of the curves
+    * Plot radial velocity measurements (rotation curves) of multiple galaxies in a single plot to compare shapes of the curves
 * Interactive Rotation Curve Plotting:
-    * Choose a galaxy to plot
-    * Build your own rotation curve using the galaxy's components 
-    * Calculate black hole component
-    * Calculate dark matter component
+    * Choose a galaxy to plot and build your own rotation curve using the galaxy's components 
+    * Calculate black hole and dark matter components
     * See how dark matter component affects the total curve 
 * SPARC data import:
     * Plot rotation curves using the SPARC database of rotational velocities
@@ -137,11 +138,11 @@ of producing rotation curves.
     * Choose a galaxy to plot
     * Find scaling factors by fitting them to the measured data points
 * Widgets:
-    * Dark Matter parameters affecting the rotation curve in the galaxy NGC 5533
-    * All components affecting the rotation curve in the galaxy NGC 5533
+    * See how dark matter parameters affect the rotation curve of the galaxy NGC 5533
+    * See how all components affect the rotation curve of the galaxy NGC 5533
 * Bonus materials:
     * Calculate the rotation curve for the bulge component using empirically derived parameters
-    * Widget: Tiny black holes as dark matter candidates
+    * Widget: Look at tiny black holes as dark matter candidates
 
 # Acknowledgements
 

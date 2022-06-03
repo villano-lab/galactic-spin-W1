@@ -47,25 +47,25 @@ Participants in this workshop will have the opportunity to explore dark matter t
 literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
 curves both by using interactive programs and by editing Python code. This will give participants
 an understanding of how physicists arrived at the idea of dark matter, showing them the difference
-between curve fits with and without galactic dark matter components. Understanding dark matter's
-epistemological origins will help participants to formulate their own opinions on the dark matter
+between curve fits with and without dark matter components. Understanding dark matter's
+epistemological origins will help participants formulate their own opinions on the dark matter
 debate.
 
 ## Description of the software or learning module
 
-In this interactive module, we include several programs in the form of Jupyter notebooks [@soton403913]:
+In this interactive module, we include several modules in the form of Jupyter notebooks [@soton403913]:
 
 | File Name | Short Description |
 | --- | --- |
 | 01_DM_Rotation_Curve_Intro.ipynb | Animations and rotation curve plots demonstrating three types of rotational motion. |
-| 02_Widget_NGC5533_DMonly.ipynb | An interactive introduction to dark matter. | 
+| 02_Widget_NGC5533_DMonly.ipynb | Interactive introduction to dark matter. | 
 | 03_Measured_Data_Plotting.ipynb | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
 | 04_Plotting_Rotation_Curves.ipynb | Plotting the rotation curves of galaxy components. | 
 | 05_Widget_NGC5533_All_Components.ipynb | Interactive widget to visualize the components of the galaxy NGC 5533. | 
 | 06_Plotting_SPARC_Data.ipynb | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
 | 07_Bonus_Bulge_Rotation_Curve.ipynb| Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
 | 08_Interactive_Fitting.ipynb | Interactive curve fitting. | 
-| 09_Widget_SPARC_Galaxies.ipynb | Interactive widget to visualize the components of multiple galaxies using the SPARC database of 175 galaxies. | 
+| 09_Widget_SPARC_Galaxies.ipynb | Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
 | 10_Bonus_Black_Holes_as_DM.ipynb | Considering tiny black holes as dark matter candidates. | 
 
 
@@ -73,17 +73,16 @@ In this interactive module, we include several programs in the form of Jupyter n
 
 Rotation curves present one of the key empirical artifacts through which dark matter can be
 observed and analyzed [@1978ApJ-225L-107R]. However, a thorough description of the rotation curve
-building process is typically not given in scientific publications. Furthermore, the software and
-tools used in developing rotation curves are outdated and are lacking a straightforward
-implementation (source: GIPSY [@Gipsy_1992]). A rigorous and easily applicable learning module is
-needed to provide an accessible tool to any individual who is interested in investigating the
+building process is typically not given in scientific publications. Furthermore, software
+tools used in rotation curve literature are generally dated or otherwise difficult for inexperienced 
+users (source: GIPSY [@Gipsy_1992]). A rigorous yet accessible learning module is
+needed to provide a tool to any individual who is interested in investigating the
 effect of dark matter in spiral galaxies through rotation curves. The modules in our workshop are
-designed to present a convenient open-source platform for developing basic rotation curves.  The
-annotated tutorials are aimed for both academics and curious individuals with little or no
-experience with rotation curves. Users can follow step-by-step instructions and explanations in
-building their own rotation curves and engagie in hands-on rotation curve activities. The primary goal of this
-project is to present rotation curve development and research in a versatile and approachable
-format for any individual to explore, learn, and build upon.
+designed to present a convenient, open-source platform for developing basic rotation curves. The
+annotated tutorials are aimed at both academics and curious individuals with little to no
+experience with rotation curves. Users can engage in hands-on computation activities, including building their own rotation curves. 
+The primary goal of this project is to present rotation curve development and research in a versatile and approachable
+format for anyone to explore, learn, and build upon.
 
 # Learning Objectives 
 

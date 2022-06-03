@@ -1,18 +1,14 @@
 ## Template
-The following template is not required, but if you do not use it, please be sure to include all answers to all of the questions in some other way.
+The following template is not required, but if you do not use it, please include the following information in some other way.
 
 **Does your pull request resolve or partially resolve an issue?** 
-Yes / No.
+- [ ] Yes; it fully resolves #(issue number).
+- [ ] Yes; it partially resolves #(issue number).
+- [ ] No, it does not resolve an issue fully or partially.
 
-**If Yes, which issue?** 
-
-**Does your pull request implement code improvements?**
-Yes / No.
-
-**Does your pull request implement any breaking changes?**
-Yes / No.
-
-**If breaking changes are implemented, please describe:**
+**This pull request implements:**
+- [ ] Code improvements
+- [ ] Breaking changes (please describe any breaking changes below)
 
 **Testing:**  
 This pull request:

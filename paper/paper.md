@@ -106,7 +106,7 @@ of education and sparking interest in participants.
 # Delivery
 
 The modules are designed to be presented to students in numeric order as part of a workshop, skipping those marked as "Bonus" as needed to fit the alloted time. 
-Students are encouraged to work together to complete the modules and compare their results to one another. While working through a module, the organizer(s) *(not the word I want to use but couldn't think of anything else at the time)* of the workshop should be available to answer questions and check in on participants' progress, but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, the organizer(s) should suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
+Students are encouraged to work together to complete the modules and compare their results to one another. While working through a module, the instructor(s) should be available to answer questions and check in on participants' progress, but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, the instructor(s) should suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
 
 # Story 
 
@@ -122,26 +122,6 @@ programs, we have begun to develop our own versions of such programs, making imp
 believe will greatly improve accessibility and understanding. We also include content which we
 produced for previous workshops and research symposiums that further facilitate the understanding
 of producing rotation curves. 
-
-### Materials
-
-* Interactive Measured Data Plotting: 
-    * Plot radial velocity measurements (rotation curves) of multiple galaxies in a single plot to compare shapes of the curves
-* Interactive Rotation Curve Plotting:
-    * Choose a galaxy to plot and build your own rotation curve using the galaxy's components 
-    * Calculate black hole and dark matter components
-    * See how dark matter component affects the total curve 
-* SPARC data import:
-    * Plot rotation curves using the SPARC database of rotational velocities
-* Interactive Fitting:
-    * Choose a galaxy to plot
-    * Find scaling factors by fitting them to the measured data points
-* Widgets:
-    * See how dark matter parameters affect the rotation curve of the galaxy NGC 5533
-    * See how all components affect the rotation curve of the galaxy NGC 5533
-* Bonus materials:
-    * Calculate the rotation curve for the bulge component using empirically derived parameters
-    * Widget: Look at tiny black holes as dark matter candidates
 
 # Acknowledgements
 

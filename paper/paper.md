@@ -71,6 +71,8 @@ In this interactive module, we include several modules in the form of Jupyter no
 
 # Statement of Need 
 
+The primary goal of our project is to present rotation curve development and research in a versatile and approachable format 
+for anyone to explore, learn from, and build upon. 
 Rotation curves are a key empirical artifact through which dark matter can be observed and analyzed [@1978ApJ-225L-107R].
 However, a thorough, start-to-finish description of the rotation curve building process is typically not given in scientific publications. Furthermore, software tools used in rotation curve literature are generally difficult for inexperienced users; 
 for example, the GIPSY software package is very thorough but does not provide any introduction 
@@ -81,12 +83,10 @@ Our workshop is designed to present a convenient platform for developing basic r
 focused on introducing newcomers to the concepts necessary for understanding galactic rotation. 
 This is acheived by leading users through hands-on computational activities, 
 including building and plotting their own rotation curves. 
-The primary goal of our project is to present rotation curve development and research in a versatile and approachable format 
-for anyone to explore, learn from, and build upon.
 
 # Learning Objectives 
 
-The learning objectives for this educational module are:
+The learning objectives for these modules are:
     1. Provide a working space where people can connect with current literature and identify as
 scientists.  
     2. Educate curious students or other individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
@@ -96,9 +96,9 @@ scientists.
     4. Learn to use the SPARC database to plot rotation curves of many galaxies.
     5. Understand data and models by interacting directly with equations and figures.
 
-Most of the content provided in this module has been presented and taught in previous
-workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021,
-Research and Creative Activities Symposium 2020, 2021, and 2022 [REFS]) with feedback collected from
+Most of the content provided in these modules has been presented and taught in previous
+workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021 [@DataScienceSymposium],
+Research and Creative Activities Symposium 2020 [@RaCAS2020], 2021 [@RaCAS2021], and 2022 [@RaCAS2022]) with feedback collected from
 participants. We have chosen the activities for this module that proved most successful in terms
 of education and sparking interest in participants. 
 

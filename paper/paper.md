@@ -40,7 +40,7 @@ nocite: '@*'
 
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
-is that there is some invisible matter present in this galaxies that does not interact with light
+is that there is some invisible matter present that does not interact with light
 - that is to say, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
 Participants in this workshop will have the opportunity to explore dark matter through scientific
@@ -71,22 +71,20 @@ In this interactive module, we include several modules in the form of Jupyter no
 
 # Statement of Need 
 
-Rotation curves present one of the key empirical artifacts through which dark matter can be
-observed and analyzed [@1978ApJ-225L-107R]. However, a thorough description of the rotation curve
-building process is typically not given in scientific publications. Furthermore, software
-tools used in rotation curve literature are generally dated or otherwise difficult for inexperienced 
-users (source: GIPSY [@Gipsy_1992]). A rigorous yet accessible learning module is
-needed to provide a tool to any individual who is interested in investigating the
-effect of dark matter in spiral galaxies through rotation curves. The modules in our workshop are
-designed to present a convenient, open-source platform for developing basic rotation curves. The
-annotated tutorials are aimed at both academics and curious individuals with little to no
-experience with rotation curves. Users can engage in hands-on computation activities, including building their own rotation curves. 
-The primary goal of this project is to present rotation curve development and research in a versatile and approachable
-format for anyone to explore, learn, and build upon.
+Rotation curves are a key empirical artifact through which dark matter can be observed and analyzed [@1978ApJ-225L-107R].
+However, a thorough, start-to-finish description of the rotation curve building process is typically not given in scientific publications. Furthermore, software tools used in rotation curve literature are generally difficult for inexperienced users; 
+for example, the GIPSY software package is very thorough but does not provide any introduction 
+as it is intended for experienced users with a firm grasp on rotation curve components [@Gipsy_1992]. 
+Therefore, a rigorous yet accessible learning module is needed to provide an entry point 
+for any individual interested in investigating the effect of dark matter in spiral galaxies. 
+Our workshop is designed to present a convenient platform for developing basic rotation curves 
+focused on introducing newcomers to the concepts necessary for understanding galactic rotation. 
+This is acheived by leading users through hands-on computational activities, 
+including building and plotting their own rotation curves. 
+The primary goal of our project is to present rotation curve development and research in a versatile and approachable format 
+for anyone to explore, learn from, and build upon.
 
 # Learning Objectives 
-
-* For learning modules, describe the learning objectives, content, **instructional design**, and experience of use in teaching and learning situations.
 
 The learning objectives for this educational module are:
     1. Provide a working space where people can connect with current literature and identify as
@@ -96,6 +94,7 @@ scientists.
         a. facilitating the introduction of rotation curve concepts via open-source code.
         b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
     4. Learn to use the SPARC database to plot rotation curves of many galaxies.
+    5. Understand data and models by interacting directly with equations and figures.
 
 Most of the content provided in this module has been presented and taught in previous
 workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021,
@@ -105,8 +104,12 @@ of education and sparking interest in participants.
 
 # Delivery
 
-The modules are designed to be presented to students in numeric order as part of a workshop, skipping those marked as "Bonus" as needed to fit the alloted time. 
-Students are encouraged to work together to complete the modules and compare their results to one another. While working through a module, the instructor(s) should be available to answer questions and check in on participants' progress, but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, the instructor(s) should suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
+The modules are designed to be presented to students in numeric order as part of a workshop, 
+skipping those marked as "Bonus" as needed to fit the alloted time. 
+Students are encouraged to work together to complete the modules and compare their results to one another. 
+While working through a module, the instructor(s) should be available to answer questions and check in on participants' progress, 
+but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, 
+the instructor(s) may wish to suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
 
 # Story 
 

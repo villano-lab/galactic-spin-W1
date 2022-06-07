@@ -41,7 +41,7 @@ nocite: '@*'
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
 is that there is some invisible matter present that does not interact with light
-- that is to say, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
+- that is, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
 Participants in this workshop will have the opportunity to explore dark matter through scientific
 literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
@@ -53,7 +53,7 @@ debate.
 
 ## Description of the software or learning module
 
-In this interactive module, we include several modules in the form of Jupyter notebooks [@soton403913]:
+This project consists of several modules in the form of Jupyter notebooks [@soton403913]:
 
 | File Name | Short Description |
 | --- | --- |
@@ -63,7 +63,7 @@ In this interactive module, we include several modules in the form of Jupyter no
 | 04_Plotting_Rotation_Curves.ipynb | Plotting the rotation curves of galaxy components. | 
 | 05_Widget_NGC5533_All_Components.ipynb | Interactive widget to visualize the components of the galaxy NGC 5533. | 
 | 06_Plotting_SPARC_Data.ipynb | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
-| 07_Bonus_Bulge_Rotation_Curve.ipynb| Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
+| 07_Bonus_Bulge_Rotation_Curve.ipynb | Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
 | 08_Interactive_Fitting.ipynb | Interactive curve fitting. | 
 | 09_Widget_SPARC_Galaxies.ipynb | Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
 | 10_Bonus_Black_Holes_as_DM.ipynb | Considering tiny black holes as dark matter candidates. | 
@@ -73,8 +73,8 @@ In this interactive module, we include several modules in the form of Jupyter no
 
 The primary goal of our project is to present rotation curve development and research in a versatile and approachable format 
 for anyone to explore, learn from, and build upon. 
-Rotation curves are a key empirical artifact through which dark matter can be observed and analyzed [@1978ApJ-225L-107R].
-However, a thorough, start-to-finish description of the rotation curve building process is typically not given in scientific publications. Furthermore, software tools used in rotation curve literature are generally difficult for inexperienced users; 
+Rotation curves are a key empirical artifact through which dark matter can be observed and analyzed [@1978ApJ-225L-107R];
+however, a thorough, start-to-finish description of the rotation curve building process is typically not given in scientific publications. Furthermore, software tools used in rotation curve literature are generally difficult for inexperienced users; 
 for example, the GIPSY software package is very thorough but does not provide any introduction 
 as it is intended for experienced users with a firm grasp on rotation curve components [@Gipsy_1992]. 
 Therefore, a rigorous yet accessible learning module is needed to provide an entry point 
@@ -104,25 +104,25 @@ of education and sparking interest in participants.
 
 # Delivery
 
-The modules are designed to be presented to students in numeric order as part of a workshop, 
+The modules are designed to be presented to participants in numeric order as part of a workshop, 
 skipping those marked as "Bonus" as needed to fit the alloted time. 
-Students are encouraged to work together to complete the modules and compare their results to one another. 
+Participants are encouraged to work together to complete the modules and compare their results to one another. 
 While working through a module, the instructor(s) should be available to answer questions and check in on participants' progress, 
 but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, 
-the instructor(s) may wish to suggest these to participants who find they are completing the content at a faster pace than the rest of the room.
+the instructor(s) may wish to suggest them to participants who find they are completing the content ahead of schedule.
 
 # Story 
 
 This project emerged from several years of literary analysis, trial and error, and
-reproducibility studies our team conducted on rotation curve research. A principal impression our
-team drew from this journey was the lack of clarity and accessibility in the world of rotation
-curve research, including programs and data requisite for composing rotation curves. Examining the
-difficulties encountered in our team's research, we developed an educational module that is aimed
+reproducibility studies our team conducted on rotation curve research. A principal impression we
+drew from this journey was that there is a lack of clarity and accessibility in the world of rotation
+curve research, including programs and data requisite for composing rotation curves. By examining the  
+difficulties encountered in our research, we developed an educational module that is aimed
 to be clear and concise, with curve-composition activities that can be easily reproduced by the
 user. From our experience analyzing a number of rotation curve publications in addition to
 correspondences with active researchers in the field and with currently-used curve-composing
-programs, we have begun to develop our own versions of such programs, making improvements which we
-believe will greatly improve accessibility and understanding. We also include content which we
+programs, we have begun to develop our own versions of such programs, making improvements that we
+believe will greatly improve accessibility and understanding. We also include content we
 produced for previous workshops and research symposiums that further facilitate the understanding
 of producing rotation curves. 
 

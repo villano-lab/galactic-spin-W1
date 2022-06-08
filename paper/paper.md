@@ -122,7 +122,7 @@ focusing heavily on one or two components or even parameters,
 or assuming the reader has a certain level of familiarity with the subject prior to finding the resource in question. 
 These traits are favorable for scientific journal content, but the lack of other types of content made it difficult to
 find an entry point to the field. 
-Our solution at the time was to dig into Noordermeer's paper on flattened Sérsic bulges[@Noordermeer2008], 
+Our solution at the time was to dig into Noordermeer's paper on flattened Sérsic bulges[@Noordermeer_2008], 
 a paper that took us roughly a year to reproduce as we followed chains of references, corresponded with authors, and tried out rotation curve construction software in order to understand each rotation curve component. 
 What we hope to accomplish is to provide others with necessary vocabulary and background knowledge before prompting them
 to explore this kind of literature. Based on this experience and on feedback from our previous workshops and presentations

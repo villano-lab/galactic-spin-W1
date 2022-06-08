@@ -41,7 +41,7 @@ nocite: '@*'
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
 is that there is some invisible matter present that does not interact with light
-- that is, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
+&mdash; that is, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
 Participants in this workshop will have the opportunity to explore dark matter through scientific
 literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
@@ -55,18 +55,18 @@ debate.
 
 This project consists of several modules in the form of Jupyter notebooks [@soton403913]:
 
-| File Name | Short Description |
+| **File Name** | Description |
 | --- | --- |
-| 01_DM_Rotation_Curve_Intro.ipynb | Animations and rotation curve plots demonstrating three types of rotational motion. |
-| 02_Widget_NGC5533_DMonly.ipynb | Interactive introduction to dark matter. | 
-| 03_Measured_Data_Plotting.ipynb | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
-| 04_Plotting_Rotation_Curves.ipynb | Plotting the rotation curves of galaxy components. | 
-| 05_Widget_NGC5533_All_Components.ipynb | Interactive widget to visualize the components of the galaxy NGC 5533. | 
-| 06_Plotting_SPARC_Data.ipynb | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
-| 07_Bonus_Bulge_Rotation_Curve.ipynb | Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
-| 08_Interactive_Fitting.ipynb | Interactive curve fitting. | 
-| 09_Widget_SPARC_Galaxies.ipynb | Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
-| 10_Bonus_Black_Holes_as_DM.ipynb | Considering tiny black holes as dark matter candidates. | 
+| **01_DM_Rotation_Curve_Intro.ipynb** | Animations and rotation curve plots demonstrating three types of rotational motion. |
+| **02_Widget_NGC5533_DMonly.ipynb** | Interactive introduction to dark matter. | 
+| **03_Measured_Data_Plotting.ipynb** | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
+| **04_Plotting_Rotation_Curves.ipynb** | Plotting the rotation curves of galaxy components. | 
+| **05_Widget_NGC5533_All_Components.ipynb** | Interactive widget to visualize the components of the galaxy NGC 5533. | 
+| **06_Plotting_SPARC_Data.ipynb** | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
+| **07_Bonus_Bulge_Rotation_Curve.ipynb** | Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
+| **08_Interactive_Fitting.ipynb** | Interactive curve fitting. | 
+| **09_Widget_SPARC_Galaxies.ipynb** | Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
+| **10_Bonus_Black_Holes_as_DM.ipynb** | Considering tiny black holes as dark matter candidates. | 
 
 
 # Statement of Need 
@@ -87,20 +87,20 @@ including building and plotting their own rotation curves.
 # Learning Objectives 
 
 The learning objectives for these modules are:
-    1. Provide a working space where people can connect with current literature and identify as
+1. Provide a working space where people can connect with current literature and identify as
 scientists.  
-    2. Educate curious students or other individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
-    3. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
-        a. facilitating the introduction of rotation curve concepts via open-source code.
-        b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
-    4. Learn to use the SPARC database to plot rotation curves of many galaxies.
-    5. Understand data and models by interacting directly with equations and figures.
+2. Educate curious students or other individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
+3. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
+  a. facilitating the introduction of rotation curve concepts via open-source code.
+  b. interactive programs to provide users with practical and tangible approach of what producing rotation curves involves.
+4. Learn to use the SPARC database to plot rotation curves of many galaxies.
+5. Understand data and models by interacting directly with equations and figures.
 
 Most of the content provided in these modules has been presented and taught in previous
 workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021 [@DataScienceSymposium],
 Research and Creative Activities Symposium 2020 [@RaCAS2020], 2021 [@RaCAS2021], and 2022 [@RaCAS2022]) with feedback collected from
 participants. We have chosen the activities for this module that proved most successful in terms
-of education and sparking interest in participants. 
+of education and sparking interest. 
 
 # Delivery
 

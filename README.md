@@ -42,12 +42,14 @@ The three steps of the rotation curve building process is plotting the measured 
 
 ## CITATION
 
-If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version (soonTM),
+If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version [at Zenodo](https://zenodo.org/record/6588351).
 
 ## VERSION HISTORY
 
-27.04.2022: Release of [version 1.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.0)
+
+27.04.2022: Release of [version 1.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.2)
 27.04.2022: Release of [version 1.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.1)
+27.04.2022: Release of [version 1.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.0)
 
 ## AUTHORS & CONTACT
 

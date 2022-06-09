@@ -15,5 +15,3 @@ Please be sure to do the following when making a release.
 12. If the version is a patch, deactivate the docs version for the previous patch of the same minor version. (Only one docs version for each minor version should be active at a time.)
 13. Be sure codecov website is switched to default to master branch.
 14. Update Zenodo.
-15. Move readthedocs latest to master branch.
-16. Remove items 14 and 15 from this list.

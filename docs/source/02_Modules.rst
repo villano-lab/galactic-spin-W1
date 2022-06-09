@@ -67,7 +67,7 @@ Description of the learning modules
 
 Rotation curves are a measure of how fast an object is moving at a certain distance from the center. Three kinds of rotation curves are discussed in this notebook: rigid-body rotation, planetary rotation, and galactic flat rotation. With the help of animations and rotation curve plots, the three cases are compared to gain a better understanding of galactic rotation curves.
 
-*References: [Carroll2006, Williams2021]_*
+*References: [Carroll2006]_, [Williams2021]_*
 
 ------------------------
 02_Widget_NGC5533_DMonly
@@ -82,7 +82,7 @@ Rotation curves are a measure of how fast an object is moving at a certain dista
 
 Mass in a galaxy can be visualized by plotting its rotation curve. A galactic rotation curve is a measure of how fast the stars and gas move in the galaxy at a certain distance from the center. According to Newton's law of gravitation, objects orbiting the center of gravity should depend on the mass enclosed in the system. However, the theoretical rotation curve of the measured visible matter does not agree with the measured velocities of matter in some of the spiral galaxies. Dark Matter is introduced to account for the "missing matter".
 
-*References: [Carroll2006, Jimenez2003, Noordermeer2007, Noordermeer2008, Taylor1996]_*
+*References: [Carroll2006]_, [Jimenez2003]_, [Noordermeer2007]_, [Noordermeer2008]_, [Taylor1996]_*
 
 -------------------------
 03_Measured_Data_Plotting
@@ -97,7 +97,7 @@ Mass in a galaxy can be visualized by plotting its rotation curve. A galactic ro
 
 First step in understanding a rotation curve is to plot it. Comparing the rotation curves of multiple galaxies is a good exercise to visualize the motions of stars and gas. The shapes of curves reveal the mass distribution in a galaxy. For example, higher velocity measurements in the central region indicates a supermassive black hole at the center of that galaxy. A flat rotation curve suggests the presence of a Dark Matter halo. 
 
-*References: [deNaray2006, deNaray2008, Epinat2008, Fraternali2011, Karukes2015, SPARC2016, Noordermeer2008, Richards2015]_*
+*References: [deNaray2006]_, [deNaray2008]_, [Epinat2008]_, [Fraternali2011]_, [Karukes2015]_, [SPARC2016]_, [Noordermeer2008]_, [Richards2015]_*
 
 ---------------------------
 04_Plotting_Rotation_Curves
@@ -112,7 +112,7 @@ First step in understanding a rotation curve is to plot it. Comparing the rotati
 
 Theoretical rotation curves are computed using the velocities of each component of the galaxy. The velocities of the bulge, disk and gas are calculated from luminosities, surface brightness profiles, surface density profiles or mass models but these calculations are beyond the scope of this workshop. For this reason, the velocities of the three components are imported into the notebook. On the contrary, the rotation curve of the central black hole (point-mass rotation curve - yet another type of rotation curve) and the dark matter halo can be easily produced. Adding all components, the total velocity of only light matter can then be compared to the total velocity that includes the dark matter component. Is it possible to fit both curves to the measured data?
 
-*References: [Casertano1983, Fraternali2011, Jimenez2003, GIPSY1992, Karukes2015, Noordermeer2008, Richards2015]_*
+*References: [Casertano1983]_, [Fraternali2011]_, [Jimenez2003]_, [GIPSY1992]_, [Karukes2015]_, [Noordermeer2008]_, [Richards2015]_*
 
 --------------------------------
 05_Widget_NGC5533_All_Components
@@ -127,7 +127,7 @@ Theoretical rotation curves are computed using the velocities of each component 
 
 The rotation curves of each component in the galaxy NGC 5533 can be scaled up and down using the interactive widget in this notebook. The best combination of the scaling parameters results in a good fit to the measured data points. To characterize the goodness of the fit, the reduced chi-squared value is calculated. A value close to 1 is an indication of a good fit.
 
-*References: [Jimenez2003, Noordermeer2007, Noordermeer2008, Taylor1996]_*
+*References: [Jimenez2003]_, [Noordermeer2007]_, [Noordermeer2008]_, [Taylor1996]_*
 
 ----------------------
 06_Plotting_SPARC_Data
@@ -142,7 +142,7 @@ The rotation curves of each component in the galaxy NGC 5533 can be scaled up an
 
 The Spitzer Photometry & Accurate Rotation Curves (SPARC) database provides pre-calculated velocities of the bulge, disk and gas in 175 galaxies, as well as the measured velocity data points. Analogous to the 4_Plotting_Rotation_Curves.ipynb activity, this notebook also gives a guide to calculating the missing dark matter component and compares the rotation curve of luminous matter to the total velocity with the dark matter component. 
 
-*References: [Jimenez2003, SPARC2016, lmfit2021, SWIN]_*
+*References: [Jimenez2003]_, [SPARC2016]_, [lmfit2021]_, [SWIN]_*
 
 -----------------------------
 07_Bonus_Bulge_Rotation_Curve
@@ -157,7 +157,7 @@ The Spitzer Photometry & Accurate Rotation Curves (SPARC) database provides pre-
 
 The bulge is the most luminous, central component of a spiral galaxy that contains densely packed stars and gas. Although the rotation curve of the bulge can be derived from luminosity measurements, more theoretical models only utilize empirically-derived parameters such as the central surface brightness, the total luminosity of the bulge, the concentration parameter, and a characteristic radius. With the use of these parameters and calculus, the theoretical rotation of the bulge can be derived. 
 
-*References: [Noordermeer2008, Noordermeer2007, Fraternali2011, Mamajek2015, Carroll2006, Graham2001]_*
+*References: [Noordermeer2008]_, [Noordermeer2007]_, [Fraternali2011]_, [Mamajek2015]_, [Carroll2006]_, [Graham2001]_*
 
 ----------------------
 08_Interactive_Fitting
@@ -172,7 +172,7 @@ The bulge is the most luminous, central component of a spiral galaxy that contai
 
 Fitting is a statistical method to scale parameters of a function until it closely resembles the curve of data points. Selecting a galaxy out of four options, these free parameters can be adjusted to vary. The results of the fitting is shown and explained in this notebook. 
 
-*References: [Casertano1993, Fraternali2011, Jimenez2003, GIPSY1992, Karukes2015, Noordermeer2008, Richards2015, Taylor1996]*
+*References: [Casertano1993]_, [Fraternali2011]_, [Jimenez2003]_, [GIPSY1992]_, [Karukes2015]_, [Noordermeer2008]_, [Richards2015]_, [Taylor1996]_*
 
 ------------------------
 09_Widget_SPARC_Galaxies
@@ -187,7 +187,7 @@ Fitting is a statistical method to scale parameters of a function until it close
 
 After selecting a galaxy from the SPARC database of 175 galaxies, each component can be scaled up and down using the sliders of the interactive widget. Additionally, the fit parameters of the best fit to the measured velocities is revealed, along with an image of the selected galaxy from the NASA SkyView database. 
 
-*References: [Jimenez2003, SPARC2016, lmfit2021, SkyView1998]_*
+*References: [Jimenez2003]_, [SPARC2016]_, [lmfit2021]_, [SkyView1998]_*
 
 --------------------------
 10_Bonus_Black_Holes_as_DM
@@ -202,4 +202,4 @@ After selecting a galaxy from the SPARC database of 175 galaxies, each component
 
 How many tiny black holes can account for the missing mass called dark matter? The interactive widgets and the visual representations of the number and mass of black holes give a good explanation to this question. For comparison, two spiral galaxies are investigated: NGC 5533 and NGC 7814.
 
-*References: [Fraternali2011, Jimenez2003, lmfit2021, Noordermeer2007, Noordermeer2008, Springer2008, GIPSY1992]_*
+*References: [Fraternali2011]_, [Jimenez2003]_, [lmfit2021]_, [Noordermeer2007]_, [Noordermeer2008]_, [Springer2008]_, [GIPSY1992]_*

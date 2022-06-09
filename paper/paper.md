@@ -40,8 +40,8 @@ nocite: '@*'
 
 By analyzing the rotational velocities of bodies in galaxies, physicists and astronomers have
 found that there seems to be something missing in our understanding of these galaxies. One theory
-is that there is some invisible matter present that does not interact with light
-&mdash; that is, these galaxies contain dark matter [@1978ApJ-225L-107R]. 
+is that there is some invisible matter present that does not interact with light &mdash; that is,
+these galaxies contain dark matter [@1978ApJ-225L-107R]. 
 
 Participants in this workshop will have the opportunity to explore dark matter through scientific
 literature-based [@Karukes_2015;@Richards_2015;@Fraternali_2011;@de_Naray_2008] galactic rotation
@@ -71,18 +71,20 @@ This project consists of several modules in the form of Jupyter notebooks [@soto
 
 # Statement of Need 
 
-The primary goal of our project is to present rotation curve development and research in a versatile and approachable format 
-for anyone to explore, learn from, and build upon. 
-Rotation curves are a key empirical artifact through which dark matter can be observed and analyzed [@1978ApJ-225L-107R];
-however, a thorough, start-to-finish description of the rotation curve building process is typically not given in scientific publications. Furthermore, software tools used in rotation curve literature are generally difficult for inexperienced users; 
-for example, the GIPSY software package is very thorough but does not provide any introduction 
-as it is intended for experienced users with a firm grasp on rotation curve components [@Gipsy_1992]. 
-Therefore, a rigorous yet accessible learning module is needed to provide an entry point 
-for any individual interested in investigating the effect of dark matter in spiral galaxies. 
-Our workshop is designed to present a convenient platform for developing basic rotation curves 
-focused on introducing newcomers to the concepts necessary for understanding galactic rotation. 
-This is achieved by leading users through hands-on computational activities, 
-including building and plotting their own rotation curves. 
+The primary goal of our project is to present rotation curve development and research in a
+versatile and approachable format for anyone to explore, learn from, and build upon.  Rotation
+curves are a key empirical artifact through which dark matter can be observed and analyzed
+[@1978ApJ-225L-107R]; however, a thorough, start-to-finish description of the rotation curve
+building process is typically not given in scientific publications. Furthermore, software tools
+used in rotation curve literature are generally difficult for inexperienced users; for example,
+the GIPSY software package is very thorough but does not provide any introduction as it is
+intended for experienced users with a firm grasp on rotation curve components [@Gipsy_1992].
+Therefore, a rigorous yet accessible learning module is needed to provide an entry point for any
+individual interested in investigating the effect of dark matter in spiral galaxies.  Our workshop
+is designed to present a convenient platform for developing basic rotation curves focused on
+introducing newcomers to the concepts necessary for understanding galactic rotation.  This is
+achieved by leading users through hands-on computational activities, including building and
+plotting their own rotation curves. 
 
 # Learning Objectives 
 
@@ -97,38 +99,41 @@ scientists.
 5. Understand data and models by interacting directly with equations and figures.
 
 Most of the content provided in these modules has been presented and taught in previous
-workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021 [@DataScienceSymposium],
-Research and Creative Activities Symposium 2020 [@RaCAS2020], 2021 [@RaCAS2021], and 2022 [@RaCAS2022]) with feedback collected from
-participants. We have chosen the activities for this module that proved most successful in terms
-of education and sparking interest. 
+workshops/research symposiums (University of Colorado Denver: Data Science Symposium 2021
+[@DataScienceSymposium], Research and Creative Activities Symposium 2020 [@RaCAS2020], 2021
+[@RaCAS2021], and 2022 [@RaCAS2022]) with feedback collected from participants. We have chosen the
+activities for this module that proved most successful in terms of education and sparking
+interest. 
 
 # Delivery
 
-The modules are designed to be presented to participants in numeric order as part of a workshop, 
-skipping those marked as "Bonus" as needed to fit the alloted time. 
-Participants are encouraged to work together to complete the modules and compare their results to one another. 
-While working through a module, the instructor(s) should be available to answer questions and check in on participants' progress, 
-but they should leave the bulk of the work to the participants themselves. If any bonus modules are being skipped, 
-the instructor(s) may wish to suggest them to participants who find they are completing the content ahead of schedule.
+The modules are designed to be presented to participants in numeric order as part of a workshop,
+skipping those marked as "Bonus" as needed to fit the alloted time.  Participants are encouraged
+to work together to complete the modules and compare their results to one another.  While working
+through a module, the instructor(s) should be available to answer questions and check in on
+participants' progress, but they should leave the bulk of the work to the participants themselves.
+If any bonus modules are being skipped, the instructor(s) may wish to suggest them to participants
+who find they are completing the content ahead of schedule.
 
 # Story 
 
-This project emerged from years of literary analysis and studying the reproducibility 
-of rotation curve research. This journey impressed upon us a lack of clarity and accessibility for
-newcomers in the world of rotation curves, not only in publications, but also in using software
-and acquiring pre-existing data for rotation curve composition. The problems we encountered stemmed 
-from the resources we found being very dense with technical language, 
-focusing heavily on one or two components or even parameters, 
-or assuming the reader has a certain level of familiarity with the subject prior to finding the resource in question. 
-These traits are favorable for scientific journal content, but the lack of other types of content made it difficult to
-find an entry point to the field. 
-Our solution at the time was to dig into Noordermeer's paper on flattened Sérsic bulges[@Noordermeer_2008], 
-a paper that took us roughly a year to reproduce as we followed chains of references, corresponded with authors, and tried out rotation curve construction software in order to understand each rotation curve component. 
-What we hope to accomplish is to provide others with necessary vocabulary and background knowledge before prompting them
-to explore this kind of literature. Based on this experience and on feedback from our previous workshops and presentations
-at research symposiums, 
-we have developed our own software with a focus on improving accessibility and users' understanding
-of the material by being clear, concise, and easily reproducible. 
+This project emerged from years of literary analysis and studying the reproducibility of rotation
+curve research. This journey impressed upon us a lack of clarity and accessibility for newcomers
+in the world of rotation curves, not only in publications, but also in using software and
+acquiring pre-existing data for rotation curve composition. The problems we encountered stemmed
+from the resources we found being very dense with technical language, focusing heavily on one or
+two components or even parameters, or assuming the reader has a certain level of familiarity with
+the subject prior to finding the resource in question.  These traits are favorable for scientific
+journal content, but the lack of other types of content made it difficult to find an entry point
+to the field.  Our solution at the time was to dig into Noordermeer's paper on flattened Sérsic
+bulges[@Noordermeer_2008], a paper that took us roughly a year to reproduce as we followed chains
+of references, corresponded with authors, and tried out rotation curve construction software in
+order to understand each rotation curve component.  What we hope to accomplish is to provide
+others with necessary vocabulary and background knowledge before prompting them to explore this
+kind of literature. Based on this experience and on feedback from our previous workshops and
+presentations at research symposiums, we have developed our own software with a focus on improving
+accessibility and users' understanding of the material by being clear, concise, and easily
+reproducible. 
 
 # Acknowledgements
 

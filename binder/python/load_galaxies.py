@@ -51,7 +51,7 @@ NGC5533['n_r_btmband']   = np.asarray(NGC5533['raw_band_btm']['xx'])
 NGC5533['n_v_btmband']   = np.asarray(NGC5533['raw_band_btm']['yy'])
 NGC5533['n_r_topband']   = np.asarray(NGC5533['raw_band_top']['xx'])
 NGC5533['n_v_topband']   = np.asarray(NGC5533['raw_band_top']['yy'])
-NGC5533['n_v_bandwidth'] = NGC5533['n_v_topband'] - NGC5533['n_v_btmband']
+NGC5533['n_v_bandwidth'] = (NGC5533['n_v_topband'] - NGC5533['n_v_btmband'])/2
 NGC5533['n_v_bandwidth'] = NGC5533['n_v_bandwidth'][0::28] #For weights, v_errors and band must line up.
 NGC5533['n_v_bandwidth'] = NGC5533['n_v_bandwidth'][1:]
     

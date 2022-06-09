@@ -18,7 +18,7 @@ jobs:
           args: paper/paper.md
         env:
           GIT_SHA: $GITHUB_SHA
-          JOURNAL: joss
+          JOURNAL: jose
       - uses: actions/upload-artifact@v2
         with:
           path: paper

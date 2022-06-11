@@ -55,28 +55,28 @@ debate.
 
 This project consists of several modules in the form of Jupyter notebooks [@Loizides2016]:
 
-| **File Name**                                | Description |
-| -------------------------------------------- | --- |
-| **01_DM_Rotation_Curve_Intro.ipynb**         |
-| Animations and rotation curve plots demonstrating three types of rotational motion. |
-| **02_Widget_NGC5533_DMonly.ipynb**           |
-| Interactive widget to introduce dark matter. | 
-| **03_Measured_Data_Plotting.ipynb**          |
-| Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
-| **04_Plotting_Rotation_Curves.ipynb**        |
-| Plotting the rotation curves of galaxy components. | 
-| **05_Widget_NGC5533_All_Components.ipynb**   |
-| Interactive widget to visualize the components of the galaxy NGC 5533. | 
-| **06_Plotting_SPARC_Data.ipynb**             |
-| Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
-| **07_Bonus_Bulge_Rotation_Curve.ipynb**      |
-| Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
-| **08_Interactive_Fitting.ipynb**             |
-| Interactive curve fitting. | 
-| **09_Widget_SPARC_Galaxies.ipynb**           |
-| Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
-| **10_Bonus_Black_Holes_as_DM.ipynb**         |
-| Considering tiny black holes as dark matter candidates. |
+| **File Name**                              | Description                            |
+| ------------------------------------------ | -------------------------------------- |
+| **01_DM_Rotation_Curve_Intro.ipynb**       |                                        |
+|                                            | Animations and rotation curve plots demonstrating three types of rotational motion. |
+| **02_Widget_NGC5533_DMonly.ipynb**         |                                        |
+|                                            | Interactive widget to introduce dark matter. | 
+| **03_Measured_Data_Plotting.ipynb**        |                                        |
+|                                            | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. | 
+| **04_Plotting_Rotation_Curves.ipynb**      |                                        |
+|                                            | Plotting the rotation curves of galaxy components. | 
+| **05_Widget_NGC5533_All_Components.ipynb** |                                        |
+|                                            | Interactive widget to visualize the components of the galaxy NGC 5533. | 
+| **06_Plotting_SPARC_Data.ipynb**           |                                        |
+|                                            | Plotting the components of galactic rotation curves using the SPARC database of 175 galaxies. | 
+| **07_Bonus_Bulge_Rotation_Curve.ipynb**    |                                        |
+|                                            | Constructing a rotation curve for the bulge component using empirically-derived parameters. | 
+| **08_Interactive_Fitting.ipynb**           |                                        |
+|                                            | Interactive curve fitting.             | 
+| **09_Widget_SPARC_Galaxies.ipynb**         |                                        |
+|                                            | Interactive widget to visualize the components of multiple galaxies using the SPARC database. | 
+| **10_Bonus_Black_Holes_as_DM.ipynb**       |                                        |
+|                                            | Considering tiny black holes as dark matter candidates. |
 
 
 # Statement of Need 
@@ -98,7 +98,7 @@ including building and plotting their own rotation curves.
 
 The learning objectives for these modules are:
 
-1. Provide a working space where people can connect with current literature and identify as scientists.  
+1. Provide a working space where people can connect with current literature and identify as scientists.
 2. Educate curious students or other individuals on the basic concepts of rotation curves, as related to the current problems and mysteries regarding dark matter in the universe.
 3. Provide users with accessible activities relating to the basic principles of rotation curve composition. This includes:
      a. facilitating the introduction of rotation curve concepts via open-source code.

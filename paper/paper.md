@@ -55,8 +55,8 @@ debate.
 
 This project consists of several modules in the form of Jupyter notebooks [@Loizides2016]:
 
-| **File Name**                              | Description                            |
-| ------------------------------------------ | -------------------------------------- |
+| **File Name**                                            | Description                            |
+| -------------------------------------------------------- | -------------------------------------- |
 | **01_DM_Rotation_Curve_Intro.ipynb**       | Animations and rotation curve plots demonstrating three types of rotational motion. |
 | **02_Widget_NGC5533_DMonly.ipynb**         | Interactive widget to introduce dark matter. |
 | **03_Measured_Data_Plotting.ipynb**        | Rotation curve plotting of measured velocities to visualize star and gas motions in a galaxy. |

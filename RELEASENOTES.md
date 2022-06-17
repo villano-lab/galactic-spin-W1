@@ -1,4 +1,11 @@
 
+## Release (v1.0.3) Date 06.17.22
+
+Addressed author comments regarding current paper. 
+* Citation changes
+* Table format
+* Clarifications/corrections
+
 ## Release (v1.0.2) Date 06.09.22
 
 More thorough documentation, including updates to the paper.

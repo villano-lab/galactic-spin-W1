@@ -26,7 +26,7 @@ Glossary
       A placeholder to account for the matter in spiral galaxies that is `missing` based on our observations of galactic motion.  Related words: Dark Matter halo, Halo. 
     
     Dark matter halo
-      A disk-shaped distribution of Dark Matter that is most dense at some distance from the galactic center.
+      A spherical shaped distribution of Dark Matter that is most dense at some distance from the galactic center.
 
     Density profile
       The mass distribution of matter in the galaxy.
@@ -38,7 +38,10 @@ Glossary
       The total mass of the area between the center of the galaxy or other body and the specified radius.
       
     Edge-on spiral galaxy
-      A galaxy which lies in the same plane as our viewing direction which results in us only seeing the outer edge of the galaxy and part of the central bulge. Alternatively, a face-on galaxy is perpendicular to our line of sight revealing its spiral structure. 
+      A galaxy which lies in the same plane as our viewing direction which results in us only seeing the outer edge of the galaxy and part of the central bulge.
+      
+    Face-on spiral galaxy
+      A face-on galaxy is perpendicular to our line of sight revealing its spiral structure. 
 
     Fitting
       The process of adjusting unknown parameters in order to match a theoretical equation to measured data.

@@ -53,7 +53,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
                   Harris, Kitty C. and
                   Bergfalk, Judit and
                   Hatami, Raphael and
-                  Vititoe, F. and
+                  Vititoe, Francis and
                   Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
@@ -77,7 +77,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## AUTHORS & CONTACT
 
-The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, F. Vititoe, and Julia Johnston.
+The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, Francis Vititoe, and Julia Johnston.
 
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 

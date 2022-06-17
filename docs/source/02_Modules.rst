@@ -19,7 +19,7 @@ Description of the learning modules
 |                                          | :raw-html:`<br />`                                     | 
 |                                          | three types of rotational motion.                      |
 +------------------------------------------+--------------------------------------------------------+
-| `02_Widget_NGC5533_DMonly.ipynb`         | An interactive introduction to Dark Matter.            | 
+| `02_Widget_NGC5533_DMonly.ipynb`         | Interactive widget to introduce dark matter.           | 
 +------------------------------------------+--------------------------------------------------------+
 | `03_Measured_Data_Plotting.ipynb`        | Rotation curve plotting of measured velocities to      |
 |                                          | :raw-html:`<br />`                                     | 
@@ -110,7 +110,7 @@ First step in understanding a rotation curve is to plot it. Comparing the rotati
 
 `See module 04 on GitHub <https://github.com/villano-lab/galactic-spin-W1/blob/v1.0.2/binder/04_Plotting_Rotation_Curves.ipynb>`_
 
-Theoretical rotation curves are computed using the velocities of each component of the galaxy. The velocities of the bulge, disk and gas are calculated from luminosities, surface brightness profiles, surface density profiles or mass models but these calculations are beyond the scope of this workshop. For this reason, the velocities of the three components are imported into the notebook. On the contrary, the rotation curve of the central black hole (point-mass rotation curve - yet another type of rotation curve) and the dark matter halo can be easily produced. Adding all components, the total velocity of only light matter can then be compared to the total velocity that includes the dark matter component. Is it possible to fit both curves to the measured data?
+Theoretical rotation curves are plotted using the velocities of each component of the galaxy. The velocities of the bulge, disk and gas are calculated from luminosities, surface brightness profiles, surface density profiles or mass models but these calculations are beyond the scope of this workshop. For this reason, the velocities of the three components are imported into the notebook. On the contrary, the rotation curve of the central black hole (point-mass rotation curve - yet another type of rotation curve) and the dark matter halo can be easily produced. Adding all components, the total velocity of only light matter can then be compared to the total velocity that includes the dark matter component. Is it possible to fit both curves to the measured data?
 
 *References:* [Casertano1983]_, [Fraternali2011]_, [Jimenez2003]_, [GIPSY1992]_, [Karukes2015]_, [Noordermeer2008]_, [Richards2015]_
 

@@ -18,12 +18,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 .. code-block::
 
 @misc{villano_a_n_2022_6588350,
-  author       = {Villano, A. N. and
-                  Harris, Kitty C. and
-                  Bergfalk, Judit and
-                  Hatami, Raphael and
-                  Vititoe, F. and
-                  Johnston, Julia},
+  author       = {Villano, A. N. and Harris, Kitty C. and Bergfalk, Judit and Hatami, Raphael and Vititoe, F. and Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
   month        = june,

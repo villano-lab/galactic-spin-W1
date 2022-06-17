@@ -4,7 +4,7 @@ License
 
 `MIT License <https://opensource.org/licenses/MIT>`_
 
-Copyright (c) 2022 Anthony Villano, Judit Bergfalk, Kitty Harris, Raphael Hatami, F. Vititoe, and Julia Johnston
+Copyright (c) 2022 Anthony Villano, Judit Bergfalk, Kitty Harris, Raphael Hatami, Francis Vititoe, and Julia Johnston
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

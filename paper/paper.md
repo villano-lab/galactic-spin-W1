@@ -19,7 +19,7 @@ authors:
     orcid: 0000-0003-1662-0768 
   - name: Raphael Hatami
     affiliation: 1
-  - name: F. Vititoe 
+  - name: Francis Vititoe 
     affiliation: 4
   - name: Julia Johnston 
     affiliation: 3

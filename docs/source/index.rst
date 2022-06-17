@@ -1,22 +1,22 @@
+.. image:: https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master
+   :target: https://app.travis-ci.com/github/villano-lab/galactic-spin-W1
+   :alt: Build Status
+.. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
+   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
+   :alt: Documentation Status
+.. image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder
+   :alt: Binder
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg
+   :target: https://doi.org/10.5281/zenodo.6588350
+   :alt: Zenodo DOI
+
 ==========================================================
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves
 ==========================================================
-
-.. .. image:: https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master
-..   :target: https://app.travis-ci.com/github/villano-lab/galactic-spin-W1
-..   :alt: Build Status
-.. .. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
-..   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
-..   :alt: Documentation Status
-.. .. image:: https://i.creativecommons.org/l/by/4.0/88x31.png
-..   :target: http://creativecommons.org/licenses/by/4.0/
-..   :alt: License: CC BY
-.. .. image:: https://mybinder.org/badge_logo.svg
-..   :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder
-..   :alt: Binder
-.. .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg
-..   :target: https://doi.org/10.5281/zenodo.6588350
-..   :alt: Zenodo DOI
+.. image:: https://i.creativecommons.org/l/by/4.0/88x31.png
+   :target: http://creativecommons.org/licenses/by/4.0/
+   :alt: License: CC BY
 
 The purpose of this workshop is to guide the user through the fundamental aspects of spiral galaxies' rotation curves. 
 This includes discussing what a rotation curve is, plotting the measured rotational velocities, constructing a rotation curve model for each component of the galaxy, calculating total rotation, and fitting the total curve to the measured data. 

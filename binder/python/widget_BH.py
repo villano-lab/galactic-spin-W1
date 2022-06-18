@@ -12,8 +12,6 @@ from ipywidgets import interactive, fixed, FloatSlider, HBox, Layout, Button, La
 from IPython.display import display
 import components as comp
 import dataPython as dp
-#To be removed at a future date
-import NGC5533_fitting as fitNGC5533
 
 ####################
 ### Galaxy image ###
@@ -95,6 +93,13 @@ layout = {'width':'800px'}
 ### NGC 5533 ###
 def f5533(arraysize,massMiniBH,rcut):
     
+    _,fit_dict = comp.bestfit(comp.totalvelocity_miniBH,'5533')
+    
+    bpref = fit_dict['bpref']
+    dpref = fit_dict['dpref']
+    gpref = fit_dict['gpref']
+    Mbh = fit_dict['Mbh']
+    
     # Define radius
     r = np.linspace(np.min(comp.r_dat('5533')),np.max(comp.r_dat('5533')),500)
     
@@ -140,13 +145,13 @@ def f5533(arraysize,massMiniBH,rcut):
     ax2.plot(r,comp.halo_BH(r,scale_5533,arraysize,massMiniBH,rcut),
              label=("Dark Matter Halo - Tiny Black Holes"),color='green')
     ax2.errorbar(comp.r_dat('5533'),comp.v_dat('5533'),yerr=comp.v_err1('5533'),fmt='bo',label='Data')
-    ax2.plot(r,comp.blackhole(r,fitNGC5533.f_Mbh,'5533'),label=("Central Black Hole"),color='black')
-    ax2.plot(r,comp.bulge(r,fitNGC5533.f_bpref,'5533'),label=("Bulge"),color='orange')
-    ax2.plot(r,comp.disk(r,fitNGC5533.f_dpref,'5533'),label=("Disk"),color='purple')
-    ax2.plot(r,comp.gas(r,fitNGC5533.f_gpref,'5533'),label=("Gas"),color='blue')
-    ax2.plot(r,comp.totalvelocity(r,scale_5533,arraysize,massMiniBH,rcut,
-                                                fitNGC5533.f_bpref,fitNGC5533.f_dpref,fitNGC5533.f_gpref,'5533',Mbh=fitNGC5533.f_Mbh),
-                                                 label=("Total Curve"),color='red')
+    ax2.plot(r,comp.blackhole(r,Mbh,'5533'),label=("Central Black Hole"),color='black')
+    ax2.plot(r,comp.bulge(r,bpref,'5533'),label=("Bulge"),color='orange')
+    ax2.plot(r,comp.disk(r,dpref,'5533'),label=("Disk"),color='purple')
+    ax2.plot(r,comp.gas(r,gpref,'5533'),label=("Gas"),color='blue')
+    ax2.plot(r,comp.totalvelocity_miniBH(r,scale_5533,arraysize,massMiniBH,rcut,
+                                  bpref,dpref,gpref,
+                                  Mbh,'5533'),label=("Total Curve"),color='red')
     ax2.set_title('NGC 5533',fontsize=40)
     ax2.set_ylabel('Velocity [km/s]',fontsize=25)
     ax2.set_xlabel('Radius [kpc]',fontsize=25)
@@ -157,9 +162,9 @@ def f5533(arraysize,massMiniBH,rcut):
     ax2.legend(bbox_to_anchor=(1,1), loc="upper left", fontsize=20) 
 
     # Residuals
-    residuals = comp.v_dat('5533') - comp.totalvelocity(comp.r_dat('5533'),scale_5533,arraysize,massMiniBH,rcut,
-                                                        fitNGC5533.f_bpref, fitNGC5533.f_dpref, fitNGC5533.f_gpref, 
-                                                        '5533',Mbh=fitNGC5533.f_Mbh)
+    residuals = comp.v_dat('5533') - comp.totalvelocity_miniBH(comp.r_dat('5533'),scale_5533,arraysize,massMiniBH,rcut,
+                                                        bpref, dpref, gpref, Mbh,
+                                                        '5533')
     # Chi squared
     chisquared = np.sum(residuals**2/comp.v_err1('5533')**2)
     dof = len(comp.r_dat('5533')) - 6       # number of degrees of freedom = number of observed data - number of fitting parameters
@@ -171,7 +176,7 @@ def f5533(arraysize,massMiniBH,rcut):
 ### NGC 7814 ###
 def f7814(arraysize,massMiniBH,rcut):
     
-    _,fit_dict = comp.bestfit('7814')
+    _,fit_dict = comp.bestfit(comp.totalvelocity_miniBH,'7814')
     
     bpref = fit_dict['bpref']
     dpref = fit_dict['dpref']
@@ -226,9 +231,9 @@ def f7814(arraysize,massMiniBH,rcut):
     ax4.plot(r,comp.bulge(r,bpref,'7814'),label=("Bulge"),color='orange')
     ax4.plot(r,comp.disk(r,dpref,'7814'),label=("Disk"),color='purple')
     ax4.plot(r,comp.gas(r,gpref,'7814'),label=("Gas"),color='blue')
-    ax4.plot(r,comp.totalvelocity(r,scale_7814,arraysize,massMiniBH,
+    ax4.plot(r,comp.totalvelocity_miniBH(r,scale_7814,arraysize,massMiniBH,
                                                   rcut,bpref,dpref,
-                                                  gpref,'7814'),label=("Total Curve"),color='red')
+                                                  gpref,0,'7814'),label=("Total Curve"),color='red')
     ax4.set_title('NGC 7814',fontsize=40)
     ax4.set_ylabel('Velocity [km/s]',fontsize=25)
     ax4.set_xlabel('Radius [kpc]',fontsize=25)
@@ -239,8 +244,8 @@ def f7814(arraysize,massMiniBH,rcut):
     ax4.legend(bbox_to_anchor=(1,1), loc="upper left", fontsize=20) 
 
     # Residuals
-    residuals = comp.v_dat('7814') - comp.totalvelocity(comp.r_dat('7814'),scale_7814,arraysize,massMiniBH,rcut,
-                                                          bpref,dpref,gpref,'7814')
+    residuals = comp.v_dat('7814') - comp.totalvelocity_miniBH(comp.r_dat('7814'),scale_7814,arraysize,massMiniBH,rcut,
+                                                          bpref,dpref,gpref,0,'7814')
     # Chi squared
     chisquared = np.sum(residuals**2/comp.v_err1('7814')**2)
     dof = len(comp.r_dat('5533')) - 5       # number of degrees of freedom = number of observed data - number of fitting parameters

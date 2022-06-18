@@ -309,7 +309,7 @@ def h_vNFW(r,save=True,comp='hNFW',**kwargs):
         return a(r)
 
 def h_viso(r,rc=h_rc,rho00=hrho00_c,load=True,save=False,comp='halo',**kwargs):   #h_v iso
-    if isinstance(r,float) or isinstance(r,int):
+    if isinstance(r,float) or isinstance(r,int): #if r isn't array-like, make it array-like.
         r = np.asarray([r])
     a = np.zeros(len(r))
     i = 1
@@ -329,6 +329,8 @@ def h_viso(r,rc=h_rc,rho00=hrho00_c,load=True,save=False,comp='halo',**kwargs): 
             return b(r)
         except KeyError: #If does not exist,
             save = True #Calculate and save
+        except FileNotFoundError:
+            save = True
         except: #Attempting to catch problem with spline having too few points
             print('An error has occured. Switching to save function. Error information below:')
             print(sys.exc_info()[0])

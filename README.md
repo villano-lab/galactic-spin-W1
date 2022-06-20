@@ -2,6 +2,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder)
 [![Build Status](https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master)](https://app.travis-ci.com/github/villano-lab/galactic-spin-W1)
 [![Documentation Status](https://readthedocs.org/projects/galactic-spin-W1/badge/?version=latest)](https://galactic-spin-W1.readthedocs.io/en/latest/?badge=latest)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg)](https://doi.org/10.5281/zenodo.6588350)
 
 # Galactic Spin W1: The Basics of Rotation Curves
 
@@ -42,18 +43,42 @@ The three steps of the rotation curve building process is plotting the measured 
 
 ## CITATION
 
-If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version [at Zenodo](https://zenodo.org/record/6588351).
+If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version,
+
+> Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2022, The Data Behind Dark Matter: Exploring Galactic Rotation [Code, v1.0.4] [DOI:10.5281/zenodo.6588350].
+
+```
+@misc{villano_a_n_2022_6588350,
+  author       = {Villano, A. N. and
+                  Harris, Kitty C. and
+                  Bergfalk, Judit and
+                  Hatami, Raphael and
+                  Vititoe, Francis and
+                  Johnston, Julia},
+  title        = {{The Data Behind Dark Matter: Exploring Galactic 
+                   Rotation}},
+  month        = june,
+  year         = 2022,
+  publisher    = {Zenodo},
+  version      = {v1.0.4},
+  doi          = {10.5281/zenodo.6588350},
+  url          = {https://doi.org/10.5281/zenodo.6588350}
+}
+
+```
 
 ## VERSION HISTORY
 
 
-27.04.2022: Release of [version 1.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.2)
+17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)
+17.06.2022: Release of [version 1.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3)
+09.06.2022: Release of [version 1.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.2)
 27.04.2022: Release of [version 1.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.1)
 27.04.2022: Release of [version 1.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.0)
 
 ## AUTHORS & CONTACT
 
-The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, F. Vititoe, and Julia Johnston.
+The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hatami, Judit Bergfalk, Francis Vititoe, and Julia Johnston.
 
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 

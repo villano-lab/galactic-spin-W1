@@ -10,7 +10,7 @@ import scipy.integrate as si
 from scipy.interpolate import InterpolatedUnivariateSpline      # Spline function
 import lmfit as lm                                              # Fitting
 #custom libraries
-import NGC5533_traced_curves as dataNGC5533
+import load_galaxies as galdata
 import NGC5533_functions as funcNGC5533
 
 ngc7814list = ['ngc7814', 'ngc 7814', '7814']
@@ -28,32 +28,32 @@ def data(galaxy):
     if galaxy.lower() in ngc7814list:
         return dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat')
     elif galaxy.lower() in ngc5533list:
-        return dataNGC5533.data
+        return galdata.data
 def data_total(galaxy):
     if galaxy.lower() in ngc5533list:
-        return dataNGC5533.data_total
+        return galdata.data_total
     else:
         return None
 def r_dat(galaxy):
     if galaxy.lower() in ngc7814list:
         return np.asarray(data(galaxy)['xx'])
     elif galaxy.lower() in ngc5533list:
-        return dataNGC5533.r_dat
+        return galdata.NGC5533['m_radii']
 def v_dat(galaxy):
     if galaxy.lower() in ngc7814list:
         return np.asarray(data(galaxy)['yy'])
     elif galaxy.lower() in ngc5533list:
-        return dataNGC5533.v_dat
+        return galdata.NGC5533['m_velocities']
 def v_err0(galaxy):
     if galaxy.lower() in ngc5533list:
-        return dataNGC5533.v_err0
+        return galdata.v_err0
     else:
         return None
 def v_err1(galaxy):
     if galaxy.lower() in ngc7814list:
         return np.asarray(data(galaxy)['ey'])
     elif galaxy.lower() in ngc5533list:
-        return dataNGC5533.v_err1
+        return galdata.NGC5533['m_v_errors']
     else:
         raise ValueError('Galaxy string', galaxy, 'not recognized.')
     
@@ -236,7 +236,7 @@ def bestfit(model,galaxy):
         fit_pars.add('arraysize', value=0, vary=False)
         fit_pars.add('rho0', value=funcNGC5533.hrho00_c, min=0)
     if galaxy.lower() in ngc5533list and (model == lm.Model(totalvelocity_halo) or model == totalvelocity_halo):
-        weights = 1/np.sqrt(v_err1(galaxy)**2+dataNGC5533.band**2)
+        weights = 1/np.sqrt(v_err1(galaxy)**2+galdata.NGC5533['n_v_bandwidth']**2)
     else:
         weights = weighdata(galaxy)
     fit = fit_mod.fit(v_dat(galaxy),fit_pars,r=r_dat(galaxy),weights=weights)

@@ -15,7 +15,7 @@ All velocity functions are abbreviated to 'v'. (Ex: `bh_v`)
 The total velocity function is simply titled `v`; it has no prefix.
 
 ### Function Usage
-With the exception of `savedata` and `loaddata`, all functions have defaults such that only one input is required, but more may be allowed.
+Many functions have defaults such that only one input is required, but more may be allowed.
 For instance, `bh_v(r)` will assume the measured value for the black hole mass, and `bh_v(r,1)` will assign that mass a value of 1.
 
 All velocities functions have two key-word arguments that default to false: `save` and `load`. </br>

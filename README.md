@@ -2,9 +2,11 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder)
 [![Build Status](https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master)](https://app.travis-ci.com/github/villano-lab/galactic-spin-W1)
 [![Documentation Status](https://readthedocs.org/projects/galactic-spin-W1/badge/?version=latest)](https://galactic-spin-W1.readthedocs.io/en/latest/?badge=latest)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg)](https://doi.org/10.5281/zenodo.6588350)
 
 # Galactic Spin W1: The Basics of Rotation Curves
+
+[![status](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df/status.svg)](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg)](https://doi.org/10.5281/zenodo.6588350)<br/>
 
 The first workshop of our Rotation Curves series, which covers the basics of what rotation curves are,
 how they are measured, and how we model them by breaking them into components.
@@ -70,10 +72,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
 ## VERSION HISTORY
 
 
-17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)
-17.06.2022: Release of [version 1.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3)
-09.06.2022: Release of [version 1.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.2)
-27.04.2022: Release of [version 1.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.1)
+17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)<br>
+17.06.2022: Release of [version 1.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3)<br>
+09.06.2022: Release of [version 1.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.2)<br>
+27.04.2022: Release of [version 1.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.1)<br>
 27.04.2022: Release of [version 1.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.0)
 
 ## AUTHORS & CONTACT

@@ -39,14 +39,13 @@ def galdict(galaxy):
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------
-G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2)
-#rhocrit = 9.3e-18                        # Critical density of the Universe (kg/km^3). 
+G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
 
 #---------Measured Directly-----------
-L = 3.27e10                              # Luminosity (Solar Luminosities)
+"""L = 3.27e10                              # Luminosity (Solar Luminosities)
 absmag = -22.02                          # Absolute magnitude
 magsun = 4.42                            # Absolute magnitude of the sun
-L0 = np.power(10, (0.4*(magsun-absmag))) # Absolute magnitude to luminosity
+L0 = np.power(10, (0.4*(magsun-absmag))) # Absolute magnitude to luminosity"""
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008
@@ -177,21 +176,6 @@ def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
     elif h5py ==0:
         print("ERROR: h5py was not loaded.")
         return 1
-
-    
-##############################
-### Import data/text files ###
-##############################
-
-# Note: there's no need to import the radius for each component as everything has the same r array 
-# (the r array of the raw data)
-
-# Datapoints:
-def v_err0(galaxy):
-    if galaxy.lower() in ngc5533list:
-        return galdata.v_err0
-    else:
-        return None
     
 #####################
 ### Interpolation ###
@@ -249,19 +233,17 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
     galdict_local = galdict(galaxy)
     r_dat = galdict_local['m_radii']
     if galaxy.upper() == 'NGC7814':
+        y = galdict_local['bulge']['v']
         polynomial = interpd(r_dat,bpref*galdict_local['bulge']['v'])   
-        return polynomial(r)
     elif galaxy.upper() == 'NGC5533':
-        x = np.sort(r_dat)
         if isinstance(r,float) or isinstance(r,int):
             r = np.asarray([r])
         comp = 'bulge'
         if load:
             try: #load if exists
                 y = loaddata(comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)[1]
-                x = loaddata(comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)[0]
-                b = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial
-                return b(r)
+                polynomial = interpd(r_dat,bpref*y) #k is the order of the polynomial
+                return polynomial(r)
             except KeyError: #if does not exist,
                 save = True  #go to save function instead
             except: #Attempting to catch problem with spline having too few points
@@ -278,39 +260,37 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
                 print('#--------------------')
                 print()
                 save = True #Calculate since there aren't enough points
-        r_dat = galdict(galaxy)['m_radii']
         a = b_vsquarev(r_dat,n,re)**(1/2)
         a[np.isnan(a)] = 0
         if save:
             savedata(r,a,comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
-        y = bpref*a
-        polynomial = interpd(x,y)
-        return polynomial(r)
+    polynomial = interpd(r_dat,bpref*y)
+    return polynomial(r)
 
 def disk(r,dpref,galaxy):
     galdict_local = galdict(galaxy)
     r_dat = galdict_local['m_radii']
+    v_dat = galdict_local['disk']['v']
     if galaxy.upper() == 'NGC7814':
         polynomial = interpd(r_dat,dpref*galdict_local['disk']['v'])   
         return polynomial(r)
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
-        x = np.asarray(data['xx'])
-        y = np.asarray(data['yy'])
-        d = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial
+        x = galdict_local['disk']['r']
+        d = interpd(x,v_dat) #k is the order of the polynomial
         return dpref*d(r)
 
 def gas(r,gpref,galaxy):
     galdict_local = galdict(galaxy)
     r_dat = galdict_local['m_radii']
+    v_dat = galdict_local['gas']['v']
     if galaxy.upper() == 'NGC7814':
         polynomial = interpd(r_dat,gpref*galdict_local['gas']['v'])   
         return polynomial(r)
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
         x = np.asarray(data['xx'])
-        y = np.asarray(data['yy'])
-        g = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial    
+        g = interpd(x,v_dat) #k is the order of the polynomial    
         return gpref*g(r)
     
 #########################
@@ -361,7 +341,7 @@ def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
         try: #Load if exists
             y = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[1]
             x = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[0]
-            b = inter.InterpolatedUnivariateSpline(x,y,k=3) #k is the order of the polynomial
+            b = interpd(x,y) #k is the order of the polynomial
             return b(r)
         except KeyError: #If does not exist,
             save = True #Calculate and save

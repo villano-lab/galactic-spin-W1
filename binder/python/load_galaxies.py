@@ -3,14 +3,10 @@
 ###############################
 ########## Imports ############
 ###############################
-import sys
-sys.path.append('../python/')
 
 import dataPython         as dp
 import numpy              as np
 import scipy.interpolate  as inter
-import matplotlib.pyplot  as plt
-
 
 ###############################
 ########### NGC5533 ###########
@@ -76,8 +72,9 @@ NGC5533['total']['spline'] = inter.BSpline(NGC5533['total']['t'], NGC5533['total
 
 # Black Hole ########################
 NGC5533['blackhole'] = {
-    'r' : np.asarray(NGC5533['raw_blackhole']['xx']),
-    'v' : np.asarray(NGC5533['raw_blackhole']['yy'])
+    'r'  : np.asarray(NGC5533['raw_blackhole']['xx']),
+    'v'  : np.asarray(NGC5533['raw_blackhole']['yy']),
+    'Mbh': 2.7e9
 }
 NGC5533['blackhole']['t'], NGC5533['blackhole']['c'], NGC5533['blackhole']['k'] = inter.splrep(NGC5533['blackhole']['r'], NGC5533['blackhole']['v'])
 NGC5533['blackhole']['spline'] = inter.BSpline(NGC5533['blackhole']['t'], NGC5533['blackhole']['c'], NGC5533['blackhole']['k'])
@@ -229,7 +226,7 @@ NGC7814 = {
 
 # Parameters ########################
 NGC7814['galaxyname'] = 'NGC 7814'   # NGC catalog number of the galaxy
-NGC7814['rho0'] = 1.52e8       # central mass density (in solar mass/kpc^3), Source: Fraternali et al. (2011) 
+NGC7814['rho0'] = 1.524e8       # central mass density (in solar mass/kpc^3), Source: Fraternali et al. (2011) 
 NGC7814['rc'] = 2.1            # core radius (in kpc), Source: Fraternali et al. (2011) 
 NGC7814['massbh'] = 0          # central black hole is included in the bulge curve
 
@@ -346,6 +343,7 @@ UGC477['m_radii']      = np.asarray(UGC477['measured_data']['xx'])
 UGC477['m_velocities'] = np.asarray(UGC477['measured_data']['yy'])
 UGC477['m_v_errors']   = np.asarray(UGC477['measured_data']['ey'])
 UGC477['galaxyname'] = 'UGC 477'
+UGC0477 = UGC477
 
 # UGC 1281
 UGC1281 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC1281.txt')}

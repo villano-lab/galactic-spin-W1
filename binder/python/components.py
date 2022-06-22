@@ -14,7 +14,7 @@ import scipy.interpolate as inter
 from scipy.interpolate import InterpolatedUnivariateSpline      # Spline function
 import lmfit as lm                                              # Fitting
 #custom libraries
-import load_galaxies as galdata
+from load_galaxies import *
 
 try:
     import h5py as h5
@@ -24,21 +24,17 @@ except ModuleNotFoundError:
     print("Could not find h5py. Datasets will not be able to be saved or loaded using components.py.")
 
 defaultpath = '../'
-ngc7814list = ['ngc7814', 'ngc 7814', '7814']
-ngc5533list = ['ngc5533', 'ngc 5533', '5533']
-ngc0891list = ['ngc0891', 'ngc 0891', '0891', 'ngc891', 'ngc 891', '891']
+
+# For parsing any string into a single possible value for galaxy
+import string
+non_numeric_chars = string.printable[10:]
 
 ################################
 ########## Constants ###########
 ################################
 #Pull from load_galaxies.py dict
-def dict(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return galdata.NGC7814
-    if galaxy.lower() in ngc5533list:
-        return galdata.NGC5533
-    if galaxy.lower() in ngc0891list:
-        return galdata.NGC0891
+def galdict(galaxy):
+    return globals()[galaxy.upper()]        
 
 #Defaults based on NGC5533
 
@@ -191,54 +187,9 @@ def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
 # (the r array of the raw data)
 
 # Datapoints:
-def data(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat')
-    elif galaxy.lower() in ngc5533list:
-        return galdata.data
-def data_total(galaxy):
-    if galaxy.lower() in ngc5533list:
-        return galdata.data_total
-    else:
-        return None
-def r_dat(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(data(galaxy)['xx'])
-    elif galaxy.lower() in ngc5533list:
-        return galdata.NGC5533['m_radii']
-def v_dat(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(data(galaxy)['yy'])
-    elif galaxy.lower() in ngc5533list:
-        return galdata.NGC5533['m_velocities']
 def v_err0(galaxy):
     if galaxy.lower() in ngc5533list:
         return galdata.v_err0
-    else:
-        return None
-def v_err1(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(data(galaxy)['ey'])
-    elif galaxy.lower() in ngc5533list:
-        return galdata.NGC5533['m_v_errors']
-    else:
-        raise ValueError('Galaxy string', galaxy, 'not recognized.')
-    
-def disk_raw(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(dp.getXYdata('data/NGC7814/7814_gDisk.dat')['yy'])
-    else:
-        return None
-
-def bulge_raw(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(dp.getXYdata('data/NGC7814/7814_gBulge.dat')['yy'])
-    else:
-        return None
-    
-def gas_raw(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return np.asarray(dp.getXYdata('data/NGC7814/7814_gGas.dat')['yy'])
     else:
         return None
     
@@ -253,28 +204,28 @@ def interpd(x,y):
 ######### Components ###########
 ################################
 
-def blackhole(r,M,galaxy,load=False,save=False):
-    if galaxy.lower() in ngc5533list:
-        if isinstance(r,float) or isinstance(r,int):
-            r = np.asarray([r])
-        if isinstance(r,list):
-            r = np.asarray(r)
-        a = np.sqrt(G*M/r)
-        if save:
-            load = False
-        if load:
-            try: #Load existing prefactor if available
-                y = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5',**kwargs)[1]
-                x = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5',**kwargs)[0]
-            except KeyError: #If unable to load, save
-                save = True
-        if save:
-            savedata(r,a,comp,'Mbh'+str(M),file=comp+'.hdf5',**kwargs)
-            return a
-        else:
-            return a
-    else: #galaxy has no significant bh component
-        return 0
+def blackhole(r,M,load=False,save=False):
+    comp = 'blackhole'
+    if isinstance(r,float) or isinstance(r,int):
+        r = np.asarray([r])
+    if isinstance(r,list):
+        r = np.asarray(r)
+    a = np.sqrt(G*M/r)
+    if save:
+        load = False
+    if load:
+        try: #Load existing prefactor if available
+            y = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5')[1]
+            x = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5')[0]
+        except KeyError: #If unable to load, save
+            save = True
+        except FileNotFoundError:
+            save = True
+    if save:
+        savedata(r,a,comp,'Mbh'+str(M),file=comp+'.hdf5')
+        return a
+    else:
+        return a
     
 def b_gammafunc(x,n=n_c):
     return ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
@@ -295,11 +246,13 @@ def b_vsquarev(r,n=n_c,re=re_c):
     a = np.vectorize(b_vsquare)
     return a(r,n,re)
 def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
-    if galaxy.lower() in ngc7814list:
-        polynomial = interpd(r_dat(galaxy),bpref*bulge_raw(galaxy))   
+    galdict_local = galdict(galaxy)
+    r_dat = galdict_local['m_radii']
+    if galaxy.upper() == 'NGC7814':
+        polynomial = interpd(r_dat,bpref*galdict_local['bulge']['v'])   
         return polynomial(r)
-    elif galaxy.lower() in ngc5533list:
-        x = np.sort(r_dat(galaxy))
+    elif galaxy.upper() == 'NGC5533':
+        x = np.sort(r_dat)
         if isinstance(r,float) or isinstance(r,int):
             r = np.asarray([r])
         comp = 'bulge'
@@ -325,7 +278,8 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
                 print('#--------------------')
                 print()
                 save = True #Calculate since there aren't enough points
-        a = b_vsquarev(r_dat(galaxy),n,re)**(1/2)
+        r_dat = galdict(galaxy)['m_radii']
+        a = b_vsquarev(r_dat,n,re)**(1/2)
         a[np.isnan(a)] = 0
         if save:
             savedata(r,a,comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
@@ -334,10 +288,12 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
         return polynomial(r)
 
 def disk(r,dpref,galaxy):
-    if galaxy.lower() in ngc7814list:
-        polynomial = interpd(r_dat(galaxy),dpref*disk_raw(galaxy))   
+    galdict_local = galdict(galaxy)
+    r_dat = galdict_local['m_radii']
+    if galaxy.upper() == 'NGC7814':
+        polynomial = interpd(r_dat,dpref*galdict_local['disk']['v'])   
         return polynomial(r)
-    elif galaxy.lower() in ngc5533list:
+    elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
         x = np.asarray(data['xx'])
         y = np.asarray(data['yy'])
@@ -345,10 +301,12 @@ def disk(r,dpref,galaxy):
         return dpref*d(r)
 
 def gas(r,gpref,galaxy):
-    if galaxy.lower() in ngc7814list:
-        polynomial = interpd(r_dat(galaxy),gpref*gas_raw(galaxy))   
+    galdict_local = galdict(galaxy)
+    r_dat = galdict_local['m_radii']
+    if galaxy.upper() == 'NGC7814':
+        polynomial = interpd(r_dat,gpref*galdict_local['gas']['v'])   
         return polynomial(r)
-    elif galaxy.lower() in ngc5533list:
+    elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
         x = np.asarray(data['xx'])
         y = np.asarray(data['yy'])
@@ -358,19 +316,6 @@ def gas(r,gpref,galaxy):
 #########################
 ### Galaxy parameters ###
 #########################
-
-
-def rcut(galaxy):
-    if galaxy.lower() in ngc7814list: # NGC 7814 (Source: Fraternali, Sancisi, and Kamphuis, 2011)
-        return 2.1            # Cutoff (core) radius (in kpc) from Table 5.
-    elif galaxy.lower() in ngc5533list:
-        return 1.4 # Core radius (kpc). Source: Noordermeer, 2008
-    
-def rho0(galaxy):
-    if galaxy.lower() in ngc7814list:
-        return 1.524e8            # Central density (in solar mass/kpc^3) from Table 5. (converted from pc to kpc)
-    elif galaxy.lower() in ngc5533list:
-        return 0.31e9                 # Halo central surface density (solar mass/kpc^2)
 
 # Constants
 G = 4.30091e-6            # Gravitational constant (kpc/solar mass*(km/s)^2)
@@ -398,7 +343,8 @@ def halo_BH(r,scale,arraysize,massMiniBH,rcut):
     halo = interpd(x,y)
     return halo(r)
 
-def h_viso(r,rc=rcut('5533'),rho00=rho0('5533'),load=True,save=False,comp='halo',**kwargs):   #h_v iso
+def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
+           load=True,save=False,comp='halo',**kwargs):   #h_v iso
     if isinstance(r,float) or isinstance(r,int): #if r isn't array-like, make it array-like.
         r = np.asarray([r])
     a = np.zeros(len(r))
@@ -448,14 +394,14 @@ def halo(r,rc,rho00): #A 'default' version
 ### Calculating total velocity ###
 ##################################
 def totalvelocity_miniBH(r,scale,arraysize,massMiniBH,rcut,bpref,dpref,gpref,Mbh,galaxy):
-    return np.sqrt(blackhole(r,Mbh,galaxy)**2 
+    return np.sqrt(blackhole(r,Mbh)**2 
                         + bulge(r,bpref,galaxy)**2 
                         + disk(r,dpref,galaxy)**2
                         + halo_BH(r,scale,arraysize,massMiniBH,rcut)**2
                         + gas(r,gpref,galaxy)**2)
     
 def totalvelocity_halo(r,scale,arraysize,rho00,rcut,bpref,dpref,gpref,Mbh,galaxy):
-    return np.sqrt(blackhole(r,Mbh,galaxy,load=False)**2
+    return np.sqrt(blackhole(r,Mbh)**2
                    + bulge(r,bpref,galaxy)**2
                    + disk(r,dpref,galaxy)**2
                    + halo(r,rcut,rho00)**2
@@ -465,10 +411,6 @@ def totalvelocity_halo(r,scale,arraysize,rho00,rcut,bpref,dpref,gpref,Mbh,galaxy
 #### Find Fitting Parameters ####
 #################################
 # For tiny black hole widget
-
-# Setup
-def weighdata(galaxy):
-    return 1/v_err1(galaxy)
 
 # Tiny Black Holes 
 def set_params(model,galaxy):
@@ -480,15 +422,15 @@ def set_params(model,galaxy):
     else:
         raise ValueError("Invalid type for variable `model`. (",model,", type:",type(model),".)")
     #miniBH halo
-    #fit_pars.add('rc',    value=rcut(galaxy), min=0.1)         # Core Radius (kpc)
-    fit_pars.add('scale',      value=rho0(galaxy),   vary=False)        # Scale
+    galdict_local = galdict(galaxy)
+    fit_pars.add('scale',      value=galdict_local['rho0'],   vary=False)        # Scale
     if (model == 'bh') or (model==lm.Model(totalvelocity_miniBH)) or (model==totalvelocity_miniBH):
         fit_pars.add('arraysize',  value=50,     min=1, max=100)    # Number of black holes
         fit_pars.add('rho0', value=1.5, min=0)       # Halo Central Density 
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):
         fit_pars.add('arraysize', value=0, vary=False)
-        fit_pars.add('rho0', value=rho0(galaxy), min=0)
-    fit_pars.add('rcut',       value=rcut(galaxy),   min=0.1)           # Core Radius (kpc)
+        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)
+    fit_pars.add('rcut',       value=galdict_local['rc'],   min=0.1)           # Core Radius (kpc)
     # Bulge
     fit_pars.add('bpref', value=1, min=0, max=100)  # Bulge Prefactor
     # Disk
@@ -496,14 +438,18 @@ def set_params(model,galaxy):
     # Disk
     fit_pars.add('gpref', value=1, vary=False)        # Gas Prefactor
     # BH
-    if galaxy in ngc5533list:
-        fit_pars.add('Mbh', value=2.7e9, min=1e8) # Black Hole mass (in solar mass). Source: Noordermeer, 2008
-    else:
+    try:
+        if galdict_local['blackhole']['Mbh'] != 0:
+            fit_pars.add('Mbh', value=galdict_local['blackhole']['Mbh'], min=1e8) # Black Hole mass (in solar mass). Source: Noordermeer, 2008
+        else:
+            fit_pars.add('Mbh', value=0, vary=False)
+    except KeyError: #treat mbh as 0 if it is not provided.
         fit_pars.add('Mbh', value=0, vary=False)
     return fit_pars
 
 # Do fit
 def bestfit(model,galaxy):
+    galdict_local = galdict(galaxy)
     newmodel = lambda r,scale,arraysize,rho0,rcut,bpref,dpref,gpref,Mbh: model(r,scale,arraysize,rho0,rcut,bpref,dpref,gpref,Mbh,galaxy)
     fit_mod = lm.Model(newmodel)
     fit_pars = set_params(newmodel,galaxy)
@@ -512,12 +458,17 @@ def bestfit(model,galaxy):
         fit_pars.add('rho0', value=1.5, min=0)       # Halo Central Density 
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):
         fit_pars.add('arraysize', value=0, vary=False)
-        fit_pars.add('rho0', value=rho0(galaxy), min=0)
-    if galaxy.lower() in ngc5533list and (model == lm.Model(totalvelocity_halo) or model == totalvelocity_halo):
-        weights = 1/np.sqrt(v_err1(galaxy)**2+galdata.NGC5533['n_v_bandwidth']**2)
+        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)
+    if model == lm.Model(totalvelocity_halo) or model == totalvelocity_halo:
+        try:
+            weights = 1/np.sqrt(galdict_local['m_v_errors']**2+galdict_local['n_v_bandwidth']**2)
+        except KeyError: #If band doesn't exist, don't try to include it.
+            weights = 1/galdict_local['m_v_errors']
     else:
-        weights = weighdata(galaxy)
-    fit = fit_mod.fit(v_dat(galaxy),fit_pars,r=r_dat(galaxy),weights=weights)
+        weights = 1/galdict_local['m_v_errors']
+    galdict_local = galdict(galaxy)
+    fit = fit_mod.fit(galdict_local['m_velocities'],fit_pars,
+                      r=galdict_local['m_radii'],weights=weights)
     bestfit = fit.best_fit
     fit_dict = fit.best_values
     return bestfit, fit_dict

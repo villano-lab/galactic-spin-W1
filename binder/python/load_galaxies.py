@@ -17,8 +17,8 @@ import matplotlib.pyplot  as plt
 ###############################
 
 NGC5533 = {
-
     # Load data from files for Noordermeer 2008 band and fitted curves
+    
     # 'raw' in the sense that I haven't split everything up. Idk there's probably a better way to name these
     'raw_total'        : dp.getXYdata('data/NGC5533/noord-120kpc-total.txt'     ),
     'raw_blackhole'    : dp.getXYdata('data/NGC5533/noord-120kpc-blackhole.txt' ),
@@ -28,10 +28,15 @@ NGC5533 = {
     'raw_gas'          : dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt'       ),
     'raw_band_btm'     : dp.getXYdata('data/NGC5533/noord-120kpc-bottomband.txt'),
     'raw_band_top'     : dp.getXYdata('data/NGC5533/noord-120kpc-topband.txt'   ),
-
+    
     # Get data from 100kpc file
-    'measured_data'    : dp.getXYdata_wXYerr('data/NGC5533/100kpc_data.txt')
-        
+    'measured_data'    : dp.getXYdata_wXYerr('data/NGC5533/100kpc_data.txt'),
+    
+    # Some constants
+    'i'                : 52,    # Inclination angle [degrees] (Fraternali, Sancisi, and Kamphuis, 2011)  
+    'D_Mpc'            : 54.3,  # Distance [Mpc]
+    'Mabs'             : -21.66,# B-band absolute magnitude of NGC 5533 (Norrdermeer, Van Der Hulst, 2007)
+    'check'            : True
 }
 
 # Parameters ########################
@@ -80,10 +85,28 @@ NGC5533['blackhole']['spline'] = inter.BSpline(NGC5533['blackhole']['t'], NGC553
 # Bulge #############################
 NGC5533['bulge'] = {
     'r' : np.asarray(NGC5533['raw_bulge']['xx']),
-    'v' : np.asarray(NGC5533['raw_bulge']['yy'])
+    'v' : np.asarray(NGC5533['raw_bulge']['yy']),
+    'n'      : 2.7,     # Concentration parameter [unitless] (Noordermeer, Van Der Hulst, 2007)
+    'q'      : 0.33,    # Intrinsic axis ratio [unitless] (Noordermeer, 2008)
+    're_arcsec' : 9.9,     # Effective radius [arcsec] (Noordermeer, Van Der Hulst, 2007)
+    'Lb'     : 3.6e10,  # Bulge luminosity [solar luminosity] (Calculated from absolute magnitude of the bulge)
+    'ML'     : 2.8      # Mass-to-light ratio of bulge [unitless] (Noordermeer, 2008)
 }
 NGC5533['bulge']['t'], NGC5533['bulge']['c'], NGC5533['bulge']['k'] = inter.splrep(NGC5533['bulge']['r'], NGC5533['bulge']['v'])
 NGC5533['bulge']['spline'] = inter.BSpline(NGC5533['bulge']['t'], NGC5533['bulge']['c'], NGC5533['bulge']['k'])
+NGC5533['bulge']['re_rad'] = NGC5533['bulge']['re_arcsec'] * (np.pi / (3600*180)) #arcsec to rad
+NGC5533['D_kpc'] = NGC5533['D_Mpc'] * 1000 #Mpc to kpc
+NGC5533['bulge']['re_kpc'] = NGC5533['bulge']['re_rad'] * NGC5533['D_kpc'] #Effective radius kpc
+NGC5533['sources'] = {
+    'Mabs': ' [unitless] (Source #2, Table A4)',
+    'n'   : ' [unitless] (Source #2, Table A4)',
+    'q'   : ' [unitless] (Source #1, Table 1)',
+    'i'   : ' [degrees] (Source #2, Table A2)',
+    're'  : ' [kpc] (Source #2, Table A4)',
+    'Lb'  : ' [Lsun] (Source #2, calculated from absolute magnitude)',
+    'ML'  : ' [unitless] (Source #1, Table 1)',
+    'D'   : ' [Mpc] (Source #2, Table 1)'
+}
 
 # Disk ##############################
 NGC5533['disk'] = {
@@ -121,7 +144,14 @@ NGC0891 = {
     'raw_gas'          : dp.getXYdata('data/NGC0891/0891_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wYerr('data/NGC0891/0891_measured.dat')
+    'measured_data'    : dp.getXYdata_wYerr('data/NGC0891/0891_measured.dat'),
+    
+    # Some constants
+    # Source: https://www.aanda.org/articles/aa/pdf/2011/07/aa16634-11.pdf 
+    'Mabs'             : -21.66, # Absolute magnitude [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'i'                : 89,     # Inclination angle [degrees] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'D_Mpc'            : 9.5,    # Distance [Mpc] (need this)
+    'check'            : True
 }
 
 # Parameters ########################
@@ -138,10 +168,25 @@ NGC0891['m_v_errors']   = np.asarray(NGC0891['measured_data']['ey'])
 # Bulge #############################
 NGC0891['bulge'] = {
     'r' : np.asarray(NGC0891['raw_bulge']['xx']),
-    'v' : np.asarray(NGC0891['raw_bulge']['yy'])    
+    'v' : np.asarray(NGC0891['raw_bulge']['yy']),
+    'n' : 2.99, # Concentration parameter [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'q' : 0.68, # Intrinsic axis ratio [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    're_kpc' : 1.8,    # Effective radius [kpc] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'Lb'     : 2.2e10, # Bulge luminosity [solar luminosity] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'ML'     : 1.63,   # Mass-to-light ratio of bulge (Fraternali, Sancisi, and Kamphuis, 2011)
 }
 NGC0891['bulge']['t'], NGC0891['bulge']['c'], NGC0891['bulge']['k'] = inter.splrep(NGC0891['bulge']['r'], NGC0891['bulge']['v'])
 NGC0891['bulge']['spline'] = inter.BSpline(NGC0891['bulge']['t'], NGC0891['bulge']['c'], NGC0891['bulge']['k'])
+NGC0891['sources'] = {
+    'Mabs': ' [unitless] (Source #3, calculated from Luminosity)',
+    'n'   : ' [unitless] (Source #3, Table 4)',
+    'q'   : ' [unitless] (Source #3, Table 4)',
+    'i'   : ' [degrees] (Source #3, Table 1)',
+    're'  : ' [kpc] (Source #3, Table 4)',
+    'Lb'  : ' [Lsun] (Source #3, Table 4)',
+    'ML'  : ' [unitless] (Source #3, Table 5, with dark matter halo)',
+    'D'   : ' [Mpc] (Source #3, Table 1)'
+}
 
 # Disk ##############################
 NGC0891['disk'] = {
@@ -159,7 +204,7 @@ NGC0891['gas'] = {
 NGC0891['gas']['t'], NGC0891['gas']['c'], NGC0891['gas']['k'] = inter.splrep(NGC0891['gas']['r'], NGC0891['gas']['v'])
 NGC0891['gas']['spline'] = inter.BSpline(NGC0891['gas']['t'], NGC0891['gas']['c'], NGC0891['gas']['k'])
 
-NGC891 = NGC0891    # Considering when someone forgets to type 0
+NGC891 = NGC0891    # Considering when someone doesn't type the 0
 
 ###############################
 ########### NGC7814 ###########
@@ -172,7 +217,14 @@ NGC7814 = {
     'raw_gas'          : dp.getXYdata('data/NGC7814/7814_gGas.dat'       ),
 
     # Get data
-    'measured_data'    : dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat')
+    'measured_data'    : dp.getXYdata_wYerr('data/NGC7814/7814_measured.dat'),
+    
+    # Some constants
+    # Source: https://www.aanda.org/articles/aa/pdf/2011/07/aa16634-11.pdf 
+    'i'                : 90,   # Inclination angle [degrees] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'D_Mpc'            : 14.6,  # Distance [Mpc]
+    'Mabs'             : -22.38,# Absolute magnitude [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'check'            : True
 }
 
 # Parameters ########################
@@ -188,11 +240,17 @@ NGC7814['m_v_errors']   = np.asarray(NGC7814['measured_data']['ey'])
 
 # Bulge #############################
 NGC7814['bulge'] = {
-    'r' : np.asarray(NGC7814['raw_bulge']['xx']),
-    'v' : np.asarray(NGC7814['raw_bulge']['yy'])
+    'r'      : np.asarray(NGC7814['raw_bulge']['xx']),
+    'v'      : np.asarray(NGC7814['raw_bulge']['yy']),
+    'n'      : 4.0,      # Concentration parameter [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'q'      : 0.61,     # Intrinsic axis ratio [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
+    're_kpc' : 2.16,     # Effective radius [kpc] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'Lb'     : 7e10,     # Bulge luminosity [solar luminosity] (Fraternali, Sancisi, and Kamphuis, 2011)
+    'ML'     : 0.71      # Mass-to-light ratio of bulge (Fraternali, Sancisi, and Kamphuis, 2011)
 }
 NGC7814['bulge']['t'], NGC7814['bulge']['c'], NGC7814['bulge']['k'] = inter.splrep(NGC7814['bulge']['r'], NGC7814['bulge']['v'])
 NGC7814['bulge']['spline'] = inter.BSpline(NGC7814['bulge']['t'], NGC7814['bulge']['c'], NGC7814['bulge']['k'])
+NGC7814['sources'] = NGC0891['sources'] #The entries were identical.
 
 # Disk ##############################
 NGC7814['disk'] = {

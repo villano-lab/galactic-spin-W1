@@ -26,10 +26,20 @@ except ModuleNotFoundError:
 defaultpath = '../'
 ngc7814list = ['ngc7814', 'ngc 7814', '7814']
 ngc5533list = ['ngc5533', 'ngc 5533', '5533']
+ngc0891list = ['ngc0891', 'ngc 0891', '0891', 'ngc891', 'ngc 891', '891']
 
 ################################
 ########## Constants ###########
 ################################
+#Pull from load_galaxies.py dict
+def dict(galaxy):
+    if galaxy.lower() in ngc7814list:
+        return galdata.NGC7814
+    if galaxy.lower() in ngc5533list:
+        return galdata.NGC5533
+    if galaxy.lower() in ngc0891list:
+        return galdata.NGC0891
+
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------

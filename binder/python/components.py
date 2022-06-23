@@ -260,12 +260,11 @@ def disk(r,dpref,galaxy):
     v_dat = galdict_local['disk']['v']
     if galaxy.upper() == 'NGC7814':
         polynomial = interpd(r_dat,dpref*galdict_local['disk']['v'])   
-        return polynomial(r)
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
         x = galdict_local['disk']['r']
-        d = interpd(x,v_dat) #k is the order of the polynomial
-        return dpref*d(r)
+        polynomial = interpd(x,dpref*v_dat) #k is the order of the polynomial
+    return polynomial(r)
 
 def gas(r,gpref,galaxy):
     galdict_local = galdict(galaxy)
@@ -273,12 +272,11 @@ def gas(r,gpref,galaxy):
     v_dat = galdict_local['gas']['v']
     if galaxy.upper() == 'NGC7814':
         polynomial = interpd(r_dat,gpref*galdict_local['gas']['v'])   
-        return polynomial(r)
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
         x = np.asarray(data['xx'])
-        g = interpd(x,v_dat) #k is the order of the polynomial    
-        return gpref*g(r)
+        polynomial = interpd(x,gpref*v_dat) #k is the order of the polynomial    
+    return polynomial(r)
     
 #########################
 ### Galaxy parameters ###

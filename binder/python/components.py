@@ -78,19 +78,19 @@ def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'):
 #this is a dummy filename to enforce ordering; try not to save here except for testing!
     if h5py == 1:
         saved = h5.File(path+'/'+file,'a')
-        if group in ['Disk', 'disc', 'Disc',  'd', 'D']:
+        if group.lower() in ['disc', 'disk',  'd']:
             group = 'disk'
             print("Group name set to 'disk'.")
-        if group in ['bh','Bh','BH','Black Hole','BlackHole','Blackhole,','Black hole','black hole','Black Hole']:
+        if group.lower() in ['bh','black hole','blackhole']:
             group = 'blackhole'
             print("Group name set to 'blackhole'.")
         if group in ['dm','DM','Dm','Dark Matter','Dark matter','dark matter','h','H','Halo','darkmatter','Darkmatter','DarkMatter']:
             group = 'halo'
             print("Group name set to 'halo'.")
-        if group in ['b','B','Bulge']:
+        if group.lower() in ['b','bulge']:
             group = 'bulge'
             print("Group name set to 'bulge'.")
-        if group in ['t','T','Total']:
+        if group.lower() in ['t','total']:
             group = 'total'
             print("Group name set to 'total'.")
         try:
@@ -214,31 +214,29 @@ def blackhole(r,M,load=False,save=False):
 def b_gammafunc(x,n=n_c):
     return ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
 b_root = so.brentq(b_gammafunc,0,500000,rtol=0.000001,maxiter=100) #come within 1% of exact root within 100 iterations
-def b_I0(n=n_c,re=re_c):
-    return L*(b_root**(2*n))/(re**2*2*np.pi*n*ss.gamma(2*n))
+def b_I0(galaxy,n=n_c,re=re_c):
+    return galdict(galaxy)['bulge']['Lb']*(b_root**(2*n))/(re**2*2*np.pi*n*ss.gamma(2*n))
 def b_r0(n=n_c,re=re_c):
     return re/np.power(b_root,n)
 def b_innerintegral(m,n=n_c,re=re_c):
     f = lambda x,m,n,re: np.exp(-np.power(x/b_r0(n,re), (1/n)))*np.power(x/b_r0(n,re), 1/n-1)/(np.sqrt(x**2-m**2)) #Inner function
     return si.quad(f, m, np.inf,args=(m,n,re))[0]
 b_innerintegralv = np.vectorize(b_innerintegral)
-def b_vsquare(r,n=n_c,re=re_c):
-    C = lambda n,re: (4*G*q*ups*b_I0(n,re))/(b_r0(n,re)*np.float(n))*(np.sqrt((np.sin(i)**2)+(1/(q**2))*(np.cos(i)**2)))
+def b_vsquare(r,galaxy,n=n_c,re=re_c):
+    C = lambda n,re: (4*G*q*ups*b_I0(galaxy,n,re))/(b_r0(n,re)*np.float(n))*(np.sqrt((np.sin(i)**2)+(1/(q**2))*(np.cos(i)**2)))
     h = lambda m,r,n,re: C(n,re)*b_innerintegral(m,n,re)*(m**2)/(np.sqrt((r**2)-((m**2)*(e2)))) #integrate outer function
     return si.quad(h, 0, r, args=(r,n,re))[0]
-def b_vsquarev(r,n=n_c,re=re_c):
+def b_vsquarev(r,galaxy,n=n_c,re=re_c):
     a = np.vectorize(b_vsquare)
-    return a(r,n,re)
-def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
+    return a(r,galaxy,n,re)
+def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwargs):
     galdict_local = galdict(galaxy)
     r_dat = galdict_local['m_radii']
+    if isinstance(r,float) or isinstance(r,int): #convert single values to an array
+        r = np.asarray([r])
     if galaxy.upper() == 'NGC7814':
         y = galdict_local['bulge']['v']
-        polynomial = interpd(r_dat,bpref*galdict_local['bulge']['v'])   
     elif galaxy.upper() == 'NGC5533':
-        if isinstance(r,float) or isinstance(r,int):
-            r = np.asarray([r])
-        comp = 'bulge'
         if load:
             try: #load if exists
                 y = loaddata(comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)[1]
@@ -247,23 +245,12 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,**kwargs):
             except KeyError: #if does not exist,
                 save = True  #go to save function instead
             except: #Attempting to catch problem with spline having too few points
-                print('An error has occured. Switching to save function. Error information below:')
-                print(sys.exc_info()[0])
-                print(sys.exc_info()[1])
-                print()
-                print('#--------------------')
-                print()
-                print()
-                print(traceback.format_exc())
-                print()
-                print()
-                print('#--------------------')
-                print()
+                print('An error has occured. Switching to save function.')
                 save = True #Calculate since there aren't enough points
-        a = b_vsquarev(r_dat,n,re)**(1/2)
-        a[np.isnan(a)] = 0
+        y = b_vsquarev(r_dat,galaxy,n,re)**(1/2)
+        y[np.isnan(y)] = 0
         if save:
-            savedata(r,a,comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
+            savedata(r,y,comp,'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
     polynomial = interpd(r_dat,bpref*y)
     return polynomial(r)
 

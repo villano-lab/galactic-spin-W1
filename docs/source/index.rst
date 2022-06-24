@@ -10,6 +10,9 @@
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg
    :target: https://doi.org/10.5281/zenodo.6588350
    :alt: Zenodo DOI
+.. image:: https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df/status.svg
+   :target: https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df
+   :alt: JOSE
 
 ==========================================================
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves

@@ -2,6 +2,9 @@
 Release history
 ===============
 
+* 24.06.2022: Release of `v2.0.0 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.0>`_
+     Reduced the number of libraries by moving many functions into a shared space.
+     Reduced the number of library functions by taking many similar functions and increasing the number of allowed arguments.
 * 17.06.2022: Release of `v1.0.4 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4>`_
      Author name update.
 * 17.06.2022: Release of `v1.0.3 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3>`_

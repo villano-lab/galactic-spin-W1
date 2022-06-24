@@ -4,6 +4,7 @@
 
 import numpy as np
 import requests
+import IPython
 
 def downloadsparc():
     out.clear_output(True)
@@ -47,9 +48,11 @@ buttonYES = Button(                   # YES button
 out = Output()
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below
-    downloadsparc()
-    unzipfiles()
-    display(Javascript('IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))   
+    with out:
+        out.clear_output()
+        downloadsparc()
+        unzipfiles()
+        #display(Javascript('IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))   #not working
 
 buttonYES.on_click(on_button_clicked_YES)
 

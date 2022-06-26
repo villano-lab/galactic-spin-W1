@@ -11,6 +11,7 @@ dependencies:
   - h5py
   - sympy
   - ipympl
+  - ipylab
   - ipywidgets==7.6.5
   - ffmpeg
   - pip

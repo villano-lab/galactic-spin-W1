@@ -67,7 +67,7 @@ jobs:
             echo "0. Installing dependencies..."
             python3 -m venv venv
             . venv/bin/activate
-            sudo python3 -m pip install -U pip
+            python3 -m pip install -U pip
             pip install jupyter-repo2docker
             export VERSION=$(python3 -c "import repo2docker; print(repo2docker.__version__)")
             echo "repo2docker version: ${VERSION}"

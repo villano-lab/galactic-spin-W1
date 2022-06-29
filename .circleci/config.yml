@@ -127,12 +127,6 @@ jobs:
           paths:
             - cache/container.tar.gz
             - src
-      - run:
-          name: Test Notebooks in Container
-          no_output_timeout: 40m
-          command: |
-            docker run -it "${CONTAINER_NAME}" pip install pytest-nbval
-            docker run -it "${CONTAINER_NAME}" pytest --nbval
 
   update_cache:
     machine:

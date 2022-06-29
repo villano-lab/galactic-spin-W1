@@ -179,11 +179,8 @@ jobs:
                   docker push ${CONTAINER_NAME}:${DOCKER_TAG}
             fi
   test:
-    machine:
-      environment: 
-        DOCKER_TAG: $(echo "${CIRCLE_SHA1}" | cut -c1-10)
     docker:
-      - image: "${CONTAINER_NAME}:${DOCKER_TAG}"
+      - image: "${CONTAINER_NAME}:${CIRCLE_SHA1:0:10}"
     working_directory: ~/binder
     steps:
       - run:

@@ -178,6 +178,33 @@ jobs:
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
                   docker push ${CONTAINER_NAME}:${DOCKER_TAG}
             fi
+  test:
+    docker:
+      - image: "${CONTAINER_NAME}"
+    working_directory: ~/binder
+    steps:
+      - run:
+          name: Install extra testing dependencies
+          no_output_timeout: 40m
+          command: |
+            pip install pytest-nbval papermill
+      - run:
+          name: Test existing notebooks
+          no_output_timeout: 40m
+          command: |
+            pytest --nbval
+      - run:
+          name: Prepare copies for testing
+          no_output_timeout: 40m
+          command: |
+            papermill --prepare-only -p galaxy NGC5533 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC5533.ipynb
+            papermill --prepare-only -p galaxy NGC7814 07_Bonus_Bulge_Rotation_Curve.ipynb 07_Bonus_Bulge_Rotation_Curve_NGC7814.ipynb
+      - run:
+          name: Test copies (lax)
+          no_output_timeout: 40m
+          command: |
+            pytest --nbval-lax 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
+
 workflows:
   version: 2
   build_deploy:
@@ -198,3 +225,13 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
+                - feature/docker-testing
+      
+      # And, if we did, we'll go ahead and use it to run our test!
+      - test:
+          requires:
+            - deploy

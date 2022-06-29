@@ -130,7 +130,7 @@ jobs:
 
   update_cache:
     machine:
-      image: cimg/base:2022.06
+      image: ubuntu-2204:2022.04.1
     working_directory: /tmp/src
     steps:
       - attach_workspace:
@@ -142,7 +142,7 @@ jobs:
 
   deploy:
     machine:
-      image: cimg/base:2022.06
+      image: ubuntu-2204:2022.04.1
     working_directory: /tmp/src
     steps:
       - attach_workspace:

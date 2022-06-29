@@ -130,8 +130,7 @@ jobs:
 
   update_cache:
     machine:
-      # Ubuntu 14.04 with Docker 17.10.0-ce
-      image: circleci/classic:201711-01
+      image: cimg/base:2022.06
     working_directory: /tmp/src
     steps:
       - attach_workspace:
@@ -143,7 +142,7 @@ jobs:
 
   deploy:
     machine:
-      image: cimg/base:2021.04
+      image: cimg/base:2022.06
     working_directory: /tmp/src
     steps:
       - attach_workspace:

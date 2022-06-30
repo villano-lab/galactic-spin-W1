@@ -187,12 +187,12 @@ jobs:
           name: Install extra testing dependencies
           no_output_timeout: 40m
           command: |
-            pip install pytest_notebook nbval papermill
+            pip install pytest_notebook nbval papermill codecov pytest-cov
       - run:
           name: Test existing notebooks
           no_output_timeout: 40m
           command: |
-            pytest --nbval --current-env
+            pytest --nbval --current-env --cov=./ --cov-report=xml --cov-config=../.coveragerc
       - run:
           name: Prepare copies for testing
           no_output_timeout: 40m
@@ -203,7 +203,12 @@ jobs:
           name: Test copies (lax)
           no_output_timeout: 40m
           command: |
-            pytest --nbval-lax --current-env 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
+            pytest --nbval-lax --current-env --cov=./ --cov-report=xml --cov-append --cov-config=../.coveragerc 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
+      - run:
+          name: Upload coverage report
+          no_output_timeout: 40m
+          command: |
+            codecov
 
 workflows:
   version: 2

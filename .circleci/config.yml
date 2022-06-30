@@ -76,7 +76,7 @@ jobs:
             # If not set, define DOCKER_TAG
             if [ ! -n "${DOCKER_TAG:-}" ]
                 then
-                    DOCKER_TAG=$(echo "${CIRCLE_SHA1}" | cut -c1-10)
+                    DOCKER_TAG=${CIRCLE_SHA1}
             fi
             # If not set, define CONTAINER_NAME
             if [ ! -n "${CONTAINER_NAME:-}" ]
@@ -166,7 +166,7 @@ jobs:
             echo "Looking for Docker deployment options"
             if [ ! -n "${DOCKER_TAG:-}" ]
                 then
-                    DOCKER_TAG=$(echo "${CIRCLE_SHA1}" )
+                    DOCKER_TAG=${CIRCLE_SHA1}
             fi
             # If not set, define CONTAINER_NAME
             if [[ ! -n "${CONTAINER_NAME:-}" ]]
@@ -180,7 +180,7 @@ jobs:
             fi
   test:
     docker:
-      - image: "${CONTAINER_NAME}:${CIRCLE_SHA1}"
+      - image: "${CONTAINER_NAME}:latest"
     working_directory: ~/binder
     steps:
       - run:

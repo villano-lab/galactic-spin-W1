@@ -234,7 +234,6 @@ workflows:
             branches:
               only:
                 - master
-                - feature/docker-testing
       
       # And, if we did, we'll go ahead and use it to run our test!
       - test:

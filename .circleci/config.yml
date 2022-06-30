@@ -180,7 +180,7 @@ jobs:
             fi
   test:
     docker:
-      - image: "${CONTAINER_NAME}:latest"
+      - image: "${CONTAINER_NAME}:${CIRCLE_SHA1}"
     working_directory: ~/binder
     steps:
       - run:

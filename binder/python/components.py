@@ -32,23 +32,22 @@ except ModuleNotFoundError:
 
 defaultpath = '../'
 
-################################
-########## Constants ###########
-################################
-#Pull from load_galaxies.py dict
-"""galdict - return the dictionary for a chosen galaxy
+#===============================
+#========= Constants ===========
+#===============================
 
-args: galaxy (string)  
-output: dictionary (see load_galaxies.py)  
-galaxy (string): Full name of the galaxy whose paramater/data dictionary you want to retrieve. Not case-sensitive. Ignores spaces.
-For a full list of allowed galaxies, please see the documentation for load_galaxies.py.
-"""
+##Retrieve a dictionary of parameters for the associated galaxy.
+#
+#**Arguments:** `galaxy` (string)
+#
+#**galaxy:** The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 def galdict(galaxy):
     return globals()[galaxy.upper().replace(" ","")]        
 
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------
+
 G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
 
 #---------Measured Indirectly---------

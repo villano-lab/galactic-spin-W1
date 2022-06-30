@@ -29,7 +29,9 @@ def configureDoxyfile(input_dir, output_dir):
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
-breathe_projects = {}
+breathe_projects = {
+    "galactic-spin-W1":"xml",
+}
 
 if read_the_docs_build:
     input_dir = '../../binder'

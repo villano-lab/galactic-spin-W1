@@ -192,7 +192,7 @@ jobs:
           name: Test existing notebooks
           no_output_timeout: 40m
           command: |
-            pytest --nbval
+            pytest --nbval --current-env
       - run:
           name: Prepare copies for testing
           no_output_timeout: 40m
@@ -203,7 +203,7 @@ jobs:
           name: Test copies (lax)
           no_output_timeout: 40m
           command: |
-            pytest --nbval-lax 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
+            pytest --nbval-lax --current-env 07_Bonus_Bulge_Rotation_Curve_NGC????.ipynb
 
 workflows:
   version: 2

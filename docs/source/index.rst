@@ -1,18 +1,24 @@
-.. image:: https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master
-   :target: https://app.travis-ci.com/github/villano-lab/galactic-spin-W1
-   :alt: Build Status
-.. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
-   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
-   :alt: Documentation Status
 .. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder
    :alt: Binder
+.. image:: https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master
+   :target: https://app.travis-ci.com/github/villano-lab/galactic-spin-W1
+   :alt: TravisCI Build Status
+.. image:: https://dl.circleci.com/status-badge/img/gh/villano-lab/galactic-spin-W1/tree/master.svg?style=svg
+   :target: https://dl.circleci.com/status-badge/redirect/gh/villano-lab/galactic-spin-W1/tree/master
+   :alt: CircleCI Build Status
+.. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
+   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
+   :alt: Documentation Status
+.. image:: https://codecov.io/gh/villano-lab/galactic-spin-W1/branch/master/graph/badge.svg?token=U7YINMN0V4 
+   :target: https://codecov.io/gh/villano-lab/galactic-spin-W1
+   :alt: Codecov
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg
    :target: https://doi.org/10.5281/zenodo.6588350
    :alt: Zenodo DOI
 .. image:: https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df/status.svg
    :target: https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df
-   :alt: JOSE
+   :alt: JOSE status
 
 ==========================================================
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves

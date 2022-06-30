@@ -1,11 +1,13 @@
 [![CC BY 4.0][cc-by-shield]][cc-by] 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder)
-[![Build Status](https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master)](https://app.travis-ci.com/github/villano-lab/galactic-spin-W1)
+[![TravisCI Build Status](https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master)](https://app.travis-ci.com/github/villano-lab/galactic-spin-W1)
+[![CircleCI Build Status](https://dl.circleci.com/status-badge/img/gh/villano-lab/galactic-spin-W1/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/villano-lab/galactic-spin-W1/tree/master)
 [![Documentation Status](https://readthedocs.org/projects/galactic-spin-W1/badge/?version=latest)](https://galactic-spin-W1.readthedocs.io/en/latest/?badge=latest)
+[![Codecov](https://codecov.io/gh/villano-lab/galactic-spin-W1/branch/master/graph/badge.svg?token=U7YINMN0V4)](https://codecov.io/gh/villano-lab/galactic-spin-W1)
 
 # Galactic Spin W1: The Basics of Rotation Curves
 
-[![status](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df/status.svg)](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df)
+[![JOSE status](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df/status.svg)](https://jose.theoj.org/papers/9fc3443a7c138ea1a3e1a15f4a3f14df)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6588350.svg)](https://doi.org/10.5281/zenodo.6588350)<br/>
 
 The first workshop of our Rotation Curves series, which covers the basics of what rotation curves are,

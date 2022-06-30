@@ -1,10 +1,17 @@
+"""@package docstring
+components.py - A module for generating rotation curve components using parameters and theoretical models.
+
+Includes bulge, blackhole, and disk components as well as multiple halo functions. 
+It also includes some calculations of the total velocity for convenience as well as some constants and utility functions used by the library's main functions.
+Gas contributions are imported from measured data, not calculated, as the gas component is very easily measured and well-understod.
+"""
+
 ###############
 ### Imports ###
 ###############
 
 import numpy as np
 import dataPython as dp
-import inspect
 import types
 import sys
 import scipy.integrate as si
@@ -25,27 +32,24 @@ except ModuleNotFoundError:
 
 defaultpath = '../'
 
-# For parsing any string into a single possible value for galaxy
-import string
-non_numeric_chars = string.printable[10:]
-
 ################################
 ########## Constants ###########
 ################################
 #Pull from load_galaxies.py dict
+"""galdict - return the dictionary for a chosen galaxy
+
+args: galaxy (string)  
+output: dictionary (see load_galaxies.py)  
+galaxy (string): Full name of the galaxy whose paramater/data dictionary you want to retrieve. Not case-sensitive. Ignores spaces.
+For a full list of allowed galaxies, please see the documentation for load_galaxies.py.
+"""
 def galdict(galaxy):
-    return globals()[galaxy.upper()]        
+    return globals()[galaxy.upper().replace(" ","")]        
 
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------
 G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
-
-#---------Measured Directly-----------
-"""L = 3.27e10                              # Luminosity (Solar Luminosities)
-absmag = -22.02                          # Absolute magnitude
-magsun = 4.42                            # Absolute magnitude of the sun
-L0 = np.power(10, (0.4*(magsun-absmag))) # Absolute magnitude to luminosity"""
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008

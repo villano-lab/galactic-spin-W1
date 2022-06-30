@@ -180,7 +180,7 @@ jobs:
             fi
   test:
     environment: 
-      DOCKER_TAG: ${CIRCLE_SHA1:0:10}
+      DOCKER_TAG: $( echo ${CIRCLE_SHA1} | cut -c1-10)
     docker:
       - image: "${CONTAINER_NAME}:${DOCKER_TAG}"
     working_directory: ~/binder

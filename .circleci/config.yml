@@ -187,7 +187,7 @@ jobs:
           name: Install extra testing dependencies
           no_output_timeout: 40m
           command: |
-            pip install pytest-nbval papermill
+            pip install pytest_notebook nbval papermill
       - run:
           name: Test existing notebooks
           no_output_timeout: 40m

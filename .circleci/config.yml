@@ -176,13 +176,11 @@ jobs:
             echo "Container name set to ${CONTAINER_NAME}:${DOCKER_TAG}"
             if [[ -n "$DOCKER_PASS" ]]; then
                   docker login -u $DOCKER_USER -p $DOCKER_PASS
-                  docker push ${CONTAINER_NAME}:${DOCKER_TAG}
+                  docker push ${CONTAINER_NAME}:${DOCKER_TAG} ${CONTAINER_NAME}:latest
             fi
   test:
-    environment: 
-      DOCKER_TAG: $( echo ${CIRCLE_SHA1} | cut -c1-10)
     docker:
-      - image: "${CONTAINER_NAME}:${DOCKER_TAG}"
+      - image: "${CONTAINER_NAME}":latest
     working_directory: ~/binder
     steps:
       - run:

@@ -23,7 +23,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
     month        = {june},
     year         = {2022},
     publisher    = {Zenodo},
-    version      = {v2.0.0},
+    version      = {v2.0.1},
     doi          = {10.5281/zenodo.6588350},
     url          = {https://doi.org/10.5281/zenodo.6588350}
   }

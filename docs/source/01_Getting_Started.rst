@@ -47,3 +47,7 @@ Doxygen test
 .. doxygenfunction:: galdict
    :project: galactic-spin-W1
    :path: xml
+
+.. doxygenfunction: G
+   :project: galactic-spin-W1
+   :path: xml

@@ -36,18 +36,36 @@ defaultpath = '../'
 #========= Constants ===========
 #===============================
 
-##Retrieve a dictionary of parameters for the associated galaxy.
-#
-#**Arguments:** `galaxy` (string)
-#
-#**galaxy:** The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 def galdict(galaxy):
+    """!
+    @brief Retrieve a dictionary of parameters for the associated galaxy.
+
+    @param galaxy [String] The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+
+    @return Return a dictionary of parameters for the associated galaxy.
+
+    @see For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
+
+    **Example:**
+    @code
+        #Define a function that prints the cutoff radius of any galaxy and returns it
+        def rcut(galaxy):
+            galaxydata = galdict(galaxy) #Retrieve the whole dictionary
+            cutoff = galaxydata["rcut"]
+            print(cutoff)
+            return cutoff
+        #Print and assign the cutoff for NGC 5533
+        rcut5533 = rcut('NGC5533')
+    @endcode
+    """
     return globals()[galaxy.upper().replace(" ","")]        
 
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------
-
+"""!
+    @brief Gravitational constant (4.30091e-6 kpc/solar mass * (km/s)^2)
+"""
 G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
 
 #---------Measured Indirectly---------
@@ -77,6 +95,23 @@ h_gamma = 0
 ########### Saving #############
 ################################
 
+##Utility function for saving a dataset to hdf5
+#**Arguments:** `xvalues` (arraylike), `yvalues` (arraylike), `group` (string), `dataset` (string), `path` (string, optional), `file` (string, optional)
+#
+#**xvalues:** [arraylike] An array of x-values to be saved to file. Typically, these values will represent radius.
+#
+#**yvalues:** [arraylike] An array of y-values to be saved to file. Typically, these values will represent velocity.
+#
+#**group:** [string] Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
+#
+#**dataset:** [string] Name of the dataset to be saved. 
+# This should be unique to the data; 
+# a good way to do this is to specify the source for experimental data 
+# or the parameters for theoretical "data".
+#
+#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+#
+#**file:** [string] Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
 def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'): 
 #this is a dummy filename to enforce ordering; try not to save here except for testing!
     if h5py == 1:
@@ -124,7 +159,20 @@ def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'):
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
-    
+
+##Utility function for loading a dataset from hdf5
+#**Arguments:** `group` (string), `dataset` (string), `path` (string, optional), `file` (string, optional)
+#
+#**group:** [string] Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
+#
+#**dataset:** [string] Name of the dataset to be saved. 
+# This should be unique to the data; 
+# a good way to do this is to specify the source for experimental data 
+# or the parameters for theoretical "data".
+#
+#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+#
+#**file:** [string] Name of the file to be loaded. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
 def loaddata(group,dataset,path=defaultpath,file='Inputs.hdf5'):
     if h5py == 1:
         saved = h5.File(path+'/'+file,'r')
@@ -153,6 +201,14 @@ def loaddata(group,dataset,path=defaultpath,file='Inputs.hdf5'):
         return 1
     saved.close() #no matter what, close the file when you're done
     
+##Utility function for checking data present in hdf5 without loading.
+#**Arguments:** `group` (string, optional), `path` (string, optional), `file` (string, optional)
+#
+#**group:** [string] Name of a group within the hdf5 file, or 'all' to check all groups present. Default: `'all'`.
+#
+#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+#
+#**file:** Name of the file to be read. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
 def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
     if h5py ==1:
         saved = h5.File(path+'/'+file,'r')
@@ -183,14 +239,37 @@ def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
 ### Interpolation ###
 #####################
 
-def interpd(x,y):
-    return InterpolatedUnivariateSpline(x,y,k=5)
+##Simple utility function to return scipy.interpolate.InterpolatedUnivariateSpline(x,y,k=5).
+#
+#**Arguments:** `x` (arraylike), `y` (arraylike)
+#
+#**x:** [arraylike] x-values to pass to the interpolation function.
+#
+#**y:** [arraylike] y-values to pass to the interpolation function.
+#def interpd(x,y):
+#    return InterpolatedUnivariateSpline(x,y,k=5)
 
 ################################
 ######### Components ###########
 ################################
 
+##Calculate the gravitational effect of a black hole.
+#**Arguments:** `r` (arraylike), `M` (float), `load` (bool, optional), `save` (bool, optional)
+#
+#**r:** [arraylike] radius values to calculate velocities for.
+#
+#**M:** [float] Mass of the black hole.
+#
+#**load:** [bool] Whether or not to load data from a file. 
+# If no data can be loaded, it will be saved for future use instead. Default: `False`.
+#
+#**save:** [bool] Whether or not to save data to a file. 
+# If data is already present, it will be combined with any new data to expand the dataset. 
+# Default: `False`.
 def blackhole(r,M,load=False,save=False):
+    """
+    test
+    """
     comp = 'blackhole'
     if isinstance(r,float) or isinstance(r,int):
         r = np.asarray([r])
@@ -213,9 +292,18 @@ def blackhole(r,M,load=False,save=False):
     else:
         return a
     
+##The gamma function used for calculation of the bulge component. Combination of complete and incomplete gamm functions.
+#**Arguments:** `x` (float), `n` (float, optional)
+#
+#**x:** [float] The x-value at which to calculate the gamma function.
+#
+#**n:** [float] The n-value at which to calcualte the gamma function. Default: `2.7`.
 def b_gammafunc(x,n=n_c):
     return ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
+##Find the root of the gamma function for fixed parameters.
+#**Arguments:** None.
 b_root = so.brentq(b_gammafunc,0,500000,rtol=0.000001,maxiter=100) #come within 1% of exact root within 100 iterations
+##
 def b_I0(L,n=n_c,re=re_c):
     return L*(b_root**(2*n))/(re**2*2*np.pi*n*ss.gamma(2*n))
 def b_r0(n=n_c,re=re_c):
@@ -243,7 +331,7 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
         if load:
             try: #load if exists
                 y = loaddata(comp,'L'+str(L)+'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)[1]
-                polynomial = interpd(r_dat,bpref*y) #k is the order of the polynomial
+                polynomial = InterpolatedUnivariateSpline(r_dat,bpref*y,k=5) #k is the order of the polynomial
                 return polynomial(r)
             except KeyError: #if does not exist,
                 save = True  #go to save function instead
@@ -254,7 +342,7 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
         y[np.isnan(y)] = 0
         if save:
             savedata(r,y,comp,'L'+str(L)+'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
-    polynomial = interpd(r_dat,bpref*y)
+    polynomial = InterpolatedUnivariateSpline(r_dat,bpref*y,k=5)
     return polynomial(r)
 
 def disk(r,dpref,galaxy):
@@ -262,11 +350,11 @@ def disk(r,dpref,galaxy):
     r_dat = galdict_local['m_radii']
     v_dat = galdict_local['disk']['v']
     if galaxy.upper() == 'NGC7814':
-        polynomial = interpd(r_dat,dpref*galdict_local['disk']['v'])   
+        polynomial = InterpolatedUnivariateSpline(r_dat,dpref*galdict_local['disk']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
         x = galdict_local['disk']['r']
-        polynomial = interpd(x,dpref*v_dat) #k is the order of the polynomial
+        polynomial = InterpolatedUnivariateSpline(x,dpref*v_dat,k=5) #k is the order of the polynomial
     return polynomial(r)
 
 def gas(r,gpref,galaxy):
@@ -274,11 +362,11 @@ def gas(r,gpref,galaxy):
     r_dat = galdict_local['m_radii']
     v_dat = galdict_local['gas']['v']
     if galaxy.upper() == 'NGC7814':
-        polynomial = interpd(r_dat,gpref*galdict_local['gas']['v'])   
+        polynomial = InterpolatedUnivariateSpline(r_dat,gpref*galdict_local['gas']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
         data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
         x = np.asarray(data['xx'])
-        polynomial = interpd(x,gpref*v_dat) #k is the order of the polynomial    
+        polynomial = InterpolatedUnivariateSpline(x,gpref*v_dat,k=5) #k is the order of the polynomial    
     return polynomial(r)
     
 #########################
@@ -308,7 +396,7 @@ def halo_BH(r,scale,arraysize,massMiniBH,rcut):
                     # scale is needed to be separate and constant because the widget would freeze the computer otherwise
                     # arraysize is the number of black holes for slider
                     # mBH is the mass of black holes for slider
-    halo = interpd(x,y)
+    halo = InterpolatedUnivariateSpline(x,y,k=5)
     return halo(r)
 
 def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
@@ -329,7 +417,7 @@ def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
         try: #Load if exists
             y = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[1]
             x = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[0]
-            b = interpd(x,y) #k is the order of the polynomial
+            b = InterpolatedUnivariateSpline(x,y,k=5) #k is the order of the polynomial
             return b(r)
         except KeyError: #If does not exist,
             save = True #Calculate and save

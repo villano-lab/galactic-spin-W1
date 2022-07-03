@@ -37,35 +37,36 @@ defaultpath = '../'
 #===============================
 
 def galdict(galaxy):
-    """!
-    @brief Retrieve a dictionary of parameters for the associated galaxy.
+    """
+    Retrieve a dictionary of parameters for the associated galaxy.
 
-    @param galaxy [String] The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+    Parameters:
+        galaxy : str
+            The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
-    @return Return a dictionary of parameters for the associated galaxy.
+    Returns:
+        Dictionary of parameters for the associated galaxy.
 
-    @see For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
+    .. note::
+        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
 
-    **Example:**
-    @code
-        #Define a function that prints the cutoff radius of any galaxy and returns it
-        def rcut(galaxy):
-            galaxydata = galdict(galaxy) #Retrieve the whole dictionary
-            cutoff = galaxydata["rcut"]
-            print(cutoff)
-            return cutoff
-        #Print and assign the cutoff for NGC 5533
-        rcut5533 = rcut('NGC5533')
-    @endcode
+    Example:
+        >>> #Define a function that prints the cutoff radius of any galaxy and returns it
+        >>> def rcut(galaxy):
+        >>>     galaxydata = galdict(galaxy) #Retrieve the whole dictionary
+        >>>     cutoff = galaxydata["rcut"]
+        >>>     print(cutoff)
+        >>>     return cutoff
+        >>> #Print and assign the cutoff for NGC 5533
+        >>> rcut5533 = rcut('NGC5533')
+
     """
     return globals()[galaxy.upper().replace(" ","")]        
 
 #Defaults based on NGC5533
 
 #---------Definitely Constant---------
-"""!
-    @brief Gravitational constant (4.30091e-6 kpc/solar mass * (km/s)^2)
-"""
+## @brief Gravitational constant (4.30091e-6 kpc/solar mass * (km/s)^2)
 G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
 
 #---------Measured Indirectly---------
@@ -352,7 +353,6 @@ def disk(r,dpref,galaxy):
     if galaxy.upper() == 'NGC7814':
         polynomial = InterpolatedUnivariateSpline(r_dat,dpref*galdict_local['disk']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
-        data = dp.getXYdata('data/NGC5533/noord-120kpc-disk.txt')
         x = galdict_local['disk']['r']
         polynomial = InterpolatedUnivariateSpline(x,dpref*v_dat,k=5) #k is the order of the polynomial
     return polynomial(r)
@@ -364,8 +364,7 @@ def gas(r,gpref,galaxy):
     if galaxy.upper() == 'NGC7814':
         polynomial = InterpolatedUnivariateSpline(r_dat,gpref*galdict_local['gas']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
-        data = dp.getXYdata('data/NGC5533/noord-120kpc-gas.txt')
-        x = np.asarray(data['xx'])
+        x = galdict_local['gas']['r']
         polynomial = InterpolatedUnivariateSpline(x,gpref*v_dat,k=5) #k is the order of the polynomial    
     return polynomial(r)
     

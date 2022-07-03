@@ -44,10 +44,8 @@ please install the environment found in `binder/environment.yml` to run our note
 Doxygen test
 ============
 
-.. doxygenfunction:: galdict
-   :project: galactic-spin-W1
-   :path: xml
+.. autofunction:: components.galdict
 
-.. doxygenfunction: G
+.. .. doxygenfunction:: G
    :project: galactic-spin-W1
    :path: xml

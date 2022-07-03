@@ -14,7 +14,8 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
-import subprocess, os
+import subprocess, os, sys
+sys.path.append('../binder/python')
 
 def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile.in', 'r') as file :
@@ -34,7 +35,7 @@ breathe_projects = {
 }
 
 if read_the_docs_build:
-    input_dir = '../../binder'
+    input_dir = '../../binder/python'
     output_dir = 'dox_build'
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
@@ -56,7 +57,7 @@ release = '1.0.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','breathe']
+extensions = ['sphinx_rtd_theme','myst_parser','breathe','sphinx.ext.autodoc']
 
 # Breathe Configuration
 breathe_default_project = "galactic-spin-W1"

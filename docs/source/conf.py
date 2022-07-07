@@ -16,6 +16,13 @@
 import sphinx_rtd_theme
 import subprocess, os, sys
 sys.path.append('../binder/python')
+#real quick, make a link if it doesn't exist
+os.chdir('../')
+try:
+    os.symlink('../binder/data','data')
+except FileExistsError:
+    pass
+os.chdir('source')
 
 def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile', 'r') as file :

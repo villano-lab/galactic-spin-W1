@@ -41,12 +41,12 @@ breathe_projects = {
     "galactic-spin-W1":"xml",
 }
 
-if read_the_docs_build:
+"""if read_the_docs_build:
     input_dir = '../../binder/python'
     output_dir = 'dox_build'
-    """configureDoxyfile(input_dir, output_dir)
-    subprocess.call('doxygen', shell=True)"""
-    breathe_projects['galactic-spin-W1'] = output_dir + '/xml'
+    configureDoxyfile(input_dir, output_dir)
+    subprocess.call('doxygen', shell=True)
+    breathe_projects['galactic-spin-W1'] = output_dir + '/xml'"""
 
 
 # -- Project information -----------------------------------------------------
@@ -56,8 +56,7 @@ copyright = '2022, A.N. Villano, J. Bergfalk, K. Harris, F. Vititoe, R. Hatami, 
 author = 'A.N. Villano, J. Bergfalk, K. Harris, F. Vititoe, R. Hatami, J. Johnston'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
-
+release = '2.0.2'
 
 # -- General configuration ---------------------------------------------------
 

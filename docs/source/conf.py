@@ -15,6 +15,8 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
 import subprocess, os, sys
+import numpy
+import scipy
 sys.path.append('../binder/python')
 #real quick, make a link if it doesn't exist
 os.chdir('../')
@@ -23,6 +25,8 @@ try:
 except FileExistsError:
     pass
 os.chdir('source')
+
+#autodoc_mock_imports = ['lmfit']
 
 """def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile', 'r') as file :

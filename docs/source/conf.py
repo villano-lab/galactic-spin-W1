@@ -44,6 +44,7 @@ breathe_projects = {
 if read_the_docs_build:
     input_dir = '../../binder/python'
     output_dir = 'dox_build'
+    sys.path.append('../../binder/python')
     #configureDoxyfile(input_dir, output_dir)
     #subprocess.call('doxygen', shell=True)
     #breathe_projects['galactic-spin-W1'] = output_dir + '/xml'"""

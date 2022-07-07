@@ -41,7 +41,7 @@ def galdict(galaxy):
     Retrieve a dictionary of parameters for the associated galaxy.
 
     Parameters:
-        galaxy : str
+        galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
     Returns:

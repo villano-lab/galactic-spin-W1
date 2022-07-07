@@ -18,7 +18,7 @@ import subprocess, os, sys
 sys.path.append('../binder/python')
 
 def configureDoxyfile(input_dir, output_dir):
-    with open('Doxyfile.in', 'r') as file :
+    with open('Doxyfile', 'r') as file :
         filedata = file.read()
 
     filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
@@ -57,7 +57,7 @@ release = '1.0.0'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','breathe','sphinx.ext.autodoc']
+extensions = ['sphinx_rtd_theme','myst_parser','breathe','sphinx.ext.autodoc','sphinx.ext.napoleon']
 
 # Breathe Configuration
 breathe_default_project = "galactic-spin-W1"

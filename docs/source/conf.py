@@ -41,12 +41,12 @@ breathe_projects = {
     "galactic-spin-W1":"xml",
 }
 
-"""if read_the_docs_build:
+if read_the_docs_build:
     input_dir = '../../binder/python'
     output_dir = 'dox_build'
-    configureDoxyfile(input_dir, output_dir)
-    subprocess.call('doxygen', shell=True)
-    breathe_projects['galactic-spin-W1'] = output_dir + '/xml'"""
+    #configureDoxyfile(input_dir, output_dir)
+    #subprocess.call('doxygen', shell=True)
+    #breathe_projects['galactic-spin-W1'] = output_dir + '/xml'"""
 
 
 # -- Project information -----------------------------------------------------
@@ -63,10 +63,10 @@ release = '2.0.2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','breathe','sphinx.ext.autodoc','sphinx.ext.napoleon']
+extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon']
 
 # Breathe Configuration
-breathe_default_project = "galactic-spin-W1"
+#breathe_default_project = "galactic-spin-W1"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

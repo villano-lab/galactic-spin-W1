@@ -43,8 +43,9 @@ If you want to contribute to `galactic-spin-W1`, please check out the `contribut
    01_Getting_Started
    02_Modules
    03_Glossary
-   04_Citations
-   05_Release_History
-   06_License
-   07_Contact
+   04_Library_Functions
+   05_Citations
+   06_Release_History
+   07_License
+   08_Contact
    References

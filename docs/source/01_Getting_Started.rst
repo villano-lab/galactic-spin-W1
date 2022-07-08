@@ -40,12 +40,3 @@ please install the environment found in `binder/environment.yml` to run our note
 4. Once the environment is finished building, from the "Home" menu of Anaconda Navigator, launch a prompt. The prompt will depend on your system -- for example, in Windows, you can choose "CMD.exe Prompt."
 5. In the prompt, run the following command: `ipython kernel install --user --name=galactic-spin`
 6. In Anaconda Navigator, launch "JupyterLab" and browse to your local copy of the repository, then enter the `binder` subdirectory. Enjoy!
-
-Doxygen test
-============
-
-.. autofunction:: components.galdict
-
-.. .. doxygenfunction:: G
-   :project: galactic-spin-W1
-   :path: xml

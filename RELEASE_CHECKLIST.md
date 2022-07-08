@@ -2,8 +2,8 @@
 
 Please be sure to do the following when making a release.
 
-1. Update release page of readthedocs documentation `docs/source/05_Release_History.rst`.
-2. Update citation page of readthedocs `docs/source/04_Citations.rst`.
+1. Update release page of readthedocs documentation `docs/source/06_Release_History.rst`.
+2. Update citation page of readthedocs `docs/source/05_Citations.rst`.
 3. Update the front-facing `README.md` in the Version history and citations sections.
 4. Update release notes `RELEASENOTES.md`.
 5. Update `docs/source/index.rst` if badges changed.

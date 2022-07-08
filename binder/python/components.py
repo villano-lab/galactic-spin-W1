@@ -349,7 +349,7 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
     b_innerf = lambda x, m, n, re: np.exp(-np.power(x/b_r0(n,re), (1/n)))*np.power(x/b_r0(n,re), 1/n-1)/(np.sqrt(x**2-m**2))
     
     # Integrate inner function
-    b_innerintegral lambda m, n, re: si.quad(b_innerf, m, np.inf,args=(m,n,re))[0]
+    b_innerintegral = lambda m, n, re: si.quad(b_innerf, m, np.inf,args=(m,n,re))[0]
     
     # Vectorize
     b_innerintegralv = np.vectorize(b_innerintegral)

@@ -299,32 +299,75 @@ def blackhole(r,M,load=False,save=False):
 #**x:** [float] The x-value at which to calculate the gamma function.
 #
 #**n:** [float] The n-value at which to calcualte the gamma function. Default: `2.7`.
-def b_gammafunc(x,n=n_c):
-    return ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
-##Find the root of the gamma function for fixed parameters.
-#**Arguments:** None.
-b_root = so.brentq(b_gammafunc,0,500000,rtol=0.000001,maxiter=100) #come within 1% of exact root within 100 iterations
-##
-def b_I0(L,n=n_c,re=re_c):
-    return L*(b_root**(2*n))/(re**2*2*np.pi*n*ss.gamma(2*n))
-def b_r0(n=n_c,re=re_c):
-    return re/np.power(b_root,n)
-def b_innerintegral(m,n=n_c,re=re_c):
-    f = lambda x,m,n,re: np.exp(-np.power(x/b_r0(n,re), (1/n)))*np.power(x/b_r0(n,re), 1/n-1)/(np.sqrt(x**2-m**2)) #Inner function
-    return si.quad(f, m, np.inf,args=(m,n,re))[0]
-b_innerintegralv = np.vectorize(b_innerintegral)
-def b_vsquare(r,L,n=n_c,re=re_c):
-    C = lambda n,re: (4*G*q*ups*b_I0(L,n,re))/(b_r0(n,re)*np.float(n))*(np.sqrt((np.sin(i)**2)+(1/(q**2))*(np.cos(i)**2)))
-    h = lambda m,r,n,re: C(n,re)*b_innerintegral(m,n,re)*(m**2)/(np.sqrt((r**2)-((m**2)*(e2)))) #integrate outer function
-    return si.quad(h, 0, r, args=(r,n,re))[0]
-def b_vsquarev(r,L,n=n_c,re=re_c):
-    a = np.vectorize(b_vsquare)
-    return a(r,L,n,re)
 def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwargs):
+    """
+    Calculate the velocity of the bulge using empirically derived parameters. The calculation was implemented from Noordermeer (2008).
+
+    Parameters:
+        r : [array]
+            Radii
+        bpref : [float]
+            Bulge prefactor
+        n : [float]
+            Concentration parameter
+        re : [float]
+            Effective radius, in the same units as the radii
+        galaxy : [string]
+            The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A splined bulge velocity as a function of radius.
+
+    .. note::
+        .
+
+    Example:
+        >>> 
+    """    
+    # Define galaxy name
     galdict_local = galdict(galaxy)
+    
+    # Get radius
     r_dat = galdict_local['m_radii']
+    
+    # Get luminosity of bulge
     L = galdict_local['bulge']['Lb']
-    if isinstance(r,float) or isinstance(r,int): #convert single values to an array
+    
+    # Gamma function
+    b_gammainc = lambda x, n: ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
+    
+    # Find the root of the gamma function for fixed parameters
+    b_root = so.brentq(b_gammafunc,0,500000,rtol=0.000001,maxiter=100) # come within 1% of exact root within 100 iterations
+    
+    # Calculate central surface brightness
+    b_I0 = lambda L, n, re: L*(b_root**(2*n))/(re**2*2*np.pi*n*ss.gamma(2*n))
+    
+    # Calculate characteristic radius
+    b_r0 = lambda n, re: re/np.power(b_root,n)
+    
+    # Inner function
+    b_innerf = lambda x, m, n, re: np.exp(-np.power(x/b_r0(n,re), (1/n)))*np.power(x/b_r0(n,re), 1/n-1)/(np.sqrt(x**2-m**2))
+    
+    # Integrate inner function
+    b_innerintegral lambda m, n, re: si.quad(b_innerf, m, np.inf,args=(m,n,re))[0]
+    
+    # Vectorize
+    b_innerintegralv = np.vectorize(b_innerintegral)
+    
+    # Define a constant C
+    C = lambda n, re: (4*G*q*ups*b_I0(L,n,re))/(b_r0(n,re)*np.float(n))*(np.sqrt((np.sin(i)**2)+(1/(q**2))*(np.cos(i)**2)))
+    
+    # Define whole function
+    b_function = lambda m, r, n, re: C(n,re)*b_innerintegral(m,n,re)*(m**2)/(np.sqrt((r**2)-((m**2)*(e2))))
+    
+    # Integrate outer function and obtain velocity squared
+    b_vsquare = lambda r, L, n, re: si.quad(b_function, 0, r, args=(r,n,re))[0]
+    
+    # Vectorize
+    b_vquarev = lambda r, L, n, re: np.vectorize(b_vsquare)
+    
+    # Convert single values to an array (interpolate)
+    if isinstance(r,float) or isinstance(r,int): 
         r = np.asarray([r])
     if galaxy.upper() == 'NGC7814':
         y = galdict_local['bulge']['v']
@@ -343,7 +386,10 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
         y[np.isnan(y)] = 0
         if save:
             savedata(r,y,comp,'L'+str(L)+'n'+str(n)+'re'+str(re),file=comp+'.hdf5',**kwargs)
+    
+    # Define polynomial
     polynomial = InterpolatedUnivariateSpline(r_dat,bpref*y,k=5)
+    
     return polynomial(r)
 
 def disk(r,dpref,galaxy):

@@ -336,6 +336,8 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
     # Gamma function
     b_gammainc = lambda x, n: ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
     
+    b_gammafunc = lambda x: ss.gammainc(2*n,x)*ss.gamma(2*n)-0.5*ss.gamma(2*n)
+    
     # Find the root of the gamma function for fixed parameters
     b_root = so.brentq(b_gammafunc,0,500000,rtol=0.000001,maxiter=100) # come within 1% of exact root within 100 iterations
     

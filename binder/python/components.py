@@ -20,7 +20,8 @@ import scipy.special as ss
 import scipy.interpolate as inter
 from scipy.interpolate import InterpolatedUnivariateSpline      # Spline function
 import lmfit as lm                                              # Fitting
-#custom libraries
+
+# Custom libraries
 from load_galaxies import *
 
 try:
@@ -51,23 +52,24 @@ def galdict(galaxy):
         For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
 
     Example:
-        >>> #Define a function that prints the cutoff radius of any galaxy and returns it
+        >>> # Define a function that prints the cutoff radius of any galaxy and returns it
         >>> def rcut(galaxy):
         >>>     galaxydata = galdict(galaxy) #Retrieve the whole dictionary
         >>>     cutoff = galaxydata["rcut"]
         >>>     print(cutoff)
         >>>     return cutoff
-        >>> #Print and assign the cutoff for NGC 5533
+        >>> # Print and assign the cutoff for NGC 5533
         >>> rcut5533 = rcut('NGC5533')
 
     """
+    
     return globals()[galaxy.upper().replace(" ","")]        
 
-#Defaults based on NGC5533
+# Defaults based on NGC5533
 
 #---------Definitely Constant---------
 ## @brief Gravitational constant (4.30091e-6 kpc/solar mass * (km/s)^2)
-G = 4.30091e-6                           # Gravitational constant (kpc/solar mass*(km/s)^2) 
+G = 4.30091e-6                    # Gravitational constant (kpc/solar mass*(km/s)^2) 
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008
@@ -75,21 +77,17 @@ q = 0.33                          # Intrinsic axis ratio. Source: Noordermeer, 2
 e2 = 1-(q**2)                     # Eccentricity. Source: Noordermeer, 2008
 i = 52*(np.pi/180)                # Inclination angle. Source: Noordermeer & Van Der Hulst, 2007
 h_rc = 1.4                        # Core radius (kpc). Source: Noordermeer, 2008
-#c = 1e-12                         #(what does this constant do?)
-#Mvir = 1e11*((c/(11.7))**(-40/3)) # Virial mass (in solar mass) solved from eq(5)
 Mbh_def = 2.7e9                   # Black Hole mass (in solar mass). Source: Noordermeer, 2008
 
 #---------Definitely Variable---------
 n_c = 2.7                         # Concentration parameter. Source: Noordermeer & Van Der Hulst, 2007
 h_c = 8.9                         # Radial scale-length (kpc). Source: Noordermeer & Van Der Hulst, 2007
-hrho00_c = 0.31e9                 # Halo central surface density (solar mass/kpc^2)
+hrho00_c = 0.31e9                 # Halo central surface density (solar mass/kpc^2). Source: Noordermeer, 2008
 drho00_c = 0.31e9                 # Disk central surface density (solar mass/kpc^2)
 
-#---------Uncategorized-------------------
+#---------Uncategorized---------------
 re_c = 2.6                        # Effective radius (kpc). Source: Noordermeer & Van Der Hulst, 2007
 upsdisk = 5.0                     # Disk mass-to-light ratio. Source: Noordermeer, 2008
-#rs = (1/c)*(((3*Mvir)/((4*np.pi*100*rhocrit)))**(1/3))   # Scale radius (kpc)
-#rho_s = (100/3)*((c**3)/(np.log(1+c)-(c/(1+c))))*rhocrit # Characteristic density
 h_gamma = 0
 
 ################################
@@ -113,8 +111,42 @@ h_gamma = 0
 #**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
 #
 #**file:** [string] Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
-def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'): 
-#this is a dummy filename to enforce ordering; try not to save here except for testing!
+def savedata(xvalues,
+             yvalues,
+             group,
+             dataset,
+             path=defaultpath,
+             file='Inputs.hdf5'): # This is a dummy filename to enforce ordering; try not to save here except for testing!    
+    """
+    Utility function for saving a dataset to hdf5.
+
+    Parameters:
+        xvalues : [arraylike] 
+            An array of x-values to be saved to file. Typically, these values will represent radius.
+        yvalues : [arraylike] 
+            An array of y-values to be saved to file. Typically, these values will represent velocity.
+        group : [string] 
+            Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
+        dataset : [string] 
+            Name of the dataset to be saved. This should be unique to the data; 
+            a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
+        path : [string] 
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+        file : [string] 
+            Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
+            Default: `Inputs.hdf5`.
+
+    Returns:
+        
+
+    .. note::
+        
+
+    Example:
+        >>> 
+
+    """
+    
     if h5py == 1:
         saved = h5.File(path+'/'+file,'a')
         if group.lower() in ['disc', 'disk',  'd']:
@@ -154,9 +186,9 @@ def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'):
             del grp[dataset]
             savedata(x,y,group,dataset,path,file)
             return y
-        finally: #No matter what,
+        finally: # No matter what,
             saved.close()
-        #print("Saved.") #Convenient for debugging but annoying for fitting.
+        #print("Saved.") # Convenient for debugging but annoying for fitting.
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
@@ -174,7 +206,36 @@ def savedata(xvalues,yvalues,group,dataset,path=defaultpath,file='Inputs.hdf5'):
 #**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
 #
 #**file:** [string] Name of the file to be loaded. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
-def loaddata(group,dataset,path=defaultpath,file='Inputs.hdf5'):
+def loaddata(group,
+             dataset,
+             path=defaultpath,
+             file='Inputs.hdf5'): # This is a dummy filename to enforce ordering; try not to save here except for testing!    
+    """
+    Utility function for loading a dataset from hdf5.
+
+    Parameters:
+        group : [string] 
+            Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
+        dataset : [string] 
+            Name of the dataset to be saved. This should be unique to the data; 
+            a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
+        path : [string] 
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+        file : [string] 
+            Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
+            Default: `Inputs.hdf5`.
+
+    Returns:
+        
+
+    .. note::
+        
+
+    Example:
+        >>> 
+
+    """
+    
     if h5py == 1:
         saved = h5.File(path+'/'+file,'r')
         if group in ['Disk', 'disc', 'Disc', 'd', 'D']:
@@ -196,11 +257,11 @@ def loaddata(group,dataset,path=defaultpath,file='Inputs.hdf5'):
         dset = grp[dataset]
         a = dset[:]
         return a
-    #Placeholder; I will design this to store information at a later date.
+    # Placeholder; I will design this to store information at a later date.
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
-    saved.close() #no matter what, close the file when you're done
+    saved.close() # No matter what, close the file when you're done
     
 ##Utility function for checking data present in hdf5 without loading.
 #**Arguments:** `group` (string, optional), `path` (string, optional), `file` (string, optional)
@@ -210,8 +271,36 @@ def loaddata(group,dataset,path=defaultpath,file='Inputs.hdf5'):
 #**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
 #
 #**file:** Name of the file to be read. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
-def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
-    if h5py ==1:
+def checkfile(group='all',
+              path=defaultpath,
+              file='Inputs.hdf5'):
+    """
+    Utility function for checking data present in hdf5 without loading.
+
+    Parameters:
+        group : [string] 
+            Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
+        dataset : [string] 
+            Name of the dataset to be saved. This should be unique to the data; 
+            a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
+        path : [string] 
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+        file : [string] 
+            Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
+            Default: `Inputs.hdf5`.
+
+    Returns:
+        
+
+    .. note::
+        
+
+    Example:
+        >>> 
+
+    """
+    
+    if h5py == 1:
         saved = h5.File(path+'/'+file,'r')
         if group == 'all':
             print('Groups:')
@@ -232,7 +321,7 @@ def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
             for n in grp:
                 print(grp[n])
         saved.close()
-    elif h5py ==0:
+    elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
     
@@ -267,23 +356,56 @@ def checkfile(group='all',path=defaultpath,file='Inputs.hdf5'):
 #**save:** [bool] Whether or not to save data to a file. 
 # If data is already present, it will be combined with any new data to expand the dataset. 
 # Default: `False`.
-def blackhole(r,M,load=False,save=False):
+def blackhole(r,
+              M,
+              load=False,
+              save=False):
     """
-    test
+    Function to calculate the gravitational effect of a black hole.
+
+    Parameters:
+        r : [arraylike] 
+            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+        M : [float] 
+            Mass of the black hole, in solar masses.
+        load : [bool] 
+            Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
+            Default: `False`.
+        save : [bool] 
+            Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
+            Default: `False`.
+        
+    Returns:
+        An array of rotational velocities.        
+
+    Example:
+        >>> # Calculate the gravitational effect of a black hole the size of 1000 suns, 10 kpc away. 
+        >>> print('Velocity of a star 10 kpc away from a 1000 solar mass black hole = {} km/s.'.format(blackhole(10,1000)))
+        >>> Velocity of a star 10 kpc away from a 1000 solar mass black hole = [0.02073864] km/s.  
     """
+    
+    # Define component for saving
     comp = 'blackhole'
+    
+    # Convert to an array
     if isinstance(r,float) or isinstance(r,int):
         r = np.asarray([r])
     if isinstance(r,list):
         r = np.asarray(r)
+        
+    # Rotational velocity due to a point mass (M)
     a = np.sqrt(G*M/r)
+    
+    # Saving
     if save:
         load = False
+        
+    # Loading
     if load:
-        try: #Load existing prefactor if available
+        try: # Load existing prefactor if available
             y = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5')[1]
             x = loaddata(comp,'Mbh'+str(M),file=comp+'.hdf5')[0]
-        except KeyError: #If unable to load, save
+        except KeyError: # If unable to load, save
             save = True
         except FileNotFoundError:
             save = True
@@ -293,37 +415,41 @@ def blackhole(r,M,load=False,save=False):
     else:
         return a
     
-##The gamma function used for calculation of the bulge component. Combination of complete and incomplete gamm functions.
-#**Arguments:** `x` (float), `n` (float, optional)
-#
-#**x:** [float] The x-value at which to calculate the gamma function.
-#
-#**n:** [float] The n-value at which to calcualte the gamma function. Default: `2.7`.
-def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwargs):
+def bulge(r,
+          bpref,
+          galaxy,
+          n=n_c,
+          re=re_c,
+          load=True,
+          save=False,
+          comp='bulge',
+          **kwargs):
     """
-    Calculate the velocity of the bulge using empirically derived parameters. The calculation was implemented from Noordermeer (2008).
+    Function to calculate the gravitational effect of a galactic bulge using empirically derived parameters. 
+    The calculation was implemented from Noordermeer (2008).
 
     Parameters:
         r : [array]
-            Radii
+            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
         bpref : [float]
-            Bulge prefactor
+            Bulge prefactor or scaling factor, unitless.
         n : [float]
-            Concentration parameter
+            Concentration parameter, unitless. Default: `2.7`.
         re : [float]
-            Effective radius, in the same units as the radii
+            Effective radius, in kpc.
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
     Returns:
-        A splined bulge velocity as a function of radius.
-
-    .. note::
-        .
+        An array of splined bulge velocities.        
 
     Example:
-        >>> 
+        >>> # Calculate the gravitational effect of a galactic bulge 10 kpc away for NGC 5533. 
+        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the bulge of NGC 5533 = {} km/s.'.format(bulge(r=10,
+                                                                                                                  bpref=1, galaxy='NGC5533')))
+        >>> Velocity of a star 10 kpc away due to the gravitational effect of the bulge of NGC 5533 = [166.78929909] km/s. 
     """    
+    
     # Define galaxy name
     galdict_local = galdict(galaxy)
     
@@ -394,56 +520,117 @@ def bulge(r,bpref,galaxy,n=n_c,re=re_c,load=True,save=False,comp='bulge',**kwarg
     
     return polynomial(r)
 
-def disk(r,dpref,galaxy):
+def disk(r,
+         dpref,
+         galaxy):
+    """
+    Function to calculate the gravitational effect of a galactic disk using the traced curves of the galaxies.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+        dpref : [float]
+            Disk prefactor or scaling factor, unitless
+        galaxy : [string]
+            The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A float or an array of splined disk velocities.
+
+    .. note::
+        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
+
+    Example:
+        >>> # Calculate the gravitational effect of a galactic disk 10 kpc away for NGC 5533. 
+        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the disk of NGC 5533 = {} km/s.'.format(disk(r=10,
+                                                                                                                  dpref=1, galaxy='NGC5533')))
+        >>> Velocity of a star 10 kpc away due to the gravitational effect of the disk of NGC 5533 = 147.62309536730015 km/s.
+    """   
+    
+    # Define galaxy name
     galdict_local = galdict(galaxy)
+    
+    # Import traced radii and velocities of the selected galaxy
     r_dat = galdict_local['m_radii']
     v_dat = galdict_local['disk']['v']
+    
+    # Interpolate
     if galaxy.upper() == 'NGC7814':
         polynomial = InterpolatedUnivariateSpline(r_dat,dpref*galdict_local['disk']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
         x = galdict_local['disk']['r']
-        polynomial = InterpolatedUnivariateSpline(x,dpref*v_dat,k=5) #k is the order of the polynomial
+        polynomial = InterpolatedUnivariateSpline(x,dpref*v_dat,k=5)           # k is the order of the polynomial
+        
     return polynomial(r)
 
-def gas(r,gpref,galaxy):
+def gas(r,
+        gpref,
+        galaxy):
+    """
+    Function to calculate the gravitational effect of a galactic gas using the traced curves of the galaxies.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+        gpref : [float]
+            Gas prefactor or scaling factor, unitless
+        galaxy : [string]
+            The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A float or an array of splined gas velocities.
+
+    .. note::
+        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
+
+    Example:
+        >>> # Calculate the gravitational effect of a galactic gas 10 kpc away for NGC 5533. 
+        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the gas of NGC 5533 = {} km/s.'.format(gas(r=10,
+                                                                                                                  gpref=1, galaxy='NGC5533')))
+        >>> Velocity of a star 10 kpc away due to the gravitational effect of the gas of NGC 5533 = 22.824681427585002 km/s.
+    """  
+    
+    # Define galaxy name
     galdict_local = galdict(galaxy)
+
+    # Import traced radii and velocities of the selected galaxy
     r_dat = galdict_local['m_radii']
     v_dat = galdict_local['gas']['v']
+    
+    # Interpolate
     if galaxy.upper() == 'NGC7814':
         polynomial = InterpolatedUnivariateSpline(r_dat,gpref*galdict_local['gas']['v'],k=5)   
     elif galaxy.upper() == 'NGC5533':
         x = galdict_local['gas']['r']
-        polynomial = InterpolatedUnivariateSpline(x,gpref*v_dat,k=5) #k is the order of the polynomial    
+        polynomial = InterpolatedUnivariateSpline(x,gpref*v_dat,k=5)             # k is the order of the polynomial   
+        
     return polynomial(r)
+
+#############################################
+### Calculating Dark Matter Halo Velocity ###
+#############################################
     
-#########################
-### Galaxy parameters ###
-#########################
-
-# Constants
-G = 4.30091e-6            # Gravitational constant (kpc/solar mass*(km/s)^2)
-
-#################################
-### Calculating enclosed mass ### 
-#################################
-
-# Mass as a function of radius, calculated from the Isothermal density profile:
-def mass_r(r,rcut):
-    return 4 * np.pi * rcut**2  * (r - rcut * (np.arctan(r/rcut))) 
-# rho0 represents the number of tiny black holes at the center of the galaxy
-
-######################################################
-### Calculating halo velocity with various methods ###
-######################################################
-
-# Calculating the velocity for each black hole as a point mass
+# Calculating the velocity for each black hole as a point mass for 10_Bonus_Black_Holes_as_DM.ipynb notebook
 def halo_BH(r,scale,arraysize,massMiniBH,rcut):
+    """
+    Function to calculate the gravitational effect of a Dark Matter halo..
+    """ 
+    
+    # Sort radii
     x = np.sort(r)
-    y = np.sqrt((G * (scale * arraysize * massMiniBH) * mass_r(r,rcut)) / r)   
+    
+    # Mass as a function of radius with massMiniBH (mass of black holes for slider) being equivalent to rho0 (central mass density)
+    # Source: Jimenez et al. 2003
+    mass_r = lambda r: 4 * np.pi * massMiniBH * rcut**2  * (r - rcut * (np.arctan(r/rcut)))
+    
+    # Define velocity
+    y = np.sqrt((G * (scale * arraysize) * mass_r(r)) / r)   
                     # scale is needed to be separate and constant because the widget would freeze the computer otherwise
                     # arraysize is the number of black holes for slider
-                    # mBH is the mass of black holes for slider
+            
+    # Interpolate        
     halo = InterpolatedUnivariateSpline(x,y,k=5)
+    
     return halo(r)
 
 def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
@@ -496,6 +683,7 @@ def halo(r,rc,rho00): #A 'default' version
 ##################################
 ### Calculating total velocity ###
 ##################################
+
 def totalvelocity_miniBH(r,scale,arraysize,massMiniBH,rcut,bpref,dpref,gpref,Mbh,galaxy):
     return np.sqrt(blackhole(r,Mbh)**2 
                         + bulge(r,bpref,galaxy)**2 
@@ -513,9 +701,8 @@ def totalvelocity_halo(r,scale,arraysize,rho00,rcut,bpref,dpref,gpref,Mbh,galaxy
 #################################
 #### Find Fitting Parameters ####
 #################################
-# For tiny black hole widget
 
-# Tiny Black Holes 
+# For tiny black hole widget
 def set_params(model,galaxy):
     if type(model) == types.FunctionType:
         model = lm.Model(model)

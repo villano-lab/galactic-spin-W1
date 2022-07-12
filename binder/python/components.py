@@ -20,6 +20,7 @@ import scipy.special as ss
 import scipy.interpolate as inter
 from scipy.interpolate import InterpolatedUnivariateSpline      # Spline function
 import lmfit as lm                                              # Fitting
+import traceback
 
 # Custom libraries
 from load_galaxies import *
@@ -60,7 +61,6 @@ def galdict(galaxy):
         >>>     return cutoff
         >>> # Print and assign the cutoff for NGC 5533
         >>> rcut5533 = rcut('NGC5533')
-
     """
     
     return globals()[galaxy.upper().replace(" ","")]        
@@ -257,11 +257,14 @@ def loaddata(group,
         dset = grp[dataset]
         a = dset[:]
         return a
+    
     # Placeholder; I will design this to store information at a later date.
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
-    saved.close() # No matter what, close the file when you're done
+    
+    # No matter what, close the file when you're done
+    saved.close() 
     
 ##Utility function for checking data present in hdf5 without loading.
 #**Arguments:** `group` (string, optional), `path` (string, optional), `file` (string, optional)
@@ -321,6 +324,7 @@ def checkfile(group='all',
             for n in grp:
                 print(grp[n])
         saved.close()
+        
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
@@ -365,9 +369,9 @@ def blackhole(r,
 
     Parameters:
         r : [arraylike] 
-            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
         M : [float] 
-            Mass of the black hole, in solar masses.
+            Mass of the black hole (in solar masses).
         load : [bool] 
             Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
             Default: `False`.
@@ -376,12 +380,12 @@ def blackhole(r,
             Default: `False`.
         
     Returns:
-        An array of rotational velocities.        
+        An array of rotational velocities (in km/s).        
 
     Example:
         >>> # Calculate the gravitational effect of a black hole the size of 1000 suns, 10 kpc away. 
-        >>> print('Velocity of a star 10 kpc away from a 1000 solar mass black hole = {} km/s.'.format(blackhole(10,1000)))
-        >>> Velocity of a star 10 kpc away from a 1000 solar mass black hole = [0.02073864] km/s.  
+        >>> print(blackhole(r=10, M=1000))
+        >>> [0.02073864] 
     """
     
     # Define component for saving
@@ -430,24 +434,23 @@ def bulge(r,
 
     Parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
         bpref : [float]
-            Bulge prefactor or scaling factor, unitless.
+            Bulge prefactor or scaling factor (unitless).
         n : [float]
-            Concentration parameter, unitless. Default: `2.7`.
+            Concentration parameter (unitless). Default: `2.7`.
         re : [float]
-            Effective radius, in kpc.
+            Effective radius (in kpc). Default: `2.6`.
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
     Returns:
-        An array of splined bulge velocities.        
+        An array of splined bulge velocities (in km/s).        
 
     Example:
         >>> # Calculate the gravitational effect of a galactic bulge 10 kpc away for NGC 5533. 
-        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the bulge of NGC 5533 = {} km/s.'.format(bulge(r=10,
-                                                                                                                  bpref=1, galaxy='NGC5533')))
-        >>> Velocity of a star 10 kpc away due to the gravitational effect of the bulge of NGC 5533 = [166.78929909] km/s. 
+        >>> print(bulge(r=10, bpref=1, galaxy='NGC5533'))
+        >>> [166.78929909] 
     """    
     
     # Define galaxy name
@@ -528,23 +531,22 @@ def disk(r,
 
     Parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
         dpref : [float]
-            Disk prefactor or scaling factor, unitless
+            Disk prefactor or scaling factor (unitless).
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
     Returns:
-        A float or an array of splined disk velocities.
+        A float or an array of splined disk velocities (in km/s).
 
     .. note::
         For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
 
     Example:
         >>> # Calculate the gravitational effect of a galactic disk 10 kpc away for NGC 5533. 
-        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the disk of NGC 5533 = {} km/s.'.format(disk(r=10,
-                                                                                                                  dpref=1, galaxy='NGC5533')))
-        >>> Velocity of a star 10 kpc away due to the gravitational effect of the disk of NGC 5533 = 147.62309536730015 km/s.
+        >>> print(disk(r=10, dpref=1, galaxy='NGC5533'))
+        >>> 147.62309536730015
     """   
     
     # Define galaxy name
@@ -571,23 +573,22 @@ def gas(r,
 
     Parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities, in kpc.
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
         gpref : [float]
-            Gas prefactor or scaling factor, unitless
+            Gas prefactor or scaling factor (unitless).
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
     Returns:
-        A float or an array of splined gas velocities.
+        A float or an array of splined gas velocities (in km/s).
 
     .. note::
         For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
 
     Example:
         >>> # Calculate the gravitational effect of a galactic gas 10 kpc away for NGC 5533. 
-        >>> print('Velocity of a star 10 kpc away due to the gravitational effect of the gas of NGC 5533 = {} km/s.'.format(gas(r=10,
-                                                                                                                  gpref=1, galaxy='NGC5533')))
-        >>> Velocity of a star 10 kpc away due to the gravitational effect of the gas of NGC 5533 = 22.824681427585002 km/s.
+        >>> print(gas(r=10, gpref=1, galaxy='NGC5533'))
+        >>> 22.824681427585002
     """  
     
     # Define galaxy name
@@ -611,10 +612,37 @@ def gas(r,
 #############################################
     
 # Calculating the velocity for each black hole as a point mass for 10_Bonus_Black_Holes_as_DM.ipynb notebook
-def halo_BH(r,scale,arraysize,massMiniBH,rcut):
+def halo_BH(r,
+            scale,
+            arraysize,
+            massMiniBH,
+            rcut):
     """
-    Function to calculate the gravitational effect of a Dark Matter halo..
-    """ 
+    Function to calculate the gravitational effect of a Dark Matter halo by integrating the enclosed mass and isothermal density profile.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+        scale : [float]
+            Fixed scale for the Dark Matter as tiny black holes widget (unitless).
+        arraysize : [float]
+            Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
+        massMiniBH : [float]
+            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (in solar masses). 
+        rcut : [float]
+            Cutoff radius (in kpc). 
+
+    Returns:
+        A float or an array of splined halo velocities (in km/s).
+
+    .. note::
+        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the 10_Bonus_Black_Holes_as_DM.ipynb notebook. 
+
+    Example:
+        >>> # Calculate the gravitational effect of 1000 black holes, with the mass of 100 suns, 10,25,20,25,30,35,40,45,50 and 100 kpc away, with a cutoff radius of 1.4 kpc. 
+        >>> print(halo_BH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4))
+        >>> [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481, 3.16603213 3.17580667 3.18364085 3.21905242]
+    """  
     
     # Sort radii
     x = np.sort(r)
@@ -633,31 +661,72 @@ def halo_BH(r,scale,arraysize,massMiniBH,rcut):
     
     return halo(r)
 
-def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
-           load=True,save=False,comp='halo',**kwargs):   #h_v iso
-    if isinstance(r,float) or isinstance(r,int): #if r isn't array-like, make it array-like.
+def h_viso(r,
+           rc=galdict('NGC5533')['rc'],
+           rho00=galdict('NGC5533')['rho0'],
+           load=True,
+           save=False,
+           comp='halo',
+           **kwargs):   #h_v iso
+    """
+    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source:  Jimenez et al. 2003).
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
+        rc : [float]
+            Cutoff radius (in kpc). Default: `1.4`
+        rho00 : [float]
+            Central mass density (in solar mass/kpc^3). Default: `0.31e9`
+        load : [bool] 
+            Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
+            Default: `True`.
+        save : [bool] 
+            Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
+            Default: `False`.
+        comp : [string] 
+            Component name for saving data.
+            Default: `halo`.
+
+    Returns:
+        A float or an array of splined halo velocities (in km/s).
+
+    Example:
+        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
+        >>> print(h_viso(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+                         rc=(co.galdict('NGC5533')['rc']), 
+                         rho00=(co.galdict('NGC5533')['rho0'])))
+        >>> [  0.         168.2547549  171.43127236 173.35821904 174.65137711, 175.57916017 176.27720854 176.82143175 177.25762058 179.22925324]
+    """  
+    
+    # If r isn't array-like, make it array-like
+    if isinstance(r,float) or isinstance(r,int): 
         r = np.asarray([r])
     a = np.zeros(len(r))
     i = 1
     while i < len(r):
-        a[i] = np.sqrt(
-            4*np.pi*G*rho00*(rc**2)*(1-(
-                (rc/r[i])*np.arctan(r[i]/rc))
-                                    )
-        )
+        # Calculate the velocity
+        a[i] = np.sqrt(4*np.pi*G*rho00*(rc**2)*(1-((rc/r[i])*np.arctan(r[i]/rc))))
         i += 1
     a[np.isnan(a)] = 0
+    
+    # Loading data
     if load:
-        try: #Load if exists
+        # Load if exists
+        try: 
             y = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[1]
             x = loaddata(comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)[0]
-            b = InterpolatedUnivariateSpline(x,y,k=5) #k is the order of the polynomial
+            b = InterpolatedUnivariateSpline(x,y,k=5)          # k is the order of the polynomial
             return b(r)
-        except KeyError: #If does not exist,
-            save = True #Calculate and save
+        
+        # If does not exist,
+        except KeyError:        
+            save = True         # Calculate and save
         except FileNotFoundError:
             save = True
-        except: #Attempting to catch problem with spline having too few points
+            
+        # Attempting to catch problem with spline having too few points
+        except: 
             print('An error has occured. Switching to save function. Error information below:')
             print(sys.exc_info()[0])
             print(sys.exc_info()[1])
@@ -670,40 +739,175 @@ def h_viso(r,rc=galdict('NGC5533')['rc'],rho00=galdict('NGC5533')['rc'],
             print()
             print('#--------------------')
             print()
-            save = True #Calculate since there aren't enough points
+            save = True         # Calculate since there aren't enough points
+            
+    # Saving data
     if save:
         savedata(r,a,comp,'rc'+str(rc)+'rho00'+str(rho00),file=comp+'.hdf5',**kwargs)
         return a
     else:
         return a
 
-def halo(r,rc,rho00): #A 'default' version
-        return h_viso(r,rc,rho00,load=False)
+def halo(r,
+         rc,
+         rho00):
+    """
+    Defining the default version of halo velocity calculation. In this case, using the isothermal density profile.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
+        rc : [float]
+            Cutoff radius (in kpc).  
+        rho00 : [float]
+            Central mass density (in solar mass/kpc^3). 
+        load : [bool] 
+            Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
+            Default: `True`.
+        save : [bool] 
+            Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
+            Default: `False`.
+        comp : [string] 
+            Component name for saving data.
+            Default: `halo`.
+
+    Returns:
+        A float or an array of splined halo velocities (in km/s).
+    """  
+    
+    return h_viso(r,rc,rho00,load=False)
 
 ##################################
 ### Calculating total velocity ###
 ##################################
 
-def totalvelocity_miniBH(r,scale,arraysize,massMiniBH,rcut,bpref,dpref,gpref,Mbh,galaxy):
-    return np.sqrt(blackhole(r,Mbh)**2 
-                        + bulge(r,bpref,galaxy)**2 
-                        + disk(r,dpref,galaxy)**2
-                        + halo_BH(r,scale,arraysize,massMiniBH,rcut)**2
-                        + gas(r,gpref,galaxy)**2)
+def totalvelocity_miniBH(r,
+                         scale,
+                         arraysize,
+                         massMiniBH,
+                         rcut,
+                         bpref,
+                         dpref,
+                         gpref,
+                         Mbh,
+                         galaxy):
+    """
+    Function to calculate the total gravitational effect of all components of a galaxy for the tiny black hole widget. 
+    The velocities of each component is added in quadrature to calculate the total rotational velocity.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+        scale : [float]
+            Fixed scale for the Dark Matter as tiny black holes widget (unitless).
+        arraysize : [float]
+            Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
+        massMiniBH : [float]
+            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (in solar masses). 
+        rcut : [float]
+            Cutoff radius (in kpc).          
+        bpref : [float]
+            Bulge prefactor or scaling factor (unitless).       
+        dpref : [float]
+            Disk prefactor or scaling factor (unitless).     
+        gpref : [float]
+            Gas prefactor or scaling factor (unitless).
+        Mbh : [float] 
+            Mass of the black hole (in solar masses).
+        galaxy : [string]
+            The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A float or an array of total velocities (in km/s).
+
+    .. note::
+        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the 10_Bonus_Black_Holes_as_DM.ipynb notebook. 
+
+    Example:
+        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> # 
+        >>> print(totalvelocity_miniBH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
+        >>> [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388, 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
+    """ 
     
-def totalvelocity_halo(r,scale,arraysize,rho00,rcut,bpref,dpref,gpref,Mbh,galaxy):
-    return np.sqrt(blackhole(r,Mbh)**2
-                   + bulge(r,bpref,galaxy)**2
-                   + disk(r,dpref,galaxy)**2
-                   + halo(r,rcut,rho00)**2
-                   + gas(r,gpref,galaxy)**2)
+    return np.sqrt(blackhole(r,Mbh)**2                                   # Black hole velocity
+                        + bulge(r,bpref,galaxy)**2                       # Bulge velocity  
+                        + disk(r,dpref,galaxy)**2                        # Disk velocity
+                        + halo_BH(r,scale,arraysize,massMiniBH,rcut)**2  # Halo velocity made of tiny black holes
+                        + gas(r,gpref,galaxy)**2)                        # Gas velocity
     
+def totalvelocity_halo(r,
+                       scale,
+                       arraysize,
+                       rho00,
+                       rcut,
+                       bpref,
+                       dpref,
+                       gpref,
+                       Mbh,
+                       galaxy):
+    """
+    Function to calculate the total gravitational effect of all components of a galaxy. 
+    The velocities of each component is added in quadrature to calculate the total rotational velocity.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).  
+        scale : [float]
+            Fixed scale for the Dark Matter as tiny black holes widget (unitless).
+        arraysize : [float]
+            Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
+        rho00 : [float]
+            Central mass density (in solar mass/kpc^3). 
+        rcut : [float]
+            Cutoff radius (in kpc).          
+        bpref : [float]
+            Bulge prefactor or scaling factor (unitless).       
+        dpref : [float]
+            Disk prefactor or scaling factor (unitless).     
+        gpref : [float]
+            Gas prefactor or scaling factor (unitless).
+        Mbh : [float] 
+            Mass of the black hole (in solar masses).
+        galaxy : [string]
+            The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A float or an array of total velocities (in km/s).
+
+    Example:
+        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> # 
+        >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
+        >>> [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756, 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
+    """
+    
+    return np.sqrt(blackhole(r,Mbh)**2                # Black hole velocity
+                   + bulge(r,bpref,galaxy)**2         # Bulge velocity
+                   + disk(r,dpref,galaxy)**2          # Disk velocity
+                   + halo(r,rcut,rho00)**2            # Halo velocity made of tiny black holes
+                   + gas(r,gpref,galaxy)**2)          # Gas velocity
+  
 #################################
 #### Find Fitting Parameters ####
 #################################
 
-# For tiny black hole widget
-def set_params(model,galaxy):
+def set_params(model,
+               galaxy):
+    """
+    Setting parameters for tiny black hole widget.
+
+    Parameters:
+        model : [string]
+            Function used for the fitting.  
+        galaxy : [string]
+            The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        A library of fitting parameters.
+    """ 
+    
+    # Set function model for fitting
     if type(model) == types.FunctionType:
         model = lm.Model(model)
         fit_pars = model.make_params()
@@ -711,60 +915,108 @@ def set_params(model,galaxy):
         fit_pars = model.make_params()
     else:
         raise ValueError("Invalid type for variable `model`. (",model,", type:",type(model),".)")
-    #miniBH halo
+        
+    # Define galaxy
     galdict_local = galdict(galaxy)
-    fit_pars.add('scale',      value=galdict_local['rho0'],   vary=False)        # Scale
+    
+    # Scale
+    fit_pars.add('scale', value=galdict_local['rho0'], vary=False)
+    
+    # Halo
+    # If halo consists of tiny black holes
     if (model == 'bh') or (model==lm.Model(totalvelocity_miniBH)) or (model==totalvelocity_miniBH):
-        fit_pars.add('arraysize',  value=50,     min=1, max=100)    # Number of black holes
-        fit_pars.add('rho0', value=1.5, min=0)       # Halo Central Density 
+        fit_pars.add('arraysize', value=50, min=1, max=100)            # Number of black holes (unitless)
+        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (in solar masses)
+    
+    # If halo is Dark Matter halo
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):
-        fit_pars.add('arraysize', value=0, vary=False)
-        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)
-    fit_pars.add('rcut',       value=galdict_local['rc'],   min=0.1)           # Core Radius (kpc)
+        fit_pars.add('arraysize', value=0, vary=False)                  # Scaling factor (unitless)
+        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)        # Halo central density (in solar mass/kpc^3) 
+    fit_pars.add('rcut', value=galdict_local['rc'], min=0.1)            # Cutoff Radius (in kpc)
+    
     # Bulge
-    fit_pars.add('bpref', value=1, min=0, max=100)  # Bulge Prefactor
+    fit_pars.add('bpref', value=1, min=0, max=100)                      # Bulge Prefactor
+    
     # Disk
-    fit_pars.add('dpref', value=1, min=0, max=100)  # Disk Prefactor
+    fit_pars.add('dpref', value=1, min=0, max=100)                      # Disk Prefactor
+    
     # Disk
-    fit_pars.add('gpref', value=1, vary=False)        # Gas Prefactor
-    # BH
+    fit_pars.add('gpref', value=1, vary=False)                          # Gas Prefactor
+    
+    # Central supermassive black mole
     try:
         if galdict_local['blackhole']['Mbh'] != 0:
-            fit_pars.add('Mbh', value=galdict_local['blackhole']['Mbh'], min=1e8) # Black Hole mass (in solar mass). Source: Noordermeer, 2008
+            fit_pars.add('Mbh', value=galdict_local['blackhole']['Mbh'], min=1e8)  # Black hole mass (in solar mass)
         else:
             fit_pars.add('Mbh', value=0, vary=False)
-    except KeyError: #treat mbh as 0 if it is not provided.
+            
+    # Treat mass of central black hole as 0 if it is not provided.
+    except KeyError: 
         fit_pars.add('Mbh', value=0, vary=False)
+        
     return fit_pars
 
 # Do fit
 def bestfit(model,galaxy):
+    """
+    Calculate fitting.
+
+    Parameters:
+        model : [string]
+            Function used for the fitting.  
+        galaxy : [string]
+            The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
+
+    Returns:
+        Best fit and dictionary of fitted values.
+        
+    Example:
+        >>> # Examples on how to use this output:
+        >>> best_rc = fit_dict['rc']
+        >>> best_rho00 = fit_dict['rho00']
+        >>> best_bpref = fit_dict['bpref']
+        >>> best_dpref = fit_dict['dpref']
+        >>> best_gpref = fit_dict['gpref']
+    """ 
+    
+    # Define galaxy
     galdict_local = galdict(galaxy)
+    
+    # Define new function for fitting
     newmodel = lambda r,scale,arraysize,rho0,rcut,bpref,dpref,gpref,Mbh: model(r,scale,arraysize,rho0,rcut,bpref,dpref,gpref,Mbh,galaxy)
     fit_mod = lm.Model(newmodel)
+    
+    # Set parameters
     fit_pars = set_params(newmodel,galaxy)
+    
+    # Define variables
+    # If halo consists of tiny black holes
     if (model == 'bh') or (model==lm.Model(totalvelocity_miniBH)) or (model==totalvelocity_miniBH):
-        fit_pars.add('arraysize',  value=50,     min=1, max=100)    # Number of black holes
-        fit_pars.add('rho0', value=1.5, min=0)       # Halo Central Density 
+        fit_pars.add('arraysize', value=50, min=1, max=100)            # Number of black holes
+        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (in solar masses)
+        
+    # If halo is Dark Matter halo
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):
-        fit_pars.add('arraysize', value=0, vary=False)
-        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)
+        fit_pars.add('arraysize', value=0, vary=False)                  # Scaling factor (unitless)
+        fit_pars.add('rho0', value=galdict_local['rho0'], min=0)        # Halo central density (in solar mass/kpc^3) 
+    
+    # Define weights with and without confidence band
     if model == lm.Model(totalvelocity_halo) or model == totalvelocity_halo:
         try:
             weights = 1/np.sqrt(galdict_local['m_v_errors']**2+galdict_local['n_v_bandwidth']**2)
-        except KeyError: #If band doesn't exist, don't try to include it.
+        except KeyError:                           # If band doesn't exist, don't try to include it.
             weights = 1/galdict_local['m_v_errors']
     else:
         weights = 1/galdict_local['m_v_errors']
+        
+    # Define galaxy
     galdict_local = galdict(galaxy)
-    fit = fit_mod.fit(galdict_local['m_velocities'],fit_pars,
-                      r=galdict_local['m_radii'],weights=weights)
+    
+    # Do fit
+    fit = fit_mod.fit(galdict_local['m_velocities'], fit_pars, r=galdict_local['m_radii'],weig hts=weights)
+    
+    # Define best fit and the dictionary of fitted values
     bestfit = fit.best_fit
     fit_dict = fit.best_values
+    
     return bestfit, fit_dict
-    #Examples on how to use this output:
-    #best_rc = fit_dict['rc']
-    #best_rho00 = fit_dict['rho00']
-    #best_bpref = fit_dict['bpref']
-    #best_dpref = fit_dict['dpref']
-    #best_gpref = fit_dict['gpref']

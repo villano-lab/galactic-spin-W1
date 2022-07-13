@@ -20,7 +20,6 @@ import scipy.special as ss
 import scipy.interpolate as inter
 from scipy.interpolate import InterpolatedUnivariateSpline      # Spline function
 import lmfit as lm                                              # Fitting
-import traceback
 
 # Custom libraries
 from load_galaxies import *
@@ -669,7 +668,7 @@ def h_viso(r,
            comp='halo',
            **kwargs):   #h_v iso
     """
-    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source:  Jimenez et al. 2003).
+    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: Jimenez et al. 2003).
 
     Parameters:
         r : [array]

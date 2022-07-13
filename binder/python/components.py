@@ -877,7 +877,7 @@ def totalvelocity_halo(r,
     Example:
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
         >>> # 
-        >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
+        >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=0, arraysize=0, rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
         >>> [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756, 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
     """
     

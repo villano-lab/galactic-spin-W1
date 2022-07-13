@@ -54,7 +54,7 @@ def galdict(galaxy):
     Example:
         >>> # Define a function that prints the cutoff radius of any galaxy and returns it
         >>> def rcut(galaxy):
-        >>>     galaxydata = galdict(galaxy) #Retrieve the whole dictionary
+        >>>     galaxydata = galdict(galaxy) # Retrieve the whole dictionary
         >>>     cutoff = galaxydata["rcut"]
         >>>     print(cutoff)
         >>>     return cutoff
@@ -1012,7 +1012,7 @@ def bestfit(model,galaxy):
     galdict_local = galdict(galaxy)
     
     # Do fit
-    fit = fit_mod.fit(galdict_local['m_velocities'], fit_pars, r=galdict_local['m_radii'],weig hts=weights)
+    fit = fit_mod.fit(galdict_local['m_velocities'], fit_pars, r=galdict_local['m_radii'], weights=weights)
     
     # Define best fit and the dictionary of fitted values
     bestfit = fit.best_fit

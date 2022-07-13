@@ -640,7 +640,7 @@ def halo_BH(r,
     Example:
         >>> # Calculate the gravitational effect of 1000 black holes, with the mass of 100 suns, 10,25,20,25,30,35,40,45,50 and 100 kpc away, with a cutoff radius of 1.4 kpc. 
         >>> print(halo_BH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4))
-        >>> [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481, 3.16603213 3.17580667 3.18364085 3.21905242]
+        >>> [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481 3.16603213 3.17580667 3.18364085 3.21905242]
     """  
     
     # Sort radii
@@ -695,7 +695,8 @@ def h_viso(r,
         >>> print(h_viso(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
                          rc=(co.galdict('NGC5533')['rc']), 
                          rho00=(co.galdict('NGC5533')['rho0'])))
-        >>> [  0.         168.2547549  171.43127236 173.35821904 174.65137711, 175.57916017 176.27720854 176.82143175 177.25762058 179.22925324]
+        >>> [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02
+  1.77257621e+02  1.79229253e+02]
     """  
     
     # If r isn't array-like, make it array-like
@@ -826,7 +827,7 @@ def totalvelocity_miniBH(r,
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
         >>> # 
         >>> print(totalvelocity_miniBH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        >>> [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388, 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
+        >>> [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
     """ 
     
     return np.sqrt(blackhole(r,Mbh)**2                                   # Black hole velocity
@@ -876,9 +877,8 @@ def totalvelocity_halo(r,
 
     Example:
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
-        >>> # 
         >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=0, arraysize=0, rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        >>> [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756, 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
+        >>> [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
     """
     
     return np.sqrt(blackhole(r,Mbh)**2                # Black hole velocity

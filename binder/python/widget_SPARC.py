@@ -70,6 +70,32 @@ distance = float(firstline[3])
 ##############################
 
 def interpd(x,y):
+    """
+    Interpolation function with degree of the smoothing spline of 3, using scipy.interpolate.InterpolatedUnivariateSpline.
+
+    Parameters:
+        x : [array]
+            An array of x-values. 
+        y : [array]
+            An array of y-values. 
+
+    Returns:
+        Polynomial that can be called as a function.
+
+    .. note::
+        The number of data points must be larger than the spline degree k.
+
+    Example:
+        >>> # Define x and y values and interpolate 
+        >>> x = np.linspace(-5, 5, 50)
+        >>> y = 0.2*np.exp(-x**2)
+        >>> spline = interpd(x, y)
+        >>> plt.plot(x, y, 'ro')
+        >>> x_resampled = np.linspace(-5, 5, 1000)
+        >>> plt.plot(x_resampled, spline(x_resampled))
+        >>> plt.show()
+    """
+    
     return InterpolatedUnivariateSpline(x,y,k=3)
 
 ################################
@@ -78,16 +104,83 @@ def interpd(x,y):
 
 # Bulge
 def bulge(r,bpref):
+    """
+    Interpolating the bulge velocity.
+
+    Parameters:
+        r : [array]
+            Sampling radius values or distance from the center of the galaxy (in kpc).           
+        bpref : [float]
+            Bulge prefactor or scaling factor (unitless). 
+
+    Returns:
+        Splined bulge velocity as a function of sampling radii.
+
+    Example:
+        >>> # Define measured radius and velocity and interpolate them
+        >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
+        >>> Vbul = np.array([100, 200, 280, 200, 130, 120, 110, 100])
+        >>> r = np.linspace(0, 20, 50)
+        >>> bulgespline = bulge(r, bpref=1)
+        >>> plt.plot(Rad, Vbul, 'ro')
+        >>> plt.plot(r, bulgespline)
+        >>> plt.show()
+    """
+    
     polynomial = interpd(Rad,bpref*Vbul)   
     return polynomial(r)
 
 # Disk
 def disk(r,dpref):
+    """
+    Interpolating the disk velocity.
+
+    Parameters:
+        r : [array]
+            Sampling radius values or distance from the center of the galaxy (in kpc).           
+        dpref : [float]
+            Disk prefactor or scaling factor (unitless). 
+
+    Returns:
+        Splined disk velocity as a function of sampling radii.
+
+    Example:
+        >>> # Define measured radius and velocity and interpolate them
+        >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
+        >>> Vdisk = np.array([100, 200, 280, 200, 130, 120, 110, 100])
+        >>> r = np.linspace(0, 20, 50)
+        >>> diskspline = disk(r, dpref=1)
+        >>> plt.plot(Rad, Vdisk, 'ro')
+        >>> plt.plot(r, diskspline)
+        >>> plt.show()
+    """
+    
     polynomial = interpd(Rad,dpref*Vdisk)   
     return polynomial(r)
 
 # Gas 
 def gas(r):
+    """
+    Interpolating the gas velocity.
+
+    Parameters:
+        r : [array]
+            Sampling radius values or distance from the center of the galaxy (in kpc).
+
+    Returns:
+        Splined gas velocity as a function of sampling radii.
+
+    Example:
+        >>> # Define measured radius and velocity and interpolate them
+        >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
+        >>> Vgas = np.array([100, 200, 280, 200, 130, 120, 110, 100])
+        >>> r = np.linspace(0, 20, 50)
+        >>> gasspline = gas(r)
+        >>> plt.plot(Rad, Vgas, 'ro')
+        >>> plt.plot(r, gasspline)
+        >>> plt.show()
+    """
+    
     polynomial = interpd(Rad,Vgas)   
     return polynomial(r)
 
@@ -97,17 +190,73 @@ rho0 = 3.10e8       # Central mass density (in solar mass/kpc^3)
 rc = 1.4            # Core radius (in kpc)
 G = 4.300e-6        # Gravitational constant (kpc/solar mass*(km/s)^2)
 
-## Equation for dark matter halo velocity
-def halo(r,rc,rho0):
-    v = np.sqrt(4*np.pi*G*rho0*rc**2*(1 - rc/r * np.arctan(r/rc)))
-    return v
+## Equation for Dark Matter halo velocity
+def halo(r,
+         rc,
+         rho0):
+    """
+    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: Jimenez et al. 2003).
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
+        rc : [float]
+            Cutoff radius (in kpc). Default: `1.4`
+        rho0 : [float]
+            Central mass density (in solar mass/kpc^3). Default: `0.31e9`
+
+    Returns:
+        A float or an array of halo velocities (in km/s).
+
+    Example:
+        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
+        >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), rc=1.4, rho0=0.31e9)))
+        >>> [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
+    """ 
+    
+    return np.sqrt(4*np.pi*G*rho0*(rc**2)*(1-((rc/r)*np.arctan(r/rc))))
 
 # Total velocity
-def totalcurve(r,bpref,dpref,rc,rho0):
+def totalcurve(r,
+               bpref,
+               dpref,
+               rc,
+               rho0):
+    """
+    Function to calculate the total gravitational effect of all components of a galaxy. 
+    The velocities of each component is added in quadrature to calculate the total rotational velocity.
+
+    Parameters:
+        r : [array]
+            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).            
+        bpref : [float]
+            Bulge prefactor or scaling factor (unitless).       
+        dpref : [float]
+            Disk prefactor or scaling factor (unitless). 
+        rc : [float]
+            Cutoff radius (in kpc).          
+        rho0 : [float]
+            Central mass density (in solar mass/kpc^3).
+
+    Returns:
+        A float or an array of total velocities (in km/s).
+
+    .. note::
+        If the galaxy contains a supermassive black hole at the center, it is incorporated in the bulge velocity.
+
+    Example:
+        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> print(totalcurve(r=np.array([10,15,20,25,30,35,40,45,50,100]), bpref=1, dpref=1, rc=1.4, rho0=0.31e9)))
+        >>> [3.34371479e+02 3.22215072e+02 7.25902496e+02 2.16917607e+03 5.21519130e+03 1.04268198e+04 1.83732304e+04 2.96250118e+04
+ 4.47531137e+04 5.34875631e+05]
+    """
+    
+    # Total velocity with components added in quadrature
     total = np.sqrt(bulge(r,bpref)**2 
                     + disk(r,dpref)**2
                     + halo(r,rc,rho0)**2
                     + gas(r)**2)
+    
     return total
 
 #################################
@@ -120,12 +269,12 @@ fit_params = fit_mod.make_params()
 weighdata = 1/errV
 
 # Halo
-fit_params.add('rc',    value=rc,    min=0.1)           # Core Radius (kpc)
-fit_params.add('rho0',  value=rho0,  min=0)             # Halo Density (Solar mass/kpc^3)
+fit_params.add('rc',    value=rc,    min=0.1)           # Cutoff radius (kpc)
+fit_params.add('rho0',  value=rho0,  min=0)             # Central halo mass density (Solar mass/kpc^3)
 # Bulge
-fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge Prefactor
+fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge prefactor
 # Disk
-fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk Prefactor
+fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk prefactor
 
 # Do fit
 fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=weighdata)

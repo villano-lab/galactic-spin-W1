@@ -7,8 +7,8 @@
 .. image:: https://dl.circleci.com/status-badge/img/gh/villano-lab/galactic-spin-W1/tree/master.svg?style=svg
    :target: https://dl.circleci.com/status-badge/redirect/gh/villano-lab/galactic-spin-W1/tree/master
    :alt: CircleCI Build Status
-.. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
-   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
+.. image:: https://readthedocs.org/projects/galactic-spin-w1/badge/?version=stable
+   :target: https://galactic-spin-w1.readthedocs.io/en/latest/?badge=stable
    :alt: Documentation Status
 .. image:: https://codecov.io/gh/villano-lab/galactic-spin-W1/branch/master/graph/badge.svg?token=U7YINMN0V4 
    :target: https://codecov.io/gh/villano-lab/galactic-spin-W1

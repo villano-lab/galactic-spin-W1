@@ -130,3 +130,6 @@ dmypy.json
 
 # SPARC data download
 binder/data/sparc/Rotmod_LTG.zip
+
+# Editor settings
+.vscode

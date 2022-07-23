@@ -1,5 +1,5 @@
-"""@package docstring
-components.py - A module for generating rotation curve components using parameters and theoretical models.
+"""
+A module for generating rotation curve components using parameters and theoretical models.
 
 Includes bulge, blackhole, and disk components as well as multiple halo functions. 
 It also includes some calculations of the total velocity for convenience as well as some constants and utility functions used by the library's main functions.
@@ -135,11 +135,7 @@ def savedata(xvalues,
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
             Default: `Inputs.hdf5`.
 
-    Returns:
-        
-
-    .. note::
-        
+    Returns: `None` on success, `1` if h5py was not loaded, and an [array] of y-values if saving data failed and data was loaded instead.
 
     Example:
         >>> 
@@ -224,11 +220,7 @@ def loaddata(group,
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
             Default: `Inputs.hdf5`.
 
-    Returns:
-        
-
-    .. note::
-        
+    Returns: [array] on success or `1` if h5py was not loaded.        
 
     Example:
         >>> 
@@ -291,10 +283,7 @@ def checkfile(group='all',
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
             Default: `Inputs.hdf5`.
 
-    Returns:
-        
-
-    .. note::
+    Returns: `None` on success; `1` if h5py was not imported.
         
 
     Example:
@@ -539,9 +528,6 @@ def disk(r,
     Returns:
         A float or an array of splined disk velocities (in km/s).
 
-    .. note::
-        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
-
     Example:
         >>> # Calculate the gravitational effect of a galactic disk 10 kpc away for NGC 5533. 
         >>> print(disk(r=10, dpref=1, galaxy='NGC5533'))
@@ -580,9 +566,6 @@ def gas(r,
 
     Returns:
         A float or an array of splined gas velocities (in km/s).
-
-    .. note::
-        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
 
     Example:
         >>> # Calculate the gravitational effect of a galactic gas 10 kpc away for NGC 5533. 
@@ -695,8 +678,7 @@ def h_viso(r,
         >>> print(h_viso(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
                          rc=(co.galdict('NGC5533')['rc']), 
                          rho00=(co.galdict('NGC5533')['rho0'])))
-        >>> [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02
-  1.77257621e+02  1.79229253e+02]
+        >>> [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02  1.77257621e+02  1.79229253e+02]
     """  
     
     # If r isn't array-like, make it array-like

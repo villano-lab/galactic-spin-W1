@@ -24,17 +24,7 @@ except FileExistsError:
     pass
 os.chdir('source')
 
-autodoc_mock_imports = ['lmfit']
-
-"""def configureDoxyfile(input_dir, output_dir):
-    with open('Doxyfile', 'r') as file :
-        filedata = file.read()
-
-    filedata = filedata.replace('@DOXYGEN_INPUT_DIR@', input_dir)
-    filedata = filedata.replace('@DOXYGEN_OUTPUT_DIR@', output_dir)
-
-    with open('Doxyfile', 'w') as file:
-        file.write(filedata)"""
+#autodoc_mock_imports = ['lmfit']
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
@@ -67,7 +57,9 @@ release = '2.0.2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon']
+extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon','sphinx.ext.autosummary']
+#autodoc_default_flags = ['members']
+autosummary_generate = True
 
 # Breathe Configuration
 #breathe_default_project = "galactic-spin-W1"

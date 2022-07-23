@@ -3,3 +3,5 @@ myst-parser
 sphinx_rtd_theme
 numpy
 scipy
+lmfit
+dataPython

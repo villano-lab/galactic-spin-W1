@@ -24,7 +24,7 @@ except FileExistsError:
     pass
 os.chdir('source')
 
-autodoc_mock_imports = ['matplotlib','IPython','astroquery','astropy']
+autodoc_mock_imports = ['matplotlib','IPython','astroquery','astropy','ipywidgets']
 
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'

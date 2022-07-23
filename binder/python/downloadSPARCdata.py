@@ -7,6 +7,16 @@ import requests
 import IPython
 
 def downloadsparc():
+    """
+    Downloads Rotmod_LTG.zip from the SPARC website: http://astroweb.cwru.edu/SPARC/.
+
+    Parameters:
+        None 
+
+    Returns:
+        File downloaded on local computer.
+    """
+    
     out.clear_output(True)
     url = 'http://astroweb.cwru.edu/SPARC/Rotmod_LTG.zip'         # Define url where the original zip file is located
     myfile = requests.get(url, allow_redirects=True)              # Download file
@@ -24,6 +34,16 @@ import pathlib
 import os
 
 def unzipfiles():
+    """
+    Extracts all files of the Rotmod_LTG.zip, dowloaded from the SPARC website: http://astroweb.cwru.edu/SPARC/.
+
+    Parameters:
+        None 
+
+    Returns:
+        Unzipped files on local computer in the 'data/sparc/' folder.
+    """
+    
     with zipfile.ZipFile('data/sparc/Rotmod_LTG.zip', 'r') as zip_ref:    # Define zip file location and name
         location = 'data/sparc/'                                          # Define location where to unzip files
         zip_ref.extractall(location)                                      # Extract all
@@ -48,6 +68,16 @@ buttonYES = Button(                   # YES button
 out = Output()
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below
+    """
+    'YES' button to download and unzip SPARC data.
+
+    Parameters:
+        None 
+
+    Returns:
+        None.
+    """
+    
     with out:
         out.clear_output()
         downloadsparc()

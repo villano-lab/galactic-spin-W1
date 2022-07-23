@@ -5,7 +5,37 @@ import matplotlib.animation as ani
 ###############################################
 
 def CalculatePosition(radius,velocity,time,dt):
-    """Calculates position of an object around a circle after some time with interval dt."""
+    """
+    Calculates positions of multiple objects around a circle after some time with interval dt.
+
+    Parameters:
+        radius : [array]
+            Radius of the objects from the center. Units to match velocity.
+        velocity : [array]
+            Velocity of the objects. Units to match radius and time.
+        time : [int]
+            Maximum time. Units to match velocity.
+        dt : [int]
+            Time increment. Units to match time.
+
+    Returns:
+        [ndarrays] of x-position, y-position of all objects
+        [1darray] of associated time.
+
+    Example:
+        >>> radius = np.array([1,2,3,4,5])              # in m
+        >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
+        >>> time = 100                                  # in s
+        >>> dt = 1                                      # in s
+        >>> CalculatePosition(radius,velocity,time,dt)
+        >>> (array([[ 1.        ,  2.        ,  3.        ,  4.        ,  5.        ],
+        >>>         [ 0.28366219,  0.56732437,  0.85098656,  1.13464874,  1.41831093],
+        >>>         [-0.83907153, -1.67814306, -2.51721459, -3.35628612, -4.19535765]]),
+        >>>  array([[ 0.        ,  0.        ,  0.        ,  0.        ,  0.        ],
+        >>>         [-0.95892427, -1.91784855, -2.87677282, -3.8356971 , -4.79462137],
+        >>>         [-0.54402111, -1.08804222, -1.63206333, -2.17608444, -2.72010555]]),
+        >>>  array([  0,  50, 100]))
+    """
     
     # Initial conditions
     theta = 0
@@ -38,7 +68,41 @@ def CalculatePosition(radius,velocity,time,dt):
 ###############################################
 
 def MultiplePositions(radius,velocity,time,dt):
-    """Calculate positions of multiple objects around a circle."""
+    """
+    Calculates transposed positions of multiple objects around a circle after some time with interval dt. Setup for the animation.
+
+    Parameters:
+        radius : [array]
+            Radius of the objects from the center. Units to match velocity.
+        velocity : [array]
+            Velocity of the objects. Units to match radius and time.
+        time : [int]
+            Maximum time. Units to match velocity.
+        dt : [int]
+            Time increment. Units to match time.
+
+    Returns:
+        [ndarrays] of x-position, y-position of all objects
+        [1darray] of associated time.
+
+    Example:
+        >>> radius = np.array([1,2,3,4,5])              # in m
+        >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
+        >>> time = 100                                  # in s
+        >>> dt = 1                                      # in s
+        >>> MultiplePositions(radius,velocity,time,dt)
+        >>> array([[ 1.        ,  0.28366219, -0.83907153],
+        >>>        [ 2.        ,  0.56732437, -1.67814306],
+        >>>        [ 3.        ,  0.85098656, -2.51721459],
+        >>>        [ 4.        ,  1.13464874, -3.35628612],
+        >>>        [ 5.        ,  1.41831093, -4.19535765]]),
+        >>> array([[ 0.        , -0.95892427, -0.54402111],
+        >>>        [ 0.        , -1.91784855, -1.08804222],
+        >>>        [ 0.        , -2.87677282, -1.63206333],
+        >>>        [ 0.        , -3.8356971 , -2.17608444],
+        >>>        [ 0.        , -4.79462137, -2.72010555]]),
+        >>> array([ 0, 50]))
+    """
     
     # Stop the calculation when the outermost point takes a whole revolution
     # Outermost point position
@@ -86,7 +150,33 @@ def PlotRotationCurve(radius,velocity,title,
                       xlabel='Radius (km)',ylabel='Velocity (km/s)',
                       xlim=1,
                       ylim=0.1):
-    """Plot rotation curve, given the radius and velocity."""
+    """
+    Plot rotation curve, given the radius and velocity.
+
+    Parameters:
+        radius : [array]
+            Radius of the objects from the center. Units to match velocity.
+        velocity : [array]
+            Velocity of the objects. Units to match radius and time.
+        title : [string]
+            Title of the plot.
+        xlabel : [string]
+            X-label of the plot. Default: 'Radius (km)'
+        ylabel : [string]
+            Y-label of the plot. Default: 'Velocity (km/s)'
+        xlim : [int]
+            X-limit of the plot. Default: 1
+        ylim : [int]
+            Y-limit of the plot. Default: 0.1
+
+    Returns:
+        Rotation curve plot.
+
+    Example:
+        >>> radius = np.array([1,2,3,4,5])              # in m
+        >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
+        >>> PlotRotationCurve(radius,velocity,'Rigid Body Rotation Curve')
+    """
     
     # Convert title to string
     title = str(title)
@@ -120,7 +210,41 @@ def PlotRotationCurve(radius,velocity,title,
 def MakeAnimation(radius,velocity,time,dt,filename,title,
                  xlim=1,ylim=1,
                  size=False,masses=None):
-    """Make a rotation animation."""
+    """
+    Animation of rotating objects around a circle.
+
+    Parameters:
+        radius : [array]
+            Radius of the objects from the center. Units to match velocity.
+        velocity : [array]
+            Velocity of the objects. Units to match radius and time.
+        time : [int]
+            Maximum time. Units to match velocity.
+        dt : [int]
+            Time increment. Units to match time.
+        filename : [string]
+            File name to save animation.
+        title : [string]
+            Title of the plot.
+        xlim : [int]
+            X-limit of the plot. Default: 1
+        ylim : [int]
+            Y-limit of the plot. Default: 0.1
+        size : [bool]
+            Size of dots, based on masses. If True, the sizes of dots depend on masses. Default: False
+        masses : [array]
+            Masses of objects, when needed. Default: None
+
+    Returns:
+        Rotation curve animation.
+
+    Example:
+        >>> radius = np.array([1,2,3,4,5])              # in m
+        >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
+        >>> time = 100
+        >>> dt = 1
+        >>> MakeAnimation(radius, velocity, time, dt, filename='images/solarsystem.gif', title='Planet-like Rotation')    
+    """
     
     # Extract x and y positions, and time
     xpositions = MultiplePositions(radius,velocity,time,dt)[0]

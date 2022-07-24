@@ -317,18 +317,22 @@ fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk prefactor
 
 # Do fit
 fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=1/errV)
+"""lmfit.ModelResult: An lmfit fitting result for the :func:`fit_mod <widget_SPARC.fit_mod>` Model against the :func:`data imported for the chosen galaxy <widget_SPARC.data>`.
+"""
 
 #################################
 ### Define fitting parameters ###
 #################################
 
 bestfit = fit.best_fit
+"""ndarray: Best fit results of :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+"""
 
 fit_dict = fit.best_values
-best_bpref = fit_dict['bpref']
-best_dpref = fit_dict['dpref']
-best_rc = fit_dict['rc']
-best_rho0 = fit_dict['rho0']
+"""dict: Dictionary of best parameter results from :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+
+Keys: `bpref`, `dpref`, `rc`, `rho0`.
+"""
 
 #####################
 ###### Widget #######
@@ -336,6 +340,32 @@ best_rho0 = fit_dict['rho0']
 
 # Define plotting function
 def widgetfunction(bpref,dpref,rc,rho0):
+    """
+    Generate a plot for use with interactive rotation curve plot of SPARC data with sliders for parameters.
+    Can also be used to generate a static plot of individual components and their total.
+    
+    Parameters:
+        bpref: [float]
+            Prefactor scaling the bulge component.
+        dpref: [float]
+            Prefactor scaling the disk component.
+        rcut: [float]
+            Cutoff radius of the halo.
+        rho0: [float]
+            Density parameter for the halo.
+
+    Returns:
+        None. This function displays a plot instead of returning a value or other object.
+
+    .. seealso:: For information on how the curves displayed are calculated, see: 
+        :func:`totalcurve <widget_SPARC.totalcurve>`, 
+        :func:`bulge <widget_SPARC.bulge>`,
+        :func:`disk <widget_SPARC.disk>`,
+        :func:`halo <widget_SPARC.halo>`,
+        :func:`gas <widget_SPARC.gas>`.  
+
+        See :func:`the interactive_plot function <widget_SPARC.interactive_plot>` as an example usecase of this function.
+    """
     
     # Define radius
     r = np.linspace(np.min(Rad),np.max(Rad),1000)
@@ -383,52 +413,41 @@ def widgetfunction(bpref,dpref,rc,rho0):
     plt.legend(bbox_to_anchor=(1,1), loc="upper left") 
     plt.show()
 
-###############################
-######### Appearance ##########
-###############################
-
-style = {'description_width': 'initial'}
-layout = {'width':'600px'}
-
-################################
-######## Define Sliders ########
-################################
-
-
-bpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_bpref, 
-                    description='Bulge Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style=style, layout=layout,disabled=not bool(np.sum(Vbul)))
-
-dpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=best_dpref, 
-                    description='Disk Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style=style, layout=layout,disabled=not bool(np.sum(Vdisk)))
-
-rc = FloatSlider(min=0, max=20, step=0.1, 
-                 value=best_rc, 
-                 description='Halo Core Radius [$kpc$]', 
-                 readout_format='.2f', 
-                 orientation='horizontal', 
-                 style=style, layout=layout)
-
-rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
-                    value=best_rho0, 
-                    description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
-                    readout_format='.2e', 
-                    orientation='horizontal', 
-                    style=style, layout=layout)
-
-
 ################################
 ######### Interactive ##########
 ################################
 
 def interactive_plot(widgetfunction):
+    bpref = FloatSlider(min=0, max=5, step=0.1, 
+                    value=fit_dict['bpref'], 
+                    description='Bulge Prefactor', 
+                    readout_format='.2f', 
+                    orientation='horizontal', 
+                    style={'description_width': 'initial'}, 
+                    layout={'width':'600px'},disabled=not bool(np.sum(Vbul)))
+
+    dpref = FloatSlider(min=0, max=5, step=0.1, 
+                    value=fit_dict['dpref'], 
+                    description='Disk Prefactor', 
+                    readout_format='.2f', 
+                    orientation='horizontal', 
+                    style={'description_width': 'initial'}, 
+                    layout={'width':'600px'},disabled=not bool(np.sum(Vdisk)))
+
+    rc = FloatSlider(min=0, max=20, step=0.1, 
+                 value=fit_dict['rc'], 
+                 description='Halo Core Radius [$kpc$]', 
+                 readout_format='.2f', 
+                 orientation='horizontal', 
+                 style={'description_width': 'initial'}, layout={'width':'600px'})
+
+    rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
+                    value=fit_dict['rho0'], 
+                    description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
+                    readout_format='.2e', 
+                    orientation='horizontal', 
+                    style={'description_width': 'initial'}, layout={'width':'600px'})
+
     interact = interactive(widgetfunction,  bpref = bpref, 
                                dpref = dpref, 
                                rc = rc,
@@ -447,10 +466,10 @@ button = Button(
 out = Output()
 
 def on_button_clicked(_):
-    bpref.value = best_bpref
-    dpref.value = best_dpref
-    rc.value = best_rc
-    rho0.value = best_rho0
+    bpref.value = fit_dict['bpref']
+    dpref.value = fit_dict['dpref']
+    rc.value = fit_dict['rc']
+    rho0.value = fit_dict['rho0']
 
 button.on_click(on_button_clicked)
 

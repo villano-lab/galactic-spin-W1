@@ -67,8 +67,9 @@ def galdict(galaxy):
 # Defaults based on NGC5533
 
 #---------Definitely Constant---------
-## @brief Gravitational constant (4.30091e-6 kpc/solar mass * (km/s)^2)
 G = 4.30091e-6                    # Gravitational constant (kpc/solar mass*(km/s)^2) 
+"""double: Gravitational constant in kpc/(solar mass * (km/s)^2)
+"""
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008

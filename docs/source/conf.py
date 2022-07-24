@@ -58,20 +58,22 @@ release = '2.0.2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon','sphinx.ext.autosummary']
+extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon','sphinx.ext.autosummary','autoapi.extension']
 #autodoc_default_flags = ['members']
 autosummary_generate = True
+autoapi_dirs = ['../../binder/python']
 
 # Breathe Configuration
 #breathe_default_project = "galactic-spin-W1"
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['build','templates']
+autoapi_ignore = ['*.cpython-??.pyc','*-checkpoint.py*']
 
 
 # -- Options for HTML output -------------------------------------------------

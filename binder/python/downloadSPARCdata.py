@@ -105,7 +105,9 @@ options = []
 for f in filelist:
     galaxy = f.replace("_rotmod.dat","")                     # Remove "_rotmod.dat" from filename
     options.append(galaxy)
-options = np.array(options)
+#options = np.array(options)
+"""array: placeholder description.
+"""
 
 # Create a dropdown menu of all galaxies
 form_item_layout = Layout(

@@ -61,8 +61,7 @@ else:
     warning_gas = ""
 
 # Define distance to galaxy in Mpc
-firstline = open(SPARC_file_path).readline()
-firstline = firstline.split()
+firstline = open(SPARC_file_path).readline().split()
 distance = float(firstline[3])
 
 ##############################
@@ -186,8 +185,8 @@ def gas(r):
 
 # Halo 
 ## Set parameters
-rho0 = 3.10e8       # Central mass density (in solar mass/kpc^3)
-rc = 1.4            # Core radius (in kpc)
+#rho0 = 3.10e8       # Central mass density (in solar mass/kpc^3)
+#rc = 1.4            # Core radius (in kpc)
 G = 4.300e-6        # Gravitational constant (kpc/solar mass*(km/s)^2)
 
 ## Equation for Dark Matter halo velocity
@@ -268,8 +267,8 @@ fit_params = fit_mod.make_params()
 weighdata = 1/errV
 
 # Halo
-fit_params.add('rc',    value=rc,    min=0.1)           # Cutoff radius (kpc)
-fit_params.add('rho0',  value=rho0,  min=0)             # Central halo mass density (Solar mass/kpc^3)
+fit_params.add('rc',    value=1.4,    min=0.1)           # Cutoff radius (kpc)
+fit_params.add('rho0',  value=3.10e8,  min=0)             # Central halo mass density (Solar mass/kpc^3)
 # Bulge
 fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge prefactor
 # Disk
@@ -354,38 +353,20 @@ layout = {'width':'600px'}
 ######## Define Sliders ########
 ################################
 
-if nobulge == False:  
-    bpref = FloatSlider(min=0, max=5, step=0.1, 
-                        value=best_bpref, 
-                        description='Bulge Prefactor', 
-                        readout_format='.2f', 
-                        orientation='horizontal', 
-                        style=style, layout=layout)
-if nobulge == True:
-    bpref = FloatSlider(min=0, max=5, step=0.1, 
-                        value=best_bpref, 
-                        description='Bulge Prefactor', 
-                        readout_format='.2f', 
-                        orientation='horizontal', 
-                        style=style, layout=layout, 
-                        disabled=True)
 
-if nodisk == False:
-    dpref = FloatSlider(min=0, max=5, step=0.1, 
-                        value=best_dpref, 
-                        description='Disk Prefactor', 
-                        readout_format='.2f', 
-                        orientation='horizontal', 
-                        style=style, layout=layout)
+bpref = FloatSlider(min=0, max=5, step=0.1, 
+                    value=best_bpref, 
+                    description='Bulge Prefactor', 
+                    readout_format='.2f', 
+                    orientation='horizontal', 
+                    style=style, layout=layout,disabled=nobulge)
 
-if nodisk == True:
-    dpref = FloatSlider(min=0, max=5, step=0.1, 
-                        value=best_dpref, 
-                        description='Disk Prefactor', 
-                        readout_format='.2f', 
-                        orientation='horizontal', 
-                        style=style, layout=layout, 
-                        disabled=True)    
+dpref = FloatSlider(min=0, max=5, step=0.1, 
+                    value=best_dpref, 
+                    description='Disk Prefactor', 
+                    readout_format='.2f', 
+                    orientation='horizontal', 
+                    style=style, layout=layout,disabled=nodisk)
 
 rc = FloatSlider(min=0, max=20, step=0.1, 
                  value=best_rc, 
@@ -393,7 +374,6 @@ rc = FloatSlider(min=0, max=20, step=0.1,
                  readout_format='.2f', 
                  orientation='horizontal', 
                  style=style, layout=layout)
-#rc = fixed(best_rc)
 
 rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
                     value=best_rho0, 

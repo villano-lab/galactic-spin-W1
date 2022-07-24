@@ -62,6 +62,7 @@ extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.
 #autodoc_default_flags = ['members']
 autosummary_generate = True
 autoapi_dirs = ['../../binder/python']
+autoapi_template_dir = 'autoapi_templates'
 
 # Breathe Configuration
 #breathe_default_project = "galactic-spin-W1"
@@ -72,7 +73,7 @@ templates_path = ['templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['build','templates']
+exclude_patterns = ['build','templates','autoapi_templates']
 autoapi_ignore = ['*.cpython-??.pyc','*-checkpoint.py*']
 
 

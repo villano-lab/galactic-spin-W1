@@ -1,3 +1,7 @@
+"""
+A module for handling the SPARC widget.
+"""
+
 ################################
 ########### Imports ############
 ################################
@@ -15,6 +19,10 @@ from IPython.display import display
 import warnings
 warnings.filterwarnings("ignore")         # ignore warnings
 
+import sys
+sys.path.append('python')
+import components as comp
+
 ################################
 ############ Data ##############
 ################################
@@ -23,46 +31,66 @@ warnings.filterwarnings("ignore")         # ignore warnings
 
 # Read the file where the chosen galaxy name is located (this was modified by the user)
 textfile = open('python/chosengalaxy.txt', 'r')
+"""file: A local text file, opened in read-only mode, indicating a chosen galaxy.
+
+The purpose of this file is to:  
+1. Allow this chosen galaxy variable to be passed flexibly between programs.
+2. Allow this chosen galaxy to be retained between sessions.
+
+.. seealso:: The data in this text file is stored in the :func:`galaxy <widget_SPARC.galaxy>` variable.
+"""
 galaxy = textfile.read()
+"""string: The name of the chosen galaxy.
+
+.. seealso:: This string is retrieved from :func:`textfile <widget_SPARC.textfile>`.
+"""
 textfile.close()
 
 # Define SPARC directory
-SPARC_file_directory='./data/sparc/'                       #note that '' means the string variable is blank
+#SPARC_file_directory='./data/sparc/'                       #note that '' means the string variable is blank
+"""string: The directory containing SPARC files.
+"""
 
 # Define file path for .dat files
-SPARC_file_path = SPARC_file_directory + galaxy + '_rotmod.dat'
+SPARC_file_path = './data/sparc/' + galaxy + '_rotmod.dat'
+"""string: The filename (including relative path) containing data for the :func:`chosen galaxy <galaxy>`.
+"""
 
 # Load the galaxy data
 data = np.loadtxt(SPARC_file_path)
+"""ndarray: A numpy array of data loaded from the :func:`SPARC file path <SPARC_file_path>`.
+"""
 
 # Split columns into arrays
 Rad,Vobs,errV,Vgas,Vdisk,Vbul,SBdisk,SBbul = data.T
 
 # Check if it has all components
 if np.sum(Vbul) == 0:     # Bulge
-    nobulge = True
     warning_bulge = "There is no bulge component."
+    """string: If the bulge component is missing, a message indicating that it is. Otherwise, an empty string.
+    """
 else: 
-    nobulge = False
     warning_bulge = ""
 
 if np.sum(Vdisk) == 0:    # Disk
-    nodisk = True
     warning_disk = "There is no disk component."
+    """string: If the disk component is missing, a message indicating that it is. Otherwise, an empty string.
+    """
 else: 
-    nodisk = False
     warning_disk = ""
 
 if np.sum(Vgas) == 0:     # Gas
-    nogas = True
     warning_gas = "There is no gas component."
+    """string: If the gas component is missing, a message indicating that it is. Otherwise, an empty string.
+    """
 else: 
-    nogas = False
     warning_gas = ""
 
 # Define distance to galaxy in Mpc
-firstline = open(SPARC_file_path).readline().split()
-distance = float(firstline[3])
+with open(SPARC_file_path) as file:
+    distance = float(file.readline().split()[3])
+    """float: Distance to galaxy, in Mpc.
+    """
 
 ##############################
 ### Interpolation function ###
@@ -183,11 +211,7 @@ def gas(r):
     polynomial = interpd(Rad,Vgas)   
     return polynomial(r)
 
-# Halo 
-## Set parameters
-#rho0 = 3.10e8       # Central mass density (in solar mass/kpc^3)
-#rc = 1.4            # Core radius (in kpc)
-G = 4.300e-6        # Gravitational constant (kpc/solar mass*(km/s)^2)
+# Halo
 
 ## Equation for Dark Matter halo velocity
 def halo(r,
@@ -213,7 +237,7 @@ def halo(r,
         >>> [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
     """ 
     
-    return np.sqrt(4*np.pi*G*rho0*(rc**2)*(1-((rc/r)*np.arctan(r/rc))))
+    return np.sqrt(4*np.pi*comp.G*rho0*(rc**2)*(1-((rc/r)*np.arctan(r/rc))))
 
 # Total velocity
 def totalcurve(r,
@@ -263,8 +287,25 @@ def totalcurve(r,
 
 # Setup
 fit_mod = lm.Model(totalcurve)
+"""lmfit.Model: An lmfit Model object for the :func:`totalcurve <widget_SPARC.totalcurve>` function.
+"""
 fit_params = fit_mod.make_params()
-weighdata = 1/errV
+"""lmfit.Parameters: An lmfit Parameters object for the :func:`fit_mod <widget_SPARC.fit_mod>` Model.
+
++----------+----------------+---------+---------+
+| Parameter| Starting Value | Minimum | Maximum |
++==========+================+=========+=========+
+| rc       | 1.4            | 0.1     | (None)  |
++----------+----------------+---------+---------+
+| rho0     | 3.10e8         | 0       | (None)  |
++----------+----------------+---------+---------+
+| bpref    | 1              | 0.5     | 100     |
++----------+----------------+---------+---------+
+| dpref    | 1              | 0.5     | 100     |
++----------+----------------+---------+---------+
+
+"""
+#weighdata = 1/errV
 
 # Halo
 fit_params.add('rc',    value=1.4,    min=0.1)           # Cutoff radius (kpc)
@@ -275,7 +316,7 @@ fit_params.add('bpref', value=1,     min=0.5, max=100)  # Bulge prefactor
 fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk prefactor
 
 # Do fit
-fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=weighdata)
+fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=1/errV)
 
 #################################
 ### Define fitting parameters ###
@@ -359,14 +400,14 @@ bpref = FloatSlider(min=0, max=5, step=0.1,
                     description='Bulge Prefactor', 
                     readout_format='.2f', 
                     orientation='horizontal', 
-                    style=style, layout=layout,disabled=nobulge)
+                    style=style, layout=layout,disabled=not bool(np.sum(Vbul)))
 
 dpref = FloatSlider(min=0, max=5, step=0.1, 
                     value=best_dpref, 
                     description='Disk Prefactor', 
                     readout_format='.2f', 
                     orientation='horizontal', 
-                    style=style, layout=layout,disabled=nodisk)
+                    style=style, layout=layout,disabled=not bool(np.sum(Vdisk)))
 
 rc = FloatSlider(min=0, max=20, step=0.1, 
                  value=best_rc, 

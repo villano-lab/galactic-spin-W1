@@ -58,7 +58,7 @@ release = '2.0.2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.napoleon','sphinx.ext.autosummary','autoapi.extension']
+extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.autosummary','autoapi.extension']
 #autodoc_default_flags = ['members']
 autosummary_generate = True
 autoapi_dirs = ['../../binder/python']

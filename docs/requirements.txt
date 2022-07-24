@@ -5,4 +5,4 @@ numpy
 scipy
 lmfit
 dataPython
-autoapi
+sphinx-autoapi

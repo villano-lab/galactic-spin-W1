@@ -1,3 +1,7 @@
+"""A collection of dictionaries containing data for various galaxies.
+
+This module exists to support other modules by organizing data in a quasi-standardized manner.
+"""
 #Data to fit to for each galaxy to be used in workshop
 
 ###############################

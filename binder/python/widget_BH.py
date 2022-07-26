@@ -1,3 +1,6 @@
+"""A library for handling the black hole widgets found in `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_.
+"""
+
 #########################
 ### Black Hole Widget ###
 #########################
@@ -112,10 +115,10 @@ def defaultnumber(galaxy):
 
 #For cutoff radius:
 minrcutBH = 0.1
-"""[float]: The minimum cutoff radius for black holes.
+"""[float]: The minimum cutoff radius for black holes, in kpc.
 """
 def maxrcutBH(galaxy):
-    """A function that returns the maximum cutoff radius for black holes appropriate for the supplied galaxy.
+    """A function that returns the maximum cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
@@ -131,7 +134,7 @@ def maxrcutBH(galaxy):
     elif str(galaxy) == "7814" or str(galaxy).upper().replace(" ","") == 'NGC7814':
         return 4.0
 def defaultrcutBH(galaxy):
-    """A function that returns the default cutoff radius for black holes appropriate for the supplied galaxy.
+    """A function that returns the default cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
@@ -165,7 +168,24 @@ layout = {'width':'800px'}
 
 ### NGC 5533 ###
 def f5533(arraysize,massMiniBH,rcut):
+    """
+    Generate a plot of the NGC5533 data and components alongside an image of a galaxy with dots representing black holes.
+
+    This function is intended for use as part of a widget.
+
+    Parameters:
+        arraysize: [int]
+            Size intended for the radius and angle arrays.
+        massMiniBH: [int]
+            Mass of the tiny black holes, in solar masses.
+        rcut: [float]
+            Cutoff radius for black hole placement, in kpc.
     
+    Returns: 
+        None. Generates a plot of NGC5533 data/components alongside a galaxy image.
+
+    .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F10_Bonus_Black_Holes_as_DM.ipynb>`_.
+    """
     _,fit_dict = comp.bestfit(comp.totalvelocity_miniBH,'NGC5533')
     
     bpref = fit_dict['bpref']
@@ -255,7 +275,24 @@ def f5533(arraysize,massMiniBH,rcut):
         
 ### NGC 7814 ###
 def f7814(arraysize,massMiniBH,rcut):
+    """
+    Generate a plot of the NGC7814 data and components alongside an image of a galaxy with dots representing black holes.
+
+    This function is intended for use as part of a widget.
+
+    Parameters:
+        arraysize: [int]
+            Size intended for the radius and angle arrays.
+        massMiniBH: [int]
+            Mass of the tiny black holes, in solar masses.
+        rcut: [float]
+            Cutoff radius for black hole placement, in kpc.
     
+    Returns: 
+        None. Generates a plot of NGC7814 data/components alongside a galaxy image.
+
+    .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F10_Bonus_Black_Holes_as_DM.ipynb>`__.
+    """
     _,fit_dict = comp.bestfit(comp.totalvelocity_miniBH,'NGC7814')
     
     bpref = fit_dict['bpref']
@@ -353,6 +390,8 @@ arraysize_5533 = FloatSlider(min=minnumberBH(5533), max=maxnumberBH(5533), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the array size of radius and angle arrays for NGC5533.
+"""
 
 # Mass of each black hole
 massMiniBH_5533 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH, 
@@ -362,6 +401,8 @@ massMiniBH_5533 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the black hole mass for NGC5533.
+"""
 
 # Cutoff radius
 rcut_5533 = FloatSlider(min=minrcutBH, max=maxrcutBH(5533), step=minrcutBH, 
@@ -371,6 +412,8 @@ rcut_5533 = FloatSlider(min=minrcutBH, max=maxrcutBH(5533), step=minrcutBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius for black hole placement for NGC5533.
+"""
 
 ### NGC 7814 ###
 # Number of projected black dots slider
@@ -381,6 +424,8 @@ arraysize_7814 = FloatSlider(min=minnumberBH(7814), max=maxnumberBH(7814), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the array size of radius and angle arrays for NGC7814.
+"""
 
 # Mass of each black hole
 massMiniBH_7814 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH, 
@@ -390,6 +435,8 @@ massMiniBH_7814 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the black hole mass for NGC7814.
+"""
 
 # Cutoff radius
 rcut_7814 = FloatSlider(min=minrcutBH, max=maxrcutBH(7814), step=minrcutBH, 
@@ -399,16 +446,43 @@ rcut_7814 = FloatSlider(min=minrcutBH, max=maxrcutBH(7814), step=minrcutBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius for black hole placement for NGC7814.
+"""
 
+def interactive_plot_5533(widgetfunction):
+    """
+    Generate an interactive plot widget, allowing the user to interact with the NGC5533 data and the galaxy's components.
 
-def interactive_plot_5533(f5533):
-    interact = interactive(f5533, arraysize=arraysize_5533, 
+    Parameters:
+        widgetfunction: [function]
+            A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`f5533 <widget_BH.f5533>`.
+
+    Returns: 
+        [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
+
+    .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
+
+    """
+    interact = interactive(widgetfunction, arraysize=arraysize_5533, 
                            scale=scale, massMiniBH=massMiniBH_5533, 
                            rcut=rcut_5533, continuous_update=False)
     return interact
 
-def interactive_plot_7814(f7814):
-    interact = interactive(f7814, arraysize=arraysize_7814, 
+def interactive_plot_7814(widgetfunction):
+    """
+    Generate an interactive plot widget, allowing the user to interact with the NGC5533 data and the galaxy's components.
+
+    Parameters:
+        widgetfunction: [function]
+            A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`f7814 <widget_BH.f7814>`.
+
+    Returns: 
+        [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
+
+    .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
+
+    """
+    interact = interactive(widgetfunction, arraysize=arraysize_7814, 
                            scale=scale, massMiniBH=massMiniBH_7814, 
                            rcut=rcut_7814, continuous_update=False)
     return interact
@@ -423,9 +497,26 @@ button_5533 = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
+"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings for NGC5533 to the best fit.
+"""
 out_5533 = Output()
+"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output NGC7814.
+"""
 
 def on_button_clicked_5533(_):
+    """
+    A function to reset values when the 'Best Fit' button for NGC5533 is clicked. 
+    
+    Parameters: None.
+
+    Returns:
+        None. Resets values on button click. 
+
+    Example:
+        >>> button_5533.on_click(on_button_clicked_5533)
+
+        This renders the button click behavior seen in `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
+    """
     arraysize_5533.value = defaultnumber(5533)
     massMiniBH_5533.value = defaultmass
     rcut_5533.value = defaultrcutBH(5533)
@@ -437,9 +528,26 @@ button_7814 = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
+"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings for NGC7814 to the best fit.
+"""
 out_7814 = Output()
+"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output for NGC7814.
+"""
 
 def on_button_clicked_7814(_):
+    """
+    A function to reset values when the 'Best Fit' button for NGC7814 is clicked. 
+    
+    Parameters: None.
+
+    Returns:
+        None. Resets values on button click. 
+
+    Example:
+        >>> button_7814.on_click(on_button_clicked_7814)
+
+        This renders the button click behavior seen in `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
+    """
     arraysize_7814.value = defaultnumber(7814)
     massMiniBH_7814.value = 0.5
     rcut_7814.value = defaultrcutBH(7814)

@@ -394,6 +394,44 @@ def widgetfunction(bpref,dpref,rc,rho0):
 ######### Interactive ##########
 ################################
 
+bpref = FloatSlider(min=0, max=5, step=0.1, 
+                    value=fit_dict['bpref'], 
+                    description='Bulge Prefactor', 
+                    readout_format='.2f', 
+                    orientation='horizontal', 
+                    style={'description_width': 'initial'}, 
+                    layout={'width':'600px'},disabled=not bool(np.sum(Vbul)))
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the bulge prefactor.
+"""
+
+dpref = FloatSlider(min=0, max=5, step=0.1, 
+                value=fit_dict['dpref'], 
+                description='Disk Prefactor', 
+                readout_format='.2f', 
+                orientation='horizontal', 
+                style={'description_width': 'initial'}, 
+                layout={'width':'600px'},disabled=not bool(np.sum(Vdisk)))
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the disk prefactor.
+"""
+
+rc = FloatSlider(min=0, max=20, step=0.1, 
+                value=fit_dict['rc'], 
+                description='Halo Core Radius [$kpc$]', 
+                readout_format='.2f', 
+                orientation='horizontal', 
+                style={'description_width': 'initial'}, layout={'width':'600px'})
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius.
+"""
+
+rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
+                value=fit_dict['rho0'], 
+                description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
+                readout_format='.2e', 
+                orientation='horizontal', 
+                style={'description_width': 'initial'}, layout={'width':'600px'})
+"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the halo density variable rho0.
+"""
+
 def interactive_plot(widgetfunction):
     """
     Generate an interactive plot widget, allowing the user to interact with the SPARC data and the galaxy's components.
@@ -408,36 +446,6 @@ def interactive_plot(widgetfunction):
     .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.
 
     """
-
-    bpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=fit_dict['bpref'], 
-                    description='Bulge Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style={'description_width': 'initial'}, 
-                    layout={'width':'600px'},disabled=not bool(np.sum(Vbul)))
-
-    dpref = FloatSlider(min=0, max=5, step=0.1, 
-                    value=fit_dict['dpref'], 
-                    description='Disk Prefactor', 
-                    readout_format='.2f', 
-                    orientation='horizontal', 
-                    style={'description_width': 'initial'}, 
-                    layout={'width':'600px'},disabled=not bool(np.sum(Vdisk)))
-
-    rc = FloatSlider(min=0, max=20, step=0.1, 
-                 value=fit_dict['rc'], 
-                 description='Halo Core Radius [$kpc$]', 
-                 readout_format='.2f', 
-                 orientation='horizontal', 
-                 style={'description_width': 'initial'}, layout={'width':'600px'})
-
-    rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
-                    value=fit_dict['rho0'], 
-                    description='Halo Central Mass Density [$M_{\odot} / kpc^3$]', 
-                    readout_format='.2e', 
-                    orientation='horizontal', 
-                    style={'description_width': 'initial'}, layout={'width':'600px'})
 
     interact = interactive(widgetfunction,  bpref = bpref, 
                                dpref = dpref, 
@@ -472,7 +480,7 @@ def on_button_clicked(_):
     Example:
         >>> button.on_click(on_button_clicked)
 
-        *This renders the button click behavior seen in `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.*
+        This renders the button click behavior seen in `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
     """
     bpref.value = fit_dict['bpref']
     dpref.value = fit_dict['dpref']
@@ -502,7 +510,7 @@ def GalaxyImage(position=galaxy,survey=['DSS']):
     Returns:
         None. Displays an image of the galaxy.
 
-    .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.
+    .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
     """
     # DSS images of the target
     hdu = SkyView.get_images(galaxy, survey=survey)[0][0]

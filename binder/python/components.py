@@ -886,7 +886,10 @@ def set_params(model,
             The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
 
     Returns:
-        A library of fitting parameters.
+        [lmfit.Parameter] An lmfit Parameters object parameters to be supplied to a fit.
+
+    Example:
+        >>> 
     """ 
     
     # Set function model for fitting

@@ -19,7 +19,7 @@ def CalculatePosition(radius,velocity,time,dt):
             Time increment. Units to match time.
 
     Returns:
-        [ndarrays] of x-position, y-position of all objects
+        Two [ndarray]s of x-position, y-position of all objects
         [1darray] of associated time.
 
     Example:
@@ -82,7 +82,7 @@ def MultiplePositions(radius,velocity,time,dt):
             Time increment. Units to match time.
 
     Returns:
-        [ndarrays] of x-position, y-position of all objects
+        Two [ndarray]s of x-position, y-position of all objects
         [1darray] of associated time.
 
     Example:
@@ -170,7 +170,7 @@ def PlotRotationCurve(radius,velocity,title,
             Y-limit of the plot. Default: 0.1
 
     Returns:
-        Rotation curve plot.
+        None; generates a rotation curve plot.
 
     Example:
         >>> radius = np.array([1,2,3,4,5])              # in m
@@ -236,7 +236,7 @@ def MakeAnimation(radius,velocity,time,dt,filename,title,
             Masses of objects, when needed. Default: None
 
     Returns:
-        Rotation curve animation.
+        None; generates rotation curve animation.
 
     Example:
         >>> radius = np.array([1,2,3,4,5])              # in m

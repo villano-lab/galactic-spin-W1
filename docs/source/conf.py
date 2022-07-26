@@ -60,6 +60,7 @@ extensions = ['sphinx_rtd_theme','myst_parser','sphinx.ext.autodoc','sphinx.ext.
 autosummary_generate = True
 autoapi_dirs = ['../../binder/python']
 autoapi_template_dir = 'autoapi_templates'
+autoapi_keep_files = True #helps debugging
 
 # Breathe Configuration
 #breathe_default_project = "galactic-spin-W1"

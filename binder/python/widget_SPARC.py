@@ -1,5 +1,5 @@
 """
-A module for handling the SPARC widget.
+A module for handling the SPARC widget, notebook `09_Widget_SPARC_Galaxies.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/09_Widget_SPARC_Galaxies.ipynb>`_.
 """
 
 ################################
@@ -92,39 +92,6 @@ with open(SPARC_file_path) as file:
     """float: Distance to galaxy, in Mpc.
     """
 
-##############################
-### Interpolation function ###
-##############################
-
-def interpd(x,y):
-    """
-    Interpolation function with degree of the smoothing spline of 3, using scipy.interpolate.InterpolatedUnivariateSpline.
-
-    Parameters:
-        x : [array]
-            An array of x-values. 
-        y : [array]
-            An array of y-values. 
-
-    Returns:
-        Polynomial that can be called as a function.
-
-    .. note::
-        The number of data points must be larger than the spline degree k.
-
-    Example:
-        >>> # Define x and y values and interpolate 
-        >>> x = np.linspace(-5, 5, 50)
-        >>> y = 0.2*np.exp(-x**2)
-        >>> spline = interpd(x, y)
-        >>> plt.plot(x, y, 'ro')
-        >>> x_resampled = np.linspace(-5, 5, 1000)
-        >>> plt.plot(x_resampled, spline(x_resampled))
-        >>> plt.show()
-    """
-    
-    return InterpolatedUnivariateSpline(x,y,k=3)
-
 ################################
 ######### Components ###########
 ################################
@@ -141,10 +108,11 @@ def bulge(r,bpref):
             Bulge prefactor or scaling factor (unitless). 
 
     Returns:
-        Splined bulge velocity as a function of sampling radii.
+        Splined bulge velocity as a [function] of sampling radii.
 
     Example:
         >>> # Define measured radius and velocity and interpolate them
+        >>> import numpy as np
         >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
         >>> Vbul = np.array([100, 200, 280, 200, 130, 120, 110, 100])
         >>> r = np.linspace(0, 20, 50)
@@ -152,9 +120,12 @@ def bulge(r,bpref):
         >>> plt.plot(Rad, Vbul, 'ro')
         >>> plt.plot(r, bulgespline)
         >>> plt.show()
+
+        .. image:: ../../images/bulgeExample.png
+            :alt: A plot of the supplied bulge velocities, with radii as the x-points and velocities as the y-points, and a blue line representing a rough interpolation of them with scaling factor 1.
     """
     
-    polynomial = interpd(Rad,bpref*Vbul)   
+    polynomial = InterpolatedUnivariateSpline(Rad,bpref*Vbul,k=3)
     return polynomial(r)
 
 # Disk
@@ -169,20 +140,23 @@ def disk(r,dpref):
             Disk prefactor or scaling factor (unitless). 
 
     Returns:
-        Splined disk velocity as a function of sampling radii.
+        Splined disk velocity as a [function] of sampling radii.
 
     Example:
         >>> # Define measured radius and velocity and interpolate them
-        >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
-        >>> Vdisk = np.array([100, 200, 280, 200, 130, 120, 110, 100])
+        >>> #Rad = #Plotting Rad and Vdisk as imported from this library
+        >>> #Vdisk = #^
         >>> r = np.linspace(0, 20, 50)
         >>> diskspline = disk(r, dpref=1)
         >>> plt.plot(Rad, Vdisk, 'ro')
         >>> plt.plot(r, diskspline)
         >>> plt.show()
+
+        .. image:: ../../images/diskExample.png
+            :alt: A plot of the library's default disk velocities, with radii as the x-points and velocities as the y-points, and a blue line representing a somewhat rough interpolation of them with scaling factor 1.
     """
     
-    polynomial = interpd(Rad,dpref*Vdisk)   
+    polynomial = InterpolatedUnivariateSpline(Rad,dpref*Vdisk,k=3)   
     return polynomial(r)
 
 # Gas 
@@ -195,20 +169,23 @@ def gas(r):
             Sampling radius values or distance from the center of the galaxy (in kpc).
 
     Returns:
-        Splined gas velocity as a function of sampling radii.
+        Splined gas velocity as a [function] of sampling radii.
 
     Example:
         >>> # Define measured radius and velocity and interpolate them
-        >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
-        >>> Vgas = np.array([100, 200, 280, 200, 130, 120, 110, 100])
+        >>> #Rad = # We plot the radius and velocities as imported from this library.
+        >>> #Vgas = #^
         >>> r = np.linspace(0, 20, 50)
         >>> gasspline = gas(r)
         >>> plt.plot(Rad, Vgas, 'ro')
         >>> plt.plot(r, gasspline)
         >>> plt.show()
+
+        .. image:: ../../images/gasExample.png
+            :alt: A plot of the library's default disk velocities, with radii as the x-points and velocities as the y-points, and a blue line representing a somewhat rough interpolation of them with scaling factor 1.
     """
     
-    polynomial = interpd(Rad,Vgas)   
+    polynomial = InterpolatedUnivariateSpline(Rad,Vgas,k=3)   
     return polynomial(r)
 
 # Halo
@@ -229,12 +206,12 @@ def halo(r,
             Central mass density (in solar mass/kpc^3). Default: `0.31e9`
 
     Returns:
-        A float or an array of halo velocities (in km/s).
+        A [float] or an [array] of halo velocities (in km/s).
 
     Example:
         >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
         >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), rc=1.4, rho0=0.31e9)))
-        >>> [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
+        [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
     """ 
     
     return np.sqrt(4*np.pi*comp.G*rho0*(rc**2)*(1-((rc/r)*np.arctan(r/rc))))
@@ -262,7 +239,7 @@ def totalcurve(r,
             Central mass density (in solar mass/kpc^3).
 
     Returns:
-        A float or an array of total velocities (in km/s).
+        A [float] or an [array] of total velocities (in km/s).
 
     .. note::
         If the galaxy contains a supermassive black hole at the center, it is incorporated in the bulge velocity.
@@ -270,7 +247,7 @@ def totalcurve(r,
     Example:
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
         >>> print(totalcurve(r=np.array([10,15,20,25,30,35,40,45,50,100]), bpref=1, dpref=1, rc=1.4, rho0=0.31e9)))
-        >>> [3.34371479e+02 3.22215072e+02 7.25902496e+02 2.16917607e+03 5.21519130e+03 1.04268198e+04 1.83732304e+04 2.96250118e+04 4.47531137e+04 5.34875631e+05]
+        [3.34371479e+02 3.22215072e+02 7.25902496e+02 2.16917607e+03 5.21519130e+03 1.04268198e+04 1.83732304e+04 2.96250118e+04 4.47531137e+04 5.34875631e+05]
     """
     
     # Total velocity with components added in quadrature
@@ -418,6 +395,20 @@ def widgetfunction(bpref,dpref,rc,rho0):
 ################################
 
 def interactive_plot(widgetfunction):
+    """
+    Generate an interactive plot widget, allowing the user to interact with the SPARC data and the galaxy's components.
+
+    Parameters:
+        widgetfunction: [function]
+            A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`widgetfunction <widget_SPARC.widgetfunction>`.
+
+    Returns: 
+        [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
+
+    .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.
+
+    """
+
     bpref = FloatSlider(min=0, max=5, step=0.1, 
                     value=fit_dict['bpref'], 
                     description='Bulge Prefactor', 
@@ -463,9 +454,26 @@ button = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
+"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings to the best fit.
+"""
 out = Output()
+"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output.
+"""
 
 def on_button_clicked(_):
+    """
+    A function to reset values when the 'Best Fit' button is clicked. 
+    
+    Parameters: None.
+
+    Returns:
+        None. Resets values on button click. 
+
+    Example:
+        >>> button.on_click(on_button_clicked)
+
+        *This renders the button click behavior seen in `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.*
+    """
     bpref.value = fit_dict['bpref']
     dpref.value = fit_dict['dpref']
     rc.value = fit_dict['rc']
@@ -482,7 +490,20 @@ from astroquery.skyview import SkyView
 from astropy.wcs import WCS
 
 def GalaxyImage(position=galaxy,survey=['DSS']):
-    
+    """
+    Fetch and display an image of the selected galaxy.
+
+    Parameters:
+        Position: [string]
+            The name of the galaxy whose image is to be fetched.
+        Survey: [list]
+            The name(s) of surveys, as strings, containing the galaxy whose image is to be fetched.
+
+    Returns:
+        None. Displays an image of the galaxy.
+
+    .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.
+    """
     # DSS images of the target
     hdu = SkyView.get_images(galaxy, survey=survey)[0][0]
     gfilter = hdu.data

@@ -894,9 +894,8 @@ def totalvelocity_miniBH(r,
 
     Example:
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
-        >>> # 
         >>> print(totalvelocity_miniBH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        >>> [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
+        [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
     """ 
     
     return np.sqrt(blackhole(r,Mbh)**2                                   # Black hole velocity
@@ -947,7 +946,7 @@ def totalvelocity_halo(r,
     Example:
         >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
         >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=0, arraysize=0, rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        >>> [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
+        [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
     """
     
     return np.sqrt(blackhole(r,Mbh)**2                # Black hole velocity
@@ -975,15 +974,15 @@ def set_params(model,
         [lmfit.Parameter] An lmfit Parameters object parameters to be supplied to a fit.
     
     Example:
-        >>> model = lambda rtotalvelocity_halo(r)
+        >>> model = lambda r: totalvelocity_halo(r)
         >>> set_params(model,galaxy='NGC5005')
-        >>> name 	value 	initial value 	min 	max 	vary
-            scale 	16930000.0 	16930000.0 	-inf 	inf 	False
-            rcut 	9.91700000 	9.917 	0.10000000 	inf 	True
-            bpref 	1.00000000 	1 	0.00000000 	100.000000 	True
-            dpref 	1.00000000 	1 	0.00000000 	100.000000 	True
-            gpref 	1.00000000 	1 	-inf 	inf 	False
-            Mbh 	0.00000000 	0 	-inf 	inf 	False 
+        name 	value 	initial value 	min 	max 	vary
+        scale 	16930000.0 	16930000.0 	-inf 	inf 	False
+        rcut 	9.91700000 	9.917 	0.10000000 	inf 	True
+        bpref 	1.00000000 	1 	0.00000000 	100.000000 	True
+        dpref 	1.00000000 	1 	0.00000000 	100.000000 	True
+        gpref 	1.00000000 	1 	-inf 	inf 	False
+        Mbh 	0.00000000 	0 	-inf 	inf 	False 
     """ 
     
     # Set function model for fitting

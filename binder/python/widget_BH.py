@@ -182,11 +182,7 @@ def defaultrcutBH(galaxy):
     elif str(galaxy) == "7814" or str(galaxy).upper().replace(" ","") == 'NGC7814':
         return 1.6
 
-### NGC 5533 ###
-
-### NGC 7814 ###
-# Generate random positions for black holes inside the donut
-
+    
 style = {'description_width': 'initial'}
 """A dictionary for slider styling common to all sliders in this library.
 

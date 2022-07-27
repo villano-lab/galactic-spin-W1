@@ -87,9 +87,9 @@ buttonYES = Button(                   # YES button
 """
 
 out = Output()
-"""Displaying the button.
+"""A handler for widget output.
 
-:type: ipywidgets.widgets.Output
+:type: ipywidgets.widgets.widget_output.Output
 """
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below

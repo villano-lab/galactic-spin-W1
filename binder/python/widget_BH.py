@@ -84,12 +84,14 @@ stepN = 5
 
 :int:
 """
+
 def minnumberBH(galaxy):
     """A function that returns the minimum number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
-            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
+            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
+            Allowed inputs: "NGC5533" or "NGC7814".
 
     Returns: [int] 
         The minimum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
@@ -100,12 +102,14 @@ def minnumberBH(galaxy):
         return 50
     elif str(galaxy) == "7814" or str(galaxy).upper().replace(" ","") == 'NGC7814':
         return 1
+    
 def maxnumberBH(galaxy):
     """A function that returns the maximum number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
-            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
+            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
+            Allowed inputs: "NGC5533" or "NGC7814".
 
     Returns: 
         [int] The maximum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
@@ -116,12 +120,14 @@ def maxnumberBH(galaxy):
         return 5e2
     elif str(galaxy) == "7814" or str(galaxy).upper().replace(" ","") == 'NGC7814':
         return 1000
+    
 def defaultnumber(galaxy):
     """A function that returns the default number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
-            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
+            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
+            Allowed inputs: "NGC5533" or "NGC7814".
 
     Returns: 
         [int] The default number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
@@ -139,12 +145,14 @@ minrcutBH = 0.1
 
 :type: float
 """
+
 def maxrcutBH(galaxy):
     """A function that returns the maximum cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
-            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
+            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
+            Allowed inputs: "NGC5533" or "NGC7814".
 
     Returns: 
         [float] The maximum cutoff radius for black holes.
@@ -155,12 +163,14 @@ def maxrcutBH(galaxy):
         return 3.0
     elif str(galaxy) == "7814" or str(galaxy).upper().replace(" ","") == 'NGC7814':
         return 4.0
+    
 def defaultrcutBH(galaxy):
     """A function that returns the default cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
 
     Parameters:
         galaxy : [string | int]
-            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
+            The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
+            Allowed inputs: "NGC5533" or "NGC7814".
 
     Returns: 
         [float] The default cutoff radius for black holes.
@@ -182,6 +192,7 @@ style = {'description_width': 'initial'}
 
 :type: dict
 """
+
 layout = {'width':'800px'}
 """A dictionary for slider layout commont to all sliders in this library.
 
@@ -416,7 +427,7 @@ arraysize_5533 = FloatSlider(min=minnumberBH(5533), max=maxnumberBH(5533), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""Slider for controlling the array size of radius and angle arrays for NGC5533.
+"""Slider for controlling the number of black holes for NGC5533.
 
 :type: ipywidgets.widgets.widget_float.FloatSlider
 """
@@ -456,7 +467,7 @@ arraysize_7814 = FloatSlider(min=minnumberBH(7814), max=maxnumberBH(7814), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""Slider for controlling the array size of radius and angle arrays for NGC7814.
+"""Slider for controlling the number of black holes for NGC7814.
 
 :type: ipywidgets.widgets.widget_float.FloatSlider
 """
@@ -508,7 +519,7 @@ def interactive_plot_5533(widgetfunction):
 
 def interactive_plot_7814(widgetfunction):
     """
-    Generate an interactive plot widget, allowing the user to interact with the NGC5533 data and the galaxy's components.
+    Generate an interactive plot widget, allowing the user to interact with the NGC7814 data and the galaxy's components.
 
     Parameters:
         widgetfunction: [function]
@@ -540,7 +551,7 @@ button_5533 = Button(
 :type: ipywidgets.widgets.widget_button.Button
 """
 out_5533 = Output()
-"""A handler for widget output NGC7814.
+"""A handler for widget output NGC5533.
 
 :type: ipywidgets.widgets.widget_output.Output
 """

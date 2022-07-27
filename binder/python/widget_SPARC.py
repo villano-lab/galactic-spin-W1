@@ -40,6 +40,7 @@ The purpose of this file is to:
 
 .. seealso:: The data in this text file is stored in the :func:`galaxy <widget_SPARC.galaxy>` variable.
 """
+
 galaxy = textfile.read()
 """The name of the chosen galaxy.
 
@@ -47,6 +48,7 @@ galaxy = textfile.read()
 
 .. seealso:: This string is retrieved from :func:`textfile <widget_SPARC.textfile>`.
 """
+
 textfile.close()
 
 # Define SPARC directory
@@ -499,12 +501,12 @@ button = Button(
     icon='check')
 """A button that returns all settings to the best fit.
 
-ipywidgets.widgets.widget_button.Button
+:type: ipywidgets.widgets.widget_button.Button
 """
 out = Output()
 """A handler for widget output.
 
-ipywidgets.widgets.widget_output.Output
+:type: ipywidgets.widgets.widget_output.Output
 """
 
 def on_button_clicked(_):

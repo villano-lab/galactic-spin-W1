@@ -357,7 +357,6 @@ def checkfile(group='all',
 
     Returns: `None` on success; `1` if h5py was not imported.
         
-
     Example:
         >>> x = [0,1,2,3]
         >>> y = [0,1,2,3]

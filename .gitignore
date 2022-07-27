@@ -127,8 +127,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# SPARC data download
+# Unwanted binary data files
 binder/data/sparc/Rotmod_LTG.zip
+Inputs.hdf5
 
 # Editor settings
 .vscode

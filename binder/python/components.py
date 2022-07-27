@@ -32,6 +32,10 @@ except ModuleNotFoundError:
     print("Could not find h5py. Datasets will not be able to be saved or loaded using components.py.")
 
 defaultpath = '../'
+"""The default location of files containing cached calculations.
+
+:type: string
+"""
 
 #===============================
 #========= Constants ===========
@@ -55,11 +59,14 @@ def galdict(galaxy):
         >>> # Define a function that prints the cutoff radius of any galaxy and returns it
         >>> def rcut(galaxy):
         >>>     galaxydata = galdict(galaxy) # Retrieve the whole dictionary
-        >>>     cutoff = galaxydata["rcut"]
+        >>>     cutoff = galaxydata["rc"]
         >>>     print(cutoff)
         >>>     return cutoff
         >>> # Print and assign the cutoff for NGC 5533
         >>> rcut5533 = rcut('NGC5533')
+        1.4
+        >>> print(rcut5533)
+        1.4
     """
     
     return globals()[galaxy.upper().replace(" ","")]        
@@ -68,27 +75,77 @@ def galdict(galaxy):
 
 #---------Definitely Constant---------
 G = 4.30091e-6                    # Gravitational constant (kpc/solar mass*(km/s)^2) 
-"""double: Gravitational constant in kpc/(solar mass * (km/s)^2)
+"""Gravitational constant in kpc/(solar mass * (km/s)^2)
+
+:type: double
 """
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008
+"""Bulge mass-to-light ratio (Solar masses/Solar luminosities). [Noordermeer2008]_
+
+:type: float
+"""
 q = 0.33                          # Intrinsic axis ratio. Source: Noordermeer, 2008
+"""Intrinsic axis ratio. [Noordermeer2008]_
+
+:type: float
+"""
 e2 = 1-(q**2)                     # Eccentricity. Source: Noordermeer, 2008
+"""Bulge eccentricity. [Noordermeer2008]_
+
+:type: float
+"""
 i = 52*(np.pi/180)                # Inclination angle. Source: Noordermeer & Van Der Hulst, 2007
+"""Inclination angle (radians). [Noordermeer2008]_
+
+:type: float
+"""
 h_rc = 1.4                        # Core radius (kpc). Source: Noordermeer, 2008
+"""Core radius (kpc). [Noordermeer2008]_
+
+:type: float
+"""
 Mbh_def = 2.7e9                   # Black Hole mass (in solar mass). Source: Noordermeer, 2008
+"""Central black hole mass (Solar masses). [Noordermeer2008]_
+
+:type: float
+"""
 
 #---------Definitely Variable---------
 n_c = 2.7                         # Concentration parameter. Source: Noordermeer & Van Der Hulst, 2007
+"""Concentration parameter. [Noordermeer2007]_
+
+:type: float
+"""
 h_c = 8.9                         # Radial scale-length (kpc). Source: Noordermeer & Van Der Hulst, 2007
+"""Radial scale length (kpc). [Noordermeer2007]_
+
+:type: float
+"""
 hrho00_c = 0.31e9                 # Halo central surface density (solar mass/kpc^2). Source: Noordermeer, 2008
+"""Central surface density of halo (Solar masses/kpc^2). [Noordermeer2008]_
+
+:type: float
+"""
 drho00_c = 0.31e9                 # Disk central surface density (solar mass/kpc^2)
+"""Central surface density of disk (Solar masses/kpc^2). [Noordermeer2008]_
+
+:type: float
+"""
 
 #---------Uncategorized---------------
 re_c = 2.6                        # Effective radius (kpc). Source: Noordermeer & Van Der Hulst, 2007
+"""Effective radius (kpc). [Noordermeer2007]_
+
+:type: float
+"""
 upsdisk = 5.0                     # Disk mass-to-light ratio. Source: Noordermeer, 2008
-h_gamma = 0
+"""Mass-to-light ratio of the disk. [Noordermeer2008]_
+
+:type: float
+"""
+#h_gamma = 0
 
 ################################
 ########### Saving #############
@@ -139,8 +196,13 @@ def savedata(xvalues,
     Returns: `None` on success, `1` if h5py was not loaded, and an [array] of y-values if saving data failed and data was loaded instead.
 
     Example:
-        >>> 
-
+        >>> x = [0,1,2,3]
+        >>> y = [0,1,2,3]
+        >>> savedata(x,y,'test','example')
+        >>> a = loaddata('test','example')
+        >>> print(a)
+        [[0 1 2 3]
+        [0 1 2 3]]
     """
     
     if h5py == 1:
@@ -224,8 +286,13 @@ def loaddata(group,
     Returns: [array] on success or `1` if h5py was not loaded.        
 
     Example:
-        >>> 
-
+        >>> x = [0,1,2,3]
+        >>> y = [0,1,2,3]
+        >>> savedata(x,y,'test','example')
+        >>> a = loaddata('test','example')
+        >>> print(a)
+        [[0 1 2 3]
+        [0 1 2 3]]
     """
     
     if h5py == 1:
@@ -288,7 +355,16 @@ def checkfile(group='all',
         
 
     Example:
-        >>> 
+        >>> x = [0,1,2,3]
+        >>> y = [0,1,2,3]
+        >>> savedata(x,y,'test','example')
+        >>> checkfile()
+        Groups:
+        <HDF5 group "/test" (1 members)>
+        ----------------
+        More information:
+        <HDF5 group "/test" (1 members)>
+                <HDF5 dataset "example": shape (2, 4), type "<i8">
 
     """
     
@@ -374,7 +450,7 @@ def blackhole(r,
     Example:
         >>> # Calculate the gravitational effect of a black hole the size of 1000 suns, 10 kpc away. 
         >>> print(blackhole(r=10, M=1000))
-        >>> [0.02073864] 
+        [0.02073864] 
     """
     
     # Define component for saving
@@ -439,7 +515,7 @@ def bulge(r,
     Example:
         >>> # Calculate the gravitational effect of a galactic bulge 10 kpc away for NGC 5533. 
         >>> print(bulge(r=10, bpref=1, galaxy='NGC5533'))
-        >>> [166.78929909] 
+        [166.78929909] 
     """    
     
     # Define galaxy name
@@ -532,7 +608,7 @@ def disk(r,
     Example:
         >>> # Calculate the gravitational effect of a galactic disk 10 kpc away for NGC 5533. 
         >>> print(disk(r=10, dpref=1, galaxy='NGC5533'))
-        >>> 147.62309536730015
+        147.62309536730015
     """   
     
     # Define galaxy name
@@ -571,7 +647,7 @@ def gas(r,
     Example:
         >>> # Calculate the gravitational effect of a galactic gas 10 kpc away for NGC 5533. 
         >>> print(gas(r=10, gpref=1, galaxy='NGC5533'))
-        >>> 22.824681427585002
+        22.824681427585002
     """  
     
     # Define galaxy name
@@ -624,7 +700,7 @@ def halo_BH(r,
     Example:
         >>> # Calculate the gravitational effect of 1000 black holes, with the mass of 100 suns, 10,25,20,25,30,35,40,45,50 and 100 kpc away, with a cutoff radius of 1.4 kpc. 
         >>> print(halo_BH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4))
-        >>> [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481 3.16603213 3.17580667 3.18364085 3.21905242]
+        [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481 3.16603213 3.17580667 3.18364085 3.21905242]
     """  
     
     # Sort radii
@@ -679,7 +755,7 @@ def h_viso(r,
         >>> print(h_viso(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
                          rc=(co.galdict('NGC5533')['rc']), 
                          rho00=(co.galdict('NGC5533')['rho0'])))
-        >>> [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02  1.77257621e+02  1.79229253e+02]
+        [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02  1.77257621e+02  1.79229253e+02]
     """  
     
     # If r isn't array-like, make it array-like
@@ -756,6 +832,9 @@ def halo(r,
 
     Returns:
         A float or an array of splined halo velocities (in km/s).
+
+    Example:
+        >>> 
     """  
     
     return h_viso(r,rc,rho00,load=False)

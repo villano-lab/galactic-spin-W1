@@ -103,11 +103,31 @@ ToC: Attributes
    {{ attribute.id }}
 {% endfor %}
 
-
-
 {% endif %}
 {% endblock %}
+{% else %}
+ToC: Dictionaries
+-----------------
+
+.. autoapisummary::
+
+{% for obj_item in visible_children %}
+   {{ obj_item.id }}
+{% endfor %}
 {% endif %}
+
+{% block dicts scoped %}
+{%if not visible_attributes and not visible_functions %}
+ToC: Dictionaries
+-----------------
+
+.. autoapisummary::
+
+{% for obj_item in visible_children %}
+   {{ obj_item.id }}
+{% endfor %}
+{% endif %}
+{% endblock %}
 
 Members
 -------

@@ -27,6 +27,10 @@ from load_galaxies import *
 try:
     import h5py as h5
     h5py = 1
+    """If h5py = 1, there is data to be loaded.
+
+    :type: int
+    """
 except ModuleNotFoundError:
     h5py = 0
     print("Could not find h5py. Datasets will not be able to be saved or loaded using components.py.")
@@ -831,10 +835,14 @@ def halo(r,
             Default: `halo`.
 
     Returns:
-        A float or an array of splined halo velocities (in km/s).
-
+        A float or an array of splined halo velocities (in km/s). 
+    
     Example:
-        >>> 
+        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
+        >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+                         rc=(co.galdict('NGC5533')['rc']), 
+                         rho00=(co.galdict('NGC5533')['rho0'])))
+        [  0.         168.2547549  171.43127236 173.35821904 174.65137711 175.57916017 176.27720854 176.82143175 177.25762058 179.22925324]
     """  
     
     return h_viso(r,rc,rho00,load=False)
@@ -966,9 +974,17 @@ def set_params(model,
 
     Returns:
         [lmfit.Parameter] An lmfit Parameters object parameters to be supplied to a fit.
-
+    
     Example:
-        >>> 
+        >>> model = lambda rtotalvelocity_halo(r)
+        >>> set_params(model,galaxy='NGC5005')
+        >>> name 	value 	initial value 	min 	max 	vary
+            scale 	16930000.0 	16930000.0 	-inf 	inf 	False
+            rcut 	9.91700000 	9.917 	0.10000000 	inf 	True
+            bpref 	1.00000000 	1 	0.00000000 	100.000000 	True
+            dpref 	1.00000000 	1 	0.00000000 	100.000000 	True
+            gpref 	1.00000000 	1 	-inf 	inf 	False
+            Mbh 	0.00000000 	0 	-inf 	inf 	False 
     """ 
     
     # Set function model for fitting

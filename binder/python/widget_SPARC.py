@@ -1,5 +1,4 @@
-"""
-A module for handling the SPARC widget, notebook `09_Widget_SPARC_Galaxies.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/09_Widget_SPARC_Galaxies.ipynb>`_.
+"""A module for handling the SPARC widget, notebook `09_Widget_SPARC_Galaxies.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/09_Widget_SPARC_Galaxies.ipynb>`_.
 """
 
 ################################
@@ -31,7 +30,9 @@ import components as comp
 
 # Read the file where the chosen galaxy name is located (this was modified by the user)
 textfile = open('python/chosengalaxy.txt', 'r')
-"""file: A local text file, opened in read-only mode, indicating a chosen galaxy.
+"""A local text file, opened in read-only mode, indicating a chosen galaxy.
+
+:type: file
 
 The purpose of this file is to:  
 1. Allow this chosen galaxy variable to be passed flexibly between programs.
@@ -40,7 +41,9 @@ The purpose of this file is to:
 .. seealso:: The data in this text file is stored in the :func:`galaxy <widget_SPARC.galaxy>` variable.
 """
 galaxy = textfile.read()
-"""string: The name of the chosen galaxy.
+"""The name of the chosen galaxy.
+
+:type: string
 
 .. seealso:: This string is retrieved from :func:`textfile <widget_SPARC.textfile>`.
 """
@@ -48,17 +51,23 @@ textfile.close()
 
 # Define SPARC directory
 #SPARC_file_directory='./data/sparc/'                       #note that '' means the string variable is blank
-"""string: The directory containing SPARC files.
+"""The directory containing SPARC files.
+
+:type: string
 """
 
 # Define file path for .dat files
 SPARC_file_path = './data/sparc/' + galaxy + '_rotmod.dat'
-"""string: The filename (including relative path) containing data for the :func:`chosen galaxy <galaxy>`.
+"""The filename (including relative path) containing data for the :func:`chosen galaxy <galaxy>`.
+
+:type: string
 """
 
 # Load the galaxy data
 data = np.loadtxt(SPARC_file_path)
-"""ndarray: A numpy array of data loaded from the :func:`SPARC file path <SPARC_file_path>`.
+"""A numpy array of data loaded from the :func:`SPARC file path <SPARC_file_path>`.
+
+:type: array
 """
 
 # Split columns into arrays
@@ -67,21 +76,27 @@ Rad,Vobs,errV,Vgas,Vdisk,Vbul,SBdisk,SBbul = data.T
 # Check if it has all components
 if np.sum(Vbul) == 0:     # Bulge
     warning_bulge = "There is no bulge component."
-    """string: If the bulge component is missing, a message indicating that it is. Otherwise, an empty string.
+    """If the bulge component is missing, a message indicating that it is. Otherwise, an empty string.
+
+    :type: string
     """
 else: 
     warning_bulge = ""
 
 if np.sum(Vdisk) == 0:    # Disk
     warning_disk = "There is no disk component."
-    """string: If the disk component is missing, a message indicating that it is. Otherwise, an empty string.
+    """If the disk component is missing, a message indicating that it is. Otherwise, an empty string.
+
+    :type: string
     """
 else: 
     warning_disk = ""
 
 if np.sum(Vgas) == 0:     # Gas
     warning_gas = "There is no gas component."
-    """string: If the gas component is missing, a message indicating that it is. Otherwise, an empty string.
+    """If the gas component is missing, a message indicating that it is. Otherwise, an empty string.
+
+    :type: string
     """
 else: 
     warning_gas = ""
@@ -89,7 +104,9 @@ else:
 # Define distance to galaxy in Mpc
 with open(SPARC_file_path) as file:
     distance = float(file.readline().split()[3])
-    """float: Distance to galaxy, in Mpc.
+    """Distance to galaxy, in Mpc.
+
+    :type: float
     """
 
 ################################
@@ -264,10 +281,14 @@ def totalcurve(r,
 
 # Setup
 fit_mod = lm.Model(totalcurve)
-"""lmfit.Model: An lmfit Model object for the :func:`totalcurve <widget_SPARC.totalcurve>` function.
+"""An lmfit Model object for the :func:`totalcurve <widget_SPARC.totalcurve>` function.
+
+:type: lmfit.Model
 """
 fit_params = fit_mod.make_params()
-"""lmfit.Parameters: An lmfit Parameters object for the :func:`fit_mod <widget_SPARC.fit_mod>` Model.
+"""An lmfit Parameters object for the :func:`fit_mod <widget_SPARC.fit_mod>` Model.
+
+:type: lmfit.Parameters
 
 +----------+----------------+---------+---------+
 | Parameter| Starting Value | Minimum | Maximum |
@@ -294,7 +315,9 @@ fit_params.add('dpref', value=1,     min=0.5, max=100)  # Disk prefactor
 
 # Do fit
 fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=1/errV)
-"""lmfit.ModelResult: An lmfit fitting result for the :func:`fit_mod <widget_SPARC.fit_mod>` Model against the :func:`data imported for the chosen galaxy <widget_SPARC.data>`.
+"""An lmfit fitting result for the :func:`fit_mod <widget_SPARC.fit_mod>` Model against the :func:`data imported for the chosen galaxy <widget_SPARC.data>`.
+
+:type: lmfit.ModelResult
 """
 
 #################################
@@ -302,11 +325,15 @@ fit = fit_mod.fit(Vobs,fit_params,r=Rad,weights=1/errV)
 #################################
 
 bestfit = fit.best_fit
-"""ndarray: Best fit results of :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+"""Best fit results of :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+
+:type: ndarray
 """
 
 fit_dict = fit.best_values
-"""dict: Dictionary of best parameter results from :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+"""Dictionary of best parameter results from :func:`the fit of the total curve against the galaxy's data <widget_SPARC.fit>`.
+
+:type: dict 
 
 Keys: `bpref`, `dpref`, `rc`, `rho0`.
 """
@@ -401,7 +428,9 @@ bpref = FloatSlider(min=0, max=5, step=0.1,
                     orientation='horizontal', 
                     style={'description_width': 'initial'}, 
                     layout={'width':'600px'},disabled=not bool(np.sum(Vbul)))
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the bulge prefactor.
+"""Slider for controlling the bulge prefactor.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 dpref = FloatSlider(min=0, max=5, step=0.1, 
@@ -411,7 +440,9 @@ dpref = FloatSlider(min=0, max=5, step=0.1,
                 orientation='horizontal', 
                 style={'description_width': 'initial'}, 
                 layout={'width':'600px'},disabled=not bool(np.sum(Vdisk)))
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the disk prefactor.
+"""Slider for controlling the disk prefactor.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 rc = FloatSlider(min=0, max=20, step=0.1, 
@@ -420,7 +451,9 @@ rc = FloatSlider(min=0, max=20, step=0.1,
                 readout_format='.2f', 
                 orientation='horizontal', 
                 style={'description_width': 'initial'}, layout={'width':'600px'})
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius.
+"""Slider for controlling the cutoff radius.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 rho0 = FloatSlider(min=0, max=1e11, step=1e5, 
@@ -429,7 +462,9 @@ rho0 = FloatSlider(min=0, max=1e11, step=1e5,
                 readout_format='.2e', 
                 orientation='horizontal', 
                 style={'description_width': 'initial'}, layout={'width':'600px'})
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the halo density variable rho0.
+"""Slider for controlling the halo density variable rho0.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 def interactive_plot(widgetfunction):
@@ -462,10 +497,14 @@ button = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
-"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings to the best fit.
+"""A button that returns all settings to the best fit.
+
+ipywidgets.widgets.widget_button.Button
 """
 out = Output()
-"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output.
+"""A handler for widget output.
+
+ipywidgets.widgets.widget_output.Output
 """
 
 def on_button_clicked(_):

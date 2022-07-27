@@ -1,3 +1,6 @@
+"""A module for handling the downloading of SPARC data in notebook `09_Widget_SPARC_Galaxies.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/09_Widget_SPARC_Galaxies.ipynb>`_.
+"""
+
 ###########################
 ### Download SPARC data ###
 ###########################
@@ -14,7 +17,12 @@ def downloadsparc():
         None 
 
     Returns:
-        File downloaded on local computer.
+        None. Files are downloaded to local computer.
+
+    Example:
+        >>> downloadsparc()
+        Download URL: http://astroweb.cwru.edu/SPARC/Rotmod_LTG.zip.
+        Downloaded zip file successfully.
     """
     
     out.clear_output(True)
@@ -41,7 +49,15 @@ def unzipfiles():
         None 
 
     Returns:
-        Unzipped files on local computer in the 'data/sparc/' folder.
+        None. Unzips files on local computer to the 'data/sparc/' folder.
+
+    Example:
+        >>> downloadsparc()
+        Download URL: http://astroweb.cwru.edu/SPARC/Rotmod_LTG.zip.
+        Downloaded zip file successfully.
+        >>> unzipfiles()
+        Data files unzipped successfully.
+        SPARC data file location: '/mnt/c/Users/harrkath/Documents/GitHub/galactic-spin-W1/binder/data/sparc/'.
     """
     
     with zipfile.ZipFile('data/sparc/Rotmod_LTG.zip', 'r') as zip_ref:    # Define zip file location and name
@@ -65,6 +81,10 @@ buttonYES = Button(                   # YES button
     description="Yes",
     button_style='success', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
+"""Button, WITHOUT display box, for downloading and unzipping SPARC data.
+
+:type: ipywidgets.widgets.widget_button.Button
+"""
 out = Output()
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below
@@ -75,7 +95,7 @@ def on_button_clicked_YES(_):         # When clicked on the 'YES' button, downlo
         None 
 
     Returns:
-        None.
+        None. Downloads files to local computer and unzips them.
     """
     
     with out:
@@ -86,8 +106,13 @@ def on_button_clicked_YES(_):         # When clicked on the 'YES' button, downlo
 
 buttonYES.on_click(on_button_clicked_YES)
 
-buttons = HBox([buttonYES])
-displaybuttons = VBox([buttons,out])
+displaybuttons = VBox([HBox([buttonYES]),out])
+"""Visible button for downloading and unzipping SPARC data.
+
+Version of :func:`buttonYES <downloadSPARCdata.buttonYES>` that can be displayed without issue.
+
+:type: ipywidgets.widgets.widget_box.VBox
+"""
 
 
 #####################################
@@ -99,15 +124,18 @@ from ipywidgets import Dropdown, Widget, Box, Layout, Label
 import ipywidgets as w
 
 # Make a list of galaxies from sparc data filenames
-filelist_raw = os.listdir('./data/sparc/')                   
-filelist = [f for f in filelist_raw if "rotmod.dat" in f]    # Only look at filenames that has 'rotmod.dat' in the name
+#filelist_raw = os.listdir('./data/sparc/')                   
+#filelist = [f for f in os.listdir('./data/sparc/') if "rotmod.dat" in f]    # Only look at filenames that has 'rotmod.dat' in the name
 options = []
-for f in filelist:
-    galaxy = f.replace("_rotmod.dat","")                     # Remove "_rotmod.dat" from filename
-    options.append(galaxy)
-#options = np.array(options)
-"""array: placeholder description.
+"""A list of galaxies to choose from.
+
+:type: list
+
+.. seealso:: This list is generated based on the files present in the :code:`./data/sparc` directory, which is populated by the :func:`downloadsparc <downloadSPARCdata.downloadsparc>` and :func:`unzipfiles <downloadSPARCdata.unzipfiles` functions.
 """
+for f in [f for f in os.listdir('./data/sparc/') if "rotmod.dat" in f]:
+    #galaxy = f.replace("_rotmod.dat","")                     # Remove "_rotmod.dat" from filename
+    options.append(f.replace("_rotmod.dat",""))
 
 # Create a dropdown menu of all galaxies
 form_item_layout = Layout(
@@ -115,18 +143,25 @@ form_item_layout = Layout(
     flex_flow='row',
     justify_content='space-between'
 )
+"""A layout to be used by :func:`galaxyoptions <downloadSPARCdata.galaxyoptions>` for the :func:`dropdown <downloadSPARCdata.dropdownmenu>`.
+
+:type: ipywidgets.widgets.widget_layout.Layout
+"""
 
 dropdownmenu = Dropdown(options=options, value='NGC5005')
+"""A dropdown menu for selecting a galaxy.
 
-form_items = [
-    Box([Label(value='Galaxy: '),dropdownmenu
-         ], layout=form_item_layout)
-]
+:type: ipywidgets.widgets.widget_selection.Dropdown
+"""
 
-galaxyoptions = Box(form_items, layout=Layout(
+galaxyoptions = Box([Box([Label(value='Galaxy: '),dropdownmenu], layout=form_item_layout)], layout=Layout(
     display='flex',
     flex_flow='column',
     border='solid 2px',
     align_items='stretch',
     width='50%'
 ))
+"""A displayable box, including :func:`a dropdown menu <downloadSPARCdata.dropdownmenu>`, for selecting a galaxy.
+
+:type: ipywidgets.widgets.widget_box.Box
+"""

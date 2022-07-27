@@ -75,10 +75,8 @@ docs/source/autoapi
 # PyBuilder
 target/
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
 # IPython
+.ipynb_checkpoints
 profile_default/
 ipython_config.py
 

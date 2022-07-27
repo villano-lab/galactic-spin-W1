@@ -1,4 +1,4 @@
-"""A library for handling the black hole widgets found in `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_.
+"""A module for handling the black hole widgets found in `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_.
 """
 
 #########################
@@ -22,20 +22,28 @@ import dataPython as dp
 
 # Import galaxy image
 img = plt.imread("images/A_spiral_snowflake.jpg")            # Import image of NGC 6814
-"""[ndarray]: An array of RGB data for a galaxy image (`images/A_spiral_snowflake.jpg`), imported using `matplotlib.pyplot.imread`.
+"""An array of RGB data for a galaxy image (`images/A_spiral_snowflake.jpg`), imported using `matplotlib.pyplot.imread`.
+
+:type: array
 """
 
 # Find the center by eye from the image
 center = [1960,1800]
-"""[list]: Coordinate pair indicating the pixel location of the center of the galaxy in :func:`img <widget_BH.img>`.
+"""Coordinate pair indicating the pixel location of the center of the galaxy in :func:`img <widget_BH.img>`.
+
+:type: array
 """
 
 # Kpc limits, visual guess based on the galaxy in the image chosen:
 minkpc = 0
-"""[int]: The minimum value, in kpc, allowed for the radial position of black holes on the plot.
+"""The minimum value, in kpc, allowed for the radial position of black holes on the plot.
+
+:type: int
 """
 maxkpc = 100
-"""[int]: The maximum value, in kpc, allowed for the radial position of black holes on the plot.
+"""The maximum value, in kpc, allowed for the radial position of black holes on the plot.
+
+:type: int
 """
 
 ##################
@@ -44,25 +52,37 @@ maxkpc = 100
 
 # units: scale = [#number of actual black holes / plotted dot]
 kpctopixels = 20                # visual scaling, varies depending on size of galaxy image (and actual size of galaxy)
-"""[int]: Number of pixels per kpc for plotting black holes over black hole image.
+"""Number of pixels per kpc for plotting black holes over black hole image.
+
+:type: int
 """
 
 # For mass of black hole slider:
 minmassBH = 0.1                 # solar masses, arbitrary
-"""[float]: The minimum value, in solar masses, allowed for the (average) black hole mass.
+"""The minimum value, in solar masses, allowed for the (average) black hole mass.
+
+:type: float
 """
 maxmassBH = 3.8                 # https://www.scientificamerican.com/gallery/the-smallest-known-black-hole/
-"""[float]: The maximum value, in solar masses, allowed for the (average) black hole mass.
+"""The maximum value, in solar masses, allowed for the (average) black hole mass.
+
+:type: float
 """
 defaultmass = 1.5               # default mass value for slider
-"""[float]: The default value, in solar masses, for the (average) black hole mass.
+"""The default value, in solar masses, for the (average) black hole mass.
+
+:type: float
 """
 scale = 1e6                     # scale is neccessary to be a constant, otherwise the widget will freeze up the computer! 
-"""[int]: The number of black holes represented by each dot in the galaxy plot.
+"""The number of black holes represented by each dot in the galaxy plot.
+
+:type: int
 """
 # For number of black holes slider:
 stepN = 5
-"""[int]: The step size of the slider controlling the number of black holes. In terms of number of black holes represented, this step size is multiplied by the :func:`scale <widget_BH.scale>`.
+"""The step size of the slider controlling the number of black holes. In terms of number of black holes represented, this step size is multiplied by the :func:`scale <widget_BH.scale>`.
+
+:int:
 """
 def minnumberBH(galaxy):
     """A function that returns the minimum number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
@@ -71,8 +91,8 @@ def minnumberBH(galaxy):
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: 
-        [int] The minimum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
+    Returns: [int] 
+        The minimum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
     """
@@ -115,7 +135,9 @@ def defaultnumber(galaxy):
 
 #For cutoff radius:
 minrcutBH = 0.1
-"""[float]: The minimum cutoff radius for black holes, in kpc.
+"""The minimum cutoff radius for black holes, in kpc.
+
+:type: float
 """
 def maxrcutBH(galaxy):
     """A function that returns the maximum cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
@@ -156,10 +178,14 @@ def defaultrcutBH(galaxy):
 # Generate random positions for black holes inside the donut
 
 style = {'description_width': 'initial'}
-"""[dict]: A dictionary for slider styling common to all sliders in this library.
+"""A dictionary for slider styling common to all sliders in this library.
+
+:type: dict
 """
 layout = {'width':'800px'}
-"""[dict]: A dictionary for slider layout commont to all sliders in this library.
+"""A dictionary for slider layout commont to all sliders in this library.
+
+:type: dict
 """
 
 ####################################
@@ -390,7 +416,9 @@ arraysize_5533 = FloatSlider(min=minnumberBH(5533), max=maxnumberBH(5533), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the array size of radius and angle arrays for NGC5533.
+"""Slider for controlling the array size of radius and angle arrays for NGC5533.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 # Mass of each black hole
@@ -401,7 +429,9 @@ massMiniBH_5533 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the black hole mass for NGC5533.
+"""Slider for controlling the black hole mass for NGC5533.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 # Cutoff radius
@@ -412,7 +442,9 @@ rcut_5533 = FloatSlider(min=minrcutBH, max=maxrcutBH(5533), step=minrcutBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius for black hole placement for NGC5533.
+"""Slider for controlling the cutoff radius for black hole placement for NGC5533.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 ### NGC 7814 ###
@@ -424,7 +456,9 @@ arraysize_7814 = FloatSlider(min=minnumberBH(7814), max=maxnumberBH(7814), step=
                 readout_format='.2d', 
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the array size of radius and angle arrays for NGC7814.
+"""Slider for controlling the array size of radius and angle arrays for NGC7814.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 # Mass of each black hole
@@ -435,7 +469,9 @@ massMiniBH_7814 = FloatSlider(min=minmassBH, max=maxmassBH, step=minmassBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the black hole mass for NGC7814.
+"""Slider for controlling the black hole mass for NGC7814.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 # Cutoff radius
@@ -446,7 +482,9 @@ rcut_7814 = FloatSlider(min=minrcutBH, max=maxrcutBH(7814), step=minrcutBH,
                 readout_format='.1f',
                 orientation='horizontal', 
                 style=style, layout=layout)
-"""[ipywidgets.widgets.widget_float.FloatSlider]: Slider for controlling the cutoff radius for black hole placement for NGC7814.
+"""Slider for controlling the cutoff radius for black hole placement for NGC7814.
+
+:type: ipywidgets.widgets.widget_float.FloatSlider
 """
 
 def interactive_plot_5533(widgetfunction):
@@ -497,10 +535,14 @@ button_5533 = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
-"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings for NGC5533 to the best fit.
+"""A button that returns all settings for NGC5533 to the best fit.
+
+:type: ipywidgets.widgets.widget_button.Button
 """
 out_5533 = Output()
-"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output NGC7814.
+"""A handler for widget output NGC7814.
+
+:type: ipywidgets.widgets.widget_output.Output
 """
 
 def on_button_clicked_5533(_):
@@ -528,10 +570,14 @@ button_7814 = Button(
     description="Best Fit",
     button_style='warning', # 'success', 'info', 'warning', 'danger' or ''
     icon='check')
-"""[ipywidgets.widgets.widget_button.Button]: A button that returns all settings for NGC7814 to the best fit.
+"""A button that returns all settings for NGC7814 to the best fit.
+
+:type: ipywidgets.widgets.widget_button.Button
 """
 out_7814 = Output()
-"""[ipywidgets.widgets.widget_output.Output]: A handler for widget output for NGC7814.
+"""A handler for widget output for NGC7814.
+
+:type: ipywidgets.widgets.widget_output.Output
 """
 
 def on_button_clicked_7814(_):

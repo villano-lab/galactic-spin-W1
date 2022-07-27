@@ -1,3 +1,6 @@
+"""A module for generating animations for explaining fundamental rotation curves concepts.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as ani

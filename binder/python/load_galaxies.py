@@ -38,7 +38,7 @@ NGC5533 = {
     'Mabs'             : -21.66,# B-band absolute magnitude of NGC 5533 (Norrdermeer, Van Der Hulst, 2007)
     'check'            : True
 }
-"""[dict] Data for galaxy NGC5533. Parameters and data measurements in this dictionary are from [Noordermeer2007]_ unless noted otherwise.
+"""Data for galaxy NGC5533. Parameters and data measurements in this dictionary are from [Noordermeer2007]_ unless noted otherwise.
 
 Keys:
     blackhole: [dict] Further information pertaining to the black hole component.
@@ -368,7 +368,7 @@ NGC0891 = {
     'D_Mpc'            : 9.5,    # Distance [Mpc] (need this)
     'check'            : True
 }
-"""[dict] Data for galaxy NGC891. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC891. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:   
     bulge: [dict] Further information pertaining to the bulge component.
@@ -558,7 +558,7 @@ NGC7814 = {
     'Mabs'             : -22.38,# Absolute magnitude [unitless] (Fraternali, Sancisi, and Kamphuis, 2011)
     'check'            : True
 }
-"""[dict] Data for galaxy NGC7814. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC7814. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     bulge: [dict] Further information pertaining to the bulge component.
@@ -730,7 +730,7 @@ NGC5005 = {
     # Get data
     'measured_data'    : dp.getXYdata_wXYerr('data/NGC5005/ngc5005_data.txt')
 }
-"""[dict] Data for galaxy NGC5005. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC5005. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     bulge: [dict] Further information pertaining to the bulge component.
@@ -893,7 +893,7 @@ NGC5005['massbh'] = 0                # central black hole is included in the bul
 
 # NGC 3198
 NGC3198 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/NGC3198.txt')}
-"""[dict] Data for galaxy NGC3198. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC3198. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -920,7 +920,7 @@ NGC3198['galaxyname'] = 'NGC 3198'
 
 # UGC 477
 UGC0477 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC477.txt')}
-"""[dict] Data for galaxy NGC477. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC477. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -949,7 +949,7 @@ UGC477 = UGC0477
 
 # UGC 1281
 UGC1281 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC1281.txt')}
-"""[dict] Data for galaxy NGC1281. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC1281. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -975,7 +975,7 @@ UGC1281['galaxyname'] = 'UGC 1281'
 
 # UGC 1437
 UGC1437 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC1437.txt')}
-"""[dict] Data for galaxy NGC1437. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC1437. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -1001,7 +1001,7 @@ UGC1437['galaxyname'] = 'UGC 1437'
 
 # UGC 2953
 UGC2953 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC2953.txt')}
-"""[dict] Data for galaxy NGC2953. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC2953. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -1027,7 +1027,7 @@ UGC2953['galaxyname'] = 'UGC 2953'
 
 # UGC 4325
 UGC4325 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC4325.txt')}
-"""[dict] Data for galaxy NGC4325. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC4325. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -1053,7 +1053,7 @@ UGC4325['galaxyname'] = 'UGC 4325'
 
 # UGC 5253
 UGC5253 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC5253.txt')}
-"""[dict] Data for galaxy NGC5253. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC5253. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -1079,7 +1079,7 @@ UGC5253['galaxyname'] = 'UGC 5253'
 
 # UGC 6787
 UGC6787 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC6787.txt')}
-"""[dict] Data for galaxy NGC6787. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC6787. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.
@@ -1105,7 +1105,7 @@ UGC6787['galaxyname'] = 'UGC 6787'
 
 # UGC 10075
 UGC10075 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC10075.txt')}
-"""[dict] Data for galaxy NGC10075. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
+"""Data for galaxy NGC10075. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
 Keys:
     galaxyname: [string] Name of the galaxy.

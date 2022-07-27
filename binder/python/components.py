@@ -27,7 +27,7 @@ from load_galaxies import *
 try:
     import h5py as h5
     h5py = 1
-    """If h5py = 1, there is data to be loaded.
+    """If `1`, the h5py library is available for saving and loading data. If `0`, then all calculations must be done each time without saving or loading.
 
     :type: int
     """
@@ -49,17 +49,17 @@ def galdict(galaxy):
     """
     Retrieve a dictionary of parameters for the associated galaxy.
 
-    Parameters:
+    :parameters:
         galaxy: [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
-    Returns:
+    :returns:
         Dictionary of parameters for the associated galaxy.
 
     .. note::
-        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py`.
+        For information on the parameters contained in the returned dictionary, see the documentation for `load_galaxies.py <../load_galaxies/index.html>`_.
 
-    Example:
+    :example:
         >>> # Define a function that prints the cutoff radius of any galaxy and returns it
         >>> def rcut(galaxy):
         >>>     galaxydata = galdict(galaxy) # Retrieve the whole dictionary
@@ -79,14 +79,14 @@ def galdict(galaxy):
 
 #---------Definitely Constant---------
 G = 4.30091e-6                    # Gravitational constant (kpc/solar mass*(km/s)^2) 
-"""Gravitational constant in kpc/(solar mass * (km/s)^2)
+"""Gravitational constant (:math:`kpc/(M_{Sun}(km/s)^2)`).
 
 :type: double
 """
 
 #---------Measured Indirectly---------
 ups = 2.8                         # Bulge mass-to-light ratio (Solar Mass/Solar Luminosity). Source: Noordermeer, 2008
-"""Bulge mass-to-light ratio (Solar masses/Solar luminosities). [Noordermeer2008]_
+"""Bulge mass-to-light ratio (:math:`M_{Sun}/L_{Sun}`). [Noordermeer2008]_
 
 :type: float
 """
@@ -106,12 +106,12 @@ i = 52*(np.pi/180)                # Inclination angle. Source: Noordermeer & Van
 :type: float
 """
 h_rc = 1.4                        # Core radius (kpc). Source: Noordermeer, 2008
-"""Core radius (kpc). [Noordermeer2008]_
+"""Core radius (:math:`kpc`). [Noordermeer2008]_
 
 :type: float
 """
 Mbh_def = 2.7e9                   # Black Hole mass (in solar mass). Source: Noordermeer, 2008
-"""Central black hole mass (Solar masses). [Noordermeer2008]_
+"""Central black hole mass (:math:`M_{Sun}`). [Noordermeer2008]_
 
 :type: float
 """
@@ -123,24 +123,24 @@ n_c = 2.7                         # Concentration parameter. Source: Noordermeer
 :type: float
 """
 h_c = 8.9                         # Radial scale-length (kpc). Source: Noordermeer & Van Der Hulst, 2007
-"""Radial scale length (kpc). [Noordermeer2007]_
+"""Radial scale length (:math:`kpc`). [Noordermeer2007]_
 
 :type: float
 """
 hrho00_c = 0.31e9                 # Halo central surface density (solar mass/kpc^2). Source: Noordermeer, 2008
-"""Central surface density of halo (Solar masses/kpc^2). [Noordermeer2008]_
+"""Central surface density of halo (:math:`M_{Sun}/kpc^2`). [Noordermeer2008]_
 
 :type: float
 """
 drho00_c = 0.31e9                 # Disk central surface density (solar mass/kpc^2)
-"""Central surface density of disk (Solar masses/kpc^2). [Noordermeer2008]_
+"""Central surface density of disk (:math:`M_{Sun}/kpc^2`). [Noordermeer2008]_
 
 :type: float
 """
 
 #---------Uncategorized---------------
 re_c = 2.6                        # Effective radius (kpc). Source: Noordermeer & Van Der Hulst, 2007
-"""Effective radius (kpc). [Noordermeer2007]_
+"""Effective radius (:math:`kpc`). [Noordermeer2007]_
 
 :type: float
 """
@@ -155,23 +155,6 @@ upsdisk = 5.0                     # Disk mass-to-light ratio. Source: Noordermee
 ########### Saving #############
 ################################
 
-##Utility function for saving a dataset to hdf5
-#**Arguments:** `xvalues` (arraylike), `yvalues` (arraylike), `group` (string), `dataset` (string), `path` (string, optional), `file` (string, optional)
-#
-#**xvalues:** [arraylike] An array of x-values to be saved to file. Typically, these values will represent radius.
-#
-#**yvalues:** [arraylike] An array of y-values to be saved to file. Typically, these values will represent velocity.
-#
-#**group:** [string] Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
-#
-#**dataset:** [string] Name of the dataset to be saved. 
-# This should be unique to the data; 
-# a good way to do this is to specify the source for experimental data 
-# or the parameters for theoretical "data".
-#
-#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
-#
-#**file:** [string] Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
 def savedata(xvalues,
              yvalues,
              group,
@@ -181,7 +164,7 @@ def savedata(xvalues,
     """
     Utility function for saving a dataset to hdf5.
 
-    Parameters:
+    :parameters:
         xvalues : [arraylike] 
             An array of x-values to be saved to file. Typically, these values will represent radius.
         yvalues : [arraylike] 
@@ -192,14 +175,17 @@ def savedata(xvalues,
             Name of the dataset to be saved. This should be unique to the data; 
             a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
         path : [string] 
-            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. 
+            
+            :default: "../" (see :func:`defaultpath <components.defaultpath>`).
         file : [string] 
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
-            Default: `Inputs.hdf5`.
 
-    Returns: `None` on success, `1` if h5py was not loaded, and an [array] of y-values if saving data failed and data was loaded instead.
+            :default: "Inputs.hdf5".
 
-    Example:
+    :returns: `None` on success, `1` if h5py was not loaded, and an [array] of y-values if saving data failed and data was loaded instead.
+
+    :example:
         >>> x = [0,1,2,3]
         >>> y = [0,1,2,3]
         >>> savedata(x,y,'test','example')
@@ -255,19 +241,6 @@ def savedata(xvalues,
         print("ERROR: h5py was not loaded.")
         return 1
 
-##Utility function for loading a dataset from hdf5
-#**Arguments:** `group` (string), `dataset` (string), `path` (string, optional), `file` (string, optional)
-#
-#**group:** [string] Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
-#
-#**dataset:** [string] Name of the dataset to be saved. 
-# This should be unique to the data; 
-# a good way to do this is to specify the source for experimental data 
-# or the parameters for theoretical "data".
-#
-#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
-#
-#**file:** [string] Name of the file to be loaded. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
 def loaddata(group,
              dataset,
              path=defaultpath,
@@ -275,21 +248,24 @@ def loaddata(group,
     """
     Utility function for loading a dataset from hdf5.
 
-    Parameters:
+    :parameters:
         group : [string] 
             Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
         dataset : [string] 
             Name of the dataset to be saved. This should be unique to the data; 
             a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
         path : [string] 
-            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. 
+            
+            :default: "../" (see :func:`defaultpath <components.defaultpath>`).
         file : [string] 
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
-            Default: `Inputs.hdf5`.
+            
+            :default: "Inputs.hdf5".
 
-    Returns: [array] on success or `1` if h5py was not loaded.        
+    :returns: [array] on success or `1` if h5py was not loaded.        
 
-    Example:
+    :example:
         >>> x = [0,1,2,3]
         >>> y = [0,1,2,3]
         >>> savedata(x,y,'test','example')
@@ -332,32 +308,35 @@ def loaddata(group,
 ##Utility function for checking data present in hdf5 without loading.
 #**Arguments:** `group` (string, optional), `path` (string, optional), `file` (string, optional)
 #
-#**group:** [string] Name of a group within the hdf5 file, or 'all' to check all groups present. Default: `'all'`.
+#**group:** [string] Name of a group within the hdf5 file, or 'all' to check all groups present. :default: `'all'`.
 #
-#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+#**path:** [string] Relative or absolute filepath of the hdf5 file. Does NOT include the filename. :default: `../`.
 #
-#**file:** Name of the file to be read. May include part of the path, but keep in mind `path` variable will also be read. Default: `Inputs.hdf5`.
+#**file:** Name of the file to be read. May include part of the path, but keep in mind `path` variable will also be read. :default: `Inputs.hdf5`.
 def checkfile(group='all',
               path=defaultpath,
               file='Inputs.hdf5'):
     """
     Utility function for checking data present in hdf5 without loading.
 
-    Parameters:
+    :parameters:
         group : [string] 
             Name of a group within the hdf5 file. Examples: 'disk', 'blackhole', 'halo', 'bulge', 'total'
         dataset : [string] 
             Name of the dataset to be saved. This should be unique to the data; 
             a good way to do this is to specify the source for experimental data or the parameters for theoretical "data".
         path : [string] 
-            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. Default: `../`.
+            Relative or absolute filepath of the hdf5 file. Does NOT include the filename. 
+            
+            :default: "../" (see `defaultpath <components.defaultpath>`).
         file : [string] 
             Name of the file to be saved. May include part of the path, but keep in mind `path` variable will also be read. 
-            Default: `Inputs.hdf5`.
+            
+            :default: "Inputs.hdf5".
 
-    Returns: `None` on success; `1` if h5py was not imported.
+    :returns: `None` on success; `1` if h5py was not imported.
         
-    Example:
+    :example:
         >>> x = [0,1,2,3]
         >>> y = [0,1,2,3]
         >>> savedata(x,y,'test','example')
@@ -396,38 +375,11 @@ def checkfile(group='all',
     elif h5py == 0:
         print("ERROR: h5py was not loaded.")
         return 1
-    
-#####################
-### Interpolation ###
-#####################
-
-##Simple utility function to return scipy.interpolate.InterpolatedUnivariateSpline(x,y,k=5).
-#
-#**Arguments:** `x` (arraylike), `y` (arraylike)
-#
-#**x:** [arraylike] x-values to pass to the interpolation function.
-#
-#**y:** [arraylike] y-values to pass to the interpolation function.
-#def interpd(x,y):
-#    return InterpolatedUnivariateSpline(x,y,k=5)
 
 ################################
 ######### Components ###########
 ################################
 
-##Calculate the gravitational effect of a black hole.
-#**Arguments:** `r` (arraylike), `M` (float), `load` (bool, optional), `save` (bool, optional)
-#
-#**r:** [arraylike] radius values to calculate velocities for.
-#
-#**M:** [float] Mass of the black hole.
-#
-#**load:** [bool] Whether or not to load data from a file. 
-# If no data can be loaded, it will be saved for future use instead. Default: `False`.
-#
-#**save:** [bool] Whether or not to save data to a file. 
-# If data is already present, it will be combined with any new data to expand the dataset. 
-# Default: `False`.
 def blackhole(r,
               M,
               load=False,
@@ -435,25 +387,29 @@ def blackhole(r,
     """
     Function to calculate the gravitational effect of a black hole.
 
-    Parameters:
+    :parameters:
         r : [arraylike] 
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         M : [float] 
-            Mass of the black hole (in solar masses).
+            Mass of the black hole (:math:`M_{Sun}`).
         load : [bool] 
             Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
-            Default: `False`.
+
+            :default: `False`.
         save : [bool] 
             Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
-            Default: `False`.
+            
+            :default: `False`.
         
-    Returns:
-        An array of rotational velocities (in km/s).        
+    :returns:
+        An array of rotational velocities (:math:`km/s`).        
 
-    Example:
-        >>> # Calculate the gravitational effect of a black hole the size of 1000 suns, 10 kpc away. 
+    :example:
+        >>> # Calculate the gravitational effect of a black hole 
+        >>> # the size of 1000 suns, 10 kpc away. 
         >>> print(blackhole(r=10, M=1000))
         [0.02073864] 
+
     """
     
     # Define component for saving
@@ -500,23 +456,40 @@ def bulge(r,
     Function to calculate the gravitational effect of a galactic bulge using empirically derived parameters. 
     The calculation was implemented from Noordermeer (2008).
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         bpref : [float]
             Bulge prefactor or scaling factor (unitless).
-        n : [float]
-            Concentration parameter (unitless). Default: `2.7`.
-        re : [float]
-            Effective radius (in kpc). Default: `2.6`.
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
+        n : [float]
+            Concentration parameter (unitless). 
+            
+            :default: `2.7`.
+        re : [float]
+            Effective radius (:math:`kpc`). 
+            
+            :default: `2.6`.
+        load : [bool] 
+            Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
 
-    Returns:
-        An array of splined bulge velocities (in km/s).        
+            :default: `False`.
+        save : [bool] 
+            Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
+            
+            :default: `False`.
+        comp : [str]
+            Name of group in hdf5 file, if save or load is enabled.
+        \*\*kwargs : [dict]
+            Additionaly key-word arguments to be passed to :func:`loaddata <components.loaddata>` or :func:`savedata <components.savedata>` if they are used.
 
-    Example:
-        >>> # Calculate the gravitational effect of a galactic bulge 10 kpc away for NGC 5533. 
+    :returns:
+        An array of splined bulge velocities (:math:`km/s`).        
+
+    :example:
+        >>> # Calculate the gravitational effect of a galactic bulge 
+        >>> # 10 kpc away for NGC 5533. 
         >>> print(bulge(r=10, bpref=1, galaxy='NGC5533'))
         [166.78929909] 
     """    
@@ -597,19 +570,20 @@ def disk(r,
     """
     Function to calculate the gravitational effect of a galactic disk using the traced curves of the galaxies.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         dpref : [float]
             Disk prefactor or scaling factor (unitless).
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
-    Returns:
-        A float or an array of splined disk velocities (in km/s).
+    :returns:
+        A float or an array of splined disk velocities (:math:`km/s`).
 
-    Example:
-        >>> # Calculate the gravitational effect of a galactic disk 10 kpc away for NGC 5533. 
+    :example:
+        >>> # Calculate the gravitational effect of a galactic disk 
+        >>> # 10 kpc away for NGC 5533. 
         >>> print(disk(r=10, dpref=1, galaxy='NGC5533'))
         147.62309536730015
     """   
@@ -636,19 +610,20 @@ def gas(r,
     """
     Function to calculate the gravitational effect of a galactic gas using the traced curves of the galaxies.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         gpref : [float]
             Gas prefactor or scaling factor (unitless).
         galaxy : [string]
             The galaxy's full name, including catalog. Not case-sensitive. Ignores spaces. 
 
-    Returns:
-        A float or an array of splined gas velocities (in km/s).
+    :returns:
+        A float or an array of splined gas velocities (:math:`km/s`).
 
-    Example:
-        >>> # Calculate the gravitational effect of a galactic gas 10 kpc away for NGC 5533. 
+    :example:
+        >>> # Calculate the gravitational effect of a galactic gas 
+        >>> # 10 kpc away for NGC 5533. 
         >>> print(gas(r=10, gpref=1, galaxy='NGC5533'))
         22.824681427585002
     """  
@@ -673,7 +648,7 @@ def gas(r,
 ### Calculating Dark Matter Halo Velocity ###
 #############################################
     
-# Calculating the velocity for each black hole as a point mass for 10_Bonus_Black_Holes_as_DM.ipynb notebook
+# Calculating the velocity for each black hole as a point mass for `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_ notebook
 def halo_BH(r,
             scale,
             arraysize,
@@ -682,28 +657,32 @@ def halo_BH(r,
     """
     Function to calculate the gravitational effect of a Dark Matter halo by integrating the enclosed mass and isothermal density profile.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         scale : [float]
             Fixed scale for the Dark Matter as tiny black holes widget (unitless).
         arraysize : [float]
             Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
         massMiniBH : [float]
-            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (in solar masses). 
+            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (:math:`M_{Sun}`). 
         rcut : [float]
-            Cutoff radius (in kpc). 
+            Cutoff radius (:math:`kpc`). 
 
-    Returns:
-        A float or an array of splined halo velocities (in km/s).
+    :returns:
+        A float or an array of splined halo velocities (:math:`km/s`).
 
     .. note::
-        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the 10_Bonus_Black_Holes_as_DM.ipynb notebook. 
+        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_ notebook. 
 
-    Example:
-        >>> # Calculate the gravitational effect of 1000 black holes, with the mass of 100 suns, 10,25,20,25,30,35,40,45,50 and 100 kpc away, with a cutoff radius of 1.4 kpc. 
-        >>> print(halo_BH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4))
-        [2.91030968 3.02194461 3.07899654 3.11360553 3.13683133 3.15349481 3.16603213 3.17580667 3.18364085 3.21905242]
+    :example:
+        >>> # Calculate the gravitational effect of 1000 black holes, 
+        >>> # with the mass of 100 suns, 10,25,20,25,30,35,40,45,50 
+        >>> #and 100 kpc away, with a cutoff radius of 1.4 kpc. 
+        >>> print(halo_BH(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+        ...         scale=1, arraysize=1000, massMiniBH=100, rcut=1.4))
+        [2.91030968 3.02194461 3.07899654 3.11360553 
+        3.13683133 3.15349481 3.16603213 3.17580667 3.18364085 3.21905242]
     """  
     
     # Sort radii
@@ -733,32 +712,41 @@ def h_viso(r,
     """
     Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: Jimenez et al. 2003).
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`). 
         rc : [float]
-            Cutoff radius (in kpc). Default: `1.4`
+            Cutoff radius (:math:`kpc`). 
+            
+            :default: `1.4`
         rho00 : [float]
-            Central mass density (in solar mass/kpc^3). Default: `0.31e9`
+            Central mass density (:math:`M_{Sun}/kpc^3`). 
+            
+            :default: `0.31e9`
         load : [bool] 
             Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
-            Default: `True`.
+            :default: `True`.
         save : [bool] 
             Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
-            Default: `False`.
+
+            :default: `False`.
         comp : [string] 
             Component name for saving data.
-            Default: `halo`.
 
-    Returns:
-        A float or an array of splined halo velocities (in km/s).
+            :default: `halo`.
 
-    Example:
-        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
+    :returns:
+        A float or an array of splined halo velocities (:math:`km/s`).
+
+    :example:
+        >>> # Calculate the gravitational effect of the Dark Matter halo 
+        >>> # of NGC 5533, 10 kpc away. 
         >>> print(h_viso(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
                          rc=(co.galdict('NGC5533')['rc']), 
                          rho00=(co.galdict('NGC5533')['rho0'])))
-        [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02  1.77257621e+02  1.79229253e+02]
+        [-5.50269408e-15  1.68254755e+02  1.71431272e+02  1.73358219e+02 
+        1.74651377e+02  1.75579160e+02  1.76277209e+02  1.76821432e+02  
+        1.77257621e+02  1.79229253e+02]
     """  
     
     # If r isn't array-like, make it array-like
@@ -816,32 +804,34 @@ def halo(r,
     """
     Defining the default version of halo velocity calculation. In this case, using the isothermal density profile.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`). 
         rc : [float]
-            Cutoff radius (in kpc).  
+            Cutoff radius (:math:`kpc`).  
         rho00 : [float]
-            Central mass density (in solar mass/kpc^3). 
+            Central mass density (:math:`M_{Sun}/kpc^3`). 
         load : [bool] 
             Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
-            Default: `True`.
+            :default: `True`.
         save : [bool] 
             Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
-            Default: `False`.
+            :default: `False`.
         comp : [string] 
             Component name for saving data.
-            Default: `halo`.
+            :default: `halo`.
 
-    Returns:
-        A float or an array of splined halo velocities (in km/s). 
+    :returns:
+        A float or an array of splined halo velocities (:math:`km/s`). 
     
-    Example:
-        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
+    :example:
+        >>> # Calculate the gravitational effect of the Dark Matter halo 
+        >>> # of NGC 5533, 10 kpc away. 
         >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
                          rc=(co.galdict('NGC5533')['rc']), 
                          rho00=(co.galdict('NGC5533')['rho0'])))
-        [  0.         168.2547549  171.43127236 173.35821904 174.65137711 175.57916017 176.27720854 176.82143175 177.25762058 179.22925324]
+        [  0.         168.2547549  171.43127236 173.35821904 174.65137711 
+        175.57916017 176.27720854 176.82143175 177.25762058 179.22925324]
     """  
     
     return h_viso(r,rc,rho00,load=False)
@@ -864,17 +854,17 @@ def totalvelocity_miniBH(r,
     Function to calculate the total gravitational effect of all components of a galaxy for the tiny black hole widget. 
     The velocities of each component is added in quadrature to calculate the total rotational velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).
         scale : [float]
             Fixed scale for the Dark Matter as tiny black holes widget (unitless).
         arraysize : [float]
             Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
         massMiniBH : [float]
-            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (in solar masses). 
+            Variable mass of tiny black holes for the Dark Matter as tiny black holes widget (:math:`M_{Sun}`). 
         rcut : [float]
-            Cutoff radius (in kpc).          
+            Cutoff radius (:math:`kpc`).          
         bpref : [float]
             Bulge prefactor or scaling factor (unitless).       
         dpref : [float]
@@ -882,20 +872,24 @@ def totalvelocity_miniBH(r,
         gpref : [float]
             Gas prefactor or scaling factor (unitless).
         Mbh : [float] 
-            Mass of the black hole (in solar masses).
+            Mass of the black hole (:math:`M_{Sun}`).
         galaxy : [string]
             The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
 
-    Returns:
-        A float or an array of total velocities (in km/s).
+    :returns:
+        A float or an array of total velocities (:math:`km/s`).
 
     .. note::
-        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the 10_Bonus_Black_Holes_as_DM.ipynb notebook. 
+        This function is only for the case when the dark matter halo consists of tiny black holes, as described in the `10_Bonus_Black_Holes_as_DM.ipynb <https://github.com/villano-lab/galactic-spin-W1/blob/master/binder/10_Bonus_Black_Holes_as_DM.ipynb>`_ notebook. 
 
-    Example:
-        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
-        >>> print(totalvelocity_miniBH(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=1, arraysize=1000, massMiniBH=100, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388 182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
+    :example:
+        >>> # Calculate the gravitational effect of all components of a galaxy 
+        >>> # at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> print(totalvelocity_miniBH(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+        ...         scale=1, arraysize=1000, massMiniBH=100, rcut=1.4, 
+        ...         bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
+        [223.92115798 216.1856443  205.36165422 197.7553731  191.2224388 
+        182.85803424 174.3309731  165.72641622 158.01875262 114.03919935]
     """ 
     
     return np.sqrt(blackhole(r,Mbh)**2                                   # Black hole velocity
@@ -918,17 +912,17 @@ def totalvelocity_halo(r,
     Function to calculate the total gravitational effect of all components of a galaxy. 
     The velocities of each component is added in quadrature to calculate the total rotational velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
-            Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).  
+            Radius values or distance from the center of the galaxy used to calculate velocities (:math:`kpc`).  
         scale : [float]
             Fixed scale for the Dark Matter as tiny black holes widget (unitless).
         arraysize : [float]
             Variable scale for the Dark Matter as tiny black holes widget (unitless). Representing the number of tiny black holes.           
         rho00 : [float]
-            Central mass density (in solar mass/kpc^3). 
+            Central mass density (:math:`M_{Sun}/kpc^3`). 
         rcut : [float]
-            Cutoff radius (in kpc).          
+            Cutoff radius (:math:`kpc`).          
         bpref : [float]
             Bulge prefactor or scaling factor (unitless).       
         dpref : [float]
@@ -936,17 +930,21 @@ def totalvelocity_halo(r,
         gpref : [float]
             Gas prefactor or scaling factor (unitless).
         Mbh : [float] 
-            Mass of the black hole (in solar masses).
+            Mass of the black hole (:math:`M_{Sun}`).
         galaxy : [string]
             The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
 
-    Returns:
-        A float or an array of total velocities (in km/s).
+    :returns:
+        A float or an array of total velocities (:math:`km/s`).
 
-    Example:
-        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
-        >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), scale=0, arraysize=0, rho00=0.31e9, rcut=1.4, bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
-        [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756 253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
+    :example:
+        >>> # Calculate the gravitational effect of all components of a galaxy 
+        >>> # at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> print(totalvelocity_halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+        ...         scale=0, arraysize=0, rho00=0.31e9, rcut=1.4, 
+        ...         bpref=1, dpref=1, gpref=1, Mbh=1000, galaxy='NGC5533'))
+        [223.90224449 273.92839064 267.49319608 262.96495044 258.9580756 
+        253.48601074 247.90102596 242.32411768 237.44484552 212.40927924]
     """
     
     return np.sqrt(blackhole(r,Mbh)**2                # Black hole velocity
@@ -964,16 +962,16 @@ def set_params(model,
     """
     Setting parameters for tiny black hole widget.
 
-    Parameters:
+    :parameters:
         model : [string]
             Function used for the fitting.  
         galaxy : [string]
             The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
 
-    Returns:
+    :returns:
         [lmfit.Parameter] An lmfit Parameters object parameters to be supplied to a fit.
     
-    Example:
+    :example:
         >>> model = lambda r: totalvelocity_halo(r)
         >>> set_params(model,galaxy='NGC5005')
         name 	value 	initial value 	min 	max 	vary
@@ -1004,13 +1002,13 @@ def set_params(model,
     # If halo consists of tiny black holes
     if (model == 'bh') or (model==lm.Model(totalvelocity_miniBH)) or (model==totalvelocity_miniBH):
         fit_pars.add('arraysize', value=50, min=1, max=100)            # Number of black holes (unitless)
-        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (in solar masses)
+        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (:math:`M_{Sun}`)
     
     # If halo is Dark Matter halo
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):
         fit_pars.add('arraysize', value=0, vary=False)                  # Scaling factor (unitless)
         fit_pars.add('rho0', value=galdict_local['rho0'], min=0)        # Halo central density (in solar mass/kpc^3) 
-    fit_pars.add('rcut', value=galdict_local['rc'], min=0.1)            # Cutoff Radius (in kpc)
+    fit_pars.add('rcut', value=galdict_local['rc'], min=0.1)            # Cutoff Radius (:math:`kpc`)
     
     # Bulge
     fit_pars.add('bpref', value=1, min=0, max=100)                      # Bulge Prefactor
@@ -1039,16 +1037,16 @@ def bestfit(model,galaxy):
     """
     Calculate fitting.
 
-    Parameters:
+    :parameters:
         model : [string]
             Function used for the fitting.  
         galaxy : [string]
             The galaxy's full name, including catalog, for loading traced curves. Not case-sensitive. Ignores spaces. 
 
-    Returns:
+    :returns:
         Best fit and dictionary of fitted values.
         
-    Example:
+    :example:
         >>> # Examples on how to use this output:
         >>> best_rc = fit_dict['rc']
         >>> best_rho00 = fit_dict['rho00']
@@ -1071,7 +1069,7 @@ def bestfit(model,galaxy):
     # If halo consists of tiny black holes
     if (model == 'bh') or (model==lm.Model(totalvelocity_miniBH)) or (model==totalvelocity_miniBH):
         fit_pars.add('arraysize', value=50, min=1, max=100)            # Number of black holes
-        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (in solar masses)
+        fit_pars.add('rho0', value=1.5, min=0)                         # Mass of tiny black holes (:math:`M_{Sun}`)
         
     # If halo is Dark Matter halo
     elif (model == 'wimp') or (model==lm.Model(totalvelocity_halo)) or (model==totalvelocity_halo):

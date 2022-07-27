@@ -1,3 +1,6 @@
+#UGC 10075 #GHASP survey https://academic.oup.com/mnras/article/388/2/500/976912#86133715
+# Rad	Vobs	errV
+# kpc	km/s	km/s
 0.05	-38	7
 0.1	25	7
 0.14	4	6

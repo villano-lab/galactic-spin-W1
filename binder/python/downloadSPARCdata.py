@@ -11,7 +11,7 @@ import IPython
 
 def downloadsparc():
     """
-    Downloads Rotmod_LTG.zip from the SPARC website: http://astroweb.cwru.edu/SPARC/.
+    Downloads rotation curve data for Newtonian Mass Models (Rotmod_LTG.zip) from the SPARC website: http://astroweb.cwru.edu/SPARC/.
 
     Parameters:
         None 
@@ -43,7 +43,7 @@ import os
 
 def unzipfiles():
     """
-    Extracts all files of the Rotmod_LTG.zip, dowloaded from the SPARC website: http://astroweb.cwru.edu/SPARC/.
+    Extracts all files of the zipped rotation curve data (Rotmod_LTG.zip), downloaded from the SPARC website: http://astroweb.cwru.edu/SPARC/.
 
     Parameters:
         None 
@@ -85,11 +85,16 @@ buttonYES = Button(                   # YES button
 
 :type: ipywidgets.widgets.widget_button.Button
 """
+
 out = Output()
+"""Displaying the button.
+
+:type: ipywidgets.widgets.Output
+"""
 
 def on_button_clicked_YES(_):         # When clicked on the 'YES' button, download and unzip SPARC data, run all cells below
     """
-    'YES' button to download and unzip SPARC data.
+    Button labeled as 'YES' to download and unzip SPARC data.
 
     Parameters:
         None 
@@ -133,6 +138,7 @@ options = []
 
 .. seealso:: This list is generated based on the files present in the :code:`./data/sparc` directory, which is populated by the :func:`downloadsparc <downloadSPARCdata.downloadsparc>` and :func:`unzipfiles <downloadSPARCdata.unzipfiles` functions.
 """
+
 for f in [f for f in os.listdir('./data/sparc/') if "rotmod.dat" in f]:
     #galaxy = f.replace("_rotmod.dat","")                     # Remove "_rotmod.dat" from filename
     options.append(f.replace("_rotmod.dat",""))

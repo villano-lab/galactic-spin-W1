@@ -36,12 +36,12 @@ center = [1960,1800]
 
 # Kpc limits, visual guess based on the galaxy in the image chosen:
 minkpc = 0
-"""The minimum value, in kpc, allowed for the radial position of black holes on the plot.
+"""The minimum value (:math:`kpc`), allowed for the radial position of black holes on the plot.
 
 :type: int
 """
 maxkpc = 100
-"""The maximum value, in kpc, allowed for the radial position of black holes on the plot.
+"""The maximum value (:math:`kpc`), allowed for the radial position of black holes on the plot.
 
 :type: int
 """
@@ -88,12 +88,12 @@ stepN = 5
 def minnumberBH(galaxy):
     """A function that returns the minimum number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
-    Parameters:
+    :parameters:
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
             Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: [int] 
+    :returns: [int] 
         The minimum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
@@ -106,12 +106,12 @@ def minnumberBH(galaxy):
 def maxnumberBH(galaxy):
     """A function that returns the maximum number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
-    Parameters:
+    :parameters:
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
             Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: 
+    :returns: 
         [int] The maximum number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
@@ -124,12 +124,12 @@ def maxnumberBH(galaxy):
 def defaultnumber(galaxy):
     """A function that returns the default number of black holes (prior to multiplying by the :func:`scale <widget_BH.scale>`) appropriate for the supplied galaxy.
 
-    Parameters:
+    :parameters:
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
             Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: 
+    :returns: 
         [int] The default number of black holes, prior to multiplying by the :func:`scale <widget_BH.scale>`.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
@@ -141,20 +141,20 @@ def defaultnumber(galaxy):
 
 #For cutoff radius:
 minrcutBH = 0.1
-"""The minimum cutoff radius for black holes, in kpc.
+"""The minimum cutoff radius for black holes (:math:`kpc`).
 
 :type: float
 """
 
 def maxrcutBH(galaxy):
-    """A function that returns the maximum cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
+    """A function that returns the maximum cutoff radius for black holes (:math:`kpc`), appropriate for the supplied galaxy.
 
-    Parameters:
+    :parameters:
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
             Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: 
+    :returns: 
         [float] The maximum cutoff radius for black holes.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
@@ -165,14 +165,14 @@ def maxrcutBH(galaxy):
         return 4.0
     
 def defaultrcutBH(galaxy):
-    """A function that returns the default cutoff radius for black holes, in kpc, appropriate for the supplied galaxy.
+    """A function that returns the default cutoff radius for black holes (:math:`kpc`), appropriate for the supplied galaxy.
 
-    Parameters:
+    :parameters:
         galaxy : [string | int]
             The name or number (for NGC) of the selected galaxy. Names are not case-sensitive and ignore spaces. 
             Allowed inputs: "NGC5533" or "NGC7814".
 
-    Returns: 
+    :returns: 
         [float] The default cutoff radius for black holes.
     
     .. seealso:: For an example usecase of this function, see :func:`arraysize_5533 <widget_BH.arraysize_5533>`.
@@ -206,16 +206,16 @@ def f5533(arraysize,massMiniBH,rcut):
 
     This function is intended for use as part of a widget.
 
-    Parameters:
+    :parameters:
         arraysize: [int]
             Size intended for the radius and angle arrays.
         massMiniBH: [int]
             Mass of the tiny black holes, in solar masses.
         rcut: [float]
-            Cutoff radius for black hole placement, in kpc.
+            Cutoff radius for black hole placement (:math:`kpc`).
     
-    Returns: 
-        None. Generates a plot of NGC5533 data/components alongside a galaxy image.
+    :returns: 
+        None
 
     .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F10_Bonus_Black_Holes_as_DM.ipynb>`_.
     """
@@ -313,16 +313,16 @@ def f7814(arraysize,massMiniBH,rcut):
 
     This function is intended for use as part of a widget.
 
-    Parameters:
+    :parameters:
         arraysize: [int]
             Size intended for the radius and angle arrays.
         massMiniBH: [int]
             Mass of the tiny black holes, in solar masses.
         rcut: [float]
-            Cutoff radius for black hole placement, in kpc.
+            Cutoff radius for black hole placement (:math:`kpc`).
     
-    Returns: 
-        None. Generates a plot of NGC7814 data/components alongside a galaxy image.
+    :returns: 
+        None
 
     .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F10_Bonus_Black_Holes_as_DM.ipynb>`__.
     """
@@ -498,11 +498,11 @@ def interactive_plot_5533(widgetfunction):
     """
     Generate an interactive plot widget, allowing the user to interact with the NGC5533 data and the galaxy's components.
 
-    Parameters:
+    :parameters:
         widgetfunction: [function]
             A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`f5533 <widget_BH.f5533>`.
 
-    Returns: 
+    :returns: 
         [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
 
     .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
@@ -517,11 +517,11 @@ def interactive_plot_7814(widgetfunction):
     """
     Generate an interactive plot widget, allowing the user to interact with the NGC7814 data and the galaxy's components.
 
-    Parameters:
+    :parameters:
         widgetfunction: [function]
             A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`f7814 <widget_BH.f7814>`.
 
-    Returns: 
+    :returns: 
         [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
 
     .. seealso:: For an example usage of this function, see the notebook `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
@@ -556,12 +556,12 @@ def on_button_clicked_5533(_):
     """
     A function to reset values when the 'Best Fit' button for NGC5533 is clicked. 
     
-    Parameters: None.
+    :parameters: None.
 
-    Returns:
-        None. Resets values on button click. 
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> button_5533.on_click(on_button_clicked_5533)
 
         This renders the button click behavior seen in `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
@@ -591,12 +591,12 @@ def on_button_clicked_7814(_):
     """
     A function to reset values when the 'Best Fit' button for NGC7814 is clicked. 
     
-    Parameters: None.
+    :parameters: None.
 
-    Returns:
-        None. Resets values on button click. 
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> button_7814.on_click(on_button_clicked_7814)
 
         This renders the button click behavior seen in `10_Bonus_Black_Holes_as_DM.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.

@@ -710,7 +710,7 @@ def h_viso(r,
            comp='halo',
            **kwargs):   #h_v iso
     """
-    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: Jimenez et al. 2003).
+    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: [Jimenez2003]_).
 
     :parameters:
         r : [array]
@@ -734,6 +734,8 @@ def h_viso(r,
             Component name for saving data.
 
             :default: `halo`.
+        \*\*kwargs : [dict]
+            Additionaly key-word arguments to be passed to :func:`loaddata <components.loaddata>` or :func:`savedata <components.savedata>` if they are used.
 
     :returns:
         A float or an array of splined halo velocities (:math:`km/s`).
@@ -811,15 +813,6 @@ def halo(r,
             Cutoff radius (:math:`kpc`).  
         rho00 : [float]
             Central mass density (:math:`M_{Sun}/kpc^3`). 
-        load : [bool] 
-            Whether or not to load data from a file. If no data can be loaded, it will be saved for future use instead. 
-            :default: `True`.
-        save : [bool] 
-            Whether or not to save data to a file. If data is already present, it will be combined with any new data to expand the dataset.
-            :default: `False`.
-        comp : [string] 
-            Component name for saving data.
-            :default: `halo`.
 
     :returns:
         A float or an array of splined halo velocities (:math:`km/s`). 

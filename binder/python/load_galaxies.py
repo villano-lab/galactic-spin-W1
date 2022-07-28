@@ -40,7 +40,7 @@ NGC5533 = {
 }
 """Data for galaxy NGC5533. Parameters and data measurements in this dictionary are from [Noordermeer2007]_ unless noted otherwise.
 
-Keys:
+:keys:
     blackhole: [dict] Further information pertaining to the black hole component.
         c: [array] B-spline coefficients returned by using scipy.interpolate.splrep on the black hole component.
 
@@ -370,7 +370,7 @@ NGC0891 = {
 }
 """Data for galaxy NGC891. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:   
+:keys:   
     bulge: [dict] Further information pertaining to the bulge component.
         c: [array] B-spline coefficients returned by using scipy.interpolate.splrep on the bulge component.
 
@@ -560,7 +560,7 @@ NGC7814 = {
 }
 """Data for galaxy NGC7814. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:
+:keys:
     bulge: [dict] Further information pertaining to the bulge component.
         c: [array] B-spline coefficients returned by using scipy.interpolate.splrep on the bulge component.
 
@@ -732,7 +732,7 @@ NGC5005 = {
 }
 """Data for galaxy NGC5005. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:
+:keys:
     bulge: [dict] Further information pertaining to the bulge component.
         c: [array] B-spline coefficients returned by using scipy.interpolate.splrep on the bulge component.
 
@@ -895,7 +895,7 @@ NGC5005['massbh'] = 0                # central black hole is included in the bul
 NGC3198 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/NGC3198.txt')}
 """Data for galaxy NGC3198. Parameters and data measurements in this dictionary are from [Karukes2015]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -922,7 +922,7 @@ NGC3198['galaxyname'] = 'NGC 3198'
 UGC0477 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC477.txt')}
 """Data for galaxy UGC477. Parameters and data measurements in this dictionary are from [deNaray2006]_ and [deNaray2008]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -951,7 +951,7 @@ UGC477 = UGC0477
 UGC1281 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC1281.txt')}
 """Data for galaxy UGC1281. Parameters and data measurements in this dictionary are from [deNaray2006]_ and [deNaray2008]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -977,7 +977,7 @@ UGC1281['galaxyname'] = 'UGC 1281'
 UGC1437 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC1437.txt')}
 """Data for galaxy UGC1437. Parameters and data measurements in this dictionary are from [Epinat2008]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -1003,7 +1003,7 @@ UGC1437['galaxyname'] = 'UGC 1437'
 UGC2953 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC2953.txt')}
 """Data for galaxy UGC2953. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -1029,7 +1029,7 @@ UGC2953['galaxyname'] = 'UGC 2953'
 UGC4325 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC4325.txt')}
 """Data for galaxy UGC4325. Parameters and data measurements in this dictionary are from [deNaray2006]_ and [deNaray2008]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -1055,7 +1055,7 @@ UGC4325['galaxyname'] = 'UGC 4325'
 UGC5253 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC5253.txt')}
 """Data for galaxy UGC5253. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -1081,7 +1081,7 @@ UGC5253['galaxyname'] = 'UGC 5253'
 UGC6787 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC6787.txt')}
 """Data for galaxy UGC6787. Parameters and data measurements in this dictionary are from [SPARC2016]_ unless noted otherwise.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).
@@ -1107,7 +1107,7 @@ UGC6787['galaxyname'] = 'UGC 6787'
 UGC10075 = {'measured_data' : dp.getXYdata_wYerr('data/othergalaxies/UGC10075.txt')}
 """Data for galaxy UGC10075. Parameters and data measurements in this dictionary are from [Epinat2008]_.
 
-Keys:
+:keys:
     galaxyname: [string] Name of the galaxy.
 
     m_radii: [array] Radii of measured data (kpc).

@@ -13,13 +13,13 @@ def downloadsparc():
     """
     Downloads rotation curve data for Newtonian Mass Models (Rotmod_LTG.zip) from the SPARC website: http://astroweb.cwru.edu/SPARC/.
 
-    Parameters:
+    :parameters:
         None 
 
-    Returns:
-        None. Files are downloaded to local computer.
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> downloadsparc()
         Download URL: http://astroweb.cwru.edu/SPARC/Rotmod_LTG.zip.
         Downloaded zip file successfully.
@@ -45,19 +45,20 @@ def unzipfiles():
     """
     Extracts all files of the zipped rotation curve data (Rotmod_LTG.zip), downloaded from the SPARC website: http://astroweb.cwru.edu/SPARC/.
 
-    Parameters:
+    :parameters:
         None 
 
-    Returns:
-        None. Unzips files on local computer to the 'data/sparc/' folder.
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> downloadsparc()
         Download URL: http://astroweb.cwru.edu/SPARC/Rotmod_LTG.zip.
         Downloaded zip file successfully.
         >>> unzipfiles()
         Data files unzipped successfully.
-        SPARC data file location: '/mnt/c/Users/harrkath/Documents/GitHub/galactic-spin-W1/binder/data/sparc/'.
+        SPARC data file location: 
+        '/mnt/c/Users/you/Documents/GitHub/galactic-spin-W1/binder/data/sparc/'.
     """
     
     with zipfile.ZipFile('data/sparc/Rotmod_LTG.zip', 'r') as zip_ref:    # Define zip file location and name
@@ -96,11 +97,11 @@ def on_button_clicked_YES(_):         # When clicked on the 'YES' button, downlo
     """
     Button labeled as 'YES' to download and unzip SPARC data.
 
-    Parameters:
+    :parameters:
         None 
 
-    Returns:
-        None. Downloads files to local computer and unzips them.
+    :returns:
+        None
     """
     
     with out:
@@ -136,7 +137,7 @@ options = []
 
 :type: list
 
-.. seealso:: This list is generated based on the files present in the :code:`./data/sparc` directory, which is populated by the :func:`downloadsparc <downloadSPARCdata.downloadsparc>` and :func:`unzipfiles <downloadSPARCdata.unzipfiles` functions.
+.. seealso:: This list is generated based on the files present in the :code:`./data/sparc` directory, which is populated by the :func:`downloadsparc <downloadSPARCdata.downloadsparc>` and :func:`unzipfiles <downloadSPARCdata.unzipfiles>` functions.
 """
 
 for f in [f for f in os.listdir('./data/sparc/') if "rotmod.dat" in f]:

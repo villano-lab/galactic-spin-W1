@@ -14,7 +14,7 @@ def CalculatePosition(radius,velocity,time,dt):
     Any set of units may be used, provided they match -- 
     for example, if using a radius of meters and time in seconds, velocity should be in meters per second and the time increments should be in seconds.
 
-    Parameters:
+    :parameters:
         radius : [array]
             Radius of the objects from the center. Units to match velocity.
         velocity : [array]
@@ -24,12 +24,12 @@ def CalculatePosition(radius,velocity,time,dt):
         dt : [int]
             Time increment. Units to match time.
 
-    Returns:
+    :returns:
         Two [ndarray]s of x-position (first array) and y-position (second array) of all objects. These arrays are stored such that each row represents a single time 
         and each column represents a single object.  
         [1darray] of associated time.  
 
-    Example:
+    :example:
         >>> import numpy as np #To generate the arrays
         >>> radius = np.array([1,2,3,4,5])              # in m
         >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
@@ -86,7 +86,7 @@ def MultiplePositions(radius,velocity,time,dt):
     Any set of units may be used, provided they match -- 
     for example, if using a radius of meters and time in seconds, velocity should be in meters per second and the time increments should be in seconds.
 
-    Parameters:
+    :parameters:
         radius : [array]
             Radius of the objects from the center. Units to match velocity.
         velocity : [array]
@@ -96,12 +96,12 @@ def MultiplePositions(radius,velocity,time,dt):
         dt : [int]
             Time increment. Units to match time.
 
-    Returns:
+    :returns:
         Two [ndarray]s of x-position (first array) and y-position (second array) of all objects. These arrays are stored such that each row represents a single object 
         and each column represents a single time.  
         [1darray] of associated time.
 
-    Example:
+    :example:
         >>> radius = np.array([1,2,3,4,5])              # in m
         >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
         >>> time = 100                                  # in s
@@ -172,7 +172,7 @@ def PlotRotationCurve(radius,velocity,title,
     Any set of units may be used, provided they match -- 
     for example, if using a radius of meters, velocity should be in meters per unit time and the labels should correctly indicate both.
 
-    Parameters:
+    :parameters:
         radius : [array]
             Radius of the objects from the center. Units to match velocity.
         velocity : [array]
@@ -180,18 +180,26 @@ def PlotRotationCurve(radius,velocity,title,
         title : [string]
             Title of the plot.
         xlabel : [string]
-            X-label of the plot. Default: 'Radius (km)'
+            X-label of the plot. 
+            
+            :default: 'Radius (km)'
         ylabel : [string]
-            Y-label of the plot. Default: 'Velocity (km/s)'
-        xlim : [int]
-            X-limit of the plot. Default: 1
-        ylim : [int]
-            Y-limit of the plot. Default: 0.1
+            Y-label of the plot. 
+            
+            :default: 'Velocity (km/s)'
+        xlim : [float]
+            X-limit of the plot. 
+            
+            :default: 1
+        ylim : [float]
+            Y-limit of the plot. 
+            
+            :default: 0.1
 
-    Returns:
-        None; generates and displays a rotation curve plot.
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> radius = np.array([1,2,3,4,5])              # in m
         >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
         >>> PlotRotationCurve(radius,velocity,'Rigid Body Rotation Curve')
@@ -239,7 +247,7 @@ def MakeAnimation(radius,velocity,time,dt,filename,title,
     Any set of units may be used, provided they match -- 
     for example, if using a radius of meters and time in seconds, velocity should be in meters per second and the time increments should be in seconds. 
 
-    Parameters:
+    :parameters:
         radius : [array]
             Radius of the objects from the center. Units of km.
         velocity : [array]
@@ -252,24 +260,34 @@ def MakeAnimation(radius,velocity,time,dt,filename,title,
             File name to save animation.
         title : [string]
             Title of the plot.
-        xlim : [int]
-            X-limit of the plot. Default: 1
-        ylim : [int]
-            Y-limit of the plot. Default: 0.1
+        xlim : [float]
+            X-limit of the plot. 
+            
+            :default: 1
+        ylim : [float]
+            Y-limit of the plot. 
+            
+            :default: 0.1
         size : [bool]
-            Size of dots, based on masses. If True, the sizes of dots depend on masses. Default: False
+            Size of dots, based on masses. If True, the sizes of dots depend on masses. 
+            
+            :default: False
         masses : [array]
-            Masses of objects, when needed. Default: None
+            Masses of objects, when needed. 
+            
+            :default: None
 
-    Returns:
-        None; generates and saves rotation curve animation.
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> radius = np.array([1,2,3,4,5])              # in m
         >>> velocity = np.array([0.1,0.2,0.3,0.4,0.5])  # in m/s
         >>> time = 100
         >>> dt = 1
-        >>> MakeAnimation(radius, velocity, time, dt, filename='images/solarsystem.gif', title='Planet-like Rotation')    
+        >>> MakeAnimation(radius, velocity, time, dt, 
+        ...     filename='images/solarsystem.gif', 
+        ...     title='Planet-like Rotation')    
 
         .. image:: ../../images/solarsystem.gif
             :alt: An animation of planet-like rotation, in which the five planets are, coincidentally, moving like a rigid body. The x-axis and y-axis are both labeled with units of km with ranges of -6 to +6. Below the title 'Planet-like Rotation' is a counter indicating the current number of seconds, in scientific notation, resetting itself periodically. Other than this timer, the animation appears continuious.

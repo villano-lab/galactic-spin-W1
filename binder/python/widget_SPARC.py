@@ -120,16 +120,16 @@ def bulge(r,bpref):
     """
     Interpolating the bulge velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
             Sampling radius values or distance from the center of the galaxy (in kpc).           
         bpref : [float]
             Bulge prefactor or scaling factor (unitless). 
 
-    Returns:
+    :returns:
         Splined bulge velocity as a [function] of sampling radii.
 
-    Example:
+    :example:
         >>> # Define measured radius and velocity and interpolate them
         >>> import numpy as np
         >>> Rad = np.array([0, 0.5, 1.2, 2.6, 5.3, 6.7, 7.1, 9.5])
@@ -152,16 +152,16 @@ def disk(r,dpref):
     """
     Interpolating the disk velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
             Sampling radius values or distance from the center of the galaxy (in kpc).           
         dpref : [float]
             Disk prefactor or scaling factor (unitless). 
 
-    Returns:
+    :returns:
         Splined disk velocity as a [function] of sampling radii.
 
-    Example:
+    :example:
         >>> # Define measured radius and velocity and interpolate them
         >>> #Rad = #Plotting Rad and Vdisk as imported from this library
         >>> #Vdisk = #^
@@ -183,14 +183,14 @@ def gas(r):
     """
     Interpolating the gas velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
             Sampling radius values or distance from the center of the galaxy (in kpc).
 
-    Returns:
+    :returns:
         Splined gas velocity as a [function] of sampling radii.
 
-    Example:
+    :example:
         >>> # Define measured radius and velocity and interpolate them
         >>> #Rad = # We plot the radius and velocities as imported from this library.
         >>> #Vgas = #^
@@ -214,9 +214,9 @@ def halo(r,
          rc,
          rho0):
     """
-    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: Jimenez et al. 2003).
+    Function to calculate the gravitational effect of a Dark Matter halo using the isothermal density profile (Source: [Jimenez2003]_).
 
-    Parameters:
+    :parameters:
         r : [array]
             Radius values or distance from the center of the galaxy used to calculate velocities (in kpc). 
         rc : [float]
@@ -224,13 +224,16 @@ def halo(r,
         rho0 : [float]
             Central mass density (in solar mass/kpc^3). Default: `0.31e9`
 
-    Returns:
+    :returns:
         A [float] or an [array] of halo velocities (in km/s).
 
-    Example:
-        >>> # Calculate the gravitational effect of the Dark Matter halo of NGC 5533, 10 kpc away. 
-        >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), rc=1.4, rho0=0.31e9)))
-        [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
+    :example:
+        >>> # Calculate the gravitational effect of the Dark Matter halo 
+        >>> # of NGC 5533, 10 kpc away. 
+        >>> print(halo(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+        ...     rc=1.4, rho0=0.31e9)))
+        [162.0220417  168.23695403 171.41313542 173.33987823 174.63289949 
+        175.5605844  176.25855891 176.80272454 177.23886723 179.21029129]
     """ 
     
     return np.sqrt(4*np.pi*comp.G*rho0*(rc**2)*(1-((rc/r)*np.arctan(r/rc))))
@@ -245,7 +248,7 @@ def totalcurve(r,
     Function to calculate the total gravitational effect of all components of a galaxy. 
     The velocities of each component is added in quadrature to calculate the total rotational velocity.
 
-    Parameters:
+    :parameters:
         r : [array]
             Radius values or distance from the center of the galaxy used to calculate velocities (in kpc).            
         bpref : [float]
@@ -257,16 +260,19 @@ def totalcurve(r,
         rho0 : [float]
             Central mass density (in solar mass/kpc^3).
 
-    Returns:
+    :returns:
         A [float] or an [array] of total velocities (in km/s).
 
     .. note::
         If the galaxy contains a supermassive black hole at the center, it is incorporated in the bulge velocity.
 
-    Example:
-        >>> # Calculate the gravitational effect of all components of a galaxy at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
-        >>> print(totalcurve(r=np.array([10,15,20,25,30,35,40,45,50,100]), bpref=1, dpref=1, rc=1.4, rho0=0.31e9)))
-        [3.34371479e+02 3.22215072e+02 7.25902496e+02 2.16917607e+03 5.21519130e+03 1.04268198e+04 1.83732304e+04 2.96250118e+04 4.47531137e+04 5.34875631e+05]
+    :example:
+        >>> # Calculate the gravitational effect of all components of a galaxy 
+        >>> #at the distance of 10,15,20,25,30,35,40,45,50, and 100 kpc. 
+        >>> print(totalcurve(r=np.array([10,15,20,25,30,35,40,45,50,100]), 
+        ...     bpref=1, dpref=1, rc=1.4, rho0=0.31e9)))
+        [3.34371479e+02 3.22215072e+02 7.25902496e+02 2.16917607e+03 5.21519130e+03 
+        1.04268198e+04 1.83732304e+04 2.96250118e+04 4.47531137e+04 5.34875631e+05]
     """
     
     # Total velocity with components added in quadrature
@@ -337,7 +343,7 @@ fit_dict = fit.best_values
 
 :type: dict 
 
-Keys: `bpref`, `dpref`, `rc`, `rho0`.
+:keys: `bpref`, `dpref`, `rc`, `rho0`.
 """
 
 #####################
@@ -350,7 +356,7 @@ def widgetfunction(bpref,dpref,rc,rho0):
     Generate a plot for use with interactive rotation curve plot of SPARC data with sliders for parameters.
     Can also be used to generate a static plot of individual components and their total.
     
-    Parameters:
+    :parameters:
         bpref: [float]
             Prefactor scaling the bulge component.
         dpref: [float]
@@ -360,8 +366,8 @@ def widgetfunction(bpref,dpref,rc,rho0):
         rho0: [float]
             Density parameter for the halo.
 
-    Returns:
-        None. This function displays a plot instead of returning a value or other object.
+    :returns:
+        None
 
     .. seealso:: For information on how the curves displayed are calculated, see: 
         :func:`totalcurve <widget_SPARC.totalcurve>`, 
@@ -370,7 +376,7 @@ def widgetfunction(bpref,dpref,rc,rho0):
         :func:`halo <widget_SPARC.halo>`,
         :func:`gas <widget_SPARC.gas>`.  
 
-        See :func:`the interactive_plot function <widget_SPARC.interactive_plot>` as an example usecase of this function.
+        See the :func:`interactive_plot <widget_SPARC.interactive_plot>` function as an example usecase of this function.
     """
     
     # Define radius
@@ -473,11 +479,11 @@ def interactive_plot(widgetfunction):
     """
     Generate an interactive plot widget, allowing the user to interact with the SPARC data and the galaxy's components.
 
-    Parameters:
+    :parameters:
         widgetfunction: [function]
             A function that generates the base plot for the widget to alter. This should, in all likelihood, be :func:`widgetfunction <widget_SPARC.widgetfunction>`.
 
-    Returns: 
+    :returns: 
         [ipywidgets.widgets.interaction.interactive] -- creates sliders to make the plot interactive.
 
     .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`_.
@@ -513,12 +519,12 @@ def on_button_clicked(_):
     """
     A function to reset values when the 'Best Fit' button is clicked. 
     
-    Parameters: None.
+    :parameters: None
 
-    Returns:
-        None. Resets values on button click. 
+    :returns:
+        None
 
-    Example:
+    :example:
         >>> button.on_click(on_button_clicked)
 
         This renders the button click behavior seen in `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
@@ -542,14 +548,14 @@ def GalaxyImage(position=galaxy,survey=['DSS']):
     """
     Fetch and display an image of the selected galaxy.
 
-    Parameters:
+    :parameters:
         Position: [string]
             The name of the galaxy whose image is to be fetched.
         Survey: [list]
             The name(s) of surveys, as strings, containing the galaxy whose image is to be fetched.
 
-    Returns:
-        None. Displays an image of the galaxy.
+    :returns:
+        None
 
     .. seealso:: For an example usage of this function, see the notebook `09_Widget_SPARC_Galaxies.ipynb on Binder <https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder%2F09_Widget_SPARC_Galaxies.ipynb>`__.
     """

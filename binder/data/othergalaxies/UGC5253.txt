@@ -1,3 +1,6 @@
+#UGC 5353 #SPARC 2016 https://iopscience.iop.org/article/10.3847/0004-6256/152/6/157
+# Rad	Vobs	errV
+# kpc	km/s	km/s
 0.13	232	33.4
 0.25	233	16.9
 0.38	234	14.6

@@ -7,8 +7,8 @@
 .. image:: https://dl.circleci.com/status-badge/img/gh/villano-lab/galactic-spin-W1/tree/master.svg?style=svg
    :target: https://dl.circleci.com/status-badge/redirect/gh/villano-lab/galactic-spin-W1/tree/master
    :alt: CircleCI Build Status
-.. image:: https://readthedocs.org/projects/galactic-spin-W1/badge/?version=stable
-   :target: https://galactic-spin-W1.readthedocs.io/en/latest/?badge=stable
+.. image:: https://readthedocs.org/projects/galactic-spin-w1/badge/?version=stable
+   :target: https://galactic-spin-w1.readthedocs.io/en/latest/?badge=stable
    :alt: Documentation Status
 .. image:: https://codecov.io/gh/villano-lab/galactic-spin-W1/branch/master/graph/badge.svg?token=U7YINMN0V4 
    :target: https://codecov.io/gh/villano-lab/galactic-spin-W1
@@ -43,8 +43,9 @@ If you want to contribute to `galactic-spin-W1`, please check out the `contribut
    01_Getting_Started
    02_Modules
    03_Glossary
-   04_Citations
-   05_Release_History
-   06_License
-   07_Contact
+   autoapi/index
+   05_Citations
+   06_Release_History
+   07_License
+   08_Contact
    References

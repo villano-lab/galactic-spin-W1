@@ -20,10 +20,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
   @misc{villano_a_n_2022_6588350,
     author       = {Villano, A. N. and Harris, Kitty C. and Bergfalk, Judit and Hatami, Raphael and Vititoe, Francis and Johnston, Julia}, 
     title        = {The Data Behind Dark Matter: Exploring Galactic Rotation},
-    month        = {june},
+    month        = {july},
     year         = {2022},
     publisher    = {Zenodo},
-    version      = {v2.0.1},
+    version      = {v3.0.0},
     doi          = {10.5281/zenodo.6588350},
     url          = {https://doi.org/10.5281/zenodo.6588350}
   }

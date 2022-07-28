@@ -73,7 +73,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
-In progress: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)
+28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)
 30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)
 24.06.2022: Release of [version 2.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.0)  
 17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)  

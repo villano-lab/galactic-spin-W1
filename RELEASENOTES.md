@@ -1,9 +1,9 @@
-## Release (v3.0.0) In Progress
+## Release (v3.0.0) Date 28.07.22
 
 Create documentation oriented toward developers and reorganize libraries.
 * Documented library functions.
-* Condensed small library functions that are only called by other library functions into fewer, larger ones.
-* Fix readthedocs badges.
+* Condensed small variables and library functions that are only called by other library functions into fewer, larger ones.
+* Fixed readthedocs badges.
 
 ## Release (v2.0.1) Date 30.06.22
 

@@ -1,4 +1,8 @@
 ###### Requirements without Version Specifiers ######
 myst-parser
 sphinx_rtd_theme
-breathe
+numpy
+scipy
+lmfit
+dataPython
+sphinx-autoapi

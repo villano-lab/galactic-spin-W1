@@ -1,3 +1,6 @@
+#NGC 3198 #Karukes, 2015 https://doi.org/10.1051/0004-6361/201425339
+# Rad	Vobs	errV
+# kpc	km/s	km/s
 2	79	7
 3	97.8	5
 4	118	5.6

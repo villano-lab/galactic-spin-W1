@@ -1,3 +1,16 @@
+## Release (v3.0.0) Date 28.07.22
+
+Create documentation oriented toward developers and reorganize libraries.
+* Documented library functions.
+* Condensed small variables and library functions that are only called by other library functions into fewer, larger ones.
+* Fixed readthedocs badges.
+
+## Release (v2.0.1) Date 30.06.22
+
+* Improved notebook 06 by restoring the ability to "Run all cells below" with a button press instead of JupyterLab UI.
+* Added another CI to test an environment generated more similarly to how Binder generates its environments.
+
+
 ## Release (v2.0.0) Date 24.06.22
 
 Condensed many library functions.

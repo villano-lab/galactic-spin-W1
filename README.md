@@ -14,7 +14,7 @@ The first workshop of our Rotation Curves series, which covers the basics of wha
 how they are measured, and how we model them by breaking them into components.
 
 You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
-including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/feature-open-source-documents/01_Getting_Started.html).
+including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/latest/01_Getting_Started.html).
 
 ## ABSTRACT
 

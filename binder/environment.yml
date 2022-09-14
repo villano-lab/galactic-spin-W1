@@ -6,7 +6,7 @@ dependencies:
   - python=3.7.9
   - numpy
   - scipy
-  - matplotlib
+  - matplotlib==3.5.1
   - mpld3
   - h5py
   - sympy

@@ -8,7 +8,7 @@ dependencies:
   - scipy
   - matplotlib==3.5.1
   - mpld3
-  - h5py
+  - h5py==3.6.0
   - sympy
   - ipympl
   - ipylab

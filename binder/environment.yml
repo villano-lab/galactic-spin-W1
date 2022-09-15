@@ -20,4 +20,4 @@ dependencies:
     - lmfit
     - astroquery
     - dataPython
-  - jupyterlab
+  - jupyterlab==3.4.3

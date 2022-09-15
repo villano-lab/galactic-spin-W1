@@ -10,7 +10,7 @@ dependencies:
   - mpld3
   - h5py==3.6.0
   - sympy
-  - ipympl
+  - ipympl==0.8.7
   - ipylab
   - ipywidgets==7.6.5
   - ffmpeg

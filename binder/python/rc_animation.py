@@ -4,6 +4,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as ani
+px = 1/plt.rcParams['figure.dpi']
 
 ###############################################
 
@@ -212,7 +213,7 @@ def PlotRotationCurve(radius,velocity,title,
     title = str(title)
     
     # Plot
-    fig = plt.figure(figsize=(6,6))
+    fig = plt.figure(figsize=(600*px,600*px))
     ax = plt.axes()
     
     fig.patch.set_facecolor('black')

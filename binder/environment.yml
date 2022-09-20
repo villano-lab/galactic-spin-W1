@@ -8,12 +8,12 @@ dependencies:
   - scipy
   - matplotlib==3.5.1
   - mpld3
-  - h5py==3.6.0
+  - h5py==3.7.0
   - sympy
   - ipympl==0.8.7
   - ipylab==0.5.2
   - ipywidgets==7.6.5
-  - ffmpeg
+  - ffmpeg==4.3.1
   - pip
   - ipykernel
   - pip:

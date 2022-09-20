@@ -21,6 +21,7 @@ warnings.filterwarnings("ignore")         # ignore warnings
 import sys
 sys.path.append('python')
 import components as comp
+px = 1/plt.rcParams['figure.dpi']
 
 ################################
 ############ Data ##############
@@ -383,7 +384,7 @@ def widgetfunction(bpref,dpref,rc,rho0):
     r = np.linspace(np.min(Rad),np.max(Rad),1000)
     
     # Plot
-    plt.figure(figsize=(11,7))
+    plt.figure(figsize=(1100*px,700*px))
     plt.xlim(0,np.max(Rad)+0.2)
     plt.ylim(0,np.max(Vobs)+100)
     
@@ -564,7 +565,7 @@ def GalaxyImage(position=galaxy,survey=['DSS']):
     gfilter = hdu.data
 
     # WCS 
-    plt.figure(figsize=(5,5))
+    plt.figure(figsize=(500*px,500*px))
     wcs = WCS(hdu.header)
     ax = plt.gca(projection=wcs)
 

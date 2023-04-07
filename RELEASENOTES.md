@@ -1,4 +1,4 @@
-## Release (v3.0.1) Date 07.04.23
+## Hotfix (v3.0.1) Date 07.04.23
 Hotfix for restoring Binder functionality.
 * The repository now successfully builds on Binder again.
 * Fixed CircleCI builds only retrieving files from master for testing; they now retrieve files from the commit being tested.

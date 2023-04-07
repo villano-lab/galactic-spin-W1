@@ -12,7 +12,7 @@ dependencies:
   - sympy
   - ipympl
   - ipylab
-  - ipywidgets==7.6.5
+  - ipywidgets==8.0.4
   - ffmpeg
   - pip
   - ipykernel

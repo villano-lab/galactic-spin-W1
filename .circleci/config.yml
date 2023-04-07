@@ -96,8 +96,8 @@ jobs:
             fi
             echo "2. Running jupyter-repo2docker..."
             set -x
-            if docker pull "${CONTAINER_NAME}:${DOCKER_TAG}"; then
-              jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${CONTAINER_NAME}:${DOCKER_TAG}" --cache-from "${CONTAINER_NAME}:${DOCKER_TAG}" "${REPO_NAME}"
+            #if docker pull "${CONTAINER_NAME}:${DOCKER_TAG}"; then
+            #  jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${CONTAINER_NAME}:${DOCKER_TAG}" --cache-from "${CONTAINER_NAME}:${DOCKER_TAG}" "${REPO_NAME}" #redo cache
             else
               jupyter-repo2docker --debug --user-name jovyan --user-id 1000 --no-run --image-name "${CONTAINER_NAME}:${DOCKER_TAG}" "${REPO_NAME}"
             fi

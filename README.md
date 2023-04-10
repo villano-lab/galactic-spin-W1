@@ -14,7 +14,7 @@ The first workshop of our Rotation Curves series, which covers the basics of wha
 how they are measured, and how we model them by breaking them into components.
 
 You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
-including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/feature-open-source-documents/01_Getting_Started.html).
+including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/latest/01_Getting_Started.html).
 
 ## ABSTRACT
 
@@ -61,10 +61,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
                   Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
-  month        = july,
-  year         = 2022,
+  month        = april,
+  year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.0},
+  version      = {v3.0.1},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -73,6 +73,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
+07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)
 28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)
 30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)
 24.06.2022: Release of [version 2.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.0)  

@@ -2,6 +2,9 @@
 Release history
 ===============
 
+* 07.04.2023: Hotfix `v3.0.1 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1>`_
+     Restored Binder functionality.
+     Fixed CircleCI builds only retrieving files from master for testing.
 * 28.07.2022: Release of `v3.0.0 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0>`_
      Documented library functions.
      Condensed small variables and library functions that are only called by other library functions into fewer, larger ones.

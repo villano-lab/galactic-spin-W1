@@ -212,7 +212,7 @@ def PlotRotationCurve(radius,velocity,title,
     title = str(title)
     
     # Plot
-    fig = plt.figure(figsize=(6,6))
+    fig = plt.figure(figsize=(6,6),dpi=100)
     ax = plt.axes()
     
     fig.patch.set_facecolor('black')

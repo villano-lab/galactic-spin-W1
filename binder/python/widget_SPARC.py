@@ -565,7 +565,7 @@ def GalaxyImage(position=galaxy,survey=['DSS']):
     gfilter = hdu.data
 
     # WCS 
-    plt.figure(figsize=(500*px,500*px))
+    plt.figure(figsize=(5,5),dpi=100)
     wcs = WCS(hdu.header)
     ax = plt.gca(projection=wcs)
 

@@ -19,7 +19,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f binder/environment.yml
+  - conda env create -n test-environment -f binder/environment.yml
   - source activate test-environment
   #Packages for testing only -- don't need in user environment.
   - pip3 install codecov pytest==7.1.3 pytest-cov pytest_notebook nbval==0.9.6 papermill

@@ -3,17 +3,17 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.7.9
+  - python==3.7.9
   - numpy
   - scipy
   - matplotlib==3.5.1
   - mpld3
   - h5py==3.7.0
   - sympy
-  - ipympl==0.8.7
-  - ipylab==0.5.2
-  - ipywidgets==7.6.5
-  - ffmpeg==4.3.1
+  - ipympl
+  - ipylab
+  - ipywidgets==8.0.4
+  - ffmpeg
   - pip
   - ipykernel
   - pip:

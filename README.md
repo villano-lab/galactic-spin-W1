@@ -61,10 +61,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
                   Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
-  month        = july,
-  year         = 2022,
+  month        = april,
+  year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.0},
+  version      = {v3.0.1},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -73,8 +73,9 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
-28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)
-30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)
+07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)  
+28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)  
+30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)  
 24.06.2022: Release of [version 2.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.0)  
 17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)  
 17.06.2022: Release of [version 1.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3)  

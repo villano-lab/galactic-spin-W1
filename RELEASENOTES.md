@@ -1,3 +1,9 @@
+## Release (v3.0.2) Date 17.05.23
+Fix issues with documentation.
+* Fixed a formatting issue causing version history to run together.
+* Fixed conflicting license use -- now all code is under MIT license.
+* Fixed error in a reference entry in `paper/references.bib`.
+
 ## Hotfix (v3.0.1) Date 07.04.23
 Hotfix for restoring Binder functionality.
 * The repository now successfully builds on Binder again.

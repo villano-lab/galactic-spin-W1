@@ -13,8 +13,8 @@
 The first workshop of our Rotation Curves series, which covers the basics of what rotation curves are,
 how they are measured, and how we model them by breaking them into components.
 
-You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/latest), 
-including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/latest/01_Getting_Started.html).
+You can find more detailed documentation about the code involved in this workshop [here](https://galactic-spin-W1.readthedocs.io/en/stable), 
+including [a page guiding you through the workshop itself](https://galactic-spin-w1.readthedocs.io/en/stable/01_Getting_Started.html).
 
 ## ABSTRACT
 
@@ -61,10 +61,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
                   Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
-  month        = april,
+  month        = may,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.1},
+  version      = {v3.0.2},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -73,9 +73,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
-07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)
-28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)
-30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)
+17.05.2023: Release of [version 3.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2)  
+07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)  
+28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)  
+30.06.2022: Release of [version 2.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.1)  
 24.06.2022: Release of [version 2.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v2.0.0)  
 17.06.2022: Release of [version 1.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.4)  
 17.06.2022: Release of [version 1.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v1.0.3)  
@@ -90,13 +91,9 @@ The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hat
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 
 ## LICENSE
-This work is licensed under a
-[Creative Commons Attribution 4.0 International License][cc-by].
+This work is licensed under an
+[MIT License][mit].
 
-[![CC BY 4.0][cc-by-image]][cc-by]
-
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
-[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
-[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+[mit]: https://mit-license.org/
 
 Or see the [LICENSE file](https://github.com/villano-lab/galactic-spin-W1/blob/master/LICENSE).

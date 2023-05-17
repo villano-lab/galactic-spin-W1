@@ -90,13 +90,9 @@ The authors of *Galactic Spin W1* are A.N. Villano, Kitty C. Harris, Raphael Hat
 For questions, support, bug reports, or other suggestions, please open an [issue](https://github.com/villano-lab/galactic-spin-W1/issues).
 
 ## LICENSE
-This work is licensed under a
-[Creative Commons Attribution 4.0 International License][cc-by].
+This work is licensed under an
+[MIT License][mit].
 
-[![CC BY 4.0][cc-by-image]][cc-by]
-
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
-[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
-[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+[mit]: https://mit-license.org/
 
 Or see the [LICENSE file](https://github.com/villano-lab/galactic-spin-W1/blob/master/LICENSE).

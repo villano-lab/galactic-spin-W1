@@ -1,7 +1,9 @@
 ===============
 Release history
 ===============
-
+* 17.05.2023: Release of `v3.0.2 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2>`_
+     Fixed documentation formatting issues.
+     Fixed mismatched licenses (now using MIT license everywhere).
 * 07.04.2023: Hotfix `v3.0.1 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1>`_
      Restored Binder functionality.
      Fixed CircleCI builds only retrieving files from master for testing.

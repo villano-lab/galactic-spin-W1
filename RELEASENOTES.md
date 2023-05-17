@@ -1,3 +1,6 @@
+## Hotfix (v3.0.3) Date 18.05.23
+Include MIT license badges.
+
 ## Release (v3.0.2) Date 17.05.23
 Fix issues with documentation.
 * Fixed a formatting issue causing version history to run together.

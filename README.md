@@ -1,4 +1,4 @@
-[![CC BY 4.0][cc-by-shield]][cc-by] 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/villano-lab/galactic-spin-W1/HEAD?labpath=binder)
 [![TravisCI Build Status](https://app.travis-ci.com/villano-lab/galactic-spin-W1.svg?branch=master)](https://app.travis-ci.com/github/villano-lab/galactic-spin-W1)
 [![CircleCI Build Status](https://dl.circleci.com/status-badge/img/gh/villano-lab/galactic-spin-W1/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/villano-lab/galactic-spin-W1/tree/master)
@@ -64,7 +64,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
   month        = may,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.2},
+  version      = {v3.0.3},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -73,6 +73,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
+18.05.2023: Release of [version 3.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.3)  
 17.05.2023: Release of [version 3.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2)  
 07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)  
 28.07.2022: Release of [version 3.0.0](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.0)  
@@ -93,6 +94,8 @@ For questions, support, bug reports, or other suggestions, please open an [issue
 ## LICENSE
 This work is licensed under an
 [MIT License][mit].
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [mit]: https://mit-license.org/
 

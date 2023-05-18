@@ -23,9 +23,9 @@
 ==========================================================
 *Galactic Spin Workshop 1* - The Basics of Rotation Curves
 ==========================================================
-.. image:: https://i.creativecommons.org/l/by/4.0/88x31.png
-   :target: http://creativecommons.org/licenses/by/4.0/
-   :alt: License: CC BY
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+   :target: https://opensource.org/licenses/MIT
+   :alt: License: MIT
 
 The purpose of this workshop is to guide the user through the fundamental aspects of spiral galaxies' rotation curves. 
 This includes discussing what a rotation curve is, plotting the measured rotational velocities, constructing a rotation curve model for each component of the galaxy, calculating total rotation, and fitting the total curve to the measured data. 

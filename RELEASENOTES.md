@@ -1,3 +1,8 @@
+## Hotfix (v3.0.4) Date 19.05.23
+Fix abstract.
+* Fix inaccuracy regarding amount of dark matter.
+* Remove the (now erroneous) statement that abstract is from RaCAS 2022.
+
 ## Hotfix (v3.0.3) Date 18.05.23
 Include MIT license badges.
 

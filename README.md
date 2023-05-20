@@ -18,9 +18,7 @@ including [a page guiding you through the workshop itself](https://galactic-spin
 
 ## ABSTRACT
 
-*The following is a version of our abstract for RaCAS 2022.*
-
-Dark matter is estimated to make up ~60% of all normal/baryonic matter, but cannot be directly imaged. 
+Dark matter is estimated to make up ~84% of all normal/baryonic matter, but cannot be directly imaged. 
 Despite the fact that dark matter cannot be directly observed yet, its influence on the motion of stars and gas in spiral galaxies have been detected. 
 One way to show motion in galaxies are rotation curves that are plots of velocity measurements of how fast stars and gas move in a galaxy around the center of mass. 
 According to Newton's Law of Gravitation, the rotational velocity is an indication of the amount of visible and non-visible mass in the galaxy. 
@@ -49,7 +47,7 @@ The three steps of the rotation curve building process is plotting the measured 
 
 If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version,
 
-> Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2022, The Data Behind Dark Matter: Exploring Galactic Rotation [Code, v2.0.1] [DOI:10.5281/zenodo.6588350].
+> Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2022, The Data Behind Dark Matter: Exploring Galactic Rotation [Code, v3.0.4] [DOI:10.5281/zenodo.6588350].
 
 ```
 @misc{villano_a_n_2022_6588350,
@@ -64,7 +62,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
   month        = may,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.3},
+  version      = {v3.0.4},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -73,6 +71,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
+19.05.2023: Release of [version 3.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.4)  
 18.05.2023: Release of [version 3.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.3)  
 17.05.2023: Release of [version 3.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2)  
 07.04.2023: Release of [version 3.0.1](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.1)  

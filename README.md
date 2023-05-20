@@ -18,9 +18,7 @@ including [a page guiding you through the workshop itself](https://galactic-spin
 
 ## ABSTRACT
 
-*The following is a version of our abstract for RaCAS 2022.*
-
-Dark matter is estimated to make up ~60% of all normal/baryonic matter, but cannot be directly imaged. 
+Dark matter is estimated to make up ~84% of all normal/baryonic matter, but cannot be directly imaged. 
 Despite the fact that dark matter cannot be directly observed yet, its influence on the motion of stars and gas in spiral galaxies have been detected. 
 One way to show motion in galaxies are rotation curves that are plots of velocity measurements of how fast stars and gas move in a galaxy around the center of mass. 
 According to Newton's Law of Gravitation, the rotational velocity is an indication of the amount of visible and non-visible mass in the galaxy. 

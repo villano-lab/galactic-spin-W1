@@ -1,6 +1,8 @@
 ===============
 Release history
 ===============
+* 19.05.2023: Hotfix `v3.0.4 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.4>`_
+     Fixed abstract.
 * 18.05.2023: Release of `v3.0.3 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.3>`_
      Fixed missing license badges.
 * 17.05.2023: Release of `v3.0.2 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2>`_

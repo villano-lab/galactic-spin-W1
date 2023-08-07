@@ -43,7 +43,7 @@ found that there seems to be something missing in our understanding of these gal
 is that there is some invisible matter present that does not interact with light
 &mdash; that is, these galaxies contain dark matter [@Rubin1978]. 
 
-Participants in this workshop will have the opportunity to explore dark matter through scientific
+Participants in this workshop have the opportunity to explore dark matter through scientific
 literature-based [@Jimenez2003;@Karukes2015;@Richards2015;@Fraternali2011;@de_Naray2008] galactic rotation
 curves both by using interactive programs and by editing Python code. This will give participants
 an understanding of how physicists arrived at the idea of dark matter, showing them the difference
@@ -119,10 +119,10 @@ participants' progress, but they should leave the bulk of the work to the partic
 If any bonus modules are being skipped, the instructor(s) may wish to suggest them to participants
 who find they are completing the content ahead of schedule.
 
-All materials are designed to work on myBinder.org [@Binder], a website for hosting and interacting with jupyter notebooks. 
+All materials are designed to work on myBinder.org [@Binder], a website for hosting and interacting with Jupyter notebooks. 
 This is done to allow people to participate in the workshop without needing to install any software beforehand and 
-is treated as the default delivery method. Participants who are experienced with python and 
-already have a jupyter environmental installed may choose instead to run the modules locally.
+is treated as the default delivery method. Participants who are experienced with Python and 
+already have a Jupyter environmental installed may choose instead to run the modules locally.
 
 # Story 
 

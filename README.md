@@ -47,10 +47,10 @@ The three steps of the rotation curve building process is plotting the measured 
 
 If you decide to use this code, or if you want to add a reference to it, please cite the latest archived version,
 
-> Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2022, The Data Behind Dark Matter: Exploring Galactic Rotation [Code, v3.0.4] [DOI:10.5281/zenodo.6588350].
+> Villano, A.N., Bergfalk, J., Hatami, R., Harris, K., Vititoe, F., and Johnston, J., 2023, The Data Behind Dark Matter: Exploring Galactic Rotation [Code, v3.0.5] [DOI:10.5281/zenodo.6588350].
 
 ```
-@misc{villano_a_n_2022_6588350,
+@misc{villano_a_n_2023_6588350,
   author       = {Villano, A. N. and
                   Harris, Kitty C. and
                   Bergfalk, Judit and
@@ -59,10 +59,10 @@ If you decide to use this code, or if you want to add a reference to it, please 
                   Johnston, Julia},
   title        = {{The Data Behind Dark Matter: Exploring Galactic 
                    Rotation}},
-  month        = may,
+  month        = August,
   year         = 2023,
   publisher    = {Zenodo},
-  version      = {v3.0.4},
+  version      = {v3.0.5},
   doi          = {10.5281/zenodo.6588350},
   url          = {https://doi.org/10.5281/zenodo.6588350}
 }
@@ -71,6 +71,7 @@ If you decide to use this code, or if you want to add a reference to it, please 
 
 ## VERSION HISTORY
 
+08.08.2023: Release of [version 3.0.5](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.5)
 19.05.2023: Release of [version 3.0.4](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.4)  
 18.05.2023: Release of [version 3.0.3](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.3)  
 17.05.2023: Release of [version 3.0.2](https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.2)  

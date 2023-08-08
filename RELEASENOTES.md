@@ -1,3 +1,9 @@
+## Patch (v3.0.5) Date 08.08.23
+Final fixes for JOSE publication
+* Grammatical fixes
+* Fixes reference formatting
+* Add CITATION.cff
+
 ## Hotfix (v3.0.4) Date 19.05.23
 Fix abstract.
 * Fix inaccuracy regarding amount of dark matter.

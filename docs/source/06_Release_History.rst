@@ -1,6 +1,9 @@
 ===============
 Release history
 ===============
+* 08.08.2023: Patch `v3.0.5 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.5>`_
+     Fixed paper formatting and grammar issues.
+     Added CITATION.cff.
 * 19.05.2023: Hotfix `v3.0.4 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.4>`_
      Fixed abstract.
 * 18.05.2023: Release of `v3.0.3 <https://github.com/villano-lab/galactic-spin-W1/releases/tag/v3.0.3>`_

@@ -19,6 +19,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
+  - free -m
   - conda env create -vv -n test-environment -f binder/environment.yml
   - source activate test-environment
   #Packages for testing only -- don't need in user environment.

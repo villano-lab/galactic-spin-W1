@@ -8,7 +8,6 @@ dependencies:
   - h5py==3.7.0
   - ipywidgets==8.0.4
   - pip
-  - ipykernel
   - pip:
     - numpy
     - scipy

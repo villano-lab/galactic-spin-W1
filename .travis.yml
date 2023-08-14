@@ -14,6 +14,8 @@ install:
   - conda update -q conda || true
   # Useful for debugging any issues with conda
   - conda info -a
+  # Increasing stack size because stackoverflow told me to
+  - ulimit -s 82768 
   # Useful for debugging memory issues
   - ulimit -a
   - free -m

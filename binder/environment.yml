@@ -4,20 +4,20 @@ channels:
   - defaults
 dependencies:
   - python==3.7.9
-  - numpy
-  - scipy
   - matplotlib==3.5.1
-  - mpld3
   - h5py==3.7.0
-  - sympy
-  - ipympl
-  - ipylab
   - ipywidgets==8.0.4
-  - ffmpeg
   - pip
   - ipykernel
   - pip:
+    - numpy
+    - scipy
     - lmfit
+    - sympy
     - astroquery
     - dataPython
+    - mpld3
+    - ipympl
+    - ipylab
+    - ffmpeg
   - jupyterlab==3.4.3

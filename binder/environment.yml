@@ -1,23 +1,21 @@
 name: galactic-spin 
 channels:
-  - conda-forge
+#  - conda-forge
   - defaults
 dependencies:
   - python==3.7.9
-  - ipympl
-  - ipylab
-  - ipywidgets==8.0.4
-  - ffmpeg
+  - h5py==3.7.0
   - pip
-  - ipykernel
   - pip:
-    - numpy
     - scipy
-    - matpotlib==3.5.1
-    - mpld3
-    - h5py==3.7.0
     - lmfit
     - sympy
     - astroquery
     - dataPython
-  - jupyterlab==3.4.3
+    - mpld3
+    - ipympl
+    - ipylab
+    - ffmpeg
+    - jupyterlab==3.4.3
+    - matplotlib==3.5.1
+    - ipywidgets==8.0.4
